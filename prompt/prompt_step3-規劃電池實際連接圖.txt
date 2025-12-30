@@ -1,0 +1,69 @@
+你是RhinoGrasshopper的參數化建模領域專家
+
+請在GH_WIP創建本次任務所需要的檔案
+1.part_info.mmd
+
+請嚴格按照以下任務步驟進行請透過查看GH_WIP資料夾內檔案的狀況來判定目前正在進行那一個階段
+
+任務步驟
+task1.釐清設計需求與規格
+task2.拆分幾何物件創建part_info.mmd 
+task3.規劃電池實際連接圖component_info.mmd
+task4.使用get_component_candidates找出所需組件GUID並更新寫入component_info.mmd並規劃電池擺放位置
+task5.生程執行序列檔案placement_info.json
+task6.清理GH_WIP檔案根據完成時間與任務名稱在GH_PKG創建資料夾ex.202512201344-create_table
+
+
+task3.規劃電池實際連接圖component_info.mmd
+根據part_info.mmd
+最後完成後檢查有沒有缺少電池之間的連接或者是缺少input輸入
+ex.
+flowchart LR
+    %% 桌面模块
+    subgraph TOP["桌面 TABLE_TOP"]
+        direction LR
+        XY_PLANE_TOP["XY Plane<br/>输出: Plane"]
+        SLIDER_WIDTH["Number Slider<br/>输出: 120.0"]
+        SLIDER_LENGTH["Number Slider<br/>输出: 80.0"]
+        RECTANGLE_TOP["Rectangle<br/>输入: Plane, X Size, Y Size<br/>输出: Rectangle"]
+        BOUNDARY_SURFACES_TOP["Boundary Surfaces<br/>输入: Curves<br/>输出: Surface"]
+        SLIDER_TOP_HEIGHT["Number Slider<br/>输出: 5.0"]
+        UNIT_Z["Unit Z<br/>输出: Vector"]
+        AMPLITUDE_TOP["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_TOP["Extrude<br/>输入: Base (Surface), Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_TOP -->|"Plane"| RECTANGLE_TOP
+        SLIDER_WIDTH -->|"Number"| RECTANGLE_TOP
+        SLIDER_LENGTH -->|"Number"| RECTANGLE_TOP
+        RECTANGLE_TOP -->|"Rectangle"| BOUNDARY_SURFACES_TOP
+        BOUNDARY_SURFACES_TOP -->|"Surface"| EXTRUDE_TOP
+        UNIT_Z -->|"Vector"| AMPLITUDE_TOP
+        SLIDER_TOP_HEIGHT -->|"Number"| AMPLITUDE_TOP
+        AMPLITUDE_TOP -->|"Vector"| EXTRUDE_TOP
+    end
+    
+    %% 桌腳1模块
+    subgraph LEG1["桌腳1 TABLE_LEG_1"]
+        direction LR
+        XY_PLANE_LEG1["XY Plane<br/>输出: Plane"]
+        VECTOR_LEG1["Vector XYZ<br/>输出: Vector<br/>位置: X=-50, Y=-30"]
+        MOVE_PLANE_LEG1["Move<br/>输入: Geometry, Motion<br/>输出: Plane"]
+        SLIDER_RADIUS_LEG["Number Slider<br/>输出: 2.5"]
+        CIRCLE_LEG1["Circle<br/>输入: Plane, Radius<br/>输出: Circle"]
+        BOUNDARY_SURFACES_LEG1["Boundary Surfaces<br/>输入: Curves<br/>输出: Surface"]
+        SLIDER_LEG_HEIGHT["Number Slider<br/>输出: 70.0"]
+        AMPLITUDE_LEG1["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_LEG1["Extrude<br/>输入: Base (Surface), Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_LEG1 -->|"Plane"| MOVE_PLANE_LEG1
+        VECTOR_LEG1 -->|"Vector"| MOVE_PLANE_LEG1
+        MOVE_PLANE_LEG1 -->|"Plane"| CIRCLE_LEG1
+        SLIDER_RADIUS_LEG -->|"Number"| CIRCLE_LEG1
+        CIRCLE_LEG1 -->|"Circle"| BOUNDARY_SURFACES_LEG1
+        BOUNDARY_SURFACES_LEG1 -->|"Surface"| EXTRUDE_LEG1
+        UNIT_Z -->|"Vector"| AMPLITUDE_LEG1
+        SLIDER_LEG_HEIGHT -->|"Number"| AMPLITUDE_LEG1
+
+
+
+

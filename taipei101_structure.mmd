@@ -1,0 +1,71 @@
+
+
+erDiagram
+    TAIPEI101 ||--|| BASE_PLATFORM : contains
+    TAIPEI101 ||--o{ LOWER_TOWER : contains
+    TAIPEI101 ||--o{ MIDDLE_TOWER : contains
+    TAIPEI101 ||--o{ UPPER_TOWER : contains
+    TAIPEI101 ||--|| TOP_SPIRE : contains
+    
+    BASE_PLATFORM ||--|| LOWER_TOWER : supports
+    LOWER_TOWER ||--|| MIDDLE_TOWER : supports
+    MIDDLE_TOWER ||--|| UPPER_TOWER : supports
+    UPPER_TOWER ||--|| TOP_SPIRE : supports
+
+    TAIPEI101 {
+        string name "台北101大樓"
+        float total_height "508.0"
+        int floor_count "101"
+    }
+
+    BASE_PLATFORM {
+        string sketch_type "Rectangle"
+        string forming_method "Extrude"
+        float width "70.0"
+        float length "70.0"
+        float height "15.0"
+        plane base_plane "基準平面"
+    }
+
+    LOWER_TOWER {
+        string sketch_type "Polygon"
+        int polygon_sides "8"
+        string forming_method "Extrude"
+        float radius "35.0"
+        int segment_count "8"
+        float height "180.0"
+        float taper_ratio "0.85"
+        plane base_plane "基準平面"
+    }
+
+    MIDDLE_TOWER {
+        string sketch_type "Polygon"
+        int polygon_sides "8"
+        string forming_method "Extrude"
+        float radius "30.0"
+        int segment_count "6"
+        float height "150.0"
+        float taper_ratio "0.80"
+        plane offset_plane "偏移平面"
+    }
+
+    UPPER_TOWER {
+        string sketch_type "Polygon"
+        int polygon_sides "8"
+        string forming_method "Extrude"
+        float radius "25.0"
+        int segment_count "4"
+        float height "120.0"
+        float taper_ratio "0.75"
+        plane offset_plane "偏移平面"
+    }
+
+    TOP_SPIRE {
+        string sketch_type "Circle"
+        string forming_method "Extrude或Loft"
+        float radius "3.0"
+        float height "43.0"
+        plane top_plane "頂部平面"
+    }
+
+

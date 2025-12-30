@@ -1,0 +1,137 @@
+flowchart LR
+    %% 基座平台模块
+    subgraph BASE["基座平台 BASE_PLATFORM"]
+        direction LR
+        XY_PLANE_BASE["XY Plane<br/>输出: Plane"]
+        SLIDER_WIDTH["Number Slider<br/>输出: 70.0"]
+        SLIDER_LENGTH["Number Slider<br/>输出: 70.0"]
+        RECTANGLE_BASE["Rectangle<br/>输入: Plane, X Size, Y Size<br/>输出: Rectangle"]
+        SLIDER_BASE_HEIGHT["Number Slider<br/>输出: 15.0"]
+        UNIT_Z["Unit Z<br/>输出: Vector"]
+        AMPLITUDE_BASE["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_BASE["Extrude<br/>输入: Base, Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_BASE -->|"Plane"| RECTANGLE_BASE
+        SLIDER_WIDTH -->|"Number"| RECTANGLE_BASE
+        SLIDER_LENGTH -->|"Number"| RECTANGLE_BASE
+        RECTANGLE_BASE -->|"Rectangle"| EXTRUDE_BASE
+        UNIT_Z -->|"Vector"| AMPLITUDE_BASE
+        SLIDER_BASE_HEIGHT -->|"Number"| AMPLITUDE_BASE
+        AMPLITUDE_BASE -->|"Vector"| EXTRUDE_BASE
+    end
+    
+    %% 下段塔身模块
+    subgraph LOWER["下段塔身 LOWER_TOWER"]
+        direction LR
+        XY_PLANE_LOWER["XY Plane<br/>输出: Plane"]
+        SLIDER_RADIUS_LOWER["Number Slider<br/>输出: 35.0"]
+        INTEGER_SIDES["Integer<br/>输出: 8"]
+        SERIES_LOWER["Series<br/>输入: Start, Count, Step<br/>输出: Series"]
+        REMAP_LOWER["Remap<br/>输入: Value, Source, Target<br/>输出: Value<br/>渐缩: 0.85"]
+        POLYGON_LOWER["Polygon<br/>输入: Plane, Radius, Sides<br/>输出: Polygon"]
+        SLIDER_HEIGHT_LOWER["Number Slider<br/>输出: 180.0"]
+        AMPLITUDE_LOWER["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_LOWER["Extrude<br/>输入: Base, Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_LOWER -->|"Plane"| POLYGON_LOWER
+        SLIDER_RADIUS_LOWER -->|"Number"| POLYGON_LOWER
+        INTEGER_SIDES -->|"Integer"| POLYGON_LOWER
+        SERIES_LOWER -->|"Series"| REMAP_LOWER
+        REMAP_LOWER -->|"Value"| POLYGON_LOWER
+        POLYGON_LOWER -->|"Polygon"| EXTRUDE_LOWER
+        UNIT_Z -->|"Vector"| AMPLITUDE_LOWER
+        SLIDER_HEIGHT_LOWER -->|"Number"| AMPLITUDE_LOWER
+        AMPLITUDE_LOWER -->|"Vector"| EXTRUDE_LOWER
+    end
+    
+    %% 中段塔身模块
+    subgraph MIDDLE["中段塔身 MIDDLE_TOWER"]
+        direction LR
+        VECTOR_MIDDLE["Vector XYZ<br/>输出: Vector Z=195.0"]
+        MOVE_PLANE_MIDDLE["Move<br/>输入: Geometry, Motion<br/>输出: Plane"]
+        SLIDER_RADIUS_MIDDLE["Number Slider<br/>输出: 30.0"]
+        SERIES_MIDDLE["Series<br/>输入: Start, Count, Step<br/>输出: Series"]
+        REMAP_MIDDLE["Remap<br/>输入: Value, Source, Target<br/>输出: Value<br/>渐缩: 0.80"]
+        POLYGON_MIDDLE["Polygon<br/>输入: Plane, Radius, Sides<br/>输出: Polygon"]
+        SLIDER_HEIGHT_MIDDLE["Number Slider<br/>输出: 150.0"]
+        AMPLITUDE_MIDDLE["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_MIDDLE["Extrude<br/>输入: Base, Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_BASE -->|"Plane"| MOVE_PLANE_MIDDLE
+        VECTOR_MIDDLE -->|"Vector"| MOVE_PLANE_MIDDLE
+        MOVE_PLANE_MIDDLE -->|"Plane"| POLYGON_MIDDLE
+        SLIDER_RADIUS_MIDDLE -->|"Number"| POLYGON_MIDDLE
+        INTEGER_SIDES -->|"Integer"| POLYGON_MIDDLE
+        SERIES_MIDDLE -->|"Series"| REMAP_MIDDLE
+        REMAP_MIDDLE -->|"Value"| POLYGON_MIDDLE
+        POLYGON_MIDDLE -->|"Polygon"| EXTRUDE_MIDDLE
+        UNIT_Z -->|"Vector"| AMPLITUDE_MIDDLE
+        SLIDER_HEIGHT_MIDDLE -->|"Number"| AMPLITUDE_MIDDLE
+        AMPLITUDE_MIDDLE -->|"Vector"| EXTRUDE_MIDDLE
+    end
+    
+    %% 上段塔身模块
+    subgraph UPPER["上段塔身 UPPER_TOWER"]
+        direction LR
+        VECTOR_UPPER["Vector XYZ<br/>输出: Vector Z=345.0"]
+        MOVE_PLANE_UPPER["Move<br/>输入: Geometry, Motion<br/>输出: Plane"]
+        SLIDER_RADIUS_UPPER["Number Slider<br/>输出: 25.0"]
+        SERIES_UPPER["Series<br/>输入: Start, Count, Step<br/>输出: Series"]
+        REMAP_UPPER["Remap<br/>输入: Value, Source, Target<br/>输出: Value<br/>渐缩: 0.75"]
+        POLYGON_UPPER["Polygon<br/>输入: Plane, Radius, Sides<br/>输出: Polygon"]
+        SLIDER_HEIGHT_UPPER["Number Slider<br/>输出: 120.0"]
+        AMPLITUDE_UPPER["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_UPPER["Extrude<br/>输入: Base, Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_BASE -->|"Plane"| MOVE_PLANE_UPPER
+        VECTOR_UPPER -->|"Vector"| MOVE_PLANE_UPPER
+        MOVE_PLANE_UPPER -->|"Plane"| POLYGON_UPPER
+        SLIDER_RADIUS_UPPER -->|"Number"| POLYGON_UPPER
+        INTEGER_SIDES -->|"Integer"| POLYGON_UPPER
+        SERIES_UPPER -->|"Series"| REMAP_UPPER
+        REMAP_UPPER -->|"Value"| POLYGON_UPPER
+        POLYGON_UPPER -->|"Polygon"| EXTRUDE_UPPER
+        UNIT_Z -->|"Vector"| AMPLITUDE_UPPER
+        SLIDER_HEIGHT_UPPER -->|"Number"| AMPLITUDE_UPPER
+        AMPLITUDE_UPPER -->|"Vector"| EXTRUDE_UPPER
+    end
+    
+    %% 顶部尖塔模块
+    subgraph SPIRE["顶部尖塔 TOP_SPIRE"]
+        direction LR
+        VECTOR_SPIRE["Vector XYZ<br/>输出: Vector Z=465.0"]
+        MOVE_PLANE_SPIRE["Move<br/>输入: Geometry, Motion<br/>输出: Plane"]
+        SLIDER_RADIUS_SPIRE["Number Slider<br/>输出: 3.0"]
+        CIRCLE_SPIRE["Circle<br/>输入: Plane, Radius<br/>输出: Circle"]
+        SLIDER_HEIGHT_SPIRE["Number Slider<br/>输出: 43.0"]
+        AMPLITUDE_SPIRE["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_SPIRE["Extrude<br/>输入: Base, Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_BASE -->|"Plane"| MOVE_PLANE_SPIRE
+        VECTOR_SPIRE -->|"Vector"| MOVE_PLANE_SPIRE
+        MOVE_PLANE_SPIRE -->|"Plane"| CIRCLE_SPIRE
+        SLIDER_RADIUS_SPIRE -->|"Number"| CIRCLE_SPIRE
+        CIRCLE_SPIRE -->|"Circle"| EXTRUDE_SPIRE
+        UNIT_Z -->|"Vector"| AMPLITUDE_SPIRE
+        SLIDER_HEIGHT_SPIRE -->|"Number"| AMPLITUDE_SPIRE
+        AMPLITUDE_SPIRE -->|"Vector"| EXTRUDE_SPIRE
+    end
+    
+    %% 最终合并
+    BOOLEAN_UNION["Boolean Union<br/>输入: Geometry 多输入<br/>输出: Result<br/>最终几何体"]
+    
+    %% 连接所有Extrude到Boolean Union
+    EXTRUDE_BASE -->|"Result"| BOOLEAN_UNION
+    EXTRUDE_LOWER -->|"Result"| BOOLEAN_UNION
+    EXTRUDE_MIDDLE -->|"Result"| BOOLEAN_UNION
+    EXTRUDE_UPPER -->|"Result"| BOOLEAN_UNION
+    EXTRUDE_SPIRE -->|"Result"| BOOLEAN_UNION
+    
+    %% 样式
+    classDef inputStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef geometryStyle fill:#fff4e1,stroke:#e65100,stroke-width:2px
+    classDef outputStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    
+    class XY_PLANE_BASE,XY_PLANE_LOWER,SLIDER_WIDTH,SLIDER_LENGTH,SLIDER_BASE_HEIGHT,SLIDER_RADIUS_LOWER,SLIDER_HEIGHT_LOWER,SLIDER_RADIUS_MIDDLE,SLIDER_HEIGHT_MIDDLE,SLIDER_RADIUS_UPPER,SLIDER_HEIGHT_UPPER,SLIDER_RADIUS_SPIRE,SLIDER_HEIGHT_SPIRE,INTEGER_SIDES,UNIT_Z,VECTOR_MIDDLE,VECTOR_UPPER,VECTOR_SPIRE inputStyle
+    class RECTANGLE_BASE,POLYGON_LOWER,POLYGON_MIDDLE,POLYGON_UPPER,CIRCLE_SPIRE,SERIES_LOWER,SERIES_MIDDLE,SERIES_UPPER,REMAP_LOWER,REMAP_MIDDLE,REMAP_UPPER,MOVE_PLANE_MIDDLE,MOVE_PLANE_UPPER,MOVE_PLANE_SPIRE,AMPLITUDE_BASE,AMPLITUDE_LOWER,AMPLITUDE_MIDDLE,AMPLITUDE_UPPER,AMPLITUDE_SPIRE geometryStyle
+    class EXTRUDE_BASE,EXTRUDE_LOWER,EXTRUDE_MIDDLE,EXTRUDE_UPPER,EXTRUDE_SPIRE,BOOLEAN_UNION outputStyle

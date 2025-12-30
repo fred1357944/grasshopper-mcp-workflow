@@ -1,0 +1,44 @@
+flowchart TD
+    Start([開始工作流程]) --> Task1[Task 1: 釐清設計需求與規格<br/>📋 確認幾何形狀、成型方式、參數需求]
+    
+    Task1 --> Check1{需求是否清晰?}
+    Check1 -->|否 - 需要釐清| Task1
+    Check1 -->|是 - 進入下一階段| Task2[Task 2: 拆分幾何物件<br/>📝 創建 part_info.mmd<br/>分解子物件、記錄成型方式與依賴關係]
+    
+    Task2 --> Task3[Task 3: 規劃電池實際連接圖<br/>🔗 創建 component_info.mmd<br/>規劃 Grasshopper 組件連接流程]
+    
+    Task3 --> Check2{檢查連接完整性<br/>是否有缺少連接或輸入?}
+    Check2 -->|是 - 補齊連接| Task3
+    Check2 -->|否 - 完整| Task4[Task 4: 找出所需組件GUID<br/>📍 規劃電池擺放位置<br/>更新 component_info.mmd<br/>查詢組件GUID、規劃X/Y座標]
+    
+    Task4 --> Check3{所有組件GUID已查詢<br/>且位置已規劃完成?<br/>檢查碰撞與重疊}
+    Check3 -->|否 - 繼續查詢與規劃| Task4
+    Check3 -->|是 - 進入下一階段| Task5[Task 5: 生成執行序列檔案<br/>📄 創建 placement_info.json<br/>生成 add_component 和 connect_components 命令]
+    
+    Task5 --> Task6[Task 6: 清理GH_WIP檔案<br/>📦 封存在GH_PKG<br/>根據時間與任務名稱創建資料夾<br/>移動所有檔案並清空GH_WIP]
+    
+    Task6 --> End([✅ 工作流程完成])
+    
+    %% 產出文件標註
+    Task2 -.->|產出| PartInfo[part_info.mmd]
+    Task3 -.->|產出| ComponentInfo[component_info.mmd]
+    Task4 -.->|更新| ComponentInfo
+    Task5 -.->|產出| PlacementInfo[placement_info.json]
+    Task6 -.->|封存| GH_PKG[GH_PKG/YYYYMMDDHHMM-task_name/]
+    
+    style Start fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style End fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Task1 fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style Task2 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style Task3 fill:#e8eaf6,stroke:#283593,stroke-width:2px
+    style Task4 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style Task5 fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    style Task6 fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style Check1 fill:#ffecb3,stroke:#f9a825,stroke-width:2px
+    style Check2 fill:#ffecb3,stroke:#f9a825,stroke-width:2px
+    style Check3 fill:#ffecb3,stroke:#f9a825,stroke-width:2px
+    style PartInfo fill:#f5f5f5,stroke:#757575,stroke-width:1px,stroke-dasharray: 5 5
+    style ComponentInfo fill:#f5f5f5,stroke:#757575,stroke-width:1px,stroke-dasharray: 5 5
+    style PlacementInfo fill:#f5f5f5,stroke:#757575,stroke-width:1px,stroke-dasharray: 5 5
+    style GH_PKG fill:#f5f5f5,stroke:#757575,stroke-width:1px,stroke-dasharray: 5 5
+

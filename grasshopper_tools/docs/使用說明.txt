@@ -1,0 +1,44 @@
+Grasshopper Tools CLI 使用說明
+================================
+
+✅ 正確的使用方式：
+
+方式 1: 在項目根目錄下（推薦）
+--------------------------------
+python -m grasshopper_tools.cli --help
+python -m grasshopper_tools.cli parse-mmd GH_WIP\component_info.mmd --action sliders
+python -m grasshopper_tools.cli execute-placement GH_WIP\placement_info.json
+
+
+方式 2: 使用快捷腳本
+--------------------
+cd grasshopper_tools
+python gh_cli.py --help
+python gh_cli.py parse-mmd ..\GH_WIP\component_info.mmd --action sliders
+python gh_cli.py execute-placement ..\GH_WIP\placement_info.json
+
+
+方式 3: 直接運行 CLI 腳本
+--------------------------
+cd grasshopper_tools
+python cli.py --help
+python cli.py parse-mmd ..\GH_WIP\component_info.mmd --action sliders
+python cli.py execute-placement ..\GH_WIP\placement_info.json
+
+
+❌ 錯誤的使用方式（會報錯）：
+--------------------------------
+python GH_WIP.grasshopper_tools.cli  # ❌ GH_WIP 不是 Python 包
+python -m GH_WIP.grasshopper_tools.cli  # ❌ GH_WIP 不是 Python 包
+
+
+📝 快速測試（不需要 Grasshopper 服務器）：
+------------------------------------------
+python -m grasshopper_tools.cli parse-mmd GH_WIP\component_info.mmd --action sliders
+
+
+📚 詳細說明：
+------------------------------------------
+查看 GH_WIP\grasshopper_tools\CLI使用說明.md
+查看 GH_WIP\grasshopper_tools\快速使用指南.md
+

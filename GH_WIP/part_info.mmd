@@ -1,0 +1,32 @@
+erDiagram
+    TABLE ||--|| TABLE_TOP : contains
+    TABLE ||--o{ TABLE_LEG : contains
+    
+    TABLE_TOP ||--o{ TABLE_LEG : supports
+
+    TABLE {
+        string name "桌子"
+        int leg_count "4"
+        float total_height "75.0"
+    }
+
+    TABLE_TOP {
+        string sketch_type "Rectangle"
+        string forming_method "Extrude"
+        float width "120.0"
+        float length "80.0"
+        float height "5.0"
+        plane base_plane "基準平面"
+        vector extrusion_direction "擠出方向"
+    }
+
+    TABLE_LEG {
+        string sketch_type "Circle"
+        string forming_method "Extrude"
+        float radius "2.5"
+        float height "70.0"
+        plane base_plane "基準平面（4個不同位置）"
+        vector extrusion_direction "擠出方向"
+        int leg_position "1-4"
+    }
+

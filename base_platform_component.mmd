@@ -1,0 +1,33 @@
+flowchart LR
+    %% 基座平台模块
+    subgraph BASE["基座平台 BASE_PLATFORM"]
+        direction LR
+        XY_PLANE_BASE["XY Plane<br/>输出: Plane"]
+        SLIDER_WIDTH["Number Slider<br/>输出: 70.0"]
+        SLIDER_LENGTH["Number Slider<br/>输出: 70.0"]
+        RECTANGLE_BASE["Rectangle<br/>输入: Plane, X Size, Y Size<br/>输出: Rectangle"]
+        BOUNDARY_SURFACES_BASE["Boundary Surfaces<br/>输入: Curves<br/>输出: Surface"]
+        SLIDER_BASE_HEIGHT["Number Slider<br/>输出: 15.0"]
+        UNIT_Z["Unit Z<br/>输出: Vector"]
+        AMPLITUDE_BASE["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector"]
+        EXTRUDE_BASE["Extrude<br/>输入: Base (Surface), Direction (Vector)<br/>输出: Result"]
+        
+        XY_PLANE_BASE -->|"Plane"| RECTANGLE_BASE
+        SLIDER_WIDTH -->|"Number"| RECTANGLE_BASE
+        SLIDER_LENGTH -->|"Number"| RECTANGLE_BASE
+        RECTANGLE_BASE -->|"Rectangle"| BOUNDARY_SURFACES_BASE
+        BOUNDARY_SURFACES_BASE -->|"Surface"| EXTRUDE_BASE
+        UNIT_Z -->|"Vector"| AMPLITUDE_BASE
+        SLIDER_BASE_HEIGHT -->|"Number"| AMPLITUDE_BASE
+        AMPLITUDE_BASE -->|"Vector"| EXTRUDE_BASE
+    end
+    
+    %% 样式
+    classDef inputStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef geometryStyle fill:#fff4e1,stroke:#e65100,stroke-width:2px
+    classDef outputStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    
+    class XY_PLANE_BASE,SLIDER_WIDTH,SLIDER_LENGTH,SLIDER_BASE_HEIGHT,UNIT_Z inputStyle
+    class RECTANGLE_BASE,BOUNDARY_SURFACES_BASE,AMPLITUDE_BASE geometryStyle
+    class EXTRUDE_BASE outputStyle
+

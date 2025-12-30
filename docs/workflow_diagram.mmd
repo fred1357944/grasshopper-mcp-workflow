@@ -1,0 +1,33 @@
+flowchart TD
+    Start([開始]) --> Task1[Task 1: 釐清設計需求與規格]
+    
+    Task1 --> Check1{需求是否清晰?}
+    Check1 -->|否| Task1
+    Check1 -->|是| Task2[Task 2: 拆分幾何物件<br/>創建 part_info.mmd]
+    
+    Task2 --> Task3[Task 3: 規劃電池實際連接圖<br/>創建 component_info.mmd]
+    
+    Task3 --> Check2{檢查連接完整性}
+    Check2 -->|缺少連接或輸入| Task3
+    Check2 -->|完整| Task4[Task 4: 找出所需組件GUID<br/>並規劃電池擺放位置<br/>更新 component_info.mmd]
+    
+    Task4 --> Check3{所有組件GUID已查詢<br/>且位置已規劃?}
+    Check3 -->|否| Task4
+    Check3 -->|是| Task5[Task 5: 生成執行序列檔案<br/>創建 placement_info.json]
+    
+    Task5 --> Task6[Task 6: 清理GH_WIP檔案<br/>封存在GH_PKG]
+    
+    Task6 --> End([完成])
+    
+    style Start fill:#e1f5ff
+    style End fill:#c8e6c9
+    style Task1 fill:#fff3e0
+    style Task2 fill:#f3e5f5
+    style Task3 fill:#e8eaf6
+    style Task4 fill:#fff9c4
+    style Task5 fill:#e0f2f1
+    style Task6 fill:#fce4ec
+    style Check1 fill:#ffecb3
+    style Check2 fill:#ffecb3
+    style Check3 fill:#ffecb3
+

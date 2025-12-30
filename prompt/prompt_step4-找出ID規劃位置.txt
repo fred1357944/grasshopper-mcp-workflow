@@ -1,0 +1,50 @@
+你是RhinoGrasshopper的參數化建模領域專家
+
+請在GH_WIP創建本次任務所需要的檔案
+1.part_info.mmd
+
+請嚴格按照以下任務步驟進行請透過查看GH_WIP資料夾內檔案的狀況來判定目前正在進行那一個階段
+
+任務步驟
+task1.釐清設計需求與規格
+task2.拆分幾何物件創建part_info.mmd 
+task3.規劃電池實際連接圖component_info.mmd
+task4.使用get_component_candidates找出所需組件GUID並更新寫入component_info.mmd並規劃電池擺放位置
+task5.生程執行序列檔案placement_info.json
+task6.清理GH_WIP檔案根據完成時間與任務名稱在GH_PKG創建資料夾ex.202512201344-create_table
+
+
+
+task4.使用get_component_candidates找出所需組件GUID並更新寫入component_info.mmd並規劃電池擺放位置
+
+詳細說明:
+進入下一階段條件:完成component_info.mmd中所有組件的GUID查詢並更新，且所有組件位置已規劃完成請確實檢查是否有碰撞或是距離過近重疊的問題
+
+步驟:
+1. 使用get_component_candidates查詢component_info.mmd中所有需要的組件名稱，獲取正確的GUID並且也獲取正確的input output參數名稱更新到component_info.mmd
+2. 將查詢到的GUID更新到component_info.mmd中對應組件的GUID欄位
+3. 規劃每個組件在畫布上的擺放位置(X, Y座標)
+
+電池擺放位置規則:
+- 同群組或同一個物件的電池應該擺放在附近的位置，保持適當間距(建議200-300單位)
+- 如果2個電池都連接到同一顆電池上，那兩顆電池的X位置應該保持相同，Y位置不同，保持垂直間距(建議100-150單位)
+- 避免電池過於接近導致碰撞重疊，最小間距建議至少50單位
+- 相關的組件應該按照數據流向從左到右排列
+- 輸入組件(如Number Slider)通常放在左側，處理組件在中間，輸出組件在右側
+
+component_info.mmd更新格式:
+在每個組件的描述中添加以下信息:
+- GUID: [查詢到的組件GUID]
+- 位置: X=[X座標], Y=[Y座標]
+
+範例:
+```
+XY_PLANE_TOP["XY Plane<br/>输出: Plane<br/>GUID: 6301d658-592f-47d0-ae0d-ad3c183a7ea5<br/>位置: X=100, Y=100"]
+SLIDER_WIDTH["Number Slider<br/>输出: 120.0<br/>GUID: f9abdb91-05f7-4363-8fd2-174b73a276f3<br/>位置: X=100, Y=200"]
+```
+
+注意事項:
+- 確保使用get_component_candidates查詢到的GUID是組件類型GUID，不是實例GUID
+- 如果查詢結果有多個候選項，選擇最符合需求的標準組件
+- 位置規劃時要考慮整體布局的美觀性和可讀性
+
