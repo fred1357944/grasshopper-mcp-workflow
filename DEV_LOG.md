@@ -106,3 +106,60 @@ Status: Clean, in sync with remote
 2. [ ] 修改 `execution.py` 接入真實 `GrasshopperClient`
 3. [ ] 建立 Wasp pattern extractor
 4. [ ] 實作狀態反向同步機制
+
+---
+
+## 2026-01-06 23:45 - LangGraph + 原始工作流程整合
+
+### Summary
+整合原始 AmemiyaLai/grasshopper-mcp-workflow 的 6 步驟工作流程與 LangGraph 狀態機。
+
+### 問題分析
+之前的 LangGraph 實作存在以下問題：
+1. 跳過 Mermaid 預覽步驟，直接執行
+2. 節點只更新狀態，未實際寫入檔案
+3. 缺少用戶確認檢查點
+
+### 解決方案
+1. **SKILL.md 增強 (v2.0)**
+   - 整合 6 步驟工作流程圖
+   - 強調「絕對不要跳過 Mermaid 預覽」原則
+   - 加入 AI 協作分工表
+
+2. **LangGraph Nodes 增強**
+   - `decomposition.py`: 產生 `GH_WIP/part_info.mmd`，暫停等待確認
+   - `connectivity.py`: 產生 `GH_WIP/component_info.mmd`，暫停等待確認
+   - 新增 `confirm_decomposition_node` 和 `confirm_connectivity_node`
+
+3. **核心原則**
+   ```
+   檔案優先 → 漸進揭露 → 驗證迴圈 → AI 協作
+   ```
+
+### 變更檔案
+| 檔案 | 變更 |
+|------|------|
+| `.claude/skills/grasshopper-workflow/SKILL.md` | 增強為 v2.0 |
+| `grasshopper-workflow/SKILL.md` | 同步更新 |
+| `grasshopper_mcp/langgraph/nodes/decomposition.py` | 新增檔案寫入、用戶確認 |
+| `grasshopper_mcp/langgraph/nodes/connectivity.py` | 新增檔案寫入、用戶確認 |
+| `grasshopper_mcp/langgraph/nodes/__init__.py` | 匯出新函數 |
+
+### 工作流程對照
+| 原始工作流程 | LangGraph Stage | 產出檔案 |
+|-------------|-----------------|----------|
+| Step 1: 釐清需求 | requirements | - |
+| Step 2: 拆分幾何 | decomposition | `part_info.mmd` |
+| Step 3: 規劃連接 | connectivity | `component_info.mmd` |
+| Step 4: GUID 查詢 | guid_resolution | 更新 `component_info.mmd` |
+| Step 5: 執行 | execution | `placement_info.json` |
+| Step 6: 清理 | evaluation | 封存到 `GH_PKG/` |
+
+### AI 協作模式
+| 步驟 | Claude | Gemini |
+|------|--------|--------|
+| Step 2 | 提案 | 評論優化 |
+| Step 3 | 規劃 | 完整性檢查 |
+| Step 5 | 修復 | 錯誤診斷 |
+
+---
