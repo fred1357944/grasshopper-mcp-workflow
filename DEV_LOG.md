@@ -248,3 +248,37 @@ return {
 3. 模糊 → Meta-Agent 探索（搜索範例、詢問用戶）後再進入 Workflow
 
 ---
+
+## 2026-01-07 00:30 - Grasshopper MCP 實際連接測試
+
+### 測試環境
+- Port 8080 可連接
+- Grasshopper 文檔: `mcp測試.gh` (34 個組件)
+
+### 測試結果
+```
+✓ add_component (type="Number Slider") → ID: be4f3d3a-...
+✓ add_component (type="Panel") → ID: d05c7de3-...
+✓ connect_components (Slider -> Panel) → Connection created successfully
+```
+
+### 發現的問題
+| 命令 | 狀態 | 備註 |
+|------|------|------|
+| `get_document_info` | ✓ | 正常 |
+| `add_component` | ✓ | 需要 `type` 參數（組件名稱）|
+| `connect_components` | ✓ | 正常 |
+| `get_document_errors` | ✗ | 未註冊 handler |
+| `get_component_candidates` | ✗ | 未註冊 handler |
+
+### 關鍵發現
+`add_component` 的參數格式：
+- **`type`**: 組件名稱（如 "Number Slider"）- **推薦**
+- **`guid`**: 組件類型 GUID - 需先查詢
+
+### 下一步
+1. [ ] 實現 `get_document_errors` handler（C# 端）
+2. [ ] 實現 `get_component_candidates` handler（C# 端）
+3. [ ] 測試完整的「畫桌子」流程連接 Grasshopper
+
+---
