@@ -279,6 +279,67 @@ return {
 ### 下一步
 1. [ ] 實現 `get_document_errors` handler（C# 端）
 2. [ ] 實現 `get_component_candidates` handler（C# 端）
-3. [ ] 測試完整的「畫桌子」流程連接 Grasshopper
+3. [x] 測試完整的「畫桌子」流程連接 Grasshopper
+
+---
+
+## 2026-01-07 01:30 - 完整桌子工作流程測試
+
+### Summary
+完成從 component_info.mmd 到 Grasshopper MCP 執行的端到端測試。
+
+### 測試結果
+```
+test_1_parse:      PASS (47 組件, 66 連接)
+test_2_generate:   PASS
+test_3_connection: PASS
+test_4_subset:     PASS (5/5 組件創建成功)
+```
+
+### 關鍵發現
+**Grasshopper MCP 參數格式**：
+- `add_component` 使用 `type`（組件名稱）✓
+- `add_component` 不支持 `guid` ✗
+
+```python
+# 成功
+client.send_command("add_component", {"type": "Average", "x": 100, "y": 100})
+
+# 失敗
+client.send_command("add_component", {"guid": "3e0451ca-...", "x": 100, "y": 100})
+```
+
+### 新增檔案
+| 檔案 | 功能 |
+|------|------|
+| `grasshopper_tools/component_guids.py` | Python GUID 映射表（方案 A）|
+| `tests/test_full_table_workflow.py` | 端到端測試腳本 |
+| `scripts/execute_table.py` | 完整桌子執行腳本 |
+
+### MermaidParser 設計
+```python
+class MermaidParser:
+    """解析 flowchart LR 格式的 component_info.mmd"""
+
+    def parse(self) -> dict:
+        return {
+            "components": {id: {...}},  # 47 個組件
+            "connections": [...]        # 66 個連接
+        }
+```
+
+**過濾邏輯**：
+- 跳過 `subgraph` 標題（如 "桌面 TABLE_TOP"）
+- 只保留有 GUID 的節點
+
+### Git Commit
+```
+5994544 feat: Complete table workflow with Mermaid parser and MCP execution
+```
+
+### 下一步
+1. [ ] 執行 `scripts/execute_table.py` 創建完整桌子
+2. [ ] 測試組件連接（connect_components）
+3. [ ] 實作錯誤診斷和自動修復
 
 ---
