@@ -1,57 +1,117 @@
 #!/usr/bin/env python3
 """
-Gemini CLI Caller for Multi-AI Optimizer
+Gemini Caller for Multi-AI Optimizer
 
-Provides a Python interface to call Gemini CLI for AI collaboration.
-Supports both synchronous and asynchronous calling patterns.
+Supports two modes:
+1. CLI Mode - Uses Gemini CLI (simple, no API key needed)
+2. API Mode - Uses Gemini API (more features, requires API key)
+
+API Mode enables:
+- Semantic similarity for convergence detection
+- Structured JSON outputs
+- Design quality scoring
+- Intelligent variant generation
 """
 
 import subprocess
 import json
+import os
 import asyncio
-from typing import Optional
-from dataclasses import dataclass
+from typing import Optional, Literal
+from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 import logging
 
 logger = logging.getLogger(__name__)
 
+# Try to load environment variables from .env
+try:
+    from dotenv import load_dotenv
+    env_path = Path(__file__).parent.parent.parent.parent.parent / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+except ImportError:
+    pass  # dotenv not installed, use os.environ directly
+
 
 @dataclass
 class GeminiResponse:
-    """Response from Gemini CLI"""
+    """Response from Gemini"""
     content: str
     success: bool
     error: Optional[str]
     timestamp: str
     duration_seconds: float
+    mode: Literal["cli", "api"] = "cli"
+    tokens_used: Optional[int] = None
 
 
 class GeminiCaller:
     """
-    Wrapper for Gemini CLI calls
+    Unified Gemini caller supporting both CLI and API modes
 
     Usage:
+        # Auto-detect mode (API if key available, else CLI)
         caller = GeminiCaller()
-        response = caller.call("Analyze this design proposal...")
-        print(response.content)
+
+        # Force specific mode
+        caller = GeminiCaller(mode="api")
+        caller = GeminiCaller(mode="cli")
+
+        # Call
+        response = caller.call("Analyze this design...")
     """
 
     def __init__(
         self,
+        mode: Literal["auto", "cli", "api"] = "auto",
+        api_key: Optional[str] = None,
         timeout: int = 60,
-        model: Optional[str] = None
+        model: str = "gemini-2.0-flash-exp"
     ):
         """
         Initialize Gemini caller
 
         Args:
-            timeout: Maximum seconds to wait for response
-            model: Optional model override (e.g., "gemini-pro")
+            mode: "auto", "cli", or "api"
+            api_key: Gemini API key (or from GEMINI_API_KEY env var)
+            timeout: Request timeout in seconds
+            model: Model to use for API mode
         """
         self.timeout = timeout
         self.model = model
-        self._verify_installation()
+        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
+
+        # Determine mode
+        if mode == "auto":
+            self.mode = "api" if self.api_key else "cli"
+        else:
+            self.mode = mode
+
+        # Validate
+        if self.mode == "api" and not self.api_key:
+            logger.warning("API mode requested but no API key found. Falling back to CLI.")
+            self.mode = "cli"
+
+        # Initialize API client if needed
+        self._api_client = None
+        self._genai = None
+        if self.mode == "api":
+            self._init_api_client()
+
+        logger.info(f"GeminiCaller initialized in {self.mode} mode")
+
+    def _init_api_client(self):
+        """Initialize the Gemini API client"""
+        try:
+            import google.generativeai as genai
+            genai.configure(api_key=self.api_key)
+            self._api_client = genai.GenerativeModel(self.model)
+            self._genai = genai
+        except ImportError:
+            logger.error("google-generativeai not installed. Run: pip install google-generativeai")
+            self.mode = "cli"
 
     def _verify_installation(self) -> bool:
         """Verify Gemini CLI is installed"""
@@ -71,26 +131,59 @@ class GeminiCaller:
 
     def call(self, prompt: str) -> GeminiResponse:
         """
-        Call Gemini CLI synchronously
+        Call Gemini with the given prompt
 
         Args:
-            prompt: The prompt to send to Gemini
+            prompt: The prompt to send
 
         Returns:
             GeminiResponse with content and metadata
         """
+        if self.mode == "api":
+            return self._call_api(prompt)
+        else:
+            return self._call_cli(prompt)
+
+    def _call_api(self, prompt: str) -> GeminiResponse:
+        """Call using Gemini API"""
         start_time = datetime.now()
 
         try:
-            # Build command
-            cmd = ["gemini"]
-            if self.model:
-                cmd.extend(["-m", self.model])
-            cmd.append(prompt)
+            response = self._api_client.generate_content(prompt)
+            duration = (datetime.now() - start_time).total_seconds()
 
-            # Execute
+            tokens = None
+            if hasattr(response, 'usage_metadata') and response.usage_metadata:
+                tokens = getattr(response.usage_metadata, 'total_token_count', None)
+
+            return GeminiResponse(
+                content=response.text,
+                success=True,
+                error=None,
+                timestamp=datetime.now().isoformat(),
+                duration_seconds=duration,
+                mode="api",
+                tokens_used=tokens
+            )
+
+        except Exception as e:
+            duration = (datetime.now() - start_time).total_seconds()
+            return GeminiResponse(
+                content="",
+                success=False,
+                error=str(e),
+                timestamp=datetime.now().isoformat(),
+                duration_seconds=duration,
+                mode="api"
+            )
+
+    def _call_cli(self, prompt: str) -> GeminiResponse:
+        """Call using Gemini CLI"""
+        start_time = datetime.now()
+
+        try:
             result = subprocess.run(
-                cmd,
+                ["gemini", prompt],
                 capture_output=True,
                 text=True,
                 timeout=self.timeout
@@ -104,7 +197,8 @@ class GeminiCaller:
                     success=True,
                     error=None,
                     timestamp=datetime.now().isoformat(),
-                    duration_seconds=duration
+                    duration_seconds=duration,
+                    mode="cli"
                 )
             else:
                 return GeminiResponse(
@@ -112,7 +206,8 @@ class GeminiCaller:
                     success=False,
                     error=result.stderr.strip() or "Unknown error",
                     timestamp=datetime.now().isoformat(),
-                    duration_seconds=duration
+                    duration_seconds=duration,
+                    mode="cli"
                 )
 
         except subprocess.TimeoutExpired:
@@ -122,7 +217,17 @@ class GeminiCaller:
                 success=False,
                 error=f"Timeout after {self.timeout} seconds",
                 timestamp=datetime.now().isoformat(),
-                duration_seconds=duration
+                duration_seconds=duration,
+                mode="cli"
+            )
+        except FileNotFoundError:
+            return GeminiResponse(
+                content="",
+                success=False,
+                error="Gemini CLI not found",
+                timestamp=datetime.now().isoformat(),
+                duration_seconds=0,
+                mode="cli"
             )
         except Exception as e:
             duration = (datetime.now() - start_time).total_seconds()
@@ -131,8 +236,78 @@ class GeminiCaller:
                 success=False,
                 error=str(e),
                 timestamp=datetime.now().isoformat(),
-                duration_seconds=duration
+                duration_seconds=duration,
+                mode="cli"
             )
+
+    # === Advanced API Features ===
+
+    def analyze_design(self, design: str, criteria: Optional[list] = None) -> dict:
+        """
+        Analyze a design and return structured evaluation (API mode only)
+
+        Returns: {"overall_score": float, "criteria_scores": dict, "strengths": list, "suggestions": list}
+        """
+        if self.mode != "api":
+            return {"error": "API mode required", "mode": self.mode}
+
+        criteria = criteria or ["structure", "efficiency", "manufacturability"]
+        prompt = f"""Analyze this design. Evaluate on: {', '.join(criteria)}
+
+Design: {design}
+
+Respond in JSON: {{"overall_score": 0-100, "criteria_scores": {{}}, "strengths": [], "suggestions": []}}"""
+
+        try:
+            response = self._api_client.generate_content(
+                prompt,
+                generation_config=self._genai.GenerationConfig(response_mime_type="application/json")
+            )
+            return json.loads(response.text)
+        except Exception as e:
+            return {"error": str(e)}
+
+    def calculate_convergence(self, proposals: list[dict]) -> dict:
+        """Calculate convergence between proposals"""
+        if len(proposals) < 2:
+            return {"convergence_score": 0.0}
+
+        recent = proposals[-3:] if len(proposals) >= 3 else proposals
+        proposals_text = "\n---\n".join([
+            f"Proposal ({p.get('ai', '?')}): {p.get('content', '')[:500]}"
+            for p in recent
+        ])
+
+        prompt = f"""Analyze convergence of these proposals:
+
+{proposals_text}
+
+Respond in JSON: {{"convergence_score": 0.0-1.0, "agreement_points": [], "recommendation": "continue|finalize|need human"}}"""
+
+        response = self.call(prompt)
+        if response.success:
+            try:
+                return json.loads(response.content)
+            except json.JSONDecodeError:
+                return {"convergence_score": 0.5, "raw": response.content}
+        return {"convergence_score": 0.5, "error": response.error}
+
+    def review_proposal(self, proposal: str, context: str = "") -> dict:
+        """Review a proposal and provide feedback"""
+        prompt = f"""Review this design proposal.
+
+Context: {context or 'Design optimization'}
+Proposal: {proposal}
+
+Respond in JSON: {{"assessment": "", "strengths": [], "concerns": [], "confidence": 0.0-1.0}}"""
+
+        response = self.call(prompt)
+        if response.success:
+            try:
+                return json.loads(response.content)
+            except json.JSONDecodeError:
+                return {"assessment": response.content, "confidence": 0.5}
+        return {"error": response.error}
 
     async def call_async(self, prompt: str) -> GeminiResponse:
         """
