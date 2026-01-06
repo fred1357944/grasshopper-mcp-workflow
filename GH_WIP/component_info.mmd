@@ -5,7 +5,7 @@ flowchart LR
         %% 計算桌腳中心點
         AVERAGE_LEG_X["Average<br/>输入: Input (Numbers)<br/>输出: Arithmetic mean<br/>GUID: 3e0451ca-da24-452d-a6b1-a6877453d4e4<br/>位置: X=100, Y=50"]
         AVERAGE_LEG_Y["Average<br/>输入: Input (Numbers)<br/>输出: Arithmetic mean<br/>GUID: 3e0451ca-da24-452d-a6b1-a6877453d4e4<br/>位置: X=100, Y=150"]
-        SLIDER_TOP_Z["Number Slider<br/>输出: 70.0<br/>桌面高度（桌腳頂部）<br/>GUID: e2bb9b8d-0d80-44e7-aa2d-2e446f5c61da<br/>位置: X=100, Y=250"]
+        SLIDER_TOP_Z["Number Slider<br/>输出: 72.5<br/>桌面中心高度（桌腳頂部+桌面厚度/2）<br/>GUID: e2bb9b8d-0d80-44e7-aa2d-2e446f5c61da<br/>位置: X=100, Y=250"]
         CONSTRUCT_POINT_CENTER["Construct Point<br/>输入: X coordinate, Y coordinate, Z coordinate<br/>输出: Point<br/>GUID: 9dceff86-6201-4c8e-90b1-706ad5bc3d49<br/>位置: X=300, Y=100"]
         XY_PLANE_TOP["XY Plane<br/>输入: Origin (Point, optional)<br/>输出: Plane<br/>GUID: a896f6c1-dd6c-4830-88f2-44808c07dc10<br/>位置: X=500, Y=100"]
         SLIDER_WIDTH["Number Slider<br/>输出: 120.0<br/>GUID: e2bb9b8d-0d80-44e7-aa2d-2e446f5c61da<br/>位置: X=100, Y=200"]
@@ -16,7 +16,7 @@ flowchart LR
         DIVISION_Y["Division<br/>输入: A, B<br/>输出: A/B<br/>GUID: 7ed9789a-7403-4eeb-9716-d6e5681f4136<br/>位置: X=500, Y=300"]
         DIVISION_Z["Division<br/>输入: A, B<br/>输出: A/B<br/>GUID: 7ed9789a-7403-4eeb-9716-d6e5681f4136<br/>位置: X=500, Y=400"]
         CENTER_BOX_TOP["Center Box<br/>输入: Base (Plane), X, Y, Z<br/>输出: Box<br/>GUID: e1f83fb4-efe0-4f10-8c20-4b38df56b36c<br/>位置: X=700, Y=300"]
-        
+
         %% 連接：計算中心點
         SLIDER_LEG1_X -->|"Number"| AVERAGE_LEG_X
         SLIDER_LEG2_X -->|"Number"| AVERAGE_LEG_X
@@ -41,7 +41,7 @@ flowchart LR
         DIVISION_Y -->|"Y"| CENTER_BOX_TOP
         DIVISION_Z -->|"Z"| CENTER_BOX_TOP
     end
-    
+
     %% 桌腳基礎模組（只創建一個，使用 Orient 複製到4個位置）
     subgraph LEG_BASE["桌腳基礎 TABLE_LEG_BASE"]
         direction LR
@@ -53,7 +53,7 @@ flowchart LR
         UNIT_Z["Unit Z<br/>输出: Vector<br/>GUID: 9428ce3a-b2a0-4c8f-832a-8ad2b81a9743<br/>位置: X=1000, Y=400"]
         AMPLITUDE_LEG_BASE["Amplitude<br/>输入: Vector, Amplitude (Number)<br/>输出: Vector<br/>GUID: 7b93e28d-6191-425a-844e-6e9e4127dd6b<br/>位置: X=1200, Y=250"]
         EXTRUDE_LEG_BASE["Extrude<br/>输入: Base (Surface), Direction (Vector)<br/>输出: Result<br/>GUID: 1c5e4c65-5f57-432c-96d3-53563470ab51<br/>位置: X=1600, Y=200"]
-        
+
         XY_PLANE_LEG_BASE -->|"Plane"| CIRCLE_LEG_BASE
         SLIDER_RADIUS_LEG -->|"Radius"| CIRCLE_LEG_BASE
         CIRCLE_LEG_BASE -->|"Edges"| BOUNDARY_SURFACES_LEG_BASE
@@ -62,7 +62,7 @@ flowchart LR
         SLIDER_LEG_HEIGHT -->|"Amplitude"| AMPLITUDE_LEG_BASE
         AMPLITUDE_LEG_BASE -->|"Direction"| EXTRUDE_LEG_BASE
     end
-    
+
     %% 桌腳位置平面（4個不同位置的平面，使用 Move 創建）
     subgraph LEG_PLANES["桌腳位置平面"]
         direction LR
@@ -92,7 +92,7 @@ flowchart LR
         MOVE_PLANE_LEG2["Move<br/>输入: Geometry, Motion<br/>输出: Geometry<br/>GUID: 6af48ec9-decb-4ad7-81ac-cd20452189a2<br/>位置: X=2200, Y=350"]
         MOVE_PLANE_LEG3["Move<br/>输入: Geometry, Motion<br/>输出: Geometry<br/>GUID: 6af48ec9-decb-4ad7-81ac-cd20452189a2<br/>位置: X=2200, Y=500"]
         MOVE_PLANE_LEG4["Move<br/>输入: Geometry, Motion<br/>输出: Geometry<br/>GUID: 6af48ec9-decb-4ad7-81ac-cd20452189a2<br/>位置: X=2200, Y=650"]
-        
+
         %% 連接Slider到Vector XYZ
         SLIDER_LEG1_X -->|"X component"| VECTOR_LEG1
         SLIDER_LEG1_Y -->|"Y component"| VECTOR_LEG1
@@ -116,7 +116,7 @@ flowchart LR
         VECTOR_LEG3 -->|"Motion"| MOVE_PLANE_LEG3
         VECTOR_LEG4 -->|"Motion"| MOVE_PLANE_LEG4
     end
-    
+
     %% Orient 組件（將基礎桌腳複製到4個不同位置的平面）
     subgraph ORIENT_GROUP["Orient 複製組"]
         direction LR
@@ -125,7 +125,7 @@ flowchart LR
         ORIENT_LEG3["Orient<br/>输入: Geometry, Source (Plane), Target (Plane)<br/>输出: Geometry<br/>GUID: b08eae6f-0030-4f63-be06-9f1c7f89efd1<br/>位置: X=2400, Y=500"]
         ORIENT_LEG4["Orient<br/>输入: Geometry, Source (Plane), Target (Plane)<br/>输出: Geometry<br/>GUID: b08eae6f-0030-4f63-be06-9f1c7f89efd1<br/>位置: X=2400, Y=650"]
     end
-    
+
     %% 连接基礎桌腳到 Orient
     EXTRUDE_LEG_BASE -->|"Geometry"| ORIENT_LEG1
     EXTRUDE_LEG_BASE -->|"Geometry"| ORIENT_LEG2
@@ -139,22 +139,22 @@ flowchart LR
     MOVE_PLANE_LEG2 -->|"Target"| ORIENT_LEG2
     MOVE_PLANE_LEG3 -->|"Target"| ORIENT_LEG3
     MOVE_PLANE_LEG4 -->|"Target"| ORIENT_LEG4
-    
+
     %% 最终合并
     BOOLEAN_UNION["Solid Union<br/>输入: Breps<br/>输出: Result<br/>最终几何体<br/>GUID: cabe86d9-6ef0-4037-90bd-01a02e0d30f0<br/>位置: X=2600, Y=400"]
-    
+
     %% 连接所有幾何體到Boolean Union
     CENTER_BOX_TOP -->|"Breps"| BOOLEAN_UNION
     ORIENT_LEG1 -->|"Breps"| BOOLEAN_UNION
     ORIENT_LEG2 -->|"Breps"| BOOLEAN_UNION
     ORIENT_LEG3 -->|"Breps"| BOOLEAN_UNION
     ORIENT_LEG4 -->|"Breps"| BOOLEAN_UNION
-    
+
     %% 样式
     classDef inputStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
     classDef geometryStyle fill:#fff4e1,stroke:#e65100,stroke-width:2px
     classDef outputStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    
+
     class XY_PLANE_TOP,XY_PLANE_LEG_BASE,XY_PLANE_LEG_REF,SLIDER_WIDTH,SLIDER_LENGTH,SLIDER_TOP_HEIGHT,SLIDER_TOP_Z,SLIDER_RADIUS_LEG,SLIDER_LEG_HEIGHT,SLIDER_LEG1_X,SLIDER_LEG1_Y,SLIDER_LEG1_Z,SLIDER_LEG2_X,SLIDER_LEG2_Y,SLIDER_LEG2_Z,SLIDER_LEG3_X,SLIDER_LEG3_Y,SLIDER_LEG3_Z,SLIDER_LEG4_X,SLIDER_LEG4_Y,SLIDER_LEG4_Z,CONSTANT_2,UNIT_Z inputStyle
     class CIRCLE_LEG_BASE,BOUNDARY_SURFACES_LEG_BASE,MOVE_PLANE_LEG1,MOVE_PLANE_LEG2,MOVE_PLANE_LEG3,MOVE_PLANE_LEG4,AMPLITUDE_LEG_BASE,VECTOR_LEG1,VECTOR_LEG2,VECTOR_LEG3,VECTOR_LEG4,ORIENT_LEG1,ORIENT_LEG2,ORIENT_LEG3,ORIENT_LEG4,AVERAGE_LEG_X,AVERAGE_LEG_Y,CONSTRUCT_POINT_CENTER,DIVISION_X,DIVISION_Y,DIVISION_Z,CENTER_BOX_TOP geometryStyle
     class EXTRUDE_LEG_BASE,BOOLEAN_UNION outputStyle
