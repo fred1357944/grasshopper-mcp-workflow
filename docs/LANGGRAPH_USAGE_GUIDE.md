@@ -52,13 +52,32 @@
 ### 前置需求
 
 1. **Python 3.8+**
-2. **Gemini CLI** - 用於雙 AI 協作
+2. **Gemini** - 支援兩種模式：
 
+#### 模式 A: CLI 模式（簡單，免 API Key）
 ```bash
 # 確認 Gemini CLI 已安裝
 which gemini
 gemini --version
 ```
+
+#### 模式 B: API 模式（更多功能，需 API Key）
+```bash
+# 1. 複製範本
+cp .env.example .env
+
+# 2. 編輯 .env，填入你的 API Key
+GEMINI_API_KEY=your_key_here
+
+# 3. 安裝依賴
+pip install google-generativeai python-dotenv
+```
+
+**API 模式額外功能：**
+- 結構化 JSON 輸出
+- Token 用量追蹤
+- 語義收斂檢測
+- 設計品質評分
 
 ### 確認模組可用
 
@@ -372,6 +391,26 @@ which gemini
 # 測試調用
 gemini "Hello"
 ```
+
+### Gemini API 模式問題
+
+```bash
+# 確認 API Key 已設置
+python3 -c "from dotenv import load_dotenv; load_dotenv(); import os; print('Key loaded:', bool(os.getenv('GEMINI_API_KEY')))"
+
+# 測試 API 調用
+python3 -c "
+from gemini_caller import GeminiCaller
+caller = GeminiCaller(mode='api')
+print(f'Mode: {caller.mode}')
+resp = caller.call('Hello')
+print(f'Success: {resp.success}')
+"
+```
+
+**常見錯誤：**
+- `API mode requested but no API key found` → 檢查 `.env` 文件
+- `google-generativeai not installed` → 執行 `pip install google-generativeai`
 
 ### 狀態無法保存
 
