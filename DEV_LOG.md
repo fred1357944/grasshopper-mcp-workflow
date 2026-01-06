@@ -163,3 +163,88 @@ Status: Clean, in sync with remote
 | Step 5 | 修復 | 錯誤診斷 |
 
 ---
+
+## 2026-01-07 00:15 - 測試驗證與版本控制
+
+### Summary
+完成「畫桌子」工作流程的完整測試，驗證 LangGraph + 檔案優先機制正常運作。
+
+### 測試結果
+```
+通過率: 6/6
+
+✓ test_1: 狀態初始化
+✓ test_2: Decomposition 節點（生成 part_info.mmd）
+✓ test_3: 用戶確認機制
+✓ test_4: Connectivity 節點（生成 component_info.mmd）
+✓ test_5: 衝突檢測
+✓ test_6: 工作流程整合
+```
+
+### 開發思考過程
+
+#### 1. 問題識別
+原始 LangGraph 實作的問題：
+- 只更新內部狀態，不產出實際檔案
+- 用戶無法預覽 Mermaid 圖表
+- 缺乏「暫停等待確認」機制
+
+#### 2. 設計決策
+採用「檔案優先」原則：
+```
+狀態更新之前 → 先寫入 .mmd 檔案 → 暫停等待用戶預覽 → 確認後才繼續
+```
+
+這解決了 AI 狀態與實際檔案脫節的問題，讓用戶可以：
+- 用 Mermaid 預覽工具查看設計
+- 手動修改 .mmd 檔案後繼續
+- 在任何階段中斷並恢復
+
+#### 3. 實作細節
+
+**模板系統**：根據 topic 關鍵字自動選擇模板
+```python
+if "桌" in topic or "table" in topic_lower:
+    return _generate_table_template()
+elif "椅" in topic or "chair" in topic_lower:
+    return _generate_chair_template()
+else:
+    return _generate_default_template()
+```
+
+**確認機制**：使用 `awaiting_confirmation` + `pending_decisions` 實現
+```python
+return {
+    "awaiting_confirmation": True,
+    "confirmation_reason": "part_info_preview",
+    "pending_decisions": [...Decision(question="請預覽...")]
+}
+```
+
+#### 4. 測試策略
+- 單元測試各個節點功能
+- 整合測試工作流程從頭到尾
+- 驗證檔案實際寫入 GH_WIP/
+
+### Git Commit
+```
+0f17bdd feat: Enhanced LangGraph workflow with file-first approach v2.0
+```
+
+**變更統計**: 7 files, +1629/-338 lines
+
+### 架構優化想法（下一步）
+
+參考用戶分享的「Automated Generation Mechanism」圖：
+
+| 模式 | 適用場景 | 實作方向 |
+|------|---------|---------|
+| Workflow Mode | 明確需求（如「120x80 桌子」） | 目前的 6 步驟流程 |
+| Meta-Agent Mode | 模糊需求（如「有創意的家具」） | 新增 Intent Classifier + Wasp 搜索 |
+
+**混合模式架構**：
+1. `classify_intent_node` - 判斷需求明確度
+2. 明確 → 直接進入 Workflow Mode
+3. 模糊 → Meta-Agent 探索（搜索範例、詢問用戶）後再進入 Workflow
+
+---
