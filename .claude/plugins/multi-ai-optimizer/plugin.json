@@ -1,0 +1,20 @@
+{
+  "name": "multi-ai-optimizer",
+  "version": "0.1.0",
+  "description": "Claude + Gemini 多次交互優化 Plugin，支援交替生成方案、迭代優化、智能收斂檢測",
+  "author": "laihongyi",
+  "skills": ["skills/"],
+  "commands": ["commands/"],
+  "agents": ["agents/"],
+  "hooks": ["hooks/"],
+  "settings": {
+    "default_max_iterations": 5,
+    "convergence_threshold": 0.85,
+    "auto_gemini_timeout": 60,
+    "confirmation_triggers": [
+      "critical_decision",
+      "convergence_reached",
+      "max_iterations_reached"
+    ]
+  }
+}
