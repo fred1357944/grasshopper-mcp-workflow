@@ -34,11 +34,11 @@ VERIFIED_GUIDS = {
     # 向量 (2026-01-09 重新驗證)
     'Unit Z': '62e56988-5991-4c90-8873-b7eefedf9ed8',
 
-    # 數學 (2026-01-09 重新驗證)
-    'Division': '42b7fc9d-e233-472a-ad32-8b9241c04e7f',
+    # 數學 (2026-01-09 修正 - 之前誤匹配到 wbLoop)
+    'Division': 'a5656eab-c7b5-442b-8d2d-55869958dfc9',
 
-    # 輸出 (2026-01-09 重新驗證)
-    'Merge': '01aeb2f1-3147-420f-942c-fdfbc7936a44',
+    # 輸出 - 用名稱創建，不用 GUID（避免版本差異）
+    # 'Merge': 不使用 GUID
 }
 
 # =============================================================================
@@ -50,7 +50,7 @@ TARGET_PARAMS = {
     'Amplitude': {'Vector': 'Vector', 'Amplitude': 'Amplitude'},
     'Addition': {'A': 'A', 'B': 'B'},
     'Division': {'A': 'A', 'B': 'B'},
-    'Merge': {'D1': 'D1', 'D2': 'D2'},
+    'Merge Multiple': {'0': '0', '1': '1'},  # 輸入參數是 "0", "1"
 }
 
 SOURCE_PARAMS = {
@@ -317,13 +317,15 @@ def build_chair():
     # 9. Merge 所有幾何體
     # ==========================================================================
     print("\n🔗 合併幾何體...")
-    merge = client.add_component('Merge', 600, 400, 'AllParts')
+    # 注意: 使用 "Merge Multiple" 而非 "Merge"，避免匹配到 wbLoop
+    merge = client.add_component('Merge Multiple', 600, 400, 'AllParts')
 
     if merge:
         if seat_move:
-            client.connect(seat_move, merge, 'Move', 'Merge', 'D1')
+            # Merge Multiple 的輸入是 "0", "1" 而非 "D1", "D2"
+            client.connect(seat_move, merge, 'Move', 'Merge Multiple', '0')
         if back_box:
-            client.connect(back_box, merge, 'Center Box', 'Merge', 'D2')
+            client.connect(back_box, merge, 'Center Box', 'Merge Multiple', '1')
 
     # ==========================================================================
     # 完成
