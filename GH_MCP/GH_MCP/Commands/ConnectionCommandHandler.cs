@@ -171,7 +171,18 @@ namespace GH_MCP.Commands
                     IGH_Param targetParameter = GetParameter(targetComponent, connection.Target, true);
                     if (targetParameter == null)
                     {
-                        exception = new ArgumentException($"Target parameter not found: {connection.Target.ParameterName ?? connection.Target.ParameterIndex.ToString()}");
+                        // 收集可用參數名稱供錯誤訊息使用
+                        var availableInputs = new List<string>();
+                        if (targetComponent is IGH_Component tc)
+                        {
+                            foreach (var p in tc.Params.Input)
+                            {
+                                availableInputs.Add($"{p.Name}({p.NickName})");
+                            }
+                        }
+                        string requested = connection.Target.ParameterName ?? connection.Target.ParameterIndex?.ToString() ?? "unknown";
+                        string available = availableInputs.Count > 0 ? string.Join(", ", availableInputs) : "none";
+                        exception = new ArgumentException($"Target parameter '{requested}' not found. Available inputs: [{available}]");
                         return;
                     }
 
@@ -195,24 +206,62 @@ namespace GH_MCP.Commands
                     }
 
                     // 如果尚未連接，則添加新連接（保留所有現有連接）
+                    bool connectionCreated = false;
                     if (!alreadyConnected)
                     {
+                        int sourceCountBefore = targetParameter.SourceCount;
                         targetParameter.AddSource(sourceParameter);
-                        RhinoApp.WriteLine($"Added new connection from {sourceParameter.Name} to {targetParameter.Name} (total sources: {targetParameter.SourceCount})");
+                        int sourceCountAfter = targetParameter.SourceCount;
+
+                        // 驗證連接是否真的建立了
+                        connectionCreated = (sourceCountAfter > sourceCountBefore);
+
+                        if (connectionCreated)
+                        {
+                            RhinoApp.WriteLine($"SUCCESS: Added new connection from {sourceParameter.Name} to {targetParameter.Name} (sources: {sourceCountBefore} -> {sourceCountAfter})");
+                        }
+                        else
+                        {
+                            // 連接可能被 Grasshopper 拒絕了
+                            RhinoApp.WriteLine($"WARNING: AddSource called but connection may not have been created. Sources count unchanged: {sourceCountAfter}");
+
+                            // 嘗試再次驗證 - 檢查源是否在目標的源列表中
+                            bool foundInSources = false;
+                            for (int i = 0; i < targetParameter.SourceCount; i++)
+                            {
+                                if (targetParameter.Sources[i].InstanceGuid == sourceParameter.InstanceGuid)
+                                {
+                                    foundInSources = true;
+                                    connectionCreated = true;
+                                    RhinoApp.WriteLine($"Connection verified via GUID match");
+                                    break;
+                                }
+                            }
+
+                            if (!foundInSources)
+                            {
+                                exception = new InvalidOperationException($"Failed to create connection: Grasshopper rejected the connection from {sourceParameter.Name} ({sourceParameter.GetType().Name}) to {targetParameter.Name} ({targetParameter.GetType().Name})");
+                                return;
+                            }
+                        }
                     }
-                    
+                    else
+                    {
+                        connectionCreated = true; // 已經連接
+                    }
+
                     // 刷新數據
                     targetParameter.CollectData();
                     targetParameter.ComputeData();
-                    
-                    // 刷新畫布
-                    doc.NewSolution(false);
+
+                    // 刷新畫布 - 使用 true 強制重新計算
+                    doc.NewSolution(true);
 
                     // 返回結果
                     result = new
                     {
-                        success = true,
-                        message = "Connection created successfully",
+                        success = connectionCreated,
+                        message = alreadyConnected ? "Connection already exists" : (connectionCreated ? "Connection created successfully" : "Connection may have failed"),
                         sourceId = connection.Source.ComponentId,
                         targetId = connection.Target.ComponentId,
                         sourceParam = sourceParameter.Name,
@@ -220,7 +269,8 @@ namespace GH_MCP.Commands
                         sourceType = sourceParameter.GetType().Name,
                         targetType = targetParameter.GetType().Name,
                         sourceDescription = sourceParameter.Description,
-                        targetDescription = targetParameter.Description
+                        targetDescription = targetParameter.Description,
+                        verified = connectionCreated
                     };
                 }
                 catch (Exception ex)
@@ -278,35 +328,45 @@ namespace GH_MCP.Commands
                     return parameters[0];
                 }
                 
-                // 按名稱查找參數
+                // 按名稱查找參數 (優化匹配順序 v2.0)
                 if (!string.IsNullOrEmpty(connection.ParameterName))
                 {
-                    // 精確匹配
+                    string requestedName = connection.ParameterName;
+
+                    // 1. NickName 精確匹配 (優先 - 腳本最常使用)
                     foreach (var p in parameters)
                     {
-                        if (string.Equals(p.Name, connection.ParameterName, StringComparison.OrdinalIgnoreCase))
+                        if (string.Equals(p.NickName, requestedName, StringComparison.OrdinalIgnoreCase))
                         {
-                            return p;
-                        }
-                    }
-                    
-                    // 模糊匹配
-                    foreach (var p in parameters)
-                    {
-                        if (p.Name.IndexOf(connection.ParameterName, StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
+                            RhinoApp.WriteLine($"  Matched by NickName: {requestedName} -> {p.Name}");
                             return p;
                         }
                     }
 
-                    // 嘗試匹配 NickName
+                    // 2. Name 精確匹配
                     foreach (var p in parameters)
                     {
-                        if (string.Equals(p.NickName, connection.ParameterName, StringComparison.OrdinalIgnoreCase))
+                        if (string.Equals(p.Name, requestedName, StringComparison.OrdinalIgnoreCase))
                         {
+                            RhinoApp.WriteLine($"  Matched by Name: {requestedName}");
                             return p;
                         }
                     }
+
+                    // 3. 模糊匹配 (Name 或 NickName 包含請求字串)
+                    foreach (var p in parameters)
+                    {
+                        if (p.Name.IndexOf(requestedName, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                            p.NickName.IndexOf(requestedName, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            RhinoApp.WriteLine($"  Matched by fuzzy: {requestedName} -> {p.Name} ({p.NickName})");
+                            return p;
+                        }
+                    }
+
+                    // 4. 未找到 - 記錄可用參數
+                    var availableParams = string.Join(", ", parameters.Select(p => $"{p.Name}({p.NickName})"));
+                    RhinoApp.WriteLine($"  Parameter '{requestedName}' not found. Available: {availableParams}");
                 }
                 
                 // 按索引查找參數
@@ -544,5 +604,479 @@ namespace GH_MCP.Commands
         public string ComponentId { get; set; }
         public string ParameterName { get; set; }
         public int? ParameterIndex { get; set; }
+    }
+
+    /// <summary>
+    /// 處理連接查詢和斷開連接的命令
+    /// </summary>
+    public class ConnectionQueryHandler
+    {
+        /// <summary>
+        /// 獲取組件的所有連接
+        /// </summary>
+        public static object GetConnections(Command command)
+        {
+            if (!command.Parameters.TryGetValue("componentId", out object compIdObj) || compIdObj == null)
+            {
+                return Response.CreateError("Missing required parameter: componentId");
+            }
+            string componentId = compIdObj.ToString();
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Instances.ActiveCanvas?.Document;
+                    if (doc == null)
+                    {
+                        exception = new InvalidOperationException("No active Grasshopper document");
+                        return;
+                    }
+
+                    Guid compGuid;
+                    if (!Guid.TryParse(componentId, out compGuid))
+                    {
+                        exception = new ArgumentException($"Invalid component ID: {componentId}");
+                        return;
+                    }
+
+                    var docObj = doc.FindObject(compGuid, true);
+                    if (docObj == null)
+                    {
+                        exception = new ArgumentException($"Component not found: {componentId}");
+                        return;
+                    }
+
+                    var inputConnections = new List<object>();
+                    var outputConnections = new List<object>();
+
+                    if (docObj is IGH_Component component)
+                    {
+                        // 遍歷輸入參數
+                        foreach (var input in component.Params.Input)
+                        {
+                            var sources = new List<object>();
+                            for (int i = 0; i < input.SourceCount; i++)
+                            {
+                                var source = input.Sources[i];
+                                sources.Add(new
+                                {
+                                    sourceId = source.InstanceGuid.ToString(),
+                                    sourceName = source.Name,
+                                    sourceNickName = source.NickName,
+                                    sourceType = source.GetType().Name
+                                });
+                            }
+                            inputConnections.Add(new
+                            {
+                                parameterName = input.Name,
+                                parameterNickName = input.NickName,
+                                parameterIndex = component.Params.Input.IndexOf(input),
+                                sourceCount = input.SourceCount,
+                                sources = sources
+                            });
+                        }
+
+                        // 遍歷輸出參數
+                        foreach (var output in component.Params.Output)
+                        {
+                            var recipients = new List<object>();
+                            for (int i = 0; i < output.Recipients.Count; i++)
+                            {
+                                var recipient = output.Recipients[i];
+                                recipients.Add(new
+                                {
+                                    targetId = recipient.InstanceGuid.ToString(),
+                                    targetName = recipient.Name,
+                                    targetNickName = recipient.NickName,
+                                    targetType = recipient.GetType().Name
+                                });
+                            }
+                            outputConnections.Add(new
+                            {
+                                parameterName = output.Name,
+                                parameterNickName = output.NickName,
+                                parameterIndex = component.Params.Output.IndexOf(output),
+                                recipientCount = output.Recipients.Count,
+                                recipients = recipients
+                            });
+                        }
+                    }
+                    else if (docObj is IGH_Param param)
+                    {
+                        // 單獨的參數組件
+                        var sources = new List<object>();
+                        for (int i = 0; i < param.SourceCount; i++)
+                        {
+                            var source = param.Sources[i];
+                            sources.Add(new
+                            {
+                                sourceId = source.InstanceGuid.ToString(),
+                                sourceName = source.Name,
+                                sourceNickName = source.NickName,
+                                sourceType = source.GetType().Name
+                            });
+                        }
+                        inputConnections.Add(new
+                        {
+                            parameterName = param.Name,
+                            parameterNickName = param.NickName,
+                            sourceCount = param.SourceCount,
+                            sources = sources
+                        });
+
+                        var recipients = new List<object>();
+                        for (int i = 0; i < param.Recipients.Count; i++)
+                        {
+                            var recipient = param.Recipients[i];
+                            recipients.Add(new
+                            {
+                                targetId = recipient.InstanceGuid.ToString(),
+                                targetName = recipient.Name,
+                                targetNickName = recipient.NickName,
+                                targetType = recipient.GetType().Name
+                            });
+                        }
+                        outputConnections.Add(new
+                        {
+                            parameterName = param.Name,
+                            parameterNickName = param.NickName,
+                            recipientCount = param.Recipients.Count,
+                            recipients = recipients
+                        });
+                    }
+
+                    result = new
+                    {
+                        success = true,
+                        componentId = componentId,
+                        componentName = docObj is IGH_Component c ? c.Name : (docObj is IGH_Param p ? p.Name : "Unknown"),
+                        componentNickName = docObj is IGH_Component cn ? cn.NickName : (docObj is IGH_Param pn ? pn.NickName : "Unknown"),
+                        inputs = inputConnections,
+                        outputs = outputConnections
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"Error in GetConnections: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                return Response.CreateError($"Error getting connections: {exception.Message}");
+            }
+
+            return Response.Ok(result);
+        }
+
+        /// <summary>
+        /// 斷開兩個組件之間的連接
+        /// </summary>
+        public static object DisconnectComponents(Command command)
+        {
+            if (!command.Parameters.TryGetValue("sourceId", out object sourceIdObj) || sourceIdObj == null)
+            {
+                return Response.CreateError("Missing required parameter: sourceId");
+            }
+            string sourceId = sourceIdObj.ToString();
+
+            if (!command.Parameters.TryGetValue("targetId", out object targetIdObj) || targetIdObj == null)
+            {
+                return Response.CreateError("Missing required parameter: targetId");
+            }
+            string targetId = targetIdObj.ToString();
+
+            string sourceParam = null;
+            string targetParam = null;
+            if (command.Parameters.TryGetValue("sourceParam", out object sp) && sp != null)
+                sourceParam = sp.ToString();
+            if (command.Parameters.TryGetValue("targetParam", out object tp) && tp != null)
+                targetParam = tp.ToString();
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Instances.ActiveCanvas?.Document;
+                    if (doc == null)
+                    {
+                        exception = new InvalidOperationException("No active Grasshopper document");
+                        return;
+                    }
+
+                    Guid sourceGuid, targetGuid;
+                    if (!Guid.TryParse(sourceId, out sourceGuid))
+                    {
+                        exception = new ArgumentException($"Invalid source ID: {sourceId}");
+                        return;
+                    }
+                    if (!Guid.TryParse(targetId, out targetGuid))
+                    {
+                        exception = new ArgumentException($"Invalid target ID: {targetId}");
+                        return;
+                    }
+
+                    var sourceObj = doc.FindObject(sourceGuid, true);
+                    var targetObj = doc.FindObject(targetGuid, true);
+
+                    if (sourceObj == null || targetObj == null)
+                    {
+                        exception = new ArgumentException("Source or target component not found");
+                        return;
+                    }
+
+                    // 找到源輸出參數
+                    IGH_Param sourceParameter = null;
+                    if (sourceObj is IGH_Param sp)
+                    {
+                        sourceParameter = sp;
+                    }
+                    else if (sourceObj is IGH_Component sourceComp)
+                    {
+                        if (!string.IsNullOrEmpty(sourceParam))
+                        {
+                            foreach (var p in sourceComp.Params.Output)
+                            {
+                                if (p.Name.Equals(sourceParam, StringComparison.OrdinalIgnoreCase) ||
+                                    p.NickName.Equals(sourceParam, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    sourceParameter = p;
+                                    break;
+                                }
+                            }
+                        }
+                        else if (sourceComp.Params.Output.Count == 1)
+                        {
+                            sourceParameter = sourceComp.Params.Output[0];
+                        }
+                    }
+
+                    // 找到目標輸入參數
+                    IGH_Param targetParameter = null;
+                    if (targetObj is IGH_Param tp)
+                    {
+                        targetParameter = tp;
+                    }
+                    else if (targetObj is IGH_Component targetComp)
+                    {
+                        if (!string.IsNullOrEmpty(targetParam))
+                        {
+                            foreach (var p in targetComp.Params.Input)
+                            {
+                                if (p.Name.Equals(targetParam, StringComparison.OrdinalIgnoreCase) ||
+                                    p.NickName.Equals(targetParam, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    targetParameter = p;
+                                    break;
+                                }
+                            }
+                        }
+                        else if (targetComp.Params.Input.Count == 1)
+                        {
+                            targetParameter = targetComp.Params.Input[0];
+                        }
+                    }
+
+                    if (sourceParameter == null || targetParameter == null)
+                    {
+                        exception = new ArgumentException("Could not find source or target parameter");
+                        return;
+                    }
+
+                    // 移除連接 - RemoveSource 返回 void，需要用 SourceCount 檢查
+                    int sourceCountBefore = targetParameter.SourceCount;
+                    targetParameter.RemoveSource(sourceParameter);
+                    int sourceCountAfter = targetParameter.SourceCount;
+                    bool removed = (sourceCountAfter < sourceCountBefore);
+
+                    if (removed)
+                    {
+                        doc.NewSolution(true);
+                        RhinoApp.WriteLine($"Disconnected {sourceParameter.Name} from {targetParameter.Name}");
+                    }
+
+                    result = new
+                    {
+                        success = removed,
+                        message = removed ? "Connection removed" : "Connection not found or already disconnected",
+                        sourceId = sourceId,
+                        targetId = targetId,
+                        sourceParam = sourceParameter.Name,
+                        targetParam = targetParameter.Name
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"Error in DisconnectComponents: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                return Response.CreateError($"Error disconnecting: {exception.Message}");
+            }
+
+            return Response.Ok(result);
+        }
+
+        /// <summary>
+        /// 獲取組件的詳細信息
+        /// </summary>
+        public static object GetComponentDetails(Command command)
+        {
+            if (!command.Parameters.TryGetValue("componentId", out object compIdObj) || compIdObj == null)
+            {
+                return Response.CreateError("Missing required parameter: componentId");
+            }
+            string componentId = compIdObj.ToString();
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Instances.ActiveCanvas?.Document;
+                    if (doc == null)
+                    {
+                        exception = new InvalidOperationException("No active Grasshopper document");
+                        return;
+                    }
+
+                    Guid compGuid;
+                    if (!Guid.TryParse(componentId, out compGuid))
+                    {
+                        exception = new ArgumentException($"Invalid component ID: {componentId}");
+                        return;
+                    }
+
+                    var docObj = doc.FindObject(compGuid, true);
+                    if (docObj == null)
+                    {
+                        exception = new ArgumentException($"Component not found: {componentId}");
+                        return;
+                    }
+
+                    var inputs = new List<object>();
+                    var outputs = new List<object>();
+
+                    string type = "Unknown";
+                    string name = "Unknown";
+                    string nickName = "Unknown";
+                    string description = "";
+                    bool isObsolete = false;
+                    float posX = 0, posY = 0;
+
+                    if (docObj is IGH_Component component)
+                    {
+                        type = component.Name;
+                        name = component.Name;
+                        nickName = component.NickName;
+                        description = component.Description;
+                        isObsolete = component.Obsolete;
+                        posX = component.Attributes.Pivot.X;
+                        posY = component.Attributes.Pivot.Y;
+
+                        foreach (var input in component.Params.Input)
+                        {
+                            inputs.Add(new
+                            {
+                                name = input.Name,
+                                nickname = input.NickName,
+                                description = input.Description,
+                                type = input.GetType().Name,
+                                optional = input.Optional,
+                                sourceCount = input.SourceCount,
+                                hasData = input.VolatileDataCount > 0
+                            });
+                        }
+
+                        foreach (var output in component.Params.Output)
+                        {
+                            outputs.Add(new
+                            {
+                                name = output.Name,
+                                nickname = output.NickName,
+                                description = output.Description,
+                                type = output.GetType().Name,
+                                recipientCount = output.Recipients.Count,
+                                hasData = output.VolatileDataCount > 0
+                            });
+                        }
+                    }
+                    else if (docObj is IGH_Param param)
+                    {
+                        type = param.GetType().Name;
+                        name = param.Name;
+                        nickName = param.NickName;
+                        description = param.Description;
+                        posX = param.Attributes.Pivot.X;
+                        posY = param.Attributes.Pivot.Y;
+
+                        // 參數既是輸入也是輸出
+                        outputs.Add(new
+                        {
+                            name = param.Name,
+                            nickname = param.NickName,
+                            description = param.Description,
+                            type = param.GetType().Name,
+                            recipientCount = param.Recipients.Count,
+                            hasData = param.VolatileDataCount > 0
+                        });
+                    }
+
+                    result = new
+                    {
+                        success = true,
+                        id = componentId,
+                        type = type,
+                        name = name,
+                        nickName = nickName,
+                        description = description,
+                        isObsolete = isObsolete,
+                        position = new { x = posX, y = posY },
+                        inputs = inputs,
+                        outputs = outputs
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"Error in GetComponentDetails: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                return Response.CreateError($"Error getting component details: {exception.Message}");
+            }
+
+            return Response.Ok(result);
+        }
     }
 }

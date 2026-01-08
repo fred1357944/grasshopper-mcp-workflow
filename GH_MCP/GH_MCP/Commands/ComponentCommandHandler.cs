@@ -42,11 +42,11 @@ namespace GrasshopperMCP.Commands
             double y = command.GetParameter<double>("y");
             string guid = command.GetParameter<string>("guid");
             string type = command.GetParameter<string>("type"); // 接受 type 參數（可選，用於向後兼容）
-            
-            // GUID 是唯一必需的參數，不進行任何名稱匹配
-            if (string.IsNullOrEmpty(guid))
+
+            // 必須提供 GUID 或 type 參數之一
+            if (string.IsNullOrEmpty(guid) && string.IsNullOrEmpty(type))
             {
-                throw new ArgumentException("GUID is required. Use 'get_component_candidates' to find the component GUID.");
+                throw new ArgumentException("Either 'guid' or 'type' is required. Use 'get_component_candidates' to find the component GUID, or provide a component type name.");
             }
             
             // 記錄請求信息
@@ -1132,7 +1132,27 @@ namespace GrasshopperMCP.Commands
                     }
                     
                     // 設置可見性
+#if NETFRAMEWORK
                     component.Attributes.Hidden = hidden.Value;
+#else
+                    // .NET 7.0: 使用反射嘗試設置 Hidden 屬性
+                    try
+                    {
+                        var hiddenProp = component.Attributes?.GetType().GetProperty("Hidden");
+                        if (hiddenProp != null && hiddenProp.CanWrite)
+                        {
+                            hiddenProp.SetValue(component.Attributes, hidden.Value);
+                        }
+                        else
+                        {
+                            RhinoApp.WriteLine($"Warning: Cannot set visibility on macOS (.NET 7.0)");
+                        }
+                    }
+                    catch
+                    {
+                        RhinoApp.WriteLine($"Warning: SetComponentVisibility not fully supported on this platform");
+                    }
+#endif
                     
                     // 刷新畫布
                     doc.NewSolution(false);
@@ -1263,14 +1283,23 @@ namespace GrasshopperMCP.Commands
                         // 使用 Canvas 的視圖功能
                         try
                         {
-                            // 先選中組件
+#if NETFRAMEWORK
+                            // 先選中組件 (Windows only)
                             doc.SelectObjects(components, true);
-                            
+#else
+                            // .NET 7.0 替代：使用 SelectedObjects 集合
+                            doc.SelectedObjects().Clear();
+                            foreach (var comp in components)
+                            {
+                                comp.Attributes.Selected = true;
+                            }
+#endif
+
                             // 嘗試使用 ZoomExtents 方法
-                            var zoomMethod = canvas.GetType().GetMethod("ZoomExtents", 
-                                System.Reflection.BindingFlags.Public | 
+                            var zoomMethod = canvas.GetType().GetMethod("ZoomExtents",
+                                System.Reflection.BindingFlags.Public |
                                 System.Reflection.BindingFlags.Instance);
-                            
+
                             if (zoomMethod != null)
                             {
                                 zoomMethod.Invoke(canvas, null);
@@ -1285,12 +1314,14 @@ namespace GrasshopperMCP.Commands
                                     var scaleX = viewportSize.Width / width;
                                     var scaleY = viewportSize.Height / height;
                                     var scale = Math.Min(scaleX, scaleY) * 0.9f; // 90% 以留邊距
-                                    
-                                    // 設置視圖中心
+
+#if NETFRAMEWORK
+                                    // 設置視圖中心 (Windows only)
                                     viewport.Pan = new System.Drawing.PointF(
                                         -centerX + viewportSize.Width / 2 / scale,
                                         -centerY + viewportSize.Height / 2 / scale
                                     );
+#endif
                                     viewport.Zoom = scale;
                                     canvas.Refresh();
                                 }
@@ -1299,8 +1330,10 @@ namespace GrasshopperMCP.Commands
                         catch (Exception ex)
                         {
                             RhinoApp.WriteLine($"Warning: Could not zoom using standard method: {ex.Message}");
-                            // 嘗試替代方法：至少選中組件
+                            // 嘗試替代方法：刷新畫布
+#if NETFRAMEWORK
                             doc.SelectObjects(components, true);
+#endif
                             canvas.Refresh();
                         }
                     }
