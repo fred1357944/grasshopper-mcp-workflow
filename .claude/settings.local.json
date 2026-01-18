@@ -29,7 +29,10 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(python scripts/test_superpower.py:*)",
       "Bash(python:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(git push:*)",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)"
     ],
     "deny": [],
     "ask": []
