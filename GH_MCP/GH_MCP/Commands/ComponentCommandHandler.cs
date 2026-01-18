@@ -80,18 +80,93 @@ namespace GrasshopperMCP.Commands
                     // 如果提供了 type 參數，優先使用組件名稱來查找
                     if (!string.IsNullOrEmpty(type))
                     {
-                        // 使用組件名稱查找並創建組件
-                        var proxy = Grasshopper.Instances.ComponentServer.ObjectProxies
-                            .FirstOrDefault(p => p.Desc.Name.Equals(type, StringComparison.OrdinalIgnoreCase));
-                        
+                        // 內建庫列表（優先級高）
+                        var builtInLibraries = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                        {
+                            "Grasshopper", "GrasshopperLib",
+                            "MathComponents", "CurveComponents", "SurfaceComponents",
+                            "MeshComponents", "TransformComponents", "VectorComponents",
+                            "SetComponents", "FieldComponents", "IntersectComponents",
+                            "DisplayComponents", "ParamsComponents"
+                        };
+
+                        // 輔助函數：判斷是否為內建庫
+                        Func<Grasshopper.Kernel.IGH_ObjectProxy, bool> isBuiltIn = (p) =>
+                        {
+                            try
+                            {
+                                var assembly = Grasshopper.Instances.ComponentServer.FindAssemblyByObject(p.Guid);
+                                return assembly != null && builtInLibraries.Contains(assembly.Name);
+                            }
+                            catch { return false; }
+                        };
+
+                        Grasshopper.Kernel.IGH_ObjectProxy proxy = null;
+
+                        // 1. 精確匹配 Name（內建優先、非過期優先）
+                        var nameMatches = Grasshopper.Instances.ComponentServer.ObjectProxies
+                            .Where(p => p.Desc.Name.Equals(type, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+
+                        if (nameMatches.Count > 0)
+                        {
+                            // 排序：內建優先 → 非過期優先
+                            proxy = nameMatches
+                                .OrderByDescending(p => isBuiltIn(p) ? 1 : 0)
+                                .ThenBy(p => p.Obsolete ? 1 : 0)
+                                .FirstOrDefault();
+
+                            if (nameMatches.Count > 1)
+                            {
+                                RhinoApp.WriteLine($"[GH_MCP] Found {nameMatches.Count} components named '{type}', selected: {proxy.Desc.Name} from {(isBuiltIn(proxy) ? "built-in" : "plugin")}");
+                            }
+                        }
+
+                        // 2. 如果 Name 沒找到，嘗試 NickName 精確匹配
+                        if (proxy == null)
+                        {
+                            var nickNameMatches = Grasshopper.Instances.ComponentServer.ObjectProxies
+                                .Where(p => p.Desc.NickName.Equals(type, StringComparison.OrdinalIgnoreCase))
+                                .ToList();
+
+                            if (nickNameMatches.Count > 0)
+                            {
+                                proxy = nickNameMatches
+                                    .OrderByDescending(p => isBuiltIn(p) ? 1 : 0)
+                                    .ThenBy(p => p.Obsolete ? 1 : 0)
+                                    .FirstOrDefault();
+
+                                RhinoApp.WriteLine($"[GH_MCP] Matched by NickName: '{type}' -> {proxy.Desc.Name}");
+                            }
+                        }
+
+                        // 3. 如果還沒找到，使用 FuzzyMatcher 嘗試映射
+                        if (proxy == null)
+                        {
+                            string mappedName = FuzzyMatcher.GetClosestComponentName(type);
+                            if (!mappedName.Equals(type, StringComparison.OrdinalIgnoreCase))
+                            {
+                                proxy = Grasshopper.Instances.ComponentServer.ObjectProxies
+                                    .Where(p => p.Desc.Name.Equals(mappedName, StringComparison.OrdinalIgnoreCase))
+                                    .OrderByDescending(p => isBuiltIn(p) ? 1 : 0)
+                                    .ThenBy(p => p.Obsolete ? 1 : 0)
+                                    .FirstOrDefault();
+
+                                if (proxy != null)
+                                {
+                                    RhinoApp.WriteLine($"[GH_MCP] Fuzzy matched: '{type}' -> {proxy.Desc.Name}");
+                                }
+                            }
+                        }
+
                         if (proxy != null)
                         {
                             component = proxy.CreateInstance();
-                            RhinoApp.WriteLine($"Created component by name: {type} (Type GUID: {proxy.Desc.InstanceGuid})");
+                            RhinoApp.WriteLine($"Created component by name: {proxy.Desc.Name} (Type GUID: {proxy.Desc.InstanceGuid})");
                         }
                         else
                         {
-                            throw new ArgumentException($"Component with name '{type}' not found.");
+                            throw new ArgumentException($"Component with name '{type}' not found. Use 'get_component_candidates' or 'search_components' to find the correct name.");
                         }
                     }
                     else

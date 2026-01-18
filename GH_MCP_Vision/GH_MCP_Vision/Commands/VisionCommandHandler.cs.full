@@ -1,0 +1,474 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Threading;
+using GH_MCP_Vision.Models;
+using Grasshopper;
+using Grasshopper.Kernel;
+using Rhino;
+
+namespace GH_MCP_Vision.Commands
+{
+    /// <summary>
+    /// 處理視覺相關命令 - 截圖、縮放等
+    /// </summary>
+    public static class VisionCommandHandler
+    {
+        /// <summary>
+        /// 截取 Grasshopper 畫布
+        /// </summary>
+        /// <param name="command">包含可選 bounds 參數的命令</param>
+        /// <returns>Base64 編碼的 PNG 圖片</returns>
+        public static object CaptureCanvas(VisionCommand command)
+        {
+            var boundsDict = command.GetParameter<Dictionary<string, object>>("bounds");
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var canvas = Grasshopper.Instances.ActiveCanvas;
+                    if (canvas == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper canvas");
+                    }
+
+                    RectangleF sourceRect;
+
+                    // 決定截取區域
+                    if (boundsDict != null &&
+                        boundsDict.ContainsKey("x") && boundsDict.ContainsKey("y") &&
+                        boundsDict.ContainsKey("width") && boundsDict.ContainsKey("height"))
+                    {
+                        float x = Convert.ToSingle(boundsDict["x"]);
+                        float y = Convert.ToSingle(boundsDict["y"]);
+                        float w = Convert.ToSingle(boundsDict["width"]);
+                        float h = Convert.ToSingle(boundsDict["height"]);
+                        sourceRect = new RectangleF(x, y, w, h);
+                    }
+                    else
+                    {
+                        // 默認截取整個文檔內容
+                        if (canvas.Document == null || canvas.Document.ObjectCount == 0)
+                        {
+                            var viewBounds = canvas.Viewport.VisibleRegion;
+                            sourceRect = new RectangleF(viewBounds.Left, viewBounds.Top, 1000, 800);
+                        }
+                        else
+                        {
+                            // BoundingBox() 是方法，非屬性
+                            sourceRect = canvas.Document.BoundingBox(false);
+                            sourceRect.Inflate(50, 50);
+                        }
+                    }
+
+                    // 決定輸出尺寸
+                    int maxDimension = 2000;
+                    int imgW, imgH;
+                    float aspect = sourceRect.Width / sourceRect.Height;
+
+                    if (sourceRect.Width > sourceRect.Height)
+                    {
+                        imgW = Math.Min((int)(sourceRect.Width * 2.0), maxDimension);
+                        if (imgW < 800) imgW = 800;
+                        imgH = (int)(imgW / aspect);
+                    }
+                    else
+                    {
+                        imgH = Math.Min((int)(sourceRect.Height * 2.0), maxDimension);
+                        if (imgH < 600) imgH = 600;
+                        imgW = (int)(imgH * aspect);
+                    }
+
+                    Size imageSize = new Size(imgW, imgH);
+
+                    // 使用 CreateBitmap 生成圖片（Rhino 8 兼容方式）
+                    Rectangle intSourceRect = Rectangle.Round(sourceRect);
+
+                    Bitmap bitmap = null;
+                    try
+                    {
+                        // 嘗試使用 CreateBitmap 方法
+                        var createBitmapMethod = canvas.GetType().GetMethod("CreateBitmap",
+                            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance,
+                            null,
+                            new[] { typeof(Rectangle), typeof(float) },
+                            null);
+
+                        if (createBitmapMethod != null)
+                        {
+                            float zoom = Math.Max(1.0f, Math.Min((float)imgW / sourceRect.Width, (float)imgH / sourceRect.Height));
+                            bitmap = createBitmapMethod.Invoke(canvas, new object[] { intSourceRect, zoom }) as Bitmap;
+                        }
+                        else
+                        {
+                            // 備用方案：使用控件截圖
+                            bitmap = new Bitmap(canvas.Width, canvas.Height);
+                            canvas.DrawToBitmap(bitmap, new Rectangle(0, 0, canvas.Width, canvas.Height));
+                        }
+
+                        if (bitmap == null)
+                        {
+                            throw new Exception("Failed to generate canvas image");
+                        }
+
+                        // 轉換為 Base64
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            bitmap.Save(ms, ImageFormat.Png);
+                            byte[] byteImage = ms.ToArray();
+                            string base64String = Convert.ToBase64String(byteImage);
+
+                            result = new
+                            {
+                                image = base64String,
+                                width = bitmap.Width,
+                                height = bitmap.Height,
+                                format = "png",
+                                bounds = new { x = sourceRect.X, y = sourceRect.Y, width = sourceRect.Width, height = sourceRect.Height }
+                            };
+                        }
+                    }
+                    finally
+                    {
+                        bitmap?.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"[GH_MCP_Vision] Error in CaptureCanvas: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 截取 Rhino 3D 視圖
+        /// </summary>
+        public static object CaptureRhinoView(VisionCommand command)
+        {
+            int width = command.GetParameter<int>("width");
+            int height = command.GetParameter<int>("height");
+
+            if (width <= 0) width = 1920;
+            if (height <= 0) height = 1080;
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var view = RhinoDoc.ActiveDoc?.Views?.ActiveView;
+                    if (view == null)
+                    {
+                        throw new InvalidOperationException("No active Rhino view");
+                    }
+
+                    var size = new Size(width, height);
+
+                    using (var bitmap = view.CaptureToBitmap(size))
+                    {
+                        if (bitmap == null)
+                        {
+                            throw new Exception("Failed to capture Rhino view");
+                        }
+
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            bitmap.Save(ms, ImageFormat.Png);
+                            string base64 = Convert.ToBase64String(ms.ToArray());
+                            result = new
+                            {
+                                image = base64,
+                                width = bitmap.Width,
+                                height = bitmap.Height,
+                                format = "png"
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"[GH_MCP_Vision] Error in CaptureRhinoView: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 縮放到指定組件
+        /// </summary>
+        public static object ZoomToComponents(VisionCommand command)
+        {
+            var componentIds = command.GetParameter<List<string>>("componentIds");
+
+            if (componentIds == null || componentIds.Count == 0)
+            {
+                throw new ArgumentException("At least one component ID is required");
+            }
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Grasshopper.Instances.ActiveCanvas?.Document;
+                    var canvas = Grasshopper.Instances.ActiveCanvas;
+
+                    if (doc == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper document");
+                    }
+
+                    var components = new List<IGH_DocumentObject>();
+                    var notFoundIds = new List<string>();
+
+                    foreach (var idStr in componentIds)
+                    {
+                        if (!Guid.TryParse(idStr, out Guid guid))
+                        {
+                            notFoundIds.Add(idStr);
+                            continue;
+                        }
+
+                        var component = doc.FindObject(guid, true);
+                        if (component != null)
+                        {
+                            components.Add(component);
+                        }
+                        else
+                        {
+                            notFoundIds.Add(idStr);
+                        }
+                    }
+
+                    if (components.Count == 0)
+                    {
+                        throw new ArgumentException("No valid components found");
+                    }
+
+                    // 計算邊界框
+                    RectangleF? combinedBounds = null;
+
+                    foreach (var component in components)
+                    {
+                        if (component.Attributes != null)
+                        {
+                            var bounds = component.Attributes.Bounds;
+                            if (combinedBounds.HasValue)
+                            {
+                                combinedBounds = RectangleF.Union(combinedBounds.Value, bounds);
+                            }
+                            else
+                            {
+                                combinedBounds = bounds;
+                            }
+                        }
+                    }
+
+                    if (combinedBounds.HasValue)
+                    {
+                        // 選中組件
+                        foreach (var comp in components)
+                        {
+                            comp.Attributes.Selected = true;
+                        }
+
+                        // 嘗試縮放
+                        try
+                        {
+                            var zoomMethod = canvas.GetType().GetMethod("ZoomExtents",
+                                System.Reflection.BindingFlags.Public |
+                                System.Reflection.BindingFlags.Instance);
+
+                            if (zoomMethod != null)
+                            {
+                                zoomMethod.Invoke(canvas, null);
+                            }
+                            else
+                            {
+                                canvas.Refresh();
+                            }
+                        }
+                        catch
+                        {
+                            canvas.Refresh();
+                        }
+                    }
+
+                    result = new
+                    {
+                        success = true,
+                        message = $"Zoomed to {components.Count} component(s)",
+                        componentCount = components.Count,
+                        notFoundIds = notFoundIds
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"[GH_MCP_Vision] Error in ZoomToComponents: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 縮放到全部物件
+        /// </summary>
+        public static object ZoomExtents(VisionCommand command)
+        {
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var canvas = Grasshopper.Instances.ActiveCanvas;
+                    if (canvas == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper canvas");
+                    }
+
+                    try
+                    {
+                        var zoomMethod = canvas.GetType().GetMethod("ZoomExtents",
+                            System.Reflection.BindingFlags.Public |
+                            System.Reflection.BindingFlags.Instance);
+
+                        if (zoomMethod != null)
+                        {
+                            zoomMethod.Invoke(canvas, null);
+                        }
+                    }
+                    catch
+                    {
+                        // Fallback
+                    }
+
+                    canvas.Refresh();
+
+                    result = new
+                    {
+                        success = true,
+                        message = "Zoomed to extents"
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 獲取畫布信息
+        /// </summary>
+        public static object GetCanvasInfo(VisionCommand command)
+        {
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var canvas = Grasshopper.Instances.ActiveCanvas;
+                    var doc = canvas?.Document;
+
+                    if (canvas == null || doc == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper canvas");
+                    }
+
+                    var bounds = doc.BoundingBox(false);
+                    var viewport = canvas.Viewport;
+
+                    result = new
+                    {
+                        objectCount = doc.ObjectCount,
+                        boundsInfo = new { x = bounds.X, y = bounds.Y, width = bounds.Width, height = bounds.Height },
+                        viewport = new
+                        {
+                            zoom = viewport.Zoom,
+                            midPoint = new { x = viewport.MidPoint.X, y = viewport.MidPoint.Y }
+                        }
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+    }
+}
