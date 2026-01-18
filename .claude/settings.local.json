@@ -1,9 +1,35 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git init:*)",
-      "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp log --oneline -5)",
-      "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp-workflow-main log --oneline -5)"
+      "Bash(python3:*)",
+      "Bash(gemini --version:*)",
+      "Bash(gemini:*)",
+      "Bash(git worktree:*)",
+      "Bash(git checkout:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(timeout 60 python3:*)",
+      "Bash(timeout 120 python3:*)",
+      "Bash(timeout 15 python3:*)",
+      "Bash(timeout 30 python3:*)",
+      "Bash(mdfind:*)",
+      "Bash(xargs:*)",
+      "Bash(timeout 45 python3:*)",
+      "Bash(bash:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Skill(ralph-wiggum:ralph-loop)",
+      "WebSearch",
+      "SlashCommand(/ralph-wiggum:ralph-loop \"完成\" --completion-promise \"DONE\")",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(python scripts/test_superpower.py:*)",
+      "Bash(python:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
