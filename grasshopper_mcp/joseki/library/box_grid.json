@@ -1,0 +1,58 @@
+{
+  "id": "660f9400-e29b-41d4-a716-446655440001",
+  "name": "Simple Box Grid",
+  "description": "Creates a 3D grid of boxes using rectangular array transformation. Useful for structural modules, facade panels, or parametric shelving systems.",
+  "category": "Structure",
+  "tags": ["array", "grid", "3d", "box", "structure", "repetition", "modular"],
+  "pseudo_code": "1. Create a CenterBox with X, Y, Z dimensions.\n2. Define spacing vectors for array directions.\n3. Apply Rectangular Array to create grid pattern.\n4. Adjust Nx, Ny, Nz counts for desired density.",
+  "embedding_text": "[Structure] Simple Box Grid: Creates a 3D grid of boxes using rectangular array transformation.\nTags: array, grid, 3d, box, structure, repetition, modular\nLogic Steps:\n1. Create a CenterBox.\n2. Define spacing.\n3. Apply Rectangular Array.\n4. Adjust counts.",
+  "nodes": [
+    {
+      "id": "n1",
+      "name": "Center Box",
+      "component_guid": "4e874a4e-95cd-46d0-904d-19cca8fd962c",
+      "nickname": "Unit",
+      "input_values": {"X": 10, "Y": 10, "Z": 10},
+      "position": {"x": 0, "y": 0}
+    },
+    {
+      "id": "n2",
+      "name": "Rectangular Array",
+      "component_guid": "rect-array-guid",
+      "nickname": "Grid",
+      "input_values": {"Nx": 5, "Ny": 5, "Nz": 1},
+      "position": {"x": 200, "y": 0}
+    }
+  ],
+  "connections": [
+    {"from_node_id": "n1", "from_port": "B", "to_node_id": "n2", "to_port": "G"}
+  ],
+  "constraints": [
+    {
+      "node_id": "n1",
+      "port_name": "X",
+      "type_hint": "Float",
+      "min_value": 1,
+      "max_value": 1000,
+      "options": [],
+      "description": "Box X dimension"
+    },
+    {
+      "node_id": "n2",
+      "port_name": "Nx",
+      "type_hint": "Integer",
+      "min_value": 1,
+      "max_value": 100,
+      "options": [],
+      "description": "Number of copies in X"
+    }
+  ],
+  "preview_image": null,
+  "stats": {
+    "created_at": "2026-01-08T00:00:00",
+    "last_used": "2026-01-08T00:00:00",
+    "success_count": 0,
+    "failure_count": 0,
+    "author": "System"
+  }
+}
