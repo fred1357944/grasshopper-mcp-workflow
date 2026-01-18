@@ -1364,3 +1364,297 @@ def get_id(result: dict) -> Optional[str]:
 3. [ ] 更新 `rebuild_table_v6.py` 使用可行的方案
 
 ---
+
+## 2026-01-09 - GH_MCP Debug 精華總結
+
+### 關鍵發現 1: API 回應格式變化
+
+**問題**：組件創建成功但無法取得 ID
+
+**原因**：GH_MCP 的回應格式是嵌套的：
+```python
+# 錯誤假設
+result.get('id')  # None
+
+# 正確方式
+result.get('data', {}).get('id')  # 實際 ID
+```
+
+**修復代碼**：
+```python
+def get_component_id(result: dict) -> Optional[str]:
+    """兼容多種回應格式"""
+    if not result.get('success'):
+        return None
+    data = result.get('data', {})
+    return data.get('id') if isinstance(data, dict) else None
+```
+
+---
+
+### 關鍵發現 2: set_slider_properties 必須分兩步驟
+
+**問題**：Slider 值一直是 0.250，設定 120 無效
+
+**原因**：預設 slider 範圍是 0-1，值會被 clamp
+
+**錯誤做法**（同時設定，值被 clamp）：
+```python
+send_command('set_slider_properties',
+    id=slider_id,
+    value='120',  # 會被 clamp 到 1
+    min=0.0,
+    max=200.0
+)
+```
+
+**正確做法**（分兩步驟）：
+```python
+# Step 1: 先設範圍
+send_command('set_slider_properties',
+    id=slider_id,
+    min=0.0,
+    max=200.0
+)
+time.sleep(0.1)
+
+# Step 2: 再設值
+send_command('set_slider_properties',
+    id=slider_id,
+    value='120'  # 現在不會被 clamp
+)
+```
+
+---
+
+### 關鍵發現 3: 組件位置參數 (x, y) 必須傳入
+
+**問題**：所有組件重疊在畫布左上角
+
+**原因**：`add_component` 沒有傳入 x, y 座標
+
+**正確做法**：
+```python
+send_command('add_component',
+    type='Circle',
+    nickname='CircleBottom',
+    x=650,  # 必須！
+    y=130   # 必須！
+)
+```
+
+**佈局建議**：
+```python
+COL_WIDTH = 200   # 欄寬
+ROW_HEIGHT = 80   # 行高
+
+def pos(col: int, row: int) -> tuple:
+    return (50 + col * COL_WIDTH, 50 + row * ROW_HEIGHT)
+
+# 按邏輯分欄
+# Col 0: Sliders
+# Col 1: Points
+# Col 2: Planes
+# Col 3: Geometry
+# Col 4+: Output
+```
+
+---
+
+### 關鍵發現 4: API 參數名稱不一致
+
+**set_slider_properties 參數**：
+| 參數 | 正確名稱 | 錯誤名稱 |
+|------|---------|---------|
+| 組件 ID | `id` | `component_id`, `componentId` |
+| 值 | `value` (string!) | `value` (number) |
+| 最小值 | `min` | `minValue` |
+| 最大值 | `max` | `maxValue` |
+
+**connect_components 參數**：
+| 參數 | 正確名稱 | 說明 |
+|------|---------|------|
+| 源組件 | `from_component_id` | 舊版用 `sourceId` |
+| 源參數 | `from_parameter` | 舊版用 `sourceParam` |
+| 目標組件 | `to_component_id` | 舊版用 `targetId` |
+| 目標參數 | `to_parameter` | 舊版用 `targetParam` |
+
+---
+
+### GH_MCP 最佳實踐總結
+
+```python
+class GH_MCP_BestPractices:
+    """GH_MCP 開發最佳實踐"""
+
+    # 1. 組件創建：必須傳座標
+    def add_component(self, type: str, nickname: str, x: float, y: float):
+        result = self.send_command('add_component',
+            type=type, nickname=nickname, x=x, y=y)
+        return result.get('data', {}).get('id')
+
+    # 2. Slider 設置：分兩步
+    def set_slider(self, slider_id: str, value: float, min_v: float, max_v: float):
+        # Step 1: Range
+        self.send_command('set_slider_properties', id=slider_id, min=min_v, max=max_v)
+        time.sleep(0.1)
+        # Step 2: Value
+        self.send_command('set_slider_properties', id=slider_id, value=str(value))
+
+    # 3. 連接：使用正確的參數名
+    def connect(self, from_id: str, from_param: str, to_id: str, to_param: str):
+        return self.send_command('connect_components',
+            from_component_id=from_id,
+            from_parameter=from_param,
+            to_component_id=to_id,
+            to_parameter=to_param)
+
+    # 4. 錯誤處理：忽略非關鍵錯誤
+    def safe_get_info(self):
+        result = self.send_command('get_document_info')
+        if not result.get('success'):
+            error = result.get('error', '')
+            # Index not found = 空文檔，可以繼續
+            if 'Index not found' in str(error):
+                return True
+        return result.get('success', False)
+```
+
+---
+
+## 2026-01-09 - 優化客戶端與最佳實踐整合
+
+### Summary
+
+從 chair/table/tower 腳本提取最佳實踐，創建統一的 `GH_MCP_ClientOptimized` 類別。
+
+### 分析的腳本
+
+| 腳本 | 關鍵學習 |
+|------|---------|
+| `build_chair_v2.py` | VERIFIED_GUIDS 避免 OBSOLETE 衝突、SOURCE/TARGET_PARAMS 映射 |
+| `execute_table.py` | `extract_component_id()` 統一 ID 提取、id_map 追蹤 |
+| `create_tower.py` | 簡潔 helper 函數、單次 slider API 呼叫（但有 clamping 問題）|
+| `build_cup.py` | 兩步驟 slider 設置（先 range 再 value）|
+
+### 創建的檔案
+
+| 檔案 | 用途 |
+|------|------|
+| `grasshopper_mcp/client_optimized.py` | 統一優化客戶端類別 |
+| `scripts/build_cup_v2.py` | 使用優化客戶端的水杯腳本 |
+
+### GH_MCP_ClientOptimized 特點
+
+```python
+class GH_MCP_ClientOptimized:
+    """整合所有最佳實踐"""
+
+    # 1. 自動追蹤 nickname → ComponentInfo 映射
+    components: Dict[str, ComponentInfo]
+
+    # 2. 兩步驟 slider 設置（避免 clamping）
+    def add_slider(self, nickname, col, row, value, min_val, max_val):
+        # Step 1: 創建
+        comp_id = send('add_component', ...)
+        # Step 2: 設範圍
+        send('set_slider_properties', id=comp_id, min=min_val, max=max_val)
+        # Step 3: 設值
+        send('set_slider_properties', id=comp_id, value=str(value))
+
+    # 3. 統一 ID 提取
+    def extract_id(self, result):
+        return result.get('data', {}).get('id')
+
+    # 4. 佈局輔助
+    def pos(self, col, row):
+        return (START_X + col * COL_WIDTH, START_Y + row * ROW_HEIGHT)
+
+    # 5. 批量操作
+    def add_sliders_batch(self, configs: List[SliderConfig])
+    def add_components_batch(self, configs: List[Tuple])
+    def connect_batch(self, connections: List[Tuple])
+```
+
+### SliderConfig DataClass
+
+```python
+@dataclass
+class SliderConfig:
+    nickname: str
+    value: float
+    min_val: float = 0
+    max_val: float = 100
+    col: int = 0
+    row: int = 0
+```
+
+### 使用範例
+
+```python
+from grasshopper_mcp.client_optimized import GH_MCP_ClientOptimized, SliderConfig
+
+client = GH_MCP_ClientOptimized()
+
+# 批量創建 sliders
+client.add_sliders_batch([
+    SliderConfig("Height", value=120, min_val=80, max_val=200, col=0, row=0),
+    SliderConfig("Width", value=80, min_val=40, max_val=150, col=0, row=1),
+])
+
+# 批量創建組件
+client.add_components_batch([
+    ("Circle", "CircleBottom", 2, 0),
+    ("Circle", "CircleTop", 2, 1),
+])
+
+# 批量連接
+client.connect_batch([
+    ("Height", "N", "TopPt", "Z"),
+    ("Width", "N", "CircleBottom", "R"),
+])
+
+# 查看統計
+client.print_summary()
+```
+
+---
+
+### Agent Orchestrator 系統完成
+
+今天建立的 Agent 調度系統：
+
+| 檔案 | 用途 |
+|------|------|
+| `langgraph/core/confidence.py` | 信心度評估（多維度） |
+| `langgraph/core/routing.py` | 專家路由（MoE） |
+| `langgraph/core/orchestrator.py` | Cascade 調度器 |
+| `langgraph/core/integration.py` | GH 專用整合層 |
+
+**Cascade 策略**：
+```
+Level 0: Rule-Based → 信心度 < 0.8 →
+Level 1: ML-Enhanced → 信心度 < 0.8 →
+Level 2: AI-Powered → 信心度 < 0.8 →
+Level 3: Human
+```
+
+---
+
+### 工業設計水杯設計參數
+
+| 參數 | 值 | 範圍 | 說明 |
+|------|-----|------|------|
+| Height | 120 | 80-200 | 杯身高度 |
+| BottomR | 35 | 25-50 | 底部半徑 |
+| TopR | 40 | 25-60 | 頂部半徑 |
+| WaistR | 32.5 | 20-45 | 腰線半徑（內收） |
+| WaistH | 40 | 20-80 | 腰線高度 |
+
+**組件結構**：
+```
+Sliders → Points → Planes → Circles → Loft → Cap
+  5個      3個      3個      3個       1個    1個
+```
+
+---
