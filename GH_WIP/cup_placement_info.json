@@ -1,0 +1,193 @@
+{
+  "name": "Industrial Design Cup",
+  "description": "簡約工業風水杯 - 參數化設計",
+  "parameters": {
+    "height": {
+      "value": 120,
+      "min": 80,
+      "max": 200,
+      "unit": "mm"
+    },
+    "bottom_diameter": {
+      "value": 70,
+      "min": 50,
+      "max": 100,
+      "unit": "mm"
+    },
+    "top_diameter": {
+      "value": 80,
+      "min": 50,
+      "max": 120,
+      "unit": "mm"
+    },
+    "waist_diameter": {
+      "value": 65,
+      "min": 40,
+      "max": 90,
+      "unit": "mm"
+    },
+    "waist_height": {
+      "value": 40,
+      "min": 20,
+      "max": 80,
+      "unit": "mm"
+    }
+  },
+  "components": [
+    {
+      "type": "Number Slider",
+      "nickname": "Height",
+      "value": 120
+    },
+    {
+      "type": "Number Slider",
+      "nickname": "BottomD",
+      "value": 70
+    },
+    {
+      "type": "Number Slider",
+      "nickname": "TopD",
+      "value": 80
+    },
+    {
+      "type": "Number Slider",
+      "nickname": "WaistD",
+      "value": 65
+    },
+    {
+      "type": "Number Slider",
+      "nickname": "WaistH",
+      "value": 40
+    },
+    {
+      "type": "Construct Point",
+      "nickname": "Origin"
+    },
+    {
+      "type": "Construct Point",
+      "nickname": "WaistPt"
+    },
+    {
+      "type": "Construct Point",
+      "nickname": "TopPt"
+    },
+    {
+      "type": "XY Plane",
+      "nickname": "PlnBottom"
+    },
+    {
+      "type": "XY Plane",
+      "nickname": "PlnWaist"
+    },
+    {
+      "type": "XY Plane",
+      "nickname": "PlnTop"
+    },
+    {
+      "type": "Circle",
+      "nickname": "CircleBottom"
+    },
+    {
+      "type": "Circle",
+      "nickname": "CircleWaist"
+    },
+    {
+      "type": "Circle",
+      "nickname": "CircleTop"
+    },
+    {
+      "type": "Loft",
+      "nickname": "CupBody"
+    },
+    {
+      "type": "Cap Holes",
+      "nickname": "CapBottom"
+    }
+  ],
+  "connections": [
+    {
+      "from": "Height",
+      "from_param": "N",
+      "to": "TopPt",
+      "to_param": "Z"
+    },
+    {
+      "from": "WaistH",
+      "from_param": "N",
+      "to": "WaistPt",
+      "to_param": "Z"
+    },
+    {
+      "from": "BottomD",
+      "from_param": "N",
+      "to": "CircleBottom",
+      "to_param": "R"
+    },
+    {
+      "from": "WaistD",
+      "from_param": "N",
+      "to": "CircleWaist",
+      "to_param": "R"
+    },
+    {
+      "from": "TopD",
+      "from_param": "N",
+      "to": "CircleTop",
+      "to_param": "R"
+    },
+    {
+      "from": "PlnBottom",
+      "from_param": "P",
+      "to": "CircleBottom",
+      "to_param": "P"
+    },
+    {
+      "from": "PlnWaist",
+      "from_param": "P",
+      "to": "CircleWaist",
+      "to_param": "P"
+    },
+    {
+      "from": "PlnTop",
+      "from_param": "P",
+      "to": "CircleTop",
+      "to_param": "P"
+    },
+    {
+      "from": "WaistPt",
+      "from_param": "Pt",
+      "to": "PlnWaist",
+      "to_param": "O"
+    },
+    {
+      "from": "TopPt",
+      "from_param": "Pt",
+      "to": "PlnTop",
+      "to_param": "O"
+    },
+    {
+      "from": "CircleBottom",
+      "from_param": "C",
+      "to": "CupBody",
+      "to_param": "C"
+    },
+    {
+      "from": "CircleWaist",
+      "from_param": "C",
+      "to": "CupBody",
+      "to_param": "C"
+    },
+    {
+      "from": "CircleTop",
+      "from_param": "C",
+      "to": "CupBody",
+      "to_param": "C"
+    },
+    {
+      "from": "CupBody",
+      "from_param": "L",
+      "to": "CapBottom",
+      "to_param": "B"
+    }
+  ]
+}

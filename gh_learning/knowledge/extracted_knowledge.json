@@ -1,0 +1,4384 @@
+{
+  "components": {
+    "410755b1-224a-4c1e-a407-bf32fb45ea7e": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "names": [
+        "Wasp_Save to DisCo",
+        "Wasp_Load Aggregation from File",
+        "Wasp_Orient Field",
+        "Wasp_Load From DisCo",
+        "Wasp_Filter Parts by Name",
+        "Wasp_DisCo Aggregation Setup",
+        "Wasp_Rules Visualizer",
+        "Wasp_Export to DisCo",
+        "Wasp_Field Points",
+        "Wasp_Field Iso Voxels",
+        "Wasp_Transform Part",
+        "Wasp_Mesh Constraint",
+        "Wasp_DisCo Placement Settings",
+        "Wasp_Update File",
+        "Wasp_DisCo IO Settings",
+        "Wasp_Field Isolines",
+        "Wasp_Graph-Grammar Aggregation",
+        "Wasp_Plane Constraint",
+        "Wasp_Connection From Plane",
+        "Wasp_Load Field from File",
+        "Wasp_Get Part Geometry",
+        "Wasp_DisCo Tool Settings",
+        "Wasp_Rules from Aggregation",
+        "Wasp_Collider",
+        "Wasp_Connection From Direction",
+        "Wasp_Deconstruct Field",
+        "Wasp_Rule From Text",
+        "Wasp_Deconstruct Part",
+        "Wasp_DisCo Rule Group",
+        "Wasp_Smart Attribute",
+        "GhPython Script",
+        "Wasp_Basic Part",
+        "Wasp_Support",
+        "Wasp_Orientation Constraint",
+        "Wasp_Advanced Part",
+        "Wasp_Get Attribute by Name",
+        "Wasp_Deconstruct Attribute",
+        "Wasp_Get Parts Hierarchy",
+        "Wasp_Field-driven Aggregation",
+        "Wasp_DisCo Player",
+        "Wasp_Stochastic Aggregation",
+        "Wasp_Aggregation Graph",
+        "Wasp_Parts Catalog",
+        "Wasp_Adjacency Exclusion Constraint",
+        "Wasp_Save Aggregation to File",
+        "Wasp_Assemble Part Hierarchy",
+        "Wasp_Deconstruct Connection",
+        "Wasp_Deconstruct Collider",
+        "Wasp_Get Valid Smart Attributes",
+        "Wasp_Rules Generator",
+        "Wasp_Save Field to File",
+        "Wasp_Attribute",
+        "Wasp_Field",
+        "Wasp_Rule",
+        "Wasp_DisCo Environment"
+      ],
+      "nicknames": [
+        "Field",
+        "FieldIso",
+        "LoadField",
+        "GraphAggr",
+        "DisCoSave",
+        "RuleG",
+        "DisCoPlayer",
+        "LoadAggr",
+        "SaveField",
+        "FieldOrient",
+        "DeAttr",
+        "Python",
+        "AdvPart",
+        "Part",
+        "UpdateFile",
+        "RuleGen",
+        "Wasp2DisCo",
+        "ConnDir",
+        "DisCoTool",
+        "PartTr",
+        "DePart",
+        "GetHierarchy",
+        "DisCoSetup",
+        "SaveAggr",
+        "DeColl",
+        "Support",
+        "FieldAggregation",
+        "AggregationGraph",
+        "FieldVox",
+        "ConnPln",
+        "PartGeo",
+        "Collider",
+        "PartCat",
+        "GetSmartAttr",
+        "DeConn",
+        "GetAttr",
+        "StochasticAggregation",
+        "FieldPts",
+        "SmartAttribute",
+        "RuleTxt",
+        "Attribute",
+        "DisCoEnv",
+        "GraphRules",
+        "MeshConst",
+        "PartHierarchy",
+        "DisCoLoad",
+        "PlaneConst",
+        "DeField",
+        "AdjExcConst",
+        "NameFilter",
+        "DisCoPlace",
+        "DisCoIO",
+        "Rule",
+        "RuleViz"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 487,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278": {
+      "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+      "names": [
+        "Geometry"
+      ],
+      "nicknames": [
+        "Geo",
+        "Bridge Support",
+        "Bridge Domain",
+        "Dome VolLoad"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 62,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "fbac3e32-f100-4292-8692-77240a42fd1a": {
+      "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+      "names": [
+        "Point"
+      ],
+      "nicknames": [
+        "CONNECTIONS_CENTERS",
+        "Pt",
+        "GRAPH NODES"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 80,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5": {
+      "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+      "names": [
+        "Curve"
+      ],
+      "nicknames": [
+        "CURVE_PATH",
+        "CONNECTIONS_UP",
+        "Crv",
+        "GRAPH EDGES",
+        "SUPPORT_DIRECTION",
+        "CONNECTIONS_X_AXIS"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 87,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "59e0b89a-e487-49f8-bab8-b5bab16be14c": {
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "names": [
+        "Panel"
+      ],
+      "nicknames": [
+        "PART_NAME",
+        "CONNECTION_GRAMMAR_03",
+        "CONNECTION_GRAMMAR_02",
+        "T -> P",
+        "CONNECTION_TYPE",
+        "PROBABILITIES",
+        "RULES",
+        "P -> T",
+        "Free Memory in MB",
+        "VERTEX -> VERTEX",
+        "CONNECTION_GRAMMAR_05",
+        "SAVED FILE PATH",
+        "OCTA -> OCTA",
+        "EDGE -> EDGE",
+        "P -> P",
+        "FILE TO IMPORT",
+        "COMPONENT_NAME",
+        "SPAWN",
+        "CONNECTION_GRAMMAR_04",
+        "CONNECTION_GRAMMAR_01"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 319,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "3cadddef-1e2b-4c09-9390-0e8f78f7609f": {
+      "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
+      "names": [
+        "Merge"
+      ],
+      "nicknames": [
+        "Merge"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 50,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "a8b97322-2d53-47cd-905e-b932c3ccd74e": {
+      "guid": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+      "names": [
+        "Button"
+      ],
+      "nicknames": [
+        "CLICK TO SAVE!!!",
+        "RESET",
+        "Reset Cuda",
+        "Button",
+        "Reset"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 86,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "2e78987b-9dfb-42a2-8b76-3923ac8bd91a": {
+      "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+      "names": [
+        "Boolean Toggle"
+      ],
+      "nicknames": [
+        "Toggle",
+        "Run!"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 73,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "2844fec5-142d-4381-bd5d-4cbcef6d6fed": {
+      "guid": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+      "names": [
+        "Sketch"
+      ],
+      "nicknames": [
+        "Sketch"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 39,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe": {
+      "guid": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+      "names": [
+        "Scribble"
+      ],
+      "nicknames": [
+        "Scribble"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 212,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "537b0419-bbc2-4ff4-bf08-afe526367b2c": {
+      "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+      "names": [
+        "Custom Preview"
+      ],
+      "nicknames": [
+        "Preview"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "M": [
+          "Material"
+        ],
+        "S": [
+          "Shader"
+        ]
+      },
+      "outputs": {},
+      "usage_count": 97,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": 18,
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 6,
+        "d1d57181-d594-41e8-8efb-041e29f8a5ca": 4,
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": 4,
+        "610e689b-5adc-47b3-af8f-e3a32b7ea341": 2,
+        "3b112fb6-3eba-42d2-ba75-0f903c18faab": 2,
+        "ac750e41-2450-4f98-9658-98fef97b01b2": 2,
+        "e2c0f9db-a862-4bd9-810c-ef2610e7a56f": 1,
+        "1177d6ee-3993-4226-9558-52b7fd63e1e3": 1,
+        "95866bbe-648e-4e2b-a97c-7d04679e94e0": 1
+      }
+    },
+    "9c53bac0-ba66-40bd-8154-ce9829b9db1a": {
+      "guid": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+      "names": [
+        "Colour Swatch"
+      ],
+      "nicknames": [
+        "Swatch"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 91,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "919e146f-30ae-4aae-be34-4d72f555e7da": {
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "names": [
+        "Brep"
+      ],
+      "nicknames": [
+        "PART_B_DETAILED",
+        "GEOMETRY",
+        "PART_A_DETAILED",
+        "PART_GEOMETRY",
+        "Brep"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 33,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "57da07bd-ecab-415d-9d86-af36d7073abc": {
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "names": [
+        "Number Slider"
+      ],
+      "nicknames": [
+        "Young inGPa",
+        "NUM OF VARIATIONS",
+        "BASE SEED",
+        "PARTS_NUM",
+        "kN/m3",
+        "TargetDens",
+        "Poisson",
+        "SPACING"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 203,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": {
+      "guid": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
+      "names": [
+        "Move"
+      ],
+      "nicknames": [
+        "Move"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "T": [
+          "Motion"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "Geometry"
+        ],
+        "X": [
+          "Transform"
+        ]
+      },
+      "usage_count": 11,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": 5,
+        "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69": 2,
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1,
+        "56b92eab-d121-43f7-94d3-6cd8f0ddead8": 1
+      }
+    },
+    "9103c240-a6a9-4223-9b42-dbd19bf38e2b": {
+      "guid": "9103c240-a6a9-4223-9b42-dbd19bf38e2b",
+      "names": [
+        "Unit Z"
+      ],
+      "nicknames": [
+        "Z"
+      ],
+      "inputs": {
+        "F": [
+          "Factor"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Unit vector"
+        ]
+      },
+      "usage_count": 6,
+      "commonly_connected_to": {
+        "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": 1,
+        "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e": 1,
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 1,
+        "2019c995-53af-4eb2-976d-95b1fdc823fa": 1,
+        "b464fccb-50e7-41bd-9789-8438db9bea9f": 1,
+        "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "c9482db6-bea9-448d-98ff-fed6d69a8efc": {
+      "guid": "c9482db6-bea9-448d-98ff-fed6d69a8efc",
+      "names": [
+        "Box"
+      ],
+      "nicknames": [
+        "Box"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 5,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "5a41528b-12b9-40dc-a3f2-842034d267c4": {
+      "guid": "5a41528b-12b9-40dc-a3f2-842034d267c4",
+      "names": [
+        "Text Tag 3D"
+      ],
+      "nicknames": [
+        "Tag"
+      ],
+      "inputs": {
+        "L": [
+          "Location"
+        ],
+        "T": [
+          "Text"
+        ],
+        "S": [
+          "Size"
+        ],
+        "C": [
+          "Colour"
+        ],
+        "J": [
+          "Justification"
+        ]
+      },
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1": {
+      "guid": "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1",
+      "names": [
+        "Simple Mesh"
+      ],
+      "nicknames": [
+        "SMesh"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 3,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": {
+      "guid": "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+      "names": [
+        "Deconstruct Mesh"
+      ],
+      "nicknames": [
+        "DeMesh"
+      ],
+      "inputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Vertices"
+        ],
+        "F": [
+          "Faces"
+        ],
+        "C": [
+          "Colours"
+        ],
+        "N": [
+          "Normals"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "e2c0f9db-a862-4bd9-810c-ef2610e7a56f": 2,
+        "2019c995-53af-4eb2-976d-95b1fdc823fa": 1
+      },
+      "commonly_connected_from": {
+        "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": 1
+      }
+    },
+    "e2c0f9db-a862-4bd9-810c-ef2610e7a56f": {
+      "guid": "e2c0f9db-a862-4bd9-810c-ef2610e7a56f",
+      "names": [
+        "Construct Mesh"
+      ],
+      "nicknames": [
+        "ConMesh"
+      ],
+      "inputs": {
+        "V": [
+          "Vertices"
+        ],
+        "F": [
+          "Faces"
+        ],
+        "C": [
+          "Colours"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 1
+      },
+      "commonly_connected_from": {
+        "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": 2
+      }
+    },
+    "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": {
+      "guid": "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+      "names": [
+        "Mesh Edges"
+      ],
+      "nicknames": [
+        "MEdges"
+      ],
+      "inputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "outputs": {
+        "E1": [
+          "Naked Edges"
+        ],
+        "E2": [
+          "Interior Edges"
+        ],
+        "E3": [
+          "Non-Manifold Edges"
+        ]
+      },
+      "usage_count": 6,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 4,
+        "1177d6ee-3993-4226-9558-52b7fd63e1e3": 1,
+        "8073a420-6bec-49e3-9b18-367f6fd76ac3": 1
+      },
+      "commonly_connected_from": {
+        "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": 1,
+        "d73fc809-3b8c-4420-a70c-f17fd9edb825": 1
+      }
+    },
+    "00027467-0d24-4fa7-b178-8dc0ac5f42ec": {
+      "guid": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
+      "names": [
+        "Value List"
+      ],
+      "nicknames": [
+        "PLANE",
+        "CONSTRAINTS"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 3,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "59daf374-bc21-4a5e-8282-5504fb7ae9ae": {
+      "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+      "names": [
+        "List Item"
+      ],
+      "nicknames": [
+        "Item"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 16,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "2ab17f9a-d852-4405-80e1-938c5e57e78d": {
+      "guid": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
+      "names": [
+        "Random"
+      ],
+      "nicknames": [
+        "Random"
+      ],
+      "inputs": {
+        "R": [
+          "Range"
+        ],
+        "N": [
+          "Number"
+        ],
+        "S": [
+          "Seed"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Random"
+        ]
+      },
+      "usage_count": 8,
+      "commonly_connected_to": {
+        "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": 4,
+        "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000": 1
+      },
+      "commonly_connected_from": {
+        "1817fd29-20ae-4503-b542-f0fb651e67d7": 6
+      }
+    },
+    "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000": {
+      "guid": "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000",
+      "names": [
+        "Jitter"
+      ],
+      "nicknames": [
+        "Jitter"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ],
+        "J": [
+          "Jitter"
+        ],
+        "S": [
+          "Seed"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Values"
+        ],
+        "I": [
+          "Indices"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "2ab17f9a-d852-4405-80e1-938c5e57e78d": 1
+      }
+    },
+    "ce46b74e-00c9-43c4-805a-193b69ea4a11": {
+      "guid": "ce46b74e-00c9-43c4-805a-193b69ea4a11",
+      "names": [
+        "Multiplication"
+      ],
+      "nicknames": [
+        "A×B"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 8,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "56b92eab-d121-43f7-94d3-6cd8f0ddead8": {
+      "guid": "56b92eab-d121-43f7-94d3-6cd8f0ddead8",
+      "names": [
+        "Vector XYZ"
+      ],
+      "nicknames": [
+        "Vec"
+      ],
+      "inputs": {
+        "X": [
+          "X component"
+        ],
+        "Y": [
+          "Y component"
+        ],
+        "Z": [
+          "Z component"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Vector"
+        ],
+        "L": [
+          "Length"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "1817fd29-20ae-4503-b542-f0fb651e67d7": {
+      "guid": "1817fd29-20ae-4503-b542-f0fb651e67d7",
+      "names": [
+        "List Length"
+      ],
+      "nicknames": [
+        "Lng"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "Length"
+        ]
+      },
+      "usage_count": 15,
+      "commonly_connected_to": {
+        "2ab17f9a-d852-4405-80e1-938c5e57e78d": 6,
+        "c40dc145-9e36-4a69-ac1a-6d825c654993": 5,
+        "9ab93e1a-ebdf-4090-9296-b000cff7b202": 4
+      },
+      "commonly_connected_from": {
+        "d8332545-21b2-4716-96e3-8559a9876e17": 2,
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 1
+      }
+    },
+    "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": {
+      "guid": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+      "names": [
+        "Gradient"
+      ],
+      "nicknames": [
+        "Gradient"
+      ],
+      "inputs": {
+        "L0": [
+          "Lower limit"
+        ],
+        "L1": [
+          "Upper limit"
+        ],
+        "t": [
+          "Parameter"
+        ]
+      },
+      "outputs": {
+        "C": [
+          "Colour"
+        ]
+      },
+      "usage_count": 19,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 18,
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 1
+      },
+      "commonly_connected_from": {
+        "2ab17f9a-d852-4405-80e1-938c5e57e78d": 4,
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 2,
+        "9445ca40-cc73-4861-a455-146308676855": 1
+      }
+    },
+    "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69": {
+      "guid": "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69",
+      "names": [
+        "Unit Y"
+      ],
+      "nicknames": [
+        "Y"
+      ],
+      "inputs": {
+        "F": [
+          "Factor"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Unit vector"
+        ]
+      },
+      "usage_count": 11,
+      "commonly_connected_to": {
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 7,
+        "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": 2
+      },
+      "commonly_connected_from": {
+        "e64c5fb1-845c-4ab1-8911-5f338516ba67": 2
+      }
+    },
+    "e64c5fb1-845c-4ab1-8911-5f338516ba67": {
+      "guid": "e64c5fb1-845c-4ab1-8911-5f338516ba67",
+      "names": [
+        "Series"
+      ],
+      "nicknames": [
+        "Series"
+      ],
+      "inputs": {
+        "S": [
+          "Start"
+        ],
+        "N": [
+          "Step"
+        ],
+        "C": [
+          "Count"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Series"
+        ]
+      },
+      "usage_count": 5,
+      "commonly_connected_to": {
+        "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69": 2,
+        "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "d1d57181-d594-41e8-8efb-041e29f8a5ca": {
+      "guid": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
+      "names": [
+        "Iso Curve"
+      ],
+      "nicknames": [
+        "Iso"
+      ],
+      "inputs": {
+        "S": [
+          "Surface"
+        ],
+        "uv": [
+          "UV point"
+        ]
+      },
+      "outputs": {
+        "U": [
+          "U Isocurve"
+        ],
+        "V": [
+          "V Isocurve"
+        ]
+      },
+      "usage_count": 6,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 4,
+        "a77d0879-94c2-4101-be44-e4a616ffeb0c": 2
+      },
+      "commonly_connected_from": {
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 6,
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 3
+      }
+    },
+    "9445ca40-cc73-4861-a455-146308676855": {
+      "guid": "9445ca40-cc73-4861-a455-146308676855",
+      "names": [
+        "Range"
+      ],
+      "nicknames": [
+        "Range"
+      ],
+      "inputs": {
+        "D": [
+          "Domain"
+        ],
+        "N": [
+          "Steps"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Range"
+        ]
+      },
+      "usage_count": 8,
+      "commonly_connected_to": {
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 10,
+        "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "3581f42a-9592-4549-bd6b-1c0fc39d067b": {
+      "guid": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+      "names": [
+        "Construct Point"
+      ],
+      "nicknames": [
+        "Pt"
+      ],
+      "inputs": {
+        "X": [
+          "X coordinate"
+        ],
+        "Y": [
+          "Y coordinate"
+        ],
+        "Z": [
+          "Z coordinate"
+        ]
+      },
+      "outputs": {
+        "Pt": [
+          "Point"
+        ]
+      },
+      "usage_count": 9,
+      "commonly_connected_to": {
+        "d1d57181-d594-41e8-8efb-041e29f8a5ca": 6,
+        "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": 2,
+        "fad344bc-09b1-4855-a2e6-437ef5715fe3": 1,
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1
+      },
+      "commonly_connected_from": {
+        "9445ca40-cc73-4861-a455-146308676855": 10,
+        "a3371040-e552-4bc8-b0ff-10a840258e88": 2
+      }
+    },
+    "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": {
+      "guid": "17b7152b-d30d-4d50-b9ef-c9fe25576fc2",
+      "names": [
+        "XY Plane"
+      ],
+      "nicknames": [
+        "XY"
+      ],
+      "inputs": {
+        "O": [
+          "Origin"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "usage_count": 9,
+      "commonly_connected_to": {
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1,
+        "e76040ec-3b91-41e1-8e00-c74c23b89391": 1,
+        "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea": 1,
+        "b7798b74-037e-4f0c-8ac7-dc1043d093e0": 1,
+        "f6f14b09-6497-4564-8403-09e4eb5a6b82": 1
+      },
+      "commonly_connected_from": {
+        "8d372bdc-9800-45e9-8a26-6e33c5253e21": 1,
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 1
+      }
+    },
+    "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": {
+      "guid": "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64",
+      "names": [
+        "XZ Plane"
+      ],
+      "nicknames": [
+        "XZ"
+      ],
+      "inputs": {
+        "O": [
+          "Origin"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "usage_count": 3,
+      "commonly_connected_to": {
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1,
+        "b7798b74-037e-4f0c-8ac7-dc1043d093e0": 1,
+        "f6f14b09-6497-4564-8403-09e4eb5a6b82": 1
+      },
+      "commonly_connected_from": {
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 2
+      }
+    },
+    "a3371040-e552-4bc8-b0ff-10a840258e88": {
+      "guid": "a3371040-e552-4bc8-b0ff-10a840258e88",
+      "names": [
+        "Negative"
+      ],
+      "nicknames": [
+        "Neg"
+      ],
+      "inputs": {
+        "x": [
+          "Value"
+        ]
+      },
+      "outputs": {
+        "y": [
+          "Result"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": {
+      "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
+      "names": [
+        "Plane Surface"
+      ],
+      "nicknames": [
+        "PlaneSrf"
+      ],
+      "inputs": {
+        "P": [
+          "Plane"
+        ],
+        "X": [
+          "X Size"
+        ],
+        "Y": [
+          "Y Size"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "usage_count": 4,
+      "commonly_connected_to": {
+        "d1d57181-d594-41e8-8efb-041e29f8a5ca": 3,
+        "6a9ccaab-1b03-484e-bbda-be9c81584a66": 1,
+        "75ac008b-1bc2-4edd-b967-667d628b9d24": 1,
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 1
+      },
+      "commonly_connected_from": {
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1,
+        "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": 1,
+        "fad344bc-09b1-4855-a2e6-437ef5715fe3": 1
+      }
+    },
+    "fad344bc-09b1-4855-a2e6-437ef5715fe3": {
+      "guid": "fad344bc-09b1-4855-a2e6-437ef5715fe3",
+      "names": [
+        "YZ Plane"
+      ],
+      "nicknames": [
+        "YZ"
+      ],
+      "inputs": {
+        "O": [
+          "Origin"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1
+      },
+      "commonly_connected_from": {
+        "3581f42a-9592-4549-bd6b-1c0fc39d067b": 1
+      }
+    },
+    "d1a28e95-cf96-4936-bf34-8bf142d731bf": {
+      "guid": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
+      "names": [
+        "Construct Domain"
+      ],
+      "nicknames": [
+        "Dom"
+      ],
+      "inputs": {
+        "A": [
+          "Domain start"
+        ],
+        "B": [
+          "Domain end"
+        ]
+      },
+      "outputs": {
+        "I": [
+          "Domain"
+        ]
+      },
+      "usage_count": 4,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 3
+      },
+      "commonly_connected_from": {}
+    },
+    "8d372bdc-9800-45e9-8a26-6e33c5253e21": {
+      "guid": "8d372bdc-9800-45e9-8a26-6e33c5253e21",
+      "names": [
+        "Deconstruct Brep"
+      ],
+      "nicknames": [
+        "DeBrep"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ]
+      },
+      "outputs": {
+        "F": [
+          "Faces"
+        ],
+        "E": [
+          "Edges"
+        ],
+        "V": [
+          "Vertices"
+        ]
+      },
+      "usage_count": 6,
+      "commonly_connected_to": {
+        "4c4e56eb-2f04-43f9-95a3-cc46a14f495a": 1,
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1,
+        "b333ff42-93bd-406b-8e17-15780719b6ec": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "2e205f24-9279-47b2-b414-d06dcd0b21a7": {
+      "guid": "2e205f24-9279-47b2-b414-d06dcd0b21a7",
+      "names": [
+        "Area"
+      ],
+      "nicknames": [
+        "Area"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ]
+      },
+      "outputs": {
+        "A": [
+          "Area"
+        ],
+        "C": [
+          "Centroid"
+        ]
+      },
+      "usage_count": 11,
+      "commonly_connected_to": {
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 8,
+        "b7798b74-037e-4f0c-8ac7-dc1043d093e0": 2,
+        "c40dc145-9e36-4a69-ac1a-6d825c654993": 2,
+        "93b8e93d-f932-402c-b435-84be04d87666": 2,
+        "4c4e56eb-2f04-43f9-95a3-cc46a14f495a": 1
+      },
+      "commonly_connected_from": {
+        "b333ff42-93bd-406b-8e17-15780719b6ec": 1,
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1,
+        "6a9ccaab-1b03-484e-bbda-be9c81584a66": 1
+      }
+    },
+    "4c619bc9-39fd-4717-82a6-1e07ea237bbe": {
+      "guid": "4c619bc9-39fd-4717-82a6-1e07ea237bbe",
+      "names": [
+        "Line SDL"
+      ],
+      "nicknames": [
+        "Line"
+      ],
+      "inputs": {
+        "S": [
+          "Start"
+        ],
+        "D": [
+          "Direction"
+        ],
+        "L": [
+          "Length"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "Line"
+        ]
+      },
+      "usage_count": 8,
+      "commonly_connected_to": {
+        "b7798b74-037e-4f0c-8ac7-dc1043d093e0": 2,
+        "11bbd48b-bb0a-4f1b-8167-fa297590390d": 2
+      },
+      "commonly_connected_from": {
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 8,
+        "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69": 7,
+        "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": 2,
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1
+      }
+    },
+    "4c4e56eb-2f04-43f9-95a3-cc46a14f495a": {
+      "guid": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+      "names": [
+        "Line"
+      ],
+      "nicknames": [
+        "Ln"
+      ],
+      "inputs": {
+        "A": [
+          "Start Point"
+        ],
+        "B": [
+          "End Point"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "Line"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "e76040ec-3b91-41e1-8e00-c74c23b89391": 1
+      },
+      "commonly_connected_from": {
+        "8d372bdc-9800-45e9-8a26-6e33c5253e21": 1,
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 1
+      }
+    },
+    "e76040ec-3b91-41e1-8e00-c74c23b89391": {
+      "guid": "e76040ec-3b91-41e1-8e00-c74c23b89391",
+      "names": [
+        "Align Plane"
+      ],
+      "nicknames": [
+        "Align"
+      ],
+      "inputs": {
+        "P": [
+          "Plane"
+        ],
+        "D": [
+          "Direction"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ],
+        "A": [
+          "Angle"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1,
+        "4c4e56eb-2f04-43f9-95a3-cc46a14f495a": 1
+      }
+    },
+    "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b": {
+      "guid": "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b",
+      "names": [
+        "Mesh Join"
+      ],
+      "nicknames": [
+        "MJoin"
+      ],
+      "inputs": {
+        "M": [
+          "Meshes"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": 1
+      },
+      "commonly_connected_from": {
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 1
+      }
+    },
+    "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": {
+      "guid": "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd",
+      "names": [
+        "Unit X"
+      ],
+      "nicknames": [
+        "X"
+      ],
+      "inputs": {
+        "F": [
+          "Factor"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Unit vector"
+        ]
+      },
+      "usage_count": 11,
+      "commonly_connected_to": {
+        "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": 5,
+        "3dfb9a77-6e05-4016-9f20-94f78607d672": 2,
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 2
+      },
+      "commonly_connected_from": {
+        "e64c5fb1-845c-4ab1-8911-5f338516ba67": 1
+      }
+    },
+    "071c3940-a12d-4b77-bb23-42b5d3314a0d": {
+      "guid": "071c3940-a12d-4b77-bb23-42b5d3314a0d",
+      "names": [
+        "Clean Tree"
+      ],
+      "nicknames": [
+        "Clean"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "c9785b8e-2f30-4f90-8ee3-cca710f82402": {
+      "guid": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
+      "names": [
+        "Entwine"
+      ],
+      "nicknames": [
+        "Entwine"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 3,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "9ab93e1a-ebdf-4090-9296-b000cff7b202": {
+      "guid": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
+      "names": [
+        "Split List"
+      ],
+      "nicknames": [
+        "Split"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ],
+        "i": [
+          "Index"
+        ]
+      },
+      "outputs": {
+        "A": [
+          "List A"
+        ],
+        "B": [
+          "List B"
+        ]
+      },
+      "usage_count": 4,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "1817fd29-20ae-4503-b542-f0fb651e67d7": 4
+      }
+    },
+    "8ec86459-bf01-4409-baee-174d0d2b13d0": {
+      "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+      "names": [
+        "Data"
+      ],
+      "nicknames": [
+        "Data"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 6,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb": {
+      "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+      "names": [
+        "Point List"
+      ],
+      "nicknames": [
+        "Points"
+      ],
+      "inputs": {
+        "P": [
+          "Points"
+        ],
+        "S": [
+          "Size"
+        ]
+      },
+      "outputs": {},
+      "usage_count": 19,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "60e7defa-8b21-4ee1-99aa-a9223d6134ff": {
+      "guid": "60e7defa-8b21-4ee1-99aa-a9223d6134ff",
+      "names": [
+        "Mesh Brep"
+      ],
+      "nicknames": [
+        "Mesh"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ],
+        "S": [
+          "Settings"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 9,
+      "commonly_connected_to": {
+        "4098ec7a-819a-4ced-9eee-86835d7e21c9": 2,
+        "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b": 1,
+        "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93": 1,
+        "ce61205c-5d8e-429e-a0a2-e1dc3e10febc": 1,
+        "c28233aa-2c4b-4865-8916-f2fa4b2f390f": 1
+      },
+      "commonly_connected_from": {
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 1
+      }
+    },
+    "3dfb9a77-6e05-4016-9f20-94f78607d672": {
+      "guid": "3dfb9a77-6e05-4016-9f20-94f78607d672",
+      "names": [
+        "Rotate 3D"
+      ],
+      "nicknames": [
+        "Rot3D"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "A": [
+          "Angle"
+        ],
+        "C": [
+          "Center"
+        ],
+        "X": [
+          "Axis"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "Geometry"
+        ],
+        "X": [
+          "Transform"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": 2,
+        "f6f14b09-6497-4564-8403-09e4eb5a6b82": 1
+      }
+    },
+    "610e689b-5adc-47b3-af8f-e3a32b7ea341": {
+      "guid": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
+      "names": [
+        "Transform"
+      ],
+      "nicknames": [
+        "Transform"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "T": [
+          "Transform"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "Geometry"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 2
+      },
+      "commonly_connected_from": {
+        "4098ec7a-819a-4ced-9eee-86835d7e21c9": 2,
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 2
+      }
+    },
+    "4098ec7a-819a-4ced-9eee-86835d7e21c9": {
+      "guid": "4098ec7a-819a-4ced-9eee-86835d7e21c9",
+      "names": [
+        "Weaverbird's Catmull-Clark Subdivision"
+      ],
+      "nicknames": [
+        "wbCatmullClark"
+      ],
+      "inputs": {
+        "M": [
+          "Mesh/Curves"
+        ],
+        "L": [
+          "Level"
+        ],
+        "S": [
+          "Smooth Naked Edges"
+        ]
+      },
+      "outputs": {
+        "O": [
+          "Output Mesh/Curves"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "610e689b-5adc-47b3-af8f-e3a32b7ea341": 2
+      },
+      "commonly_connected_from": {
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 2
+      }
+    },
+    "008e9a6f-478a-4813-8c8a-546273bc3a6b": {
+      "guid": "008e9a6f-478a-4813-8c8a-546273bc3a6b",
+      "names": [
+        "Cull Pattern"
+      ],
+      "nicknames": [
+        "Cull"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ],
+        "P": [
+          "Cull Pattern"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "List"
+        ]
+      },
+      "usage_count": 11,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 6,
+        "610e689b-5adc-47b3-af8f-e3a32b7ea341": 2,
+        "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": 2,
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 1
+      },
+      "commonly_connected_from": {
+        "30d58600-1aab-42db-80a3-f1ea6c4269a0": 7,
+        "6a9ccaab-1b03-484e-bbda-be9c81584a66": 1,
+        "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": 1
+      }
+    },
+    "7f6a9d34-0470-4bb7-aadd-07496bcbe572": {
+      "guid": "7f6a9d34-0470-4bb7-aadd-07496bcbe572",
+      "names": [
+        "Point On Curve"
+      ],
+      "nicknames": [
+        "CurvePoint"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e": {
+      "guid": "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e",
+      "names": [
+        "Construct Plane"
+      ],
+      "nicknames": [
+        "Pl"
+      ],
+      "inputs": {
+        "O": [
+          "Origin"
+        ],
+        "X": [
+          "X-Axis"
+        ],
+        "Y": [
+          "Y-Axis"
+        ]
+      },
+      "outputs": {
+        "Pl": [
+          "Plane"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea": 3,
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1
+      }
+    },
+    "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea": {
+      "guid": "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea",
+      "names": [
+        "Deconstruct Plane"
+      ],
+      "nicknames": [
+        "DePlane"
+      ],
+      "inputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "outputs": {
+        "O": [
+          "Origin"
+        ],
+        "X": [
+          "X-Axis"
+        ],
+        "Y": [
+          "Y-Axis"
+        ],
+        "Z": [
+          "Z-Axis"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e": 3
+      },
+      "commonly_connected_from": {
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1
+      }
+    },
+    "290f418a-65ee-406a-a9d0-35699815b512": {
+      "guid": "290f418a-65ee-406a-a9d0-35699815b512",
+      "names": [
+        "Scale NU"
+      ],
+      "nicknames": [
+        "Scale NU"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "P": [
+          "Plane"
+        ],
+        "X": [
+          "Scale X"
+        ],
+        "Y": [
+          "Scale Y"
+        ],
+        "Z": [
+          "Scale Z"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "Geometry"
+        ],
+        "X": [
+          "Transform"
+        ]
+      },
+      "usage_count": 7,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "224f7648-5956-4b26-80d9-8d771f3dfd5d": 7,
+        "0bb3d234-9097-45db-9998-621639c87d3b": 6
+      }
+    },
+    "224f7648-5956-4b26-80d9-8d771f3dfd5d": {
+      "guid": "224f7648-5956-4b26-80d9-8d771f3dfd5d",
+      "names": [
+        "Volume"
+      ],
+      "nicknames": [
+        "Volume"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ]
+      },
+      "outputs": {
+        "V": [
+          "Volume"
+        ],
+        "C": [
+          "Centroid"
+        ]
+      },
+      "usage_count": 7,
+      "commonly_connected_to": {
+        "290f418a-65ee-406a-a9d0-35699815b512": 7
+      },
+      "commonly_connected_from": {
+        "0bb3d234-9097-45db-9998-621639c87d3b": 6
+      }
+    },
+    "b7798b74-037e-4f0c-8ac7-dc1043d093e0": {
+      "guid": "b7798b74-037e-4f0c-8ac7-dc1043d093e0",
+      "names": [
+        "Rotate"
+      ],
+      "nicknames": [
+        "Rotate"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "A": [
+          "Angle"
+        ],
+        "P": [
+          "Plane"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "Geometry"
+        ],
+        "X": [
+          "Transform"
+        ]
+      },
+      "usage_count": 4,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 2,
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 2,
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1,
+        "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": 1
+      }
+    },
+    "c40dc145-9e36-4a69-ac1a-6d825c654993": {
+      "guid": "c40dc145-9e36-4a69-ac1a-6d825c654993",
+      "names": [
+        "Repeat Data"
+      ],
+      "nicknames": [
+        "Repeat"
+      ],
+      "inputs": {
+        "D": [
+          "Data"
+        ],
+        "L": [
+          "Length"
+        ]
+      },
+      "outputs": {
+        "D": [
+          "Data"
+        ]
+      },
+      "usage_count": 5,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "1817fd29-20ae-4503-b542-f0fb651e67d7": 5,
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 2
+      }
+    },
+    "b333ff42-93bd-406b-8e17-15780719b6ec": {
+      "guid": "b333ff42-93bd-406b-8e17-15780719b6ec",
+      "names": [
+        "Sub List"
+      ],
+      "nicknames": [
+        "SubSet"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ],
+        "D": [
+          "Domain"
+        ],
+        "W": [
+          "Wrap"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "List"
+        ],
+        "I": [
+          "Index"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 1
+      },
+      "commonly_connected_from": {
+        "8d372bdc-9800-45e9-8a26-6e33c5253e21": 1
+      }
+    },
+    "1177d6ee-3993-4226-9558-52b7fd63e1e3": {
+      "guid": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+      "names": [
+        "Trim Tree"
+      ],
+      "nicknames": [
+        "Trim"
+      ],
+      "inputs": {
+        "T": [
+          "Tree"
+        ],
+        "D": [
+          "Depth"
+        ]
+      },
+      "outputs": {
+        "T": [
+          "Tree"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 1
+      },
+      "commonly_connected_from": {
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": 1
+      }
+    },
+    "d93100b6-d50b-40b2-831a-814659dc38e3": {
+      "guid": "d93100b6-d50b-40b2-831a-814659dc38e3",
+      "names": [
+        "Rectangle"
+      ],
+      "nicknames": [
+        "Rectangle"
+      ],
+      "inputs": {
+        "P": [
+          "Plane"
+        ],
+        "X": [
+          "X Size"
+        ],
+        "Y": [
+          "Y Size"
+        ],
+        "R": [
+          "Radius"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Rectangle"
+        ],
+        "L": [
+          "Length"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "11bbd48b-bb0a-4f1b-8167-fa297590390d": {
+      "guid": "11bbd48b-bb0a-4f1b-8167-fa297590390d",
+      "names": [
+        "End Points"
+      ],
+      "nicknames": [
+        "End"
+      ],
+      "inputs": {
+        "C": [
+          "Curve"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Start"
+        ],
+        "E": [
+          "End"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "4c619bc9-39fd-4717-82a6-1e07ea237bbe": 2
+      }
+    },
+    "10434a15-da85-4281-bb64-a2b3a995b9c6": {
+      "guid": "10434a15-da85-4281-bb64-a2b3a995b9c6",
+      "names": [
+        "Solid Union"
+      ],
+      "nicknames": [
+        "SUnion"
+      ],
+      "inputs": {
+        "B": [
+          "Breps"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Result"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "d6b43673-55dd-4e2f-95c4-6c69a14513a6": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "d6b43673-55dd-4e2f-95c4-6c69a14513a6": {
+      "guid": "d6b43673-55dd-4e2f-95c4-6c69a14513a6",
+      "names": [
+        "Merge Faces"
+      ],
+      "nicknames": [
+        "FMerge"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ]
+      },
+      "outputs": {
+        "B": [
+          "Breps"
+        ],
+        "N0": [
+          "Before"
+        ],
+        "N1": [
+          "After"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "10434a15-da85-4281-bb64-a2b3a995b9c6": 2
+      }
+    },
+    "a0d62394-a118-422d-abb3-6af115c75b25": {
+      "guid": "a0d62394-a118-422d-abb3-6af115c75b25",
+      "names": [
+        "Addition"
+      ],
+      "nicknames": [
+        "A+B"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "88060a82-0bf7-46bb-9af8-bdc860cf7e1d": {
+      "guid": "88060a82-0bf7-46bb-9af8-bdc860cf7e1d",
+      "names": [
+        "Mesh Union"
+      ],
+      "nicknames": [
+        "MUnion"
+      ],
+      "inputs": {
+        "M": [
+          "Meshes"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Result"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "36947590-f0cb-4807-a8f9-9c90c9b20621": {
+      "guid": "36947590-f0cb-4807-a8f9-9c90c9b20621",
+      "names": [
+        "Cross Reference"
+      ],
+      "nicknames": [
+        "CrossRef"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "ca80054a-cde0-4f69-a132-10502b24866d": {
+      "guid": "ca80054a-cde0-4f69-a132-10502b24866d",
+      "names": [
+        "Compound"
+      ],
+      "nicknames": [
+        "Comp"
+      ],
+      "inputs": {
+        "T": [
+          "Transforms"
+        ]
+      },
+      "outputs": {
+        "X": [
+          "Compound"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "0148a65d-6f42-414a-9db7-9a9b2eb78437": {
+      "guid": "0148a65d-6f42-414a-9db7-9a9b2eb78437",
+      "names": [
+        "Brep Edges"
+      ],
+      "nicknames": [
+        "Edges"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ]
+      },
+      "outputs": {
+        "En": [
+          "Naked"
+        ],
+        "Ei": [
+          "Interior"
+        ],
+        "Em": [
+          "Non-Manifold"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "95866bbe-648e-4e2b-a97c-7d04679e94e0": {
+      "guid": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
+      "names": [
+        "Dash Pattern"
+      ],
+      "nicknames": [
+        "Dash"
+      ],
+      "inputs": {
+        "C": [
+          "Curve"
+        ],
+        "Pt": [
+          "Pattern"
+        ]
+      },
+      "outputs": {
+        "D": [
+          "Dashes"
+        ],
+        "G": [
+          "Gaps"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "0bb3d234-9097-45db-9998-621639c87d3b": {
+      "guid": "0bb3d234-9097-45db-9998-621639c87d3b",
+      "names": [
+        "Bounding Box"
+      ],
+      "nicknames": [
+        "BBox"
+      ],
+      "inputs": {
+        "C": [
+          "Content"
+        ],
+        "P": [
+          "Plane"
+        ]
+      },
+      "outputs": {
+        "B": [
+          "Box"
+        ]
+      },
+      "usage_count": 8,
+      "commonly_connected_to": {
+        "290f418a-65ee-406a-a9d0-35699815b512": 6,
+        "224f7648-5956-4b26-80d9-8d771f3dfd5d": 6,
+        "e202025b-dc8e-4c51-ae19-4415b172886f": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "902289da-28dc-454b-98d4-b8f8aa234516": {
+      "guid": "902289da-28dc-454b-98d4-b8f8aa234516",
+      "names": [
+        "Pull Point"
+      ],
+      "nicknames": [
+        "Pull"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ],
+        "G": [
+          "Geometry"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Closest Point"
+        ],
+        "D": [
+          "Distance"
+        ]
+      },
+      "usage_count": 8,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 6,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 5,
+        "d8332545-21b2-4716-96e3-8559a9876e17": 2,
+        "9abae6b7-fa1d-448c-9209-4a8155345841": 2
+      },
+      "commonly_connected_from": {
+        "e202025b-dc8e-4c51-ae19-4415b172886f": 2,
+        "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af": 1
+      }
+    },
+    "2fcc2743-8339-4cdf-a046-a1f17439191d": {
+      "guid": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+      "names": [
+        "Remap Numbers"
+      ],
+      "nicknames": [
+        "ReMap"
+      ],
+      "inputs": {
+        "V": [
+          "Value"
+        ],
+        "S": [
+          "Source"
+        ],
+        "T": [
+          "Target"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Mapped"
+        ],
+        "C": [
+          "Clipped"
+        ]
+      },
+      "usage_count": 15,
+      "commonly_connected_to": {
+        "1817fd29-20ae-4503-b542-f0fb651e67d7": 1
+      },
+      "commonly_connected_from": {
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 15,
+        "902289da-28dc-454b-98d4-b8f8aa234516": 6,
+        "d1a28e95-cf96-4936-bf34-8bf142d731bf": 3,
+        "d8332545-21b2-4716-96e3-8559a9876e17": 2,
+        "2dc44b22-b1dd-460a-a704-6462d6e91096": 2,
+        "9abae6b7-fa1d-448c-9209-4a8155345841": 2,
+        "b464fccb-50e7-41bd-9789-8438db9bea9f": 1,
+        "4a9e9a8e-0943-4438-b360-129c30f2bb0f": 1,
+        "52a8ef7b-517f-46a4-acc9-afa8842ac028": 1
+      }
+    },
+    "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": {
+      "guid": "f44b92b0-3b5b-493a-86f4-fd7408c3daf3",
+      "names": [
+        "Bounds"
+      ],
+      "nicknames": [
+        "Bnd"
+      ],
+      "inputs": {
+        "N": [
+          "Numbers"
+        ]
+      },
+      "outputs": {
+        "I": [
+          "Domain"
+        ]
+      },
+      "usage_count": 14,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 15
+      },
+      "commonly_connected_from": {
+        "902289da-28dc-454b-98d4-b8f8aa234516": 5,
+        "d8332545-21b2-4716-96e3-8559a9876e17": 3,
+        "2dc44b22-b1dd-460a-a704-6462d6e91096": 2,
+        "9abae6b7-fa1d-448c-9209-4a8155345841": 1,
+        "b464fccb-50e7-41bd-9789-8438db9bea9f": 1,
+        "4a9e9a8e-0943-4438-b360-129c30f2bb0f": 1,
+        "52a8ef7b-517f-46a4-acc9-afa8842ac028": 1
+      }
+    },
+    "bc984576-7aa6-491f-a91d-e444c33675a7": {
+      "guid": "bc984576-7aa6-491f-a91d-e444c33675a7",
+      "names": [
+        "Graph Mapper"
+      ],
+      "nicknames": [
+        "Graph"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 14,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "4f8984c4-7c7a-4d69-b0a2-183cbb330d20": {
+      "guid": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+      "names": [
+        "Plane"
+      ],
+      "nicknames": [
+        "Pln"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "f6f14b09-6497-4564-8403-09e4eb5a6b82": {
+      "guid": "f6f14b09-6497-4564-8403-09e4eb5a6b82",
+      "names": [
+        "Rotate Plane"
+      ],
+      "nicknames": [
+        "PRot"
+      ],
+      "inputs": {
+        "P": [
+          "Plane"
+        ],
+        "A": [
+          "Angle"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "3dfb9a77-6e05-4016-9f20-94f78607d672": 1
+      },
+      "commonly_connected_from": {
+        "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": 1,
+        "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": 1
+      }
+    },
+    "6a9ccaab-1b03-484e-bbda-be9c81584a66": {
+      "guid": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
+      "names": [
+        "Isotrim"
+      ],
+      "nicknames": [
+        "SubSrf"
+      ],
+      "inputs": {
+        "S": [
+          "Surface"
+        ],
+        "D": [
+          "Domain"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Surface"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 1,
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 1
+      },
+      "commonly_connected_from": {
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1,
+        "75ac008b-1bc2-4edd-b967-667d628b9d24": 1
+      }
+    },
+    "75ac008b-1bc2-4edd-b967-667d628b9d24": {
+      "guid": "75ac008b-1bc2-4edd-b967-667d628b9d24",
+      "names": [
+        "Divide Domain²"
+      ],
+      "nicknames": [
+        "Divide"
+      ],
+      "inputs": {
+        "I": [
+          "Domain"
+        ],
+        "U": [
+          "U Count"
+        ],
+        "V": [
+          "V Count"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Segments"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "6a9ccaab-1b03-484e-bbda-be9c81584a66": 1
+      },
+      "commonly_connected_from": {
+        "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": 1
+      }
+    },
+    "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": {
+      "guid": "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1",
+      "names": [
+        "Mesh WeldVertices"
+      ],
+      "nicknames": [
+        "weldVertices"
+      ],
+      "inputs": {
+        "M": [
+          "Mesh"
+        ],
+        "t": [
+          "tolerance"
+        ]
+      },
+      "outputs": {
+        "out": [
+          "RuntimeMessage"
+        ],
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "24e2b0d2-d7b8-4478-8a83-1f04cba701a1": 1,
+        "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": 1,
+        "0ed5e67d-539d-480e-88cb-d81fa795d66c": 1,
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": 1
+      },
+      "commonly_connected_from": {
+        "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b": 1
+      }
+    },
+    "24e2b0d2-d7b8-4478-8a83-1f04cba701a1": {
+      "guid": "24e2b0d2-d7b8-4478-8a83-1f04cba701a1",
+      "names": [
+        "EdgeLengths"
+      ],
+      "nicknames": [
+        "EdgeLengths"
+      ],
+      "inputs": {
+        "Mesh": [
+          "Mesh"
+        ],
+        "LengthFactor": [
+          "LengthFactor"
+        ],
+        "Strength": [
+          "Strength"
+        ]
+      },
+      "outputs": {
+        "EL": [
+          "EL"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "4408343b-577e-4fd8-96ff-df7549189186": 1
+      },
+      "commonly_connected_from": {
+        "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": 1
+      }
+    },
+    "2019c995-53af-4eb2-976d-95b1fdc823fa": {
+      "guid": "2019c995-53af-4eb2-976d-95b1fdc823fa",
+      "names": [
+        "Load"
+      ],
+      "nicknames": [
+        "Load"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ],
+        "FV": [
+          "Force vector"
+        ],
+        "W": [
+          "Weighting"
+        ]
+      },
+      "outputs": {
+        "U": [
+          "Unary"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "4408343b-577e-4fd8-96ff-df7549189186": 1
+      },
+      "commonly_connected_from": {
+        "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": 1,
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1
+      }
+    },
+    "3c30b1a1-4473-4ad4-a700-ea9770726c03": {
+      "guid": "3c30b1a1-4473-4ad4-a700-ea9770726c03",
+      "names": [
+        "Anchor"
+      ],
+      "nicknames": [
+        "Anchor"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ],
+        "T": [
+          "Target"
+        ],
+        "Strength": [
+          "Strength"
+        ]
+      },
+      "outputs": {
+        "A": [
+          "A"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "4408343b-577e-4fd8-96ff-df7549189186": 1
+      },
+      "commonly_connected_from": {
+        "afb96615-c59a-45c9-9cac-e27acb1c7ca0": 1
+      }
+    },
+    "4408343b-577e-4fd8-96ff-df7549189186": {
+      "guid": "4408343b-577e-4fd8-96ff-df7549189186",
+      "names": [
+        "ZombieSolver"
+      ],
+      "nicknames": [
+        "ZombieSolver"
+      ],
+      "inputs": {
+        "GoalObjects": [
+          "GoalObjects"
+        ],
+        "Threshold": [
+          "Threshold"
+        ],
+        "Tolerance": [
+          "Tolerance"
+        ],
+        "MaxIterations": [
+          "MaxIterations"
+        ]
+      },
+      "outputs": {
+        "I": [
+          "I"
+        ],
+        "V": [
+          "V"
+        ],
+        "O": [
+          "O"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "24e2b0d2-d7b8-4478-8a83-1f04cba701a1": 1,
+        "2019c995-53af-4eb2-976d-95b1fdc823fa": 1,
+        "3c30b1a1-4473-4ad4-a700-ea9770726c03": 1,
+        "0ed5e67d-539d-480e-88cb-d81fa795d66c": 1
+      }
+    },
+    "0ed5e67d-539d-480e-88cb-d81fa795d66c": {
+      "guid": "0ed5e67d-539d-480e-88cb-d81fa795d66c",
+      "names": [
+        "Show"
+      ],
+      "nicknames": [
+        "Show"
+      ],
+      "inputs": {
+        "G": [
+          "G"
+        ]
+      },
+      "outputs": {
+        "G": [
+          "G"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "4408343b-577e-4fd8-96ff-df7549189186": 1
+      },
+      "commonly_connected_from": {
+        "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": 1
+      }
+    },
+    "93b8e93d-f932-402c-b435-84be04d87666": {
+      "guid": "93b8e93d-f932-402c-b435-84be04d87666",
+      "names": [
+        "Distance"
+      ],
+      "nicknames": [
+        "Dist"
+      ],
+      "inputs": {
+        "A": [
+          "Point A"
+        ],
+        "B": [
+          "Point B"
+        ]
+      },
+      "outputs": {
+        "D": [
+          "Distance"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "30d58600-1aab-42db-80a3-f1ea6c4269a0": 1
+      },
+      "commonly_connected_from": {
+        "2e205f24-9279-47b2-b414-d06dcd0b21a7": 2
+      }
+    },
+    "30d58600-1aab-42db-80a3-f1ea6c4269a0": {
+      "guid": "30d58600-1aab-42db-80a3-f1ea6c4269a0",
+      "names": [
+        "Larger Than"
+      ],
+      "nicknames": [
+        "Larger"
+      ],
+      "inputs": {
+        "A": [
+          "First Number"
+        ],
+        "B": [
+          "Second Number"
+        ]
+      },
+      "outputs": {
+        ">": [
+          "Larger than"
+        ],
+        ">=": [
+          "… or Equal to"
+        ]
+      },
+      "usage_count": 5,
+      "commonly_connected_to": {
+        "008e9a6f-478a-4813-8c8a-546273bc3a6b": 7
+      },
+      "commonly_connected_from": {
+        "93b8e93d-f932-402c-b435-84be04d87666": 1
+      }
+    },
+    "8073a420-6bec-49e3-9b18-367f6fd76ac3": {
+      "guid": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
+      "names": [
+        "Join Curves"
+      ],
+      "nicknames": [
+        "Join"
+      ],
+      "inputs": {
+        "C": [
+          "Curves"
+        ],
+        "P": [
+          "Preserve"
+        ]
+      },
+      "outputs": {
+        "C": [
+          "Curves"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "afb96615-c59a-45c9-9cac-e27acb1c7ca0": 1
+      },
+      "commonly_connected_from": {
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": 1
+      }
+    },
+    "afb96615-c59a-45c9-9cac-e27acb1c7ca0": {
+      "guid": "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+      "names": [
+        "Explode"
+      ],
+      "nicknames": [
+        "Explode"
+      ],
+      "inputs": {
+        "C": [
+          "Curve"
+        ],
+        "R": [
+          "Recursive"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Segments"
+        ],
+        "V": [
+          "Vertices"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "3c30b1a1-4473-4ad4-a700-ea9770726c03": 1
+      },
+      "commonly_connected_from": {
+        "8073a420-6bec-49e3-9b18-367f6fd76ac3": 1
+      }
+    },
+    "d8332545-21b2-4716-96e3-8559a9876e17": {
+      "guid": "d8332545-21b2-4716-96e3-8559a9876e17",
+      "names": [
+        "Dispatch"
+      ],
+      "nicknames": [
+        "Dispatch"
+      ],
+      "inputs": {
+        "L": [
+          "List"
+        ],
+        "P": [
+          "Dispatch pattern"
+        ]
+      },
+      "outputs": {
+        "A": [
+          "List A"
+        ],
+        "B": [
+          "List B"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 3,
+        "1817fd29-20ae-4503-b542-f0fb651e67d7": 2,
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 2
+      },
+      "commonly_connected_from": {
+        "902289da-28dc-454b-98d4-b8f8aa234516": 2,
+        "ae840986-cade-4e5a-96b0-570f007d4fc0": 2
+      }
+    },
+    "50faccbd-9c92-4175-a5fa-d65e36013db6": {
+      "guid": "50faccbd-9c92-4175-a5fa-d65e36013db6",
+      "names": [
+        "Weave"
+      ],
+      "nicknames": [
+        "Weave"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "3b112fb6-3eba-42d2-ba75-0f903c18faab": {
+      "guid": "3b112fb6-3eba-42d2-ba75-0f903c18faab",
+      "names": [
+        "Contour"
+      ],
+      "nicknames": [
+        "Contour"
+      ],
+      "inputs": {
+        "S": [
+          "Shape"
+        ],
+        "P": [
+          "Point"
+        ],
+        "N": [
+          "Direction"
+        ],
+        "D": [
+          "Distance"
+        ]
+      },
+      "outputs": {
+        "C": [
+          "Contours"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "9abae6b7-fa1d-448c-9209-4a8155345841": {
+      "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
+      "names": [
+        "Deconstruct"
+      ],
+      "nicknames": [
+        "pDecon"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ]
+      },
+      "outputs": {
+        "X": [
+          "X component"
+        ],
+        "Y": [
+          "Y component"
+        ],
+        "Z": [
+          "Z component"
+        ]
+      },
+      "usage_count": 6,
+      "commonly_connected_to": {
+        "ae840986-cade-4e5a-96b0-570f007d4fc0": 4,
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 2,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 1
+      },
+      "commonly_connected_from": {
+        "902289da-28dc-454b-98d4-b8f8aa234516": 2
+      }
+    },
+    "ae840986-cade-4e5a-96b0-570f007d4fc0": {
+      "guid": "ae840986-cade-4e5a-96b0-570f007d4fc0",
+      "names": [
+        "Smaller Than"
+      ],
+      "nicknames": [
+        "Smaller"
+      ],
+      "inputs": {
+        "A": [
+          "First Number"
+        ],
+        "B": [
+          "Second Number"
+        ]
+      },
+      "outputs": {
+        "<": [
+          "Smaller than"
+        ],
+        "<=": [
+          "… or Equal to"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "d8332545-21b2-4716-96e3-8559a9876e17": 2
+      },
+      "commonly_connected_from": {
+        "9abae6b7-fa1d-448c-9209-4a8155345841": 4
+      }
+    },
+    "79aa7f47-397c-4d3f-9761-aaf421bb7f5f": {
+      "guid": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
+      "names": [
+        "Domain Box"
+      ],
+      "nicknames": [
+        "Box"
+      ],
+      "inputs": {
+        "B": [
+          "Base"
+        ],
+        "X": [
+          "X"
+        ],
+        "Y": [
+          "Y"
+        ],
+        "Z": [
+          "Z"
+        ]
+      },
+      "outputs": {
+        "B": [
+          "Box"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "9df5e896-552d-4c8c-b9ca-4fc147ffa022": {
+      "guid": "9df5e896-552d-4c8c-b9ca-4fc147ffa022",
+      "names": [
+        "Expression"
+      ],
+      "nicknames": [
+        "Expression"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "ac750e41-2450-4f98-9658-98fef97b01b2": {
+      "guid": "ac750e41-2450-4f98-9658-98fef97b01b2",
+      "names": [
+        "Brep Wireframe"
+      ],
+      "nicknames": [
+        "Wires"
+      ],
+      "inputs": {
+        "B": [
+          "Brep"
+        ],
+        "D": [
+          "Density"
+        ]
+      },
+      "outputs": {
+        "W": [
+          "Wireframe"
+        ]
+      },
+      "usage_count": 3,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "e202025b-dc8e-4c51-ae19-4415b172886f": {
+      "guid": "e202025b-dc8e-4c51-ae19-4415b172886f",
+      "names": [
+        "Populate 3D"
+      ],
+      "nicknames": [
+        "Pop3D"
+      ],
+      "inputs": {
+        "R": [
+          "Region"
+        ],
+        "N": [
+          "Count"
+        ],
+        "S": [
+          "Seed"
+        ],
+        "P": [
+          "Points"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Population"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "902289da-28dc-454b-98d4-b8f8aa234516": 2
+      },
+      "commonly_connected_from": {
+        "0bb3d234-9097-45db-9998-621639c87d3b": 2
+      }
+    },
+    "2dc44b22-b1dd-460a-a704-6462d6e91096": {
+      "guid": "2dc44b22-b1dd-460a-a704-6462d6e91096",
+      "names": [
+        "Curve Closest Point"
+      ],
+      "nicknames": [
+        "Crv CP"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ],
+        "C": [
+          "Curve"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Point"
+        ],
+        "t": [
+          "Parameter"
+        ],
+        "D": [
+          "Distance"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 2,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 2
+      },
+      "commonly_connected_from": {}
+    },
+    "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af": {
+      "guid": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
+      "names": [
+        "Project"
+      ],
+      "nicknames": [
+        "Project"
+      ],
+      "inputs": {
+        "C": [
+          "Curve"
+        ],
+        "B": [
+          "Brep"
+        ],
+        "D": [
+          "Direction"
+        ]
+      },
+      "outputs": {
+        "C": [
+          "Curve"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "902289da-28dc-454b-98d4-b8f8aa234516": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "353b206e-bde5-4f02-a913-b3b8a977d4b9": {
+      "guid": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+      "names": [
+        "Evaluate Surface"
+      ],
+      "nicknames": [
+        "EvalSrf"
+      ],
+      "inputs": {
+        "S": [
+          "Surface"
+        ],
+        "uv": [
+          "Point"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Point"
+        ],
+        "N": [
+          "Normal"
+        ],
+        "U": [
+          "U direction"
+        ],
+        "V": [
+          "V direction"
+        ],
+        "F": [
+          "Frame"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "b464fccb-50e7-41bd-9789-8438db9bea9f": 1,
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 1
+      },
+      "commonly_connected_from": {
+        "4a9e9a8e-0943-4438-b360-129c30f2bb0f": 1
+      }
+    },
+    "4a9e9a8e-0943-4438-b360-129c30f2bb0f": {
+      "guid": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
+      "names": [
+        "Surface Closest Point"
+      ],
+      "nicknames": [
+        "Srf CP"
+      ],
+      "inputs": {
+        "P": [
+          "Point"
+        ],
+        "S": [
+          "Surface"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Point"
+        ],
+        "uvP": [
+          "UV Point"
+        ],
+        "D": [
+          "Distance"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {
+        "353b206e-bde5-4f02-a913-b3b8a977d4b9": 1,
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 1,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "b464fccb-50e7-41bd-9789-8438db9bea9f": {
+      "guid": "b464fccb-50e7-41bd-9789-8438db9bea9f",
+      "names": [
+        "Angle"
+      ],
+      "nicknames": [
+        "Angle"
+      ],
+      "inputs": {
+        "A": [
+          "Vector A"
+        ],
+        "B": [
+          "Vector B"
+        ],
+        "P": [
+          "Plane"
+        ]
+      },
+      "outputs": {
+        "A": [
+          "Angle"
+        ],
+        "R": [
+          "Reflex"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 1,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 1
+      },
+      "commonly_connected_from": {
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1,
+        "353b206e-bde5-4f02-a913-b3b8a977d4b9": 1
+      }
+    },
+    "a77d0879-94c2-4101-be44-e4a616ffeb0c": {
+      "guid": "a77d0879-94c2-4101-be44-e4a616ffeb0c",
+      "names": [
+        "Custom Preview Lineweights"
+      ],
+      "nicknames": [
+        "PreviewLW"
+      ],
+      "inputs": {
+        "G": [
+          "Geometry"
+        ],
+        "S": [
+          "Shader"
+        ],
+        "T": [
+          "Thickness"
+        ],
+        "A": [
+          "Absolute"
+        ]
+      },
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "d1d57181-d594-41e8-8efb-041e29f8a5ca": 2
+      }
+    },
+    "06953bda-1d37-4d58-9b38-4b3c74e54c8f": {
+      "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+      "names": [
+        "File Path"
+      ],
+      "nicknames": [
+        "Path"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93": {
+      "guid": "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93",
+      "names": [
+        "Volume Load"
+      ],
+      "nicknames": [
+        "VL"
+      ],
+      "inputs": {
+        "LM": [
+          "Load Mesh"
+        ],
+        "LV": [
+          "Load Vector"
+        ]
+      },
+      "outputs": {
+        "VL": [
+          "Volume Load"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "ce61205c-5d8e-429e-a0a2-e1dc3e10febc": 1
+      },
+      "commonly_connected_from": {
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 1,
+        "9103c240-a6a9-4223-9b42-dbd19bf38e2b": 1
+      }
+    },
+    "ce61205c-5d8e-429e-a0a2-e1dc3e10febc": {
+      "guid": "ce61205c-5d8e-429e-a0a2-e1dc3e10febc",
+      "names": [
+        "Boundary Conditions"
+      ],
+      "nicknames": [
+        "BCond"
+      ],
+      "inputs": {
+        "L": [
+          "Load"
+        ],
+        "S": [
+          "Support"
+        ]
+      },
+      "outputs": {
+        "BC": [
+          "Boundary Condition Setup"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "80a2b490-03cc-4d01-8115-121c7ceefa95": 1
+      },
+      "commonly_connected_from": {
+        "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93": 1,
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 1
+      }
+    },
+    "c28233aa-2c4b-4865-8916-f2fa4b2f390f": {
+      "guid": "c28233aa-2c4b-4865-8916-f2fa4b2f390f",
+      "names": [
+        "Boundary Domain"
+      ],
+      "nicknames": [
+        "BDomain"
+      ],
+      "inputs": {
+        "DM": [
+          "Domain Mesh"
+        ],
+        "Dv": [
+          "Density Value"
+        ],
+        "Y": [
+          "Young Modul"
+        ],
+        "P": [
+          "Poisson Number"
+        ]
+      },
+      "outputs": {
+        "BD": [
+          "Boundary Domain"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "80a2b490-03cc-4d01-8115-121c7ceefa95": 1
+      },
+      "commonly_connected_from": {
+        "60e7defa-8b21-4ee1-99aa-a9223d6134ff": 1
+      }
+    },
+    "f2880342-70fe-41c2-bb4e-2d9277d4daeb": {
+      "guid": "f2880342-70fe-41c2-bb4e-2d9277d4daeb",
+      "names": [
+        "Resolution"
+      ],
+      "nicknames": [
+        "Res"
+      ],
+      "inputs": {
+        "ResX": [
+          "Resolution X"
+        ]
+      },
+      "outputs": {
+        "Res": [
+          "Resolution"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "80a2b490-03cc-4d01-8115-121c7ceefa95": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "7252bec6-68cf-4a13-9990-e1cb16d4c8ce": {
+      "guid": "7252bec6-68cf-4a13-9990-e1cb16d4c8ce",
+      "names": [
+        "Optimus"
+      ],
+      "nicknames": [
+        "Optimus"
+      ],
+      "inputs": {
+        "M": [
+          "Model"
+        ],
+        "AP": [
+          "Analyser Parameters"
+        ],
+        "OP": [
+          "Optimus Parameters"
+        ],
+        "St": [
+          "Subdivision Threshold"
+        ],
+        "Rs": [
+          "Reset"
+        ],
+        "R": [
+          "Run"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Model"
+        ],
+        "C": [
+          "Compliance"
+        ],
+        "P": [
+          "Performance"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f": 1
+      },
+      "commonly_connected_from": {
+        "80a2b490-03cc-4d01-8115-121c7ceefa95": 1,
+        "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497": 1
+      }
+    },
+    "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658": {
+      "guid": "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658",
+      "names": [
+        "Model Statistics"
+      ],
+      "nicknames": [
+        "MStat"
+      ],
+      "inputs": {
+        "M": [
+          "Model"
+        ]
+      },
+      "outputs": {
+        "MR": [
+          "Model Resolution"
+        ],
+        "E": [
+          "Element Count"
+        ],
+        "ES": [
+          "Element Size"
+        ],
+        "N": [
+          "Node Count"
+        ],
+        "Dof": [
+          "DoFs"
+        ]
+      },
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "80a2b490-03cc-4d01-8115-121c7ceefa95": 2
+      }
+    },
+    "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497": {
+      "guid": "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497",
+      "names": [
+        "Analyser Parameters"
+      ],
+      "nicknames": [
+        "AParam"
+      ],
+      "inputs": {
+        "I": [
+          "Iterations"
+        ],
+        "T": [
+          "Tolerance"
+        ]
+      },
+      "outputs": {
+        "AP": [
+          "Analyser Parameters"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "7252bec6-68cf-4a13-9990-e1cb16d4c8ce": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "d73fc809-3b8c-4420-a70c-f17fd9edb825": {
+      "guid": "d73fc809-3b8c-4420-a70c-f17fd9edb825",
+      "names": [
+        "Iso Mesh"
+      ],
+      "nicknames": [
+        "Iso"
+      ],
+      "inputs": {
+        "M": [
+          "Model"
+        ],
+        "V": [
+          "Iso Value"
+        ],
+        "D": [
+          "Deflection"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b": {
+      "guid": "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b",
+      "names": [
+        "PrincipalStress"
+      ],
+      "nicknames": [
+        "PStress"
+      ],
+      "inputs": {
+        "M": [
+          "Model"
+        ],
+        "t": [
+          "Tolerance"
+        ],
+        "C": [
+          "Colours"
+        ]
+      },
+      "outputs": {
+        "PSv": [
+          "PStress Values"
+        ],
+        "PSp": [
+          "PStress Plane"
+        ],
+        "PSc": [
+          "PStress Crosses"
+        ],
+        "PScc": [
+          "PStress Crosses Colours"
+        ],
+        "Pm": [
+          "PStress Min/Max"
+        ],
+        "VM": [
+          "VonMieses Values"
+        ],
+        "VMcc": [
+          "VonMieses Crosses Colours"
+        ],
+        "P": [
+          "Performance"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef": {
+      "guid": "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef",
+      "names": [
+        "Quick Graph"
+      ],
+      "nicknames": [
+        "Graph"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f": {
+      "guid": "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f",
+      "names": [
+        "Performance"
+      ],
+      "nicknames": [
+        "Perf"
+      ],
+      "inputs": {
+        "P": [
+          "Performance"
+        ]
+      },
+      "outputs": {
+        "TD": [
+          "Total Data"
+        ],
+        "E": [
+          "Events Names"
+        ],
+        "T": [
+          "Times"
+        ],
+        "M": [
+          "Memory"
+        ],
+        "S": [
+          "Solver"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "7252bec6-68cf-4a13-9990-e1cb16d4c8ce": 1
+      }
+    },
+    "30a92849-8387-4fdc-afab-4c0081e5cffe": {
+      "guid": "30a92849-8387-4fdc-afab-4c0081e5cffe",
+      "names": [
+        "Optimius Parameters"
+      ],
+      "nicknames": [
+        "OParam"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "fc276159-87f4-4f90-b1c3-ab941e699c28": {
+      "guid": "fc276159-87f4-4f90-b1c3-ab941e699c28",
+      "names": [
+        "CudaCtx"
+      ],
+      "nicknames": [
+        "CudaContext"
+      ],
+      "inputs": {
+        "Reset": [
+          "Reset"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Performance"
+        ],
+        "M": [
+          "FreeMemory"
+        ],
+        "K": [
+          "Kernel Statistics"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "80a2b490-03cc-4d01-8115-121c7ceefa95": {
+      "guid": "80a2b490-03cc-4d01-8115-121c7ceefa95",
+      "names": [
+        "Model"
+      ],
+      "nicknames": [
+        "Model"
+      ],
+      "inputs": {
+        "BD": [
+          "Boundary Domain"
+        ],
+        "BC": [
+          "Boundary Condition"
+        ],
+        "BP": [
+          "Boundary Properties"
+        ],
+        "R": [
+          "Model Resolution"
+        ]
+      },
+      "outputs": {
+        "M": [
+          "Model"
+        ],
+        "P": [
+          "Performance"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658": 2,
+        "7252bec6-68cf-4a13-9990-e1cb16d4c8ce": 1
+      },
+      "commonly_connected_from": {
+        "c28233aa-2c4b-4865-8916-f2fa4b2f390f": 1,
+        "ce61205c-5d8e-429e-a0a2-e1dc3e10febc": 1,
+        "f2880342-70fe-41c2-bb4e-2d9277d4daeb": 1
+      }
+    },
+    "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a": {
+      "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "names": [
+        "Element Data Preview",
+        "DensPreview"
+      ],
+      "nicknames": [
+        "DensPre",
+        "ElePre"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "65283518-ad00-49d3-87fb-f76823ebb162": {
+      "guid": "65283518-ad00-49d3-87fb-f76823ebb162",
+      "names": [
+        "Data Dam"
+      ],
+      "nicknames": [
+        "Dam"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "52a8ef7b-517f-46a4-acc9-afa8842ac028": {
+      "guid": "52a8ef7b-517f-46a4-acc9-afa8842ac028",
+      "names": [
+        "Node Data"
+      ],
+      "nicknames": [
+        "Node"
+      ],
+      "inputs": {
+        "M": [
+          "Model"
+        ]
+      },
+      "outputs": {
+        "L": [
+          "Location"
+        ],
+        "D": [
+          "Density"
+        ],
+        "Df": [
+          "Deflection"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2fcc2743-8339-4cdf-a046-a1f17439191d": 1,
+        "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "2f3771fd-a41e-4fba-b890-1b0b66b48484": {
+      "guid": "2f3771fd-a41e-4fba-b890-1b0b66b48484",
+      "names": [
+        "Topostruct 3D model"
+      ],
+      "nicknames": [
+        "Topostruct 3D"
+      ],
+      "inputs": {
+        "M": [
+          "Model Components"
+        ],
+        "XR": [
+          "XResolution"
+        ]
+      },
+      "outputs": {
+        "FE": [
+          "FE Model"
+        ],
+        "CP": [
+          "Cell Centres"
+        ],
+        "Size": [
+          "Cell size"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "4811877a-1b77-443a-8be3-9b2f7eafeb03": 1
+      },
+      "commonly_connected_from": {
+        "26ae7d91-3db7-4a06-9e26-42e790819d42": 1,
+        "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a": 1,
+        "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014": 1
+      }
+    },
+    "26ae7d91-3db7-4a06-9e26-42e790819d42": {
+      "guid": "26ae7d91-3db7-4a06-9e26-42e790819d42",
+      "names": [
+        "3D boundary Region"
+      ],
+      "nicknames": [
+        "Boundary"
+      ],
+      "inputs": {
+        "Boundary": [
+          "Boundary"
+        ],
+        "IsVoid": [
+          "Is Void"
+        ]
+      },
+      "outputs": {
+        "BReg": [
+          "Boundary Region"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2f3771fd-a41e-4fba-b890-1b0b66b48484": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a": {
+      "guid": "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a",
+      "names": [
+        "3D Load Region"
+      ],
+      "nicknames": [
+        "Load"
+      ],
+      "inputs": {
+        "Boundary": [
+          "Boundary"
+        ],
+        "L": [
+          "Load"
+        ]
+      },
+      "outputs": {
+        "LReg": [
+          "Load Region"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2f3771fd-a41e-4fba-b890-1b0b66b48484": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014": {
+      "guid": "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014",
+      "names": [
+        "3D Support Region"
+      ],
+      "nicknames": [
+        "Support"
+      ],
+      "inputs": {
+        "Boundary": [
+          "Boundary"
+        ],
+        "SUP": [
+          "Support Type"
+        ],
+        "AM": [
+          "Amend Existing Supports"
+        ]
+      },
+      "outputs": {
+        "SReg": [
+          "Support Region"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "2f3771fd-a41e-4fba-b890-1b0b66b48484": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "4811877a-1b77-443a-8be3-9b2f7eafeb03": {
+      "guid": "4811877a-1b77-443a-8be3-9b2f7eafeb03",
+      "names": [
+        "Topostruct 3D solver"
+      ],
+      "nicknames": [
+        "Topostruct 3D solver"
+      ],
+      "inputs": {
+        "FE": [
+          "FE Model"
+        ],
+        "SWC": [
+          "Self Weight Coefficient"
+        ],
+        "O": [
+          "Optimisation iterations"
+        ],
+        "S": [
+          "Smoothing"
+        ],
+        "P": [
+          "Penalization"
+        ],
+        "T": [
+          "Target Density"
+        ],
+        "D": [
+          "Initial Densities"
+        ],
+        "MD": [
+          "Minimum Density"
+        ],
+        "DTH": [
+          "Delete Threshold"
+        ],
+        "PerX": [
+          "Periodic X"
+        ],
+        "PerY": [
+          "Periodic Y"
+        ],
+        "PerZ": [
+          "Periodic Z"
+        ],
+        "Load Case": [
+          "Load Case"
+        ],
+        "All Cases": [
+          "All Cases"
+        ]
+      },
+      "outputs": {
+        "FE": [
+          "FE Model"
+        ],
+        "maxu": [
+          "MaxDeflection"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "85b709b5-f9f8-4f91-84b8-002ee483444b": 1,
+        "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab": 1
+      },
+      "commonly_connected_from": {
+        "2f3771fd-a41e-4fba-b890-1b0b66b48484": 1
+      }
+    },
+    "85b709b5-f9f8-4f91-84b8-002ee483444b": {
+      "guid": "85b709b5-f9f8-4f91-84b8-002ee483444b",
+      "names": [
+        "3D Cell Results"
+      ],
+      "nicknames": [
+        "3D Cell Results"
+      ],
+      "inputs": {
+        "FE": [
+          "FE Model"
+        ]
+      },
+      "outputs": {
+        "PStressP": [
+          "Principal Stress Planes"
+        ],
+        "PStress": [
+          "Principal Stresses"
+        ],
+        "VStress": [
+          "VonMises Stress"
+        ],
+        "Density": [
+          "Density"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "4811877a-1b77-443a-8be3-9b2f7eafeb03": 1
+      }
+    },
+    "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab": {
+      "guid": "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab",
+      "names": [
+        "3D Iso Mesh"
+      ],
+      "nicknames": [
+        "3D Iso Mesh"
+      ],
+      "inputs": {
+        "FE": [
+          "FE Model"
+        ],
+        "D": [
+          "Deflection"
+        ],
+        "Iso": [
+          "Iso Contour Value"
+        ]
+      },
+      "outputs": {
+        "Mesh": [
+          "Mesh"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "0b4ac802-fc4a-4201-9c66-0078b837c1eb": 1
+      },
+      "commonly_connected_from": {
+        "4811877a-1b77-443a-8be3-9b2f7eafeb03": 1
+      }
+    },
+    "db7d83b1-2898-4ef9-9be5-4e94b4e2048d": {
+      "guid": "db7d83b1-2898-4ef9-9be5-4e94b4e2048d",
+      "names": [
+        "Deconstruct Box"
+      ],
+      "nicknames": [
+        "DeBox"
+      ],
+      "inputs": {
+        "B": [
+          "Box"
+        ]
+      },
+      "outputs": {
+        "P": [
+          "Plane"
+        ],
+        "X": [
+          "X"
+        ],
+        "Y": [
+          "Y"
+        ],
+        "Z": [
+          "Z"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "825ea536-aebb-41e9-af32-8baeb2ecb590": 1
+      },
+      "commonly_connected_from": {}
+    },
+    "825ea536-aebb-41e9-af32-8baeb2ecb590": {
+      "guid": "825ea536-aebb-41e9-af32-8baeb2ecb590",
+      "names": [
+        "Deconstruct Domain"
+      ],
+      "nicknames": [
+        "DeDomain"
+      ],
+      "inputs": {
+        "I": [
+          "Domain"
+        ]
+      },
+      "outputs": {
+        "S": [
+          "Start"
+        ],
+        "E": [
+          "End"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {
+        "db7d83b1-2898-4ef9-9be5-4e94b4e2048d": 1
+      }
+    },
+    "9c85271f-89fa-4e9f-9f4a-d75802120ccc": {
+      "guid": "9c85271f-89fa-4e9f-9f4a-d75802120ccc",
+      "names": [
+        "Division"
+      ],
+      "nicknames": [
+        "A/B"
+      ],
+      "inputs": {
+        "A": [
+          "A"
+        ],
+        "B": [
+          "B"
+        ]
+      },
+      "outputs": {
+        "R": [
+          "Result"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "9c007a04-d0d9-48e4-9da3-9ba142bc4d46": {
+      "guid": "9c007a04-d0d9-48e4-9da3-9ba142bc4d46",
+      "names": [
+        "Subtraction"
+      ],
+      "nicknames": [
+        "A-B"
+      ],
+      "inputs": {},
+      "outputs": {},
+      "usage_count": 2,
+      "commonly_connected_to": {},
+      "commonly_connected_from": {}
+    },
+    "0b4ac802-fc4a-4201-9c66-0078b837c1eb": {
+      "guid": "0b4ac802-fc4a-4201-9c66-0078b837c1eb",
+      "names": [
+        "Face Boundaries"
+      ],
+      "nicknames": [
+        "FaceB"
+      ],
+      "inputs": {
+        "M": [
+          "Mesh"
+        ]
+      },
+      "outputs": {
+        "B": [
+          "Boundaries"
+        ]
+      },
+      "usage_count": 1,
+      "commonly_connected_to": {
+        "537b0419-bbc2-4ff4-bf08-afe526367b2c": 1
+      },
+      "commonly_connected_from": {
+        "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab": 1
+      }
+    }
+  },
+  "connection_patterns": {
+    "Bounds.I -> Remap Numbers.S": 15,
+    "Gradient.C -> Custom Preview.M": 11,
+    "Area.C -> Line SDL.S": 8,
+    "Gradient.C -> Custom Preview.S": 7,
+    "Unit Y.V -> Line SDL.D": 7,
+    "Volume.C -> Scale NU.P": 7,
+    "Larger Than.> -> Cull Pattern.P": 7,
+    "List Length.L -> Random.N": 6,
+    "Construct Point.Pt -> Iso Curve.uv": 6,
+    "Bounding Box.B -> Scale NU.G": 6,
+    "Bounding Box.B -> Volume.G": 6,
+    "Pull Point.D -> Remap Numbers.V": 6,
+    "Range.R -> Construct Point.X": 5,
+    "Range.R -> Construct Point.Y": 5,
+    "Unit X.V -> Move.T": 5,
+    "List Length.L -> Repeat Data.L": 5,
+    "Pull Point.D -> Bounds.N": 5,
+    "Cull Pattern.L -> Custom Preview.G": 5,
+    "Random.R -> Gradient.t": 4,
+    "List Length.L -> Split List.i": 4,
+    "Plane Surface.P -> Iso Curve.S": 3,
+    "Construct Domain.I -> Remap Numbers.T": 3,
+    "Dispatch.B -> Bounds.N": 3,
+    "Series.S -> Unit Y.F": 2,
+    "Unit Y.V -> Move.T": 2,
+    "Iso Curve.U -> Custom Preview.G": 2,
+    "Iso Curve.V -> Custom Preview.G": 2,
+    "Construct Point.Pt -> XZ Plane.O": 2,
+    "Negative.y -> Construct Point.Y": 2,
+    "Unit X.V -> Rotate 3D.X": 2,
+    "Weaverbird's Catmull-Clark Subdivision.O -> Transform.G": 2,
+    "Cull Pattern.L -> Transform.T": 2,
+    "Transform.G -> Custom Preview.G": 2,
+    "Mesh Brep.M -> Weaverbird's Catmull-Clark Subdivision.M": 2,
+    "Line SDL.L -> Rotate.G": 2,
+    "Area.C -> Rotate.P": 2,
+    "Area.C -> Repeat Data.D": 2,
+    "Unit X.V -> Line SDL.D": 2,
+    "Line SDL.L -> End Points.C": 2,
+    "Solid Union.R -> Merge Faces.B": 2,
+    "Mesh Edges.E1 -> Custom Preview.G": 2,
+    "Mesh Edges.E2 -> Custom Preview.G": 2,
+    "Pull Point.D -> Dispatch.L": 2,
+    "Smaller Than.< -> Dispatch.P": 2,
+    "Dispatch.A -> List Length.L": 2,
+    "Dispatch.B -> Remap Numbers.V": 2,
+    "Contour.C -> Custom Preview.G": 2,
+    "Pull Point.P -> Deconstruct.P": 2,
+    "Deconstruct.Z -> Smaller Than.A": 2,
+    "Deconstruct.Z -> Smaller Than.B": 2,
+    "Cull Pattern.L -> Gradient.t": 2,
+    "Brep Wireframe.W -> Custom Preview.G": 2,
+    "Bounding Box.B -> Populate 3D.R": 2,
+    "Populate 3D.P -> Pull Point.G": 2,
+    "Curve Closest Point.D -> Remap Numbers.V": 2,
+    "Curve Closest Point.D -> Bounds.N": 2,
+    "Deconstruct.Y -> Remap Numbers.V": 2,
+    "Model.M -> Model Statistics.M": 2,
+    "Unit Z.V -> Move.T": 1,
+    "Deconstruct Mesh.V -> Construct Mesh.V": 1,
+    "Deconstruct Mesh.F -> Construct Mesh.F": 1,
+    "Construct Mesh.M -> Custom Preview.G": 1,
+    "Random.R -> Jitter.L": 1,
+    "Vector XYZ.V -> Move.T": 1,
+    "XY Plane.P -> Plane Surface.P": 1,
+    "XZ Plane.P -> Plane Surface.P": 1,
+    "Construct Point.Pt -> YZ Plane.O": 1,
+    "YZ Plane.P -> Plane Surface.P": 1,
+    "Deconstruct Brep.V -> Line.A": 1,
+    "Area.C -> Line.B": 1,
+    "Deconstruct Brep.V -> XY Plane.O": 1,
+    "XY Plane.P -> Align Plane.P": 1,
+    "Line.L -> Align Plane.D": 1,
+    "Series.S -> Unit X.F": 1,
+    "Unit Z.V -> Construct Plane.X": 1,
+    "XY Plane.P -> Deconstruct Plane.P": 1,
+    "Deconstruct Plane.O -> Construct Plane.O": 1,
+    "Deconstruct Plane.Y -> Construct Plane.X": 1,
+    "Deconstruct Plane.X -> Construct Plane.Y": 1,
+    "Deconstruct Brep.F -> Sub List.L": 1,
+    "Sub List.L -> Area.G": 1,
+    "Unit Z.V -> Line SDL.D": 1,
+    "Trim Tree.T -> Custom Preview.G": 1,
+    "Construct Point.Pt -> XY Plane.O": 1,
+    "Mesh Edges.E2 -> Trim Tree.T": 1,
+    "XY Plane.P -> Rotate.P": 1,
+    "XZ Plane.P -> Rotate.P": 1,
+    "Dash Pattern.D -> Custom Preview.G": 1,
+    "XY Plane.P -> Rotate Plane.P": 1,
+    "Rotate Plane.P -> Rotate 3D.G": 1,
+    "XZ Plane.P -> Rotate Plane.P": 1,
+    "Plane Surface.P -> Isotrim.S": 1,
+    "Divide Domain².S -> Isotrim.D": 1,
+    "Plane Surface.P -> Divide Domain².I": 1,
+    "Cull Pattern.L -> Mesh Brep.B": 1,
+    "Mesh Brep.M -> Mesh Join.M": 1,
+    "Mesh Join.M -> Mesh WeldVertices.M": 1,
+    "Mesh WeldVertices.M -> EdgeLengths.Mesh": 1,
+    "Deconstruct Mesh.V -> Load.P": 1,
+    "Unit Z.V -> Load.FV": 1
+  },
+  "name_to_guid": {
+    "wasp_connection from direction": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_get attribute by name": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "geometry": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+    "point": "fbac3e32-f100-4292-8692-77240a42fd1a",
+    "curve": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+    "panel": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+    "merge": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
+    "wasp_graph-grammar aggregation": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "button": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+    "wasp_attribute": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "boolean toggle": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+    "sketch": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+    "scribble": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+    "wasp_basic part": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "custom preview": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+    "colour swatch": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+    "wasp_update file": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_load from disco": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_save to disco": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_disco rule group": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_transform part": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_disco player": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_stochastic aggregation": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_get part geometry": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "brep": "919e146f-30ae-4aae-be34-4d72f555e7da",
+    "wasp_disco aggregation setup": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "number slider": "57da07bd-ecab-415d-9d86-af36d7073abc",
+    "wasp_rules generator": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_filter parts by name": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "move": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
+    "unit z": "9103c240-a6a9-4223-9b42-dbd19bf38e2b",
+    "wasp_mesh constraint": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_disco tool settings": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_disco placement settings": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_disco io settings": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "box": "c9482db6-bea9-448d-98ff-fed6d69a8efc",
+    "wasp_disco environment": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_export to disco": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_get valid smart attributes": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_deconstruct connection": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "text tag 3d": "5a41528b-12b9-40dc-a3f2-842034d267c4",
+    "simple mesh": "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1",
+    "deconstruct mesh": "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+    "construct mesh": "e2c0f9db-a862-4bd9-810c-ef2610e7a56f",
+    "mesh edges": "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+    "wasp_smart attribute": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_advanced part": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "value list": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
+    "list item": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+    "wasp_support": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "random": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
+    "jitter": "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000",
+    "multiplication": "ce46b74e-00c9-43c4-805a-193b69ea4a11",
+    "vector xyz": "56b92eab-d121-43f7-94d3-6cd8f0ddead8",
+    "list length": "1817fd29-20ae-4503-b542-f0fb651e67d7",
+    "gradient": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+    "unit y": "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69",
+    "series": "e64c5fb1-845c-4ab1-8911-5f338516ba67",
+    "wasp_adjacency exclusion constraint": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "iso curve": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
+    "range": "9445ca40-cc73-4861-a455-146308676855",
+    "construct point": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+    "wasp_plane constraint": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "xy plane": "17b7152b-d30d-4d50-b9ef-c9fe25576fc2",
+    "xz plane": "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64",
+    "negative": "a3371040-e552-4bc8-b0ff-10a840258e88",
+    "plane surface": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
+    "yz plane": "fad344bc-09b1-4855-a2e6-437ef5715fe3",
+    "construct domain": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
+    "deconstruct brep": "8d372bdc-9800-45e9-8a26-6e33c5253e21",
+    "area": "2e205f24-9279-47b2-b414-d06dcd0b21a7",
+    "line sdl": "4c619bc9-39fd-4717-82a6-1e07ea237bbe",
+    "line": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+    "align plane": "e76040ec-3b91-41e1-8e00-c74c23b89391",
+    "wasp_connection from plane": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_orientation constraint": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_deconstruct part": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "mesh join": "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b",
+    "unit x": "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd",
+    "clean tree": "071c3940-a12d-4b77-bb23-42b5d3314a0d",
+    "entwine": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
+    "wasp_rule from text": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_deconstruct collider": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "split list": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
+    "data": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+    "wasp_collider": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_aggregation graph": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "point list": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+    "wasp_load aggregation from file": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_save aggregation to file": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "mesh brep": "60e7defa-8b21-4ee1-99aa-a9223d6134ff",
+    "rotate 3d": "3dfb9a77-6e05-4016-9f20-94f78607d672",
+    "wasp_parts catalog": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "transform": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
+    "weaverbird's catmull-clark subdivision": "4098ec7a-819a-4ced-9eee-86835d7e21c9",
+    "cull pattern": "008e9a6f-478a-4813-8c8a-546273bc3a6b",
+    "point on curve": "7f6a9d34-0470-4bb7-aadd-07496bcbe572",
+    "construct plane": "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e",
+    "deconstruct plane": "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea",
+    "wasp_rule": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_rules from aggregation": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "scale nu": "290f418a-65ee-406a-a9d0-35699815b512",
+    "volume": "224f7648-5956-4b26-80d9-8d771f3dfd5d",
+    "rotate": "b7798b74-037e-4f0c-8ac7-dc1043d093e0",
+    "repeat data": "c40dc145-9e36-4a69-ac1a-6d825c654993",
+    "sub list": "b333ff42-93bd-406b-8e17-15780719b6ec",
+    "wasp_rules visualizer": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "trim tree": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+    "rectangle": "d93100b6-d50b-40b2-831a-814659dc38e3",
+    "wasp_assemble part hierarchy": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "end points": "11bbd48b-bb0a-4f1b-8167-fa297590390d",
+    "wasp_deconstruct attribute": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "solid union": "10434a15-da85-4281-bb64-a2b3a995b9c6",
+    "merge faces": "d6b43673-55dd-4e2f-95c4-6c69a14513a6",
+    "wasp_get parts hierarchy": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "addition": "a0d62394-a118-422d-abb3-6af115c75b25",
+    "mesh union": "88060a82-0bf7-46bb-9af8-bdc860cf7e1d",
+    "cross reference": "36947590-f0cb-4807-a8f9-9c90c9b20621",
+    "compound": "ca80054a-cde0-4f69-a132-10502b24866d",
+    "brep edges": "0148a65d-6f42-414a-9db7-9a9b2eb78437",
+    "dash pattern": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
+    "wasp_field points": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_field-driven aggregation": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "bounding box": "0bb3d234-9097-45db-9998-621639c87d3b",
+    "pull point": "902289da-28dc-454b-98d4-b8f8aa234516",
+    "remap numbers": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+    "bounds": "f44b92b0-3b5b-493a-86f4-fd7408c3daf3",
+    "graph mapper": "bc984576-7aa6-491f-a91d-e444c33675a7",
+    "wasp_field": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_deconstruct field": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "plane": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+    "rotate plane": "f6f14b09-6497-4564-8403-09e4eb5a6b82",
+    "wasp_orient field": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "isotrim": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
+    "divide domain²": "75ac008b-1bc2-4edd-b967-667d628b9d24",
+    "mesh weldvertices": "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1",
+    "edgelengths": "24e2b0d2-d7b8-4478-8a83-1f04cba701a1",
+    "load": "2019c995-53af-4eb2-976d-95b1fdc823fa",
+    "anchor": "3c30b1a1-4473-4ad4-a700-ea9770726c03",
+    "zombiesolver": "4408343b-577e-4fd8-96ff-df7549189186",
+    "show": "0ed5e67d-539d-480e-88cb-d81fa795d66c",
+    "distance": "93b8e93d-f932-402c-b435-84be04d87666",
+    "larger than": "30d58600-1aab-42db-80a3-f1ea6c4269a0",
+    "join curves": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
+    "explode": "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+    "dispatch": "d8332545-21b2-4716-96e3-8559a9876e17",
+    "weave": "50faccbd-9c92-4175-a5fa-d65e36013db6",
+    "contour": "3b112fb6-3eba-42d2-ba75-0f903c18faab",
+    "deconstruct": "9abae6b7-fa1d-448c-9209-4a8155345841",
+    "smaller than": "ae840986-cade-4e5a-96b0-570f007d4fc0",
+    "wasp_field isolines": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "domain box": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
+    "expression": "9df5e896-552d-4c8c-b9ca-4fc147ffa022",
+    "wasp_field iso voxels": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "brep wireframe": "ac750e41-2450-4f98-9658-98fef97b01b2",
+    "populate 3d": "e202025b-dc8e-4c51-ae19-4415b172886f",
+    "curve closest point": "2dc44b22-b1dd-460a-a704-6462d6e91096",
+    "project": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
+    "evaluate surface": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+    "surface closest point": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
+    "angle": "b464fccb-50e7-41bd-9789-8438db9bea9f",
+    "custom preview lineweights": "a77d0879-94c2-4101-be44-e4a616ffeb0c",
+    "wasp_save field to file": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "wasp_load field from file": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "file path": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+    "volume load": "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93",
+    "boundary conditions": "ce61205c-5d8e-429e-a0a2-e1dc3e10febc",
+    "boundary domain": "c28233aa-2c4b-4865-8916-f2fa4b2f390f",
+    "resolution": "f2880342-70fe-41c2-bb4e-2d9277d4daeb",
+    "optimus": "7252bec6-68cf-4a13-9990-e1cb16d4c8ce",
+    "model statistics": "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658",
+    "analyser parameters": "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497",
+    "iso mesh": "d73fc809-3b8c-4420-a70c-f17fd9edb825",
+    "principalstress": "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b",
+    "quick graph": "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef",
+    "performance": "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f",
+    "optimius parameters": "30a92849-8387-4fdc-afab-4c0081e5cffe",
+    "cudactx": "fc276159-87f4-4f90-b1c3-ab941e699c28",
+    "model": "80a2b490-03cc-4d01-8115-121c7ceefa95",
+    "denspreview": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+    "element data preview": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+    "data dam": "65283518-ad00-49d3-87fb-f76823ebb162",
+    "node data": "52a8ef7b-517f-46a4-acc9-afa8842ac028",
+    "ghpython script": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "topostruct 3d model": "2f3771fd-a41e-4fba-b890-1b0b66b48484",
+    "3d boundary region": "26ae7d91-3db7-4a06-9e26-42e790819d42",
+    "3d load region": "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a",
+    "3d support region": "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014",
+    "topostruct 3d solver": "4811877a-1b77-443a-8be3-9b2f7eafeb03",
+    "3d cell results": "85b709b5-f9f8-4f91-84b8-002ee483444b",
+    "3d iso mesh": "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab",
+    "deconstruct box": "db7d83b1-2898-4ef9-9be5-4e94b4e2048d",
+    "deconstruct domain": "825ea536-aebb-41e9-af32-8baeb2ecb590",
+    "division": "9c85271f-89fa-4e9f-9f4a-d75802120ccc",
+    "subtraction": "9c007a04-d0d9-48e4-9da3-9ba142bc4d46",
+    "face boundaries": "0b4ac802-fc4a-4201-9c66-0078b837c1eb"
+  },
+  "statistics": {
+    "total_components": 141,
+    "total_patterns": 155
+  }
+}

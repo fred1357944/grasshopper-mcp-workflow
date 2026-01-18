@@ -1,0 +1,172 @@
+flowchart LR
+    %% ========================================
+    %% Simple Table v2 - 使用 Orient 複製桌腳
+    %% ========================================
+    %% 設計策略:
+    %% 1. 基礎桌腳 (LEG_BASE): Center Box 在原點, Z中心在 LEG_H/2
+    %% 2. 4個目標平面: 用 Construct Point + XY Plane 定義角落位置
+    %% 3. Orient: 將基礎桌腳複製到 4 個角落
+    %% 4. 桌面: Center Box 在桌腳高度上方
+    %% 5. Merge 所有幾何體 → Custom Preview
+    %% ========================================
+
+    %% === 輸入參數 (Layer 0) ===
+    subgraph PARAMS["輸入參數"]
+        direction TB
+        SLIDER_LEG_SIZE["Number Slider<br/>名稱: LEG_SIZE<br/>值: 10<br/>腳寬<br/>GUID: 1ce51ec5-d2af-4673-b720-0c7927e25da8<br/>位置: X=50, Y=50"]
+        SLIDER_LEG_H["Number Slider<br/>名稱: LEG_H<br/>值: 70<br/>腳高<br/>GUID: 1ce51ec5-d2af-4673-b720-0c7927e25da8<br/>位置: X=50, Y=130"]
+        SLIDER_TABLE_W["Number Slider<br/>名稱: TABLE_W<br/>值: 120<br/>桌寬<br/>GUID: 1ce51ec5-d2af-4673-b720-0c7927e25da8<br/>位置: X=50, Y=210"]
+        SLIDER_TABLE_D["Number Slider<br/>名稱: TABLE_D<br/>值: 80<br/>桌深<br/>GUID: 1ce51ec5-d2af-4673-b720-0c7927e25da8<br/>位置: X=50, Y=290"]
+        SLIDER_TABLE_T["Number Slider<br/>名稱: TABLE_T<br/>值: 5<br/>桌面厚度<br/>GUID: 1ce51ec5-d2af-4673-b720-0c7927e25da8<br/>位置: X=50, Y=370"]
+    end
+
+    %% === 桌腳位置參數 ===
+    subgraph LEG_POS["桌腳位置 (X, Y)"]
+        direction TB
+        SLIDER_POS1_X["Number Slider<br/>名稱: POS1_X<br/>值: 50<br/>GUID: ...<br/>位置: X=50, Y=500"]
+        SLIDER_POS1_Y["Number Slider<br/>名稱: POS1_Y<br/>值: 30<br/>GUID: ...<br/>位置: X=50, Y=580"]
+        SLIDER_POS2_X["Number Slider<br/>名稱: POS2_X<br/>值: -50<br/>位置: X=50, Y=660"]
+        SLIDER_POS2_Y["Number Slider<br/>名稱: POS2_Y<br/>值: 30<br/>位置: X=50, Y=740"]
+        SLIDER_POS3_X["Number Slider<br/>名稱: POS3_X<br/>值: -50<br/>位置: X=50, Y=820"]
+        SLIDER_POS3_Y["Number Slider<br/>名稱: POS3_Y<br/>值: -30<br/>位置: X=50, Y=900"]
+        SLIDER_POS4_X["Number Slider<br/>名稱: POS4_X<br/>值: 50<br/>位置: X=50, Y=980"]
+        SLIDER_POS4_Y["Number Slider<br/>名稱: POS4_Y<br/>值: -30<br/>位置: X=50, Y=1060"]
+    end
+
+    %% === 基礎桌腳 (Layer 1) ===
+    subgraph LEG_BASE["基礎桌腳"]
+        direction TB
+        UNIT_Z_LEG["Unit Z<br/>輸出: V (Vector)<br/>GUID: 53ce9fce-0704-4c57-ba24-68330c2cfc47<br/>位置: X=250, Y=50"]
+        AMP_LEG_Z["Amplitude<br/>輸入: V, A<br/>輸出: V (Vector)<br/>計算: LEG_H/2<br/>GUID: a7cae2fa-97dd-4034-b613-490b5b4fc7f4<br/>位置: X=250, Y=130"]
+        DIV_LEG_Z["Division<br/>輸入: A, B<br/>輸出: R<br/>計算: LEG_H / 2<br/>位置: X=250, Y=210"]
+        CONST_2["Number Slider<br/>名稱: CONST_2<br/>值: 2<br/>常數<br/>位置: X=50, Y=450"]
+        PT_LEG_BASE["Construct Point<br/>輸入: X, Y, Z<br/>輸出: Pt<br/>點: (0, 0, LEG_H/2)<br/>GUID: 57c9ff28-1d2f-4af5-9a55-10e279d7b794<br/>位置: X=450, Y=130"]
+        PLANE_LEG_BASE["XY Plane<br/>輸入: O (Origin)<br/>輸出: P (Plane)<br/>GUID: 0cc80429-363d-4581-8636-647a753b7560<br/>位置: X=650, Y=130"]
+        BOX_LEG_BASE["Center Box<br/>輸入: P (Plane), X, Y, Z<br/>輸出: B (Box)<br/>GUID: 4e874a4e-95cd-46d0-904d-19cca8fd962c<br/>位置: X=850, Y=130"]
+    end
+
+    %% === 桌腳目標平面 (Layer 1-2) ===
+    subgraph LEG_PLANES["桌腳目標平面"]
+        direction TB
+        PT_LEG1["Construct Point<br/>點: (50, 30, LEG_H/2)<br/>位置: X=450, Y=500"]
+        PT_LEG2["Construct Point<br/>點: (-50, 30, LEG_H/2)<br/>位置: X=450, Y=660"]
+        PT_LEG3["Construct Point<br/>點: (-50, -30, LEG_H/2)<br/>位置: X=450, Y=820"]
+        PT_LEG4["Construct Point<br/>點: (50, -30, LEG_H/2)<br/>位置: X=450, Y=980"]
+
+        PLANE_LEG1["XY Plane<br/>位置: X=650, Y=500"]
+        PLANE_LEG2["XY Plane<br/>位置: X=650, Y=660"]
+        PLANE_LEG3["XY Plane<br/>位置: X=650, Y=820"]
+        PLANE_LEG4["XY Plane<br/>位置: X=650, Y=980"]
+    end
+
+    %% === Orient 複製 (Layer 2) ===
+    subgraph ORIENT_GROUP["Orient 複製桌腳"]
+        direction TB
+        ORIENT1["Orient<br/>輸入: G, A (Source), B (Target)<br/>輸出: G<br/>GUID: faed5c8d-971c-47d3-8bf3-053fc4602a0e<br/>位置: X=1050, Y=500"]
+        ORIENT2["Orient<br/>位置: X=1050, Y=660"]
+        ORIENT3["Orient<br/>位置: X=1050, Y=820"]
+        ORIENT4["Orient<br/>位置: X=1050, Y=980"]
+    end
+
+    %% === 桌面 (Layer 1-2) ===
+    subgraph TABLE_TOP["桌面"]
+        direction TB
+        %% 計算桌面 Z 位置: LEG_H + TABLE_T/2
+        DIV_TABLE_Z["Division<br/>計算: TABLE_T / 2<br/>位置: X=250, Y=290"]
+        ADD_TABLE_Z["Addition<br/>計算: LEG_H + TABLE_T/2<br/>位置: X=450, Y=290"]
+        PT_TABLE["Construct Point<br/>點: (0, 0, LEG_H+TABLE_T/2)<br/>位置: X=650, Y=290"]
+        PLANE_TABLE["XY Plane<br/>位置: X=850, Y=290"]
+        BOX_TABLE["Center Box<br/>桌面<br/>位置: X=1050, Y=290"]
+    end
+
+    %% === 合併輸出 (Layer 3) ===
+    subgraph OUTPUT["輸出"]
+        direction TB
+        MERGE1["Merge<br/>合併桌面 + 腳1<br/>GUID: 32b92248-1673-4d8b-84da-3b14ce36b2b0<br/>位置: X=1250, Y=400"]
+        MERGE2["Merge<br/>合併 + 腳2<br/>位置: X=1450, Y=400"]
+        MERGE3["Merge<br/>合併 + 腳3<br/>位置: X=1650, Y=400"]
+        MERGE4["Merge<br/>合併 + 腳4<br/>位置: X=1850, Y=400"]
+        PREVIEW["Custom Preview<br/>輸入: G<br/>GUID: 6d8c8b5b-3221-4611-9794-01f16c7b0278<br/>位置: X=2050, Y=400"]
+    end
+
+    %% ========================================
+    %% 連線定義
+    %% ========================================
+
+    %% --- 基礎桌腳 ---
+    SLIDER_LEG_H -->|"V→A"| DIV_LEG_Z
+    CONST_2 -->|"V→B"| DIV_LEG_Z
+    DIV_LEG_Z -->|"R→Z"| PT_LEG_BASE
+    PT_LEG_BASE -->|"Pt→O"| PLANE_LEG_BASE
+    PLANE_LEG_BASE -->|"P→P"| BOX_LEG_BASE
+    SLIDER_LEG_SIZE -->|"V→X"| BOX_LEG_BASE
+    SLIDER_LEG_SIZE -->|"V→Y"| BOX_LEG_BASE
+    SLIDER_LEG_H -->|"V→Z"| BOX_LEG_BASE
+
+    %% --- 桌腳目標平面 ---
+    SLIDER_POS1_X -->|"V→X"| PT_LEG1
+    SLIDER_POS1_Y -->|"V→Y"| PT_LEG1
+    DIV_LEG_Z -->|"R→Z"| PT_LEG1
+    PT_LEG1 -->|"Pt→O"| PLANE_LEG1
+
+    SLIDER_POS2_X -->|"V→X"| PT_LEG2
+    SLIDER_POS2_Y -->|"V→Y"| PT_LEG2
+    DIV_LEG_Z -->|"R→Z"| PT_LEG2
+    PT_LEG2 -->|"Pt→O"| PLANE_LEG2
+
+    SLIDER_POS3_X -->|"V→X"| PT_LEG3
+    SLIDER_POS3_Y -->|"V→Y"| PT_LEG3
+    DIV_LEG_Z -->|"R→Z"| PT_LEG3
+    PT_LEG3 -->|"Pt→O"| PLANE_LEG3
+
+    SLIDER_POS4_X -->|"V→X"| PT_LEG4
+    SLIDER_POS4_Y -->|"V→Y"| PT_LEG4
+    DIV_LEG_Z -->|"R→Z"| PT_LEG4
+    PT_LEG4 -->|"Pt→O"| PLANE_LEG4
+
+    %% --- Orient ---
+    BOX_LEG_BASE -->|"B→G"| ORIENT1
+    BOX_LEG_BASE -->|"B→G"| ORIENT2
+    BOX_LEG_BASE -->|"B→G"| ORIENT3
+    BOX_LEG_BASE -->|"B→G"| ORIENT4
+    PLANE_LEG_BASE -->|"P→A"| ORIENT1
+    PLANE_LEG_BASE -->|"P→A"| ORIENT2
+    PLANE_LEG_BASE -->|"P→A"| ORIENT3
+    PLANE_LEG_BASE -->|"P→A"| ORIENT4
+    PLANE_LEG1 -->|"P→B"| ORIENT1
+    PLANE_LEG2 -->|"P→B"| ORIENT2
+    PLANE_LEG3 -->|"P→B"| ORIENT3
+    PLANE_LEG4 -->|"P→B"| ORIENT4
+
+    %% --- 桌面 ---
+    SLIDER_TABLE_T -->|"V→A"| DIV_TABLE_Z
+    CONST_2 -->|"V→B"| DIV_TABLE_Z
+    SLIDER_LEG_H -->|"V→A"| ADD_TABLE_Z
+    DIV_TABLE_Z -->|"R→B"| ADD_TABLE_Z
+    ADD_TABLE_Z -->|"R→Z"| PT_TABLE
+    PT_TABLE -->|"Pt→O"| PLANE_TABLE
+    PLANE_TABLE -->|"P→P"| BOX_TABLE
+    SLIDER_TABLE_W -->|"V→X"| BOX_TABLE
+    SLIDER_TABLE_D -->|"V→Y"| BOX_TABLE
+    SLIDER_TABLE_T -->|"V→Z"| BOX_TABLE
+
+    %% --- 合併 ---
+    BOX_TABLE -->|"B→D1"| MERGE1
+    ORIENT1 -->|"G→D2"| MERGE1
+    MERGE1 -->|"R→D1"| MERGE2
+    ORIENT2 -->|"G→D2"| MERGE2
+    MERGE2 -->|"R→D1"| MERGE3
+    ORIENT3 -->|"G→D2"| MERGE3
+    MERGE3 -->|"R→D1"| MERGE4
+    ORIENT4 -->|"G→D2"| MERGE4
+    MERGE4 -->|"R→G"| PREVIEW
+
+    %% === 樣式 ===
+    classDef inputStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef geoStyle fill:#fff4e1,stroke:#e65100,stroke-width:2px
+    classDef outputStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+
+    class SLIDER_LEG_SIZE,SLIDER_LEG_H,SLIDER_TABLE_W,SLIDER_TABLE_D,SLIDER_TABLE_T,CONST_2 inputStyle
+    class SLIDER_POS1_X,SLIDER_POS1_Y,SLIDER_POS2_X,SLIDER_POS2_Y,SLIDER_POS3_X,SLIDER_POS3_Y,SLIDER_POS4_X,SLIDER_POS4_Y inputStyle
+    class BOX_LEG_BASE,BOX_TABLE,ORIENT1,ORIENT2,ORIENT3,ORIENT4 geoStyle
+    class MERGE1,MERGE2,MERGE3,MERGE4,PREVIEW outputStyle

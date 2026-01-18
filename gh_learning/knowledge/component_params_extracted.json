@@ -1,0 +1,2795 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "從 .ghx 文件自動萃取的組件參數",
+    "source": "GHX Parser + Knowledge Extractor"
+  },
+  "components": {
+    "Wasp_Save to DisCo": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 487
+    },
+    "Geometry": {
+      "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 62
+    },
+    "Point": {
+      "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 80
+    },
+    "Curve": {
+      "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 87
+    },
+    "Panel": {
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 319
+    },
+    "Merge": {
+      "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 50
+    },
+    "Button": {
+      "guid": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 86
+    },
+    "Boolean Toggle": {
+      "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 73
+    },
+    "Sketch": {
+      "guid": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 39
+    },
+    "Scribble": {
+      "guid": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 212
+    },
+    "Custom Preview": {
+      "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "M",
+          "fullName": "Material"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Shader"
+        }
+      ],
+      "outputs": [],
+      "usage_count": 97
+    },
+    "Colour Swatch": {
+      "guid": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 91
+    },
+    "Brep": {
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 33
+    },
+    "Number Slider": {
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 203
+    },
+    "Move": {
+      "guid": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Motion"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Transform"
+        }
+      ],
+      "usage_count": 11
+    },
+    "Unit Z": {
+      "guid": "9103c240-a6a9-4223-9b42-dbd19bf38e2b",
+      "inputs": [
+        {
+          "nickname": "F",
+          "fullName": "Factor"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Unit vector"
+        }
+      ],
+      "usage_count": 6
+    },
+    "Box": {
+      "guid": "c9482db6-bea9-448d-98ff-fed6d69a8efc",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 5
+    },
+    "Text Tag 3D": {
+      "guid": "5a41528b-12b9-40dc-a3f2-842034d267c4",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "Location"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Text"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Size"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Colour"
+        },
+        {
+          "nickname": "J",
+          "fullName": "Justification"
+        }
+      ],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Simple Mesh": {
+      "guid": "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Deconstruct Mesh": {
+      "guid": "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Vertices"
+        },
+        {
+          "nickname": "F",
+          "fullName": "Faces"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Colours"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Normals"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Construct Mesh": {
+      "guid": "e2c0f9db-a862-4bd9-810c-ef2610e7a56f",
+      "inputs": [
+        {
+          "nickname": "V",
+          "fullName": "Vertices"
+        },
+        {
+          "nickname": "F",
+          "fullName": "Faces"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Colours"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Mesh Edges": {
+      "guid": "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "E1",
+          "fullName": "Naked Edges"
+        },
+        {
+          "nickname": "E2",
+          "fullName": "Interior Edges"
+        },
+        {
+          "nickname": "E3",
+          "fullName": "Non-Manifold Edges"
+        }
+      ],
+      "usage_count": 6
+    },
+    "Value List": {
+      "guid": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 3
+    },
+    "List Item": {
+      "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 16
+    },
+    "Random": {
+      "guid": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
+      "inputs": [
+        {
+          "nickname": "R",
+          "fullName": "Range"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Number"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Seed"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Random"
+        }
+      ],
+      "usage_count": 8
+    },
+    "Jitter": {
+      "guid": "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "J",
+          "fullName": "Jitter"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Seed"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Values"
+        },
+        {
+          "nickname": "I",
+          "fullName": "Indices"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Multiplication": {
+      "guid": "ce46b74e-00c9-43c4-805a-193b69ea4a11",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 8
+    },
+    "Vector XYZ": {
+      "guid": "56b92eab-d121-43f7-94d3-6cd8f0ddead8",
+      "inputs": [
+        {
+          "nickname": "X",
+          "fullName": "X component"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y component"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z component"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Vector"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Length"
+        }
+      ],
+      "usage_count": 1
+    },
+    "List Length": {
+      "guid": "1817fd29-20ae-4503-b542-f0fb651e67d7",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "Length"
+        }
+      ],
+      "usage_count": 15
+    },
+    "Gradient": {
+      "guid": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+      "inputs": [
+        {
+          "nickname": "L0",
+          "fullName": "Lower limit"
+        },
+        {
+          "nickname": "L1",
+          "fullName": "Upper limit"
+        },
+        {
+          "nickname": "t",
+          "fullName": "Parameter"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "C",
+          "fullName": "Colour"
+        }
+      ],
+      "usage_count": 19
+    },
+    "Unit Y": {
+      "guid": "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69",
+      "inputs": [
+        {
+          "nickname": "F",
+          "fullName": "Factor"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Unit vector"
+        }
+      ],
+      "usage_count": 11
+    },
+    "Series": {
+      "guid": "e64c5fb1-845c-4ab1-8911-5f338516ba67",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Start"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Step"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Count"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Series"
+        }
+      ],
+      "usage_count": 5
+    },
+    "Iso Curve": {
+      "guid": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Surface"
+        },
+        {
+          "nickname": "uv",
+          "fullName": "UV point"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "U",
+          "fullName": "U Isocurve"
+        },
+        {
+          "nickname": "V",
+          "fullName": "V Isocurve"
+        }
+      ],
+      "usage_count": 6
+    },
+    "Range": {
+      "guid": "9445ca40-cc73-4861-a455-146308676855",
+      "inputs": [
+        {
+          "nickname": "D",
+          "fullName": "Domain"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Steps"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Range"
+        }
+      ],
+      "usage_count": 8
+    },
+    "Construct Point": {
+      "guid": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+      "inputs": [
+        {
+          "nickname": "X",
+          "fullName": "X coordinate"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y coordinate"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z coordinate"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "Pt",
+          "fullName": "Point"
+        }
+      ],
+      "usage_count": 9
+    },
+    "XY Plane": {
+      "guid": "17b7152b-d30d-4d50-b9ef-c9fe25576fc2",
+      "inputs": [
+        {
+          "nickname": "O",
+          "fullName": "Origin"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 9
+    },
+    "XZ Plane": {
+      "guid": "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64",
+      "inputs": [
+        {
+          "nickname": "O",
+          "fullName": "Origin"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Negative": {
+      "guid": "a3371040-e552-4bc8-b0ff-10a840258e88",
+      "inputs": [
+        {
+          "nickname": "x",
+          "fullName": "Value"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "y",
+          "fullName": "Result"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Plane Surface": {
+      "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X Size"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y Size"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 4
+    },
+    "YZ Plane": {
+      "guid": "fad344bc-09b1-4855-a2e6-437ef5715fe3",
+      "inputs": [
+        {
+          "nickname": "O",
+          "fullName": "Origin"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Construct Domain": {
+      "guid": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "Domain start"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Domain end"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "I",
+          "fullName": "Domain"
+        }
+      ],
+      "usage_count": 4
+    },
+    "Deconstruct Brep": {
+      "guid": "8d372bdc-9800-45e9-8a26-6e33c5253e21",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "F",
+          "fullName": "Faces"
+        },
+        {
+          "nickname": "E",
+          "fullName": "Edges"
+        },
+        {
+          "nickname": "V",
+          "fullName": "Vertices"
+        }
+      ],
+      "usage_count": 6
+    },
+    "Area": {
+      "guid": "2e205f24-9279-47b2-b414-d06dcd0b21a7",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "fullName": "Area"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Centroid"
+        }
+      ],
+      "usage_count": 11
+    },
+    "Line SDL": {
+      "guid": "4c619bc9-39fd-4717-82a6-1e07ea237bbe",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Start"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Direction"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Length"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "Line"
+        }
+      ],
+      "usage_count": 8
+    },
+    "Line": {
+      "guid": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "Start Point"
+        },
+        {
+          "nickname": "B",
+          "fullName": "End Point"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "Line"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Align Plane": {
+      "guid": "e76040ec-3b91-41e1-8e00-c74c23b89391",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Direction"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "A",
+          "fullName": "Angle"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Mesh Join": {
+      "guid": "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Meshes"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Unit X": {
+      "guid": "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd",
+      "inputs": [
+        {
+          "nickname": "F",
+          "fullName": "Factor"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Unit vector"
+        }
+      ],
+      "usage_count": 11
+    },
+    "Clean Tree": {
+      "guid": "071c3940-a12d-4b77-bb23-42b5d3314a0d",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Entwine": {
+      "guid": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 3
+    },
+    "Split List": {
+      "guid": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "i",
+          "fullName": "Index"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "fullName": "List A"
+        },
+        {
+          "nickname": "B",
+          "fullName": "List B"
+        }
+      ],
+      "usage_count": 4
+    },
+    "Data": {
+      "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 6
+    },
+    "Point List": {
+      "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Points"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Size"
+        }
+      ],
+      "outputs": [],
+      "usage_count": 19
+    },
+    "Mesh Brep": {
+      "guid": "60e7defa-8b21-4ee1-99aa-a9223d6134ff",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Settings"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 9
+    },
+    "Rotate 3D": {
+      "guid": "3dfb9a77-6e05-4016-9f20-94f78607d672",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "A",
+          "fullName": "Angle"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Center"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Axis"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Transform"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Transform": {
+      "guid": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Transform"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Weaverbird's Catmull-Clark Subdivision": {
+      "guid": "4098ec7a-819a-4ced-9eee-86835d7e21c9",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh/Curves"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Level"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Smooth Naked Edges"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "O",
+          "fullName": "Output Mesh/Curves"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Cull Pattern": {
+      "guid": "008e9a6f-478a-4813-8c8a-546273bc3a6b",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Cull Pattern"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        }
+      ],
+      "usage_count": 11
+    },
+    "Point On Curve": {
+      "guid": "7f6a9d34-0470-4bb7-aadd-07496bcbe572",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Construct Plane": {
+      "guid": "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e",
+      "inputs": [
+        {
+          "nickname": "O",
+          "fullName": "Origin"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X-Axis"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y-Axis"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "Pl",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Deconstruct Plane": {
+      "guid": "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "O",
+          "fullName": "Origin"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X-Axis"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y-Axis"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z-Axis"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Scale NU": {
+      "guid": "290f418a-65ee-406a-a9d0-35699815b512",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Scale X"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Scale Y"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Scale Z"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Transform"
+        }
+      ],
+      "usage_count": 7
+    },
+    "Volume": {
+      "guid": "224f7648-5956-4b26-80d9-8d771f3dfd5d",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "V",
+          "fullName": "Volume"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Centroid"
+        }
+      ],
+      "usage_count": 7
+    },
+    "Rotate": {
+      "guid": "b7798b74-037e-4f0c-8ac7-dc1043d093e0",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "A",
+          "fullName": "Angle"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "X",
+          "fullName": "Transform"
+        }
+      ],
+      "usage_count": 4
+    },
+    "Repeat Data": {
+      "guid": "c40dc145-9e36-4a69-ac1a-6d825c654993",
+      "inputs": [
+        {
+          "nickname": "D",
+          "fullName": "Data"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Length"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "D",
+          "fullName": "Data"
+        }
+      ],
+      "usage_count": 5
+    },
+    "Sub List": {
+      "guid": "b333ff42-93bd-406b-8e17-15780719b6ec",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Domain"
+        },
+        {
+          "nickname": "W",
+          "fullName": "Wrap"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "I",
+          "fullName": "Index"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Trim Tree": {
+      "guid": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+      "inputs": [
+        {
+          "nickname": "T",
+          "fullName": "Tree"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Depth"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "T",
+          "fullName": "Tree"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Rectangle": {
+      "guid": "d93100b6-d50b-40b2-831a-814659dc38e3",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X Size"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y Size"
+        },
+        {
+          "nickname": "R",
+          "fullName": "Radius"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Rectangle"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Length"
+        }
+      ],
+      "usage_count": 1
+    },
+    "End Points": {
+      "guid": "11bbd48b-bb0a-4f1b-8167-fa297590390d",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Start"
+        },
+        {
+          "nickname": "E",
+          "fullName": "End"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Solid Union": {
+      "guid": "10434a15-da85-4281-bb64-a2b3a995b9c6",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Breps"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Result"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Merge Faces": {
+      "guid": "d6b43673-55dd-4e2f-95c4-6c69a14513a6",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "B",
+          "fullName": "Breps"
+        },
+        {
+          "nickname": "N0",
+          "fullName": "Before"
+        },
+        {
+          "nickname": "N1",
+          "fullName": "After"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Addition": {
+      "guid": "a0d62394-a118-422d-abb3-6af115c75b25",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Mesh Union": {
+      "guid": "88060a82-0bf7-46bb-9af8-bdc860cf7e1d",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Meshes"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Result"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Cross Reference": {
+      "guid": "36947590-f0cb-4807-a8f9-9c90c9b20621",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Compound": {
+      "guid": "ca80054a-cde0-4f69-a132-10502b24866d",
+      "inputs": [
+        {
+          "nickname": "T",
+          "fullName": "Transforms"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "X",
+          "fullName": "Compound"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Brep Edges": {
+      "guid": "0148a65d-6f42-414a-9db7-9a9b2eb78437",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "En",
+          "fullName": "Naked"
+        },
+        {
+          "nickname": "Ei",
+          "fullName": "Interior"
+        },
+        {
+          "nickname": "Em",
+          "fullName": "Non-Manifold"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Dash Pattern": {
+      "guid": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        },
+        {
+          "nickname": "Pt",
+          "fullName": "Pattern"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "D",
+          "fullName": "Dashes"
+        },
+        {
+          "nickname": "G",
+          "fullName": "Gaps"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Bounding Box": {
+      "guid": "0bb3d234-9097-45db-9998-621639c87d3b",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Content"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "B",
+          "fullName": "Box"
+        }
+      ],
+      "usage_count": 8
+    },
+    "Pull Point": {
+      "guid": "902289da-28dc-454b-98d4-b8f8aa234516",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Closest Point"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Distance"
+        }
+      ],
+      "usage_count": 8
+    },
+    "Remap Numbers": {
+      "guid": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+      "inputs": [
+        {
+          "nickname": "V",
+          "fullName": "Value"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Source"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Target"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Mapped"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Clipped"
+        }
+      ],
+      "usage_count": 15
+    },
+    "Bounds": {
+      "guid": "f44b92b0-3b5b-493a-86f4-fd7408c3daf3",
+      "inputs": [
+        {
+          "nickname": "N",
+          "fullName": "Numbers"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "I",
+          "fullName": "Domain"
+        }
+      ],
+      "usage_count": 14
+    },
+    "Graph Mapper": {
+      "guid": "bc984576-7aa6-491f-a91d-e444c33675a7",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 14
+    },
+    "Plane": {
+      "guid": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Rotate Plane": {
+      "guid": "f6f14b09-6497-4564-8403-09e4eb5a6b82",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "A",
+          "fullName": "Angle"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Isotrim": {
+      "guid": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Surface"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Domain"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Surface"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Divide Domain²": {
+      "guid": "75ac008b-1bc2-4edd-b967-667d628b9d24",
+      "inputs": [
+        {
+          "nickname": "I",
+          "fullName": "Domain"
+        },
+        {
+          "nickname": "U",
+          "fullName": "U Count"
+        },
+        {
+          "nickname": "V",
+          "fullName": "V Count"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Segments"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Mesh WeldVertices": {
+      "guid": "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        },
+        {
+          "nickname": "t",
+          "fullName": "tolerance"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "out",
+          "fullName": "RuntimeMessage"
+        },
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 1
+    },
+    "EdgeLengths": {
+      "guid": "24e2b0d2-d7b8-4478-8a83-1f04cba701a1",
+      "inputs": [
+        {
+          "nickname": "Mesh",
+          "fullName": "Mesh"
+        },
+        {
+          "nickname": "LengthFactor",
+          "fullName": "LengthFactor"
+        },
+        {
+          "nickname": "Strength",
+          "fullName": "Strength"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "EL",
+          "fullName": "EL"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Load": {
+      "guid": "2019c995-53af-4eb2-976d-95b1fdc823fa",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "FV",
+          "fullName": "Force vector"
+        },
+        {
+          "nickname": "W",
+          "fullName": "Weighting"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "U",
+          "fullName": "Unary"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Anchor": {
+      "guid": "3c30b1a1-4473-4ad4-a700-ea9770726c03",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Target"
+        },
+        {
+          "nickname": "Strength",
+          "fullName": "Strength"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "fullName": "A"
+        }
+      ],
+      "usage_count": 1
+    },
+    "ZombieSolver": {
+      "guid": "4408343b-577e-4fd8-96ff-df7549189186",
+      "inputs": [
+        {
+          "nickname": "GoalObjects",
+          "fullName": "GoalObjects"
+        },
+        {
+          "nickname": "Threshold",
+          "fullName": "Threshold"
+        },
+        {
+          "nickname": "Tolerance",
+          "fullName": "Tolerance"
+        },
+        {
+          "nickname": "MaxIterations",
+          "fullName": "MaxIterations"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "I",
+          "fullName": "I"
+        },
+        {
+          "nickname": "V",
+          "fullName": "V"
+        },
+        {
+          "nickname": "O",
+          "fullName": "O"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Show": {
+      "guid": "0ed5e67d-539d-480e-88cb-d81fa795d66c",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "G"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "fullName": "G"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Distance": {
+      "guid": "93b8e93d-f932-402c-b435-84be04d87666",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "Point A"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Point B"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "D",
+          "fullName": "Distance"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Larger Than": {
+      "guid": "30d58600-1aab-42db-80a3-f1ea6c4269a0",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "First Number"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Second Number"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": ">",
+          "fullName": "Larger than"
+        },
+        {
+          "nickname": ">=",
+          "fullName": "… or Equal to"
+        }
+      ],
+      "usage_count": 5
+    },
+    "Join Curves": {
+      "guid": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curves"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Preserve"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curves"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Explode": {
+      "guid": "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        },
+        {
+          "nickname": "R",
+          "fullName": "Recursive"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Segments"
+        },
+        {
+          "nickname": "V",
+          "fullName": "Vertices"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Dispatch": {
+      "guid": "d8332545-21b2-4716-96e3-8559a9876e17",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "List"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Dispatch pattern"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "fullName": "List A"
+        },
+        {
+          "nickname": "B",
+          "fullName": "List B"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Weave": {
+      "guid": "50faccbd-9c92-4175-a5fa-d65e36013db6",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Contour": {
+      "guid": "3b112fb6-3eba-42d2-ba75-0f903c18faab",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Shape"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Direction"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Distance"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "C",
+          "fullName": "Contours"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Deconstruct": {
+      "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "X",
+          "fullName": "X component"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y component"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z component"
+        }
+      ],
+      "usage_count": 6
+    },
+    "Smaller Than": {
+      "guid": "ae840986-cade-4e5a-96b0-570f007d4fc0",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "First Number"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Second Number"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "<",
+          "fullName": "Smaller than"
+        },
+        {
+          "nickname": "<=",
+          "fullName": "… or Equal to"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Domain Box": {
+      "guid": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Base"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "B",
+          "fullName": "Box"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Expression": {
+      "guid": "9df5e896-552d-4c8c-b9ca-4fc147ffa022",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Brep Wireframe": {
+      "guid": "ac750e41-2450-4f98-9658-98fef97b01b2",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Density"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "W",
+          "fullName": "Wireframe"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Populate 3D": {
+      "guid": "e202025b-dc8e-4c51-ae19-4415b172886f",
+      "inputs": [
+        {
+          "nickname": "R",
+          "fullName": "Region"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Count"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Seed"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Points"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Population"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Curve Closest Point": {
+      "guid": "2dc44b22-b1dd-460a-a704-6462d6e91096",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "t",
+          "fullName": "Parameter"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Distance"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Project": {
+      "guid": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
+      "inputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Brep"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Direction"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "C",
+          "fullName": "Curve"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Evaluate Surface": {
+      "guid": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+      "inputs": [
+        {
+          "nickname": "S",
+          "fullName": "Surface"
+        },
+        {
+          "nickname": "uv",
+          "fullName": "Point"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Normal"
+        },
+        {
+          "nickname": "U",
+          "fullName": "U direction"
+        },
+        {
+          "nickname": "V",
+          "fullName": "V direction"
+        },
+        {
+          "nickname": "F",
+          "fullName": "Frame"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Surface Closest Point": {
+      "guid": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Surface"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Point"
+        },
+        {
+          "nickname": "uvP",
+          "fullName": "UV Point"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Distance"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Angle": {
+      "guid": "b464fccb-50e7-41bd-9789-8438db9bea9f",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "Vector A"
+        },
+        {
+          "nickname": "B",
+          "fullName": "Vector B"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "fullName": "Angle"
+        },
+        {
+          "nickname": "R",
+          "fullName": "Reflex"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Custom Preview Lineweights": {
+      "guid": "a77d0879-94c2-4101-be44-e4a616ffeb0c",
+      "inputs": [
+        {
+          "nickname": "G",
+          "fullName": "Geometry"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Shader"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Thickness"
+        },
+        {
+          "nickname": "A",
+          "fullName": "Absolute"
+        }
+      ],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "File Path": {
+      "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Volume Load": {
+      "guid": "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93",
+      "inputs": [
+        {
+          "nickname": "LM",
+          "fullName": "Load Mesh"
+        },
+        {
+          "nickname": "LV",
+          "fullName": "Load Vector"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "VL",
+          "fullName": "Volume Load"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Boundary Conditions": {
+      "guid": "ce61205c-5d8e-429e-a0a2-e1dc3e10febc",
+      "inputs": [
+        {
+          "nickname": "L",
+          "fullName": "Load"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Support"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "BC",
+          "fullName": "Boundary Condition Setup"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Boundary Domain": {
+      "guid": "c28233aa-2c4b-4865-8916-f2fa4b2f390f",
+      "inputs": [
+        {
+          "nickname": "DM",
+          "fullName": "Domain Mesh"
+        },
+        {
+          "nickname": "Dv",
+          "fullName": "Density Value"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Young Modul"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Poisson Number"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "BD",
+          "fullName": "Boundary Domain"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Resolution": {
+      "guid": "f2880342-70fe-41c2-bb4e-2d9277d4daeb",
+      "inputs": [
+        {
+          "nickname": "ResX",
+          "fullName": "Resolution X"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "Res",
+          "fullName": "Resolution"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Optimus": {
+      "guid": "7252bec6-68cf-4a13-9990-e1cb16d4c8ce",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        },
+        {
+          "nickname": "AP",
+          "fullName": "Analyser Parameters"
+        },
+        {
+          "nickname": "OP",
+          "fullName": "Optimus Parameters"
+        },
+        {
+          "nickname": "St",
+          "fullName": "Subdivision Threshold"
+        },
+        {
+          "nickname": "Rs",
+          "fullName": "Reset"
+        },
+        {
+          "nickname": "R",
+          "fullName": "Run"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Compliance"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Performance"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Model Statistics": {
+      "guid": "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "MR",
+          "fullName": "Model Resolution"
+        },
+        {
+          "nickname": "E",
+          "fullName": "Element Count"
+        },
+        {
+          "nickname": "ES",
+          "fullName": "Element Size"
+        },
+        {
+          "nickname": "N",
+          "fullName": "Node Count"
+        },
+        {
+          "nickname": "Dof",
+          "fullName": "DoFs"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Analyser Parameters": {
+      "guid": "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497",
+      "inputs": [
+        {
+          "nickname": "I",
+          "fullName": "Iterations"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Tolerance"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AP",
+          "fullName": "Analyser Parameters"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Iso Mesh": {
+      "guid": "d73fc809-3b8c-4420-a70c-f17fd9edb825",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        },
+        {
+          "nickname": "V",
+          "fullName": "Iso Value"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Deflection"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 1
+    },
+    "PrincipalStress": {
+      "guid": "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        },
+        {
+          "nickname": "t",
+          "fullName": "Tolerance"
+        },
+        {
+          "nickname": "C",
+          "fullName": "Colours"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PSv",
+          "fullName": "PStress Values"
+        },
+        {
+          "nickname": "PSp",
+          "fullName": "PStress Plane"
+        },
+        {
+          "nickname": "PSc",
+          "fullName": "PStress Crosses"
+        },
+        {
+          "nickname": "PScc",
+          "fullName": "PStress Crosses Colours"
+        },
+        {
+          "nickname": "Pm",
+          "fullName": "PStress Min/Max"
+        },
+        {
+          "nickname": "VM",
+          "fullName": "VonMieses Values"
+        },
+        {
+          "nickname": "VMcc",
+          "fullName": "VonMieses Crosses Colours"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Performance"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Quick Graph": {
+      "guid": "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Performance": {
+      "guid": "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f",
+      "inputs": [
+        {
+          "nickname": "P",
+          "fullName": "Performance"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "TD",
+          "fullName": "Total Data"
+        },
+        {
+          "nickname": "E",
+          "fullName": "Events Names"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Times"
+        },
+        {
+          "nickname": "M",
+          "fullName": "Memory"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Solver"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Optimius Parameters": {
+      "guid": "30a92849-8387-4fdc-afab-4c0081e5cffe",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "CudaCtx": {
+      "guid": "fc276159-87f4-4f90-b1c3-ab941e699c28",
+      "inputs": [
+        {
+          "nickname": "Reset",
+          "fullName": "Reset"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Performance"
+        },
+        {
+          "nickname": "M",
+          "fullName": "FreeMemory"
+        },
+        {
+          "nickname": "K",
+          "fullName": "Kernel Statistics"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Model": {
+      "guid": "80a2b490-03cc-4d01-8115-121c7ceefa95",
+      "inputs": [
+        {
+          "nickname": "BD",
+          "fullName": "Boundary Domain"
+        },
+        {
+          "nickname": "BC",
+          "fullName": "Boundary Condition"
+        },
+        {
+          "nickname": "BP",
+          "fullName": "Boundary Properties"
+        },
+        {
+          "nickname": "R",
+          "fullName": "Model Resolution"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Performance"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Element Data Preview": {
+      "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Data Dam": {
+      "guid": "65283518-ad00-49d3-87fb-f76823ebb162",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 1
+    },
+    "Node Data": {
+      "guid": "52a8ef7b-517f-46a4-acc9-afa8842ac028",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "L",
+          "fullName": "Location"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Density"
+        },
+        {
+          "nickname": "Df",
+          "fullName": "Deflection"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Topostruct 3D model": {
+      "guid": "2f3771fd-a41e-4fba-b890-1b0b66b48484",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Model Components"
+        },
+        {
+          "nickname": "XR",
+          "fullName": "XResolution"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FE",
+          "fullName": "FE Model"
+        },
+        {
+          "nickname": "CP",
+          "fullName": "Cell Centres"
+        },
+        {
+          "nickname": "Size",
+          "fullName": "Cell size"
+        }
+      ],
+      "usage_count": 1
+    },
+    "3D boundary Region": {
+      "guid": "26ae7d91-3db7-4a06-9e26-42e790819d42",
+      "inputs": [
+        {
+          "nickname": "Boundary",
+          "fullName": "Boundary"
+        },
+        {
+          "nickname": "IsVoid",
+          "fullName": "Is Void"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "BReg",
+          "fullName": "Boundary Region"
+        }
+      ],
+      "usage_count": 1
+    },
+    "3D Load Region": {
+      "guid": "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a",
+      "inputs": [
+        {
+          "nickname": "Boundary",
+          "fullName": "Boundary"
+        },
+        {
+          "nickname": "L",
+          "fullName": "Load"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "LReg",
+          "fullName": "Load Region"
+        }
+      ],
+      "usage_count": 1
+    },
+    "3D Support Region": {
+      "guid": "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014",
+      "inputs": [
+        {
+          "nickname": "Boundary",
+          "fullName": "Boundary"
+        },
+        {
+          "nickname": "SUP",
+          "fullName": "Support Type"
+        },
+        {
+          "nickname": "AM",
+          "fullName": "Amend Existing Supports"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "SReg",
+          "fullName": "Support Region"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Topostruct 3D solver": {
+      "guid": "4811877a-1b77-443a-8be3-9b2f7eafeb03",
+      "inputs": [
+        {
+          "nickname": "FE",
+          "fullName": "FE Model"
+        },
+        {
+          "nickname": "SWC",
+          "fullName": "Self Weight Coefficient"
+        },
+        {
+          "nickname": "O",
+          "fullName": "Optimisation iterations"
+        },
+        {
+          "nickname": "S",
+          "fullName": "Smoothing"
+        },
+        {
+          "nickname": "P",
+          "fullName": "Penalization"
+        },
+        {
+          "nickname": "T",
+          "fullName": "Target Density"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Initial Densities"
+        },
+        {
+          "nickname": "MD",
+          "fullName": "Minimum Density"
+        },
+        {
+          "nickname": "DTH",
+          "fullName": "Delete Threshold"
+        },
+        {
+          "nickname": "PerX",
+          "fullName": "Periodic X"
+        },
+        {
+          "nickname": "PerY",
+          "fullName": "Periodic Y"
+        },
+        {
+          "nickname": "PerZ",
+          "fullName": "Periodic Z"
+        },
+        {
+          "nickname": "Load Case",
+          "fullName": "Load Case"
+        },
+        {
+          "nickname": "All Cases",
+          "fullName": "All Cases"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FE",
+          "fullName": "FE Model"
+        },
+        {
+          "nickname": "maxu",
+          "fullName": "MaxDeflection"
+        }
+      ],
+      "usage_count": 1
+    },
+    "3D Cell Results": {
+      "guid": "85b709b5-f9f8-4f91-84b8-002ee483444b",
+      "inputs": [
+        {
+          "nickname": "FE",
+          "fullName": "FE Model"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PStressP",
+          "fullName": "Principal Stress Planes"
+        },
+        {
+          "nickname": "PStress",
+          "fullName": "Principal Stresses"
+        },
+        {
+          "nickname": "VStress",
+          "fullName": "VonMises Stress"
+        },
+        {
+          "nickname": "Density",
+          "fullName": "Density"
+        }
+      ],
+      "usage_count": 1
+    },
+    "3D Iso Mesh": {
+      "guid": "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab",
+      "inputs": [
+        {
+          "nickname": "FE",
+          "fullName": "FE Model"
+        },
+        {
+          "nickname": "D",
+          "fullName": "Deflection"
+        },
+        {
+          "nickname": "Iso",
+          "fullName": "Iso Contour Value"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "Mesh",
+          "fullName": "Mesh"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Deconstruct Box": {
+      "guid": "db7d83b1-2898-4ef9-9be5-4e94b4e2048d",
+      "inputs": [
+        {
+          "nickname": "B",
+          "fullName": "Box"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "P",
+          "fullName": "Plane"
+        },
+        {
+          "nickname": "X",
+          "fullName": "X"
+        },
+        {
+          "nickname": "Y",
+          "fullName": "Y"
+        },
+        {
+          "nickname": "Z",
+          "fullName": "Z"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Deconstruct Domain": {
+      "guid": "825ea536-aebb-41e9-af32-8baeb2ecb590",
+      "inputs": [
+        {
+          "nickname": "I",
+          "fullName": "Domain"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "S",
+          "fullName": "Start"
+        },
+        {
+          "nickname": "E",
+          "fullName": "End"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Division": {
+      "guid": "9c85271f-89fa-4e9f-9f4a-d75802120ccc",
+      "inputs": [
+        {
+          "nickname": "A",
+          "fullName": "A"
+        },
+        {
+          "nickname": "B",
+          "fullName": "B"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "fullName": "Result"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Subtraction": {
+      "guid": "9c007a04-d0d9-48e4-9da3-9ba142bc4d46",
+      "inputs": [],
+      "outputs": [],
+      "usage_count": 2
+    },
+    "Face Boundaries": {
+      "guid": "0b4ac802-fc4a-4201-9c66-0078b837c1eb",
+      "inputs": [
+        {
+          "nickname": "M",
+          "fullName": "Mesh"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "B",
+          "fullName": "Boundaries"
+        }
+      ],
+      "usage_count": 1
+    }
+  }
+}

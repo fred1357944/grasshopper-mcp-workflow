@@ -1,0 +1,367 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Grasshopper 組件參數知識庫 - 用於 MCP 程式化連接",
+    "source": "Gemini CLI + 實測驗證",
+    "last_updated": "2026-01-08",
+    "notes": [
+      "nickname: 組件面板上顯示的短名 (如 G, A, B)",
+      "fullName: 完整參數名稱 (用於 connect_components 的 sourceParam/targetParam)",
+      "multiInput: 是否支持多個輸入源連接到同一參數"
+    ]
+  },
+
+  "components": {
+    "Number Slider": {
+      "category": "Params/Input",
+      "inputs": [],
+      "outputs": [
+        {
+          "nickname": null,
+          "fullName": null,
+          "note": "本身即為參數輸出，sourceParam 請留空或省略"
+        }
+      ]
+    },
+
+    "Average": {
+      "category": "Maths/Operators",
+      "inputs": [
+        { "nickname": "I", "fullName": "Input", "multiInput": true }
+      ],
+      "outputs": [
+        { "nickname": "A", "fullName": "Average" }
+      ],
+      "notes": "輸入支持多來源，所有數值會取平均"
+    },
+
+    "Addition": {
+      "category": "Maths/Operators",
+      "inputs": [
+        { "nickname": "A", "fullName": "A" },
+        { "nickname": "B", "fullName": "B" }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Result" }
+      ]
+    },
+
+    "Division": {
+      "category": "Maths/Operators",
+      "inputs": [
+        { "nickname": "A", "fullName": "A" },
+        { "nickname": "B", "fullName": "B" }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Result" }
+      ]
+    },
+
+    "Orient": {
+      "category": "Transform/Euclidean",
+      "inputs": [
+        { "nickname": "G", "fullName": "Geometry" },
+        { "nickname": "A", "fullName": "Source" },
+        { "nickname": "B", "fullName": "Target" }
+      ],
+      "outputs": [
+        { "nickname": "G", "fullName": "Geometry" },
+        { "nickname": "X", "fullName": "Transform" }
+      ],
+      "notes": "A=源平面, B=目標平面"
+    },
+
+    "Move": {
+      "category": "Transform/Euclidean",
+      "inputs": [
+        { "nickname": "G", "fullName": "Geometry" },
+        { "nickname": "T", "fullName": "Motion" }
+      ],
+      "outputs": [
+        { "nickname": "G", "fullName": "Geometry" },
+        { "nickname": "X", "fullName": "Transform" }
+      ],
+      "notes": "OLD 版本功能相同，只是標記過時"
+    },
+
+    "Solid Union": {
+      "category": "Intersect/Shape",
+      "inputs": [
+        { "nickname": "B", "fullName": "Breps", "multiInput": true }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Result" }
+      ],
+      "notes": "支持多個 Brep 輸入，會合併成單一實體"
+    },
+
+    "Extrude": {
+      "category": "Surface/Freeform",
+      "inputs": [
+        { "nickname": "B", "fullName": "Base" },
+        { "nickname": "D", "fullName": "Direction" }
+      ],
+      "outputs": [
+        { "nickname": "E", "fullName": "Extrusion" }
+      ]
+    },
+
+    "Construct Point": {
+      "category": "Vector/Point",
+      "inputs": [
+        { "nickname": "X", "fullName": "X coordinate" },
+        { "nickname": "Y", "fullName": "Y coordinate" },
+        { "nickname": "Z", "fullName": "Z coordinate" }
+      ],
+      "outputs": [
+        { "nickname": "Pt", "fullName": "Point" }
+      ]
+    },
+
+    "XY Plane": {
+      "category": "Vector/Plane",
+      "inputs": [
+        { "nickname": "O", "fullName": "Origin" }
+      ],
+      "outputs": [
+        { "nickname": "P", "fullName": "Plane" }
+      ]
+    },
+
+    "Circle": {
+      "category": "Curve/Primitive",
+      "inputs": [
+        { "nickname": "P", "fullName": "Plane" },
+        { "nickname": "R", "fullName": "Radius" }
+      ],
+      "outputs": [
+        { "nickname": "C", "fullName": "Circle" }
+      ]
+    },
+
+    "Rectangle": {
+      "category": "Curve/Primitive",
+      "inputs": [
+        { "nickname": "P", "fullName": "Plane" },
+        { "nickname": "X", "fullName": "X Size" },
+        { "nickname": "Y", "fullName": "Y Size" },
+        { "nickname": "R", "fullName": "Radius" }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Rectangle" },
+        { "nickname": "L", "fullName": "Length" }
+      ]
+    },
+
+    "Boundary Surfaces": {
+      "category": "Surface/Freeform",
+      "inputs": [
+        { "nickname": "E", "fullName": "Edges" }
+      ],
+      "outputs": [
+        { "nickname": "S", "fullName": "Surfaces" }
+      ]
+    },
+
+    "Center Box": {
+      "category": "Surface/Primitive",
+      "inputs": [
+        { "nickname": "B", "fullName": "Base" },
+        { "nickname": "X", "fullName": "X" },
+        { "nickname": "Y", "fullName": "Y" },
+        { "nickname": "Z", "fullName": "Z" }
+      ],
+      "outputs": [
+        { "nickname": "B", "fullName": "Box" }
+      ]
+    },
+
+    "Unit Z": {
+      "category": "Vector/Vector",
+      "inputs": [
+        { "nickname": "F", "fullName": "Factor" }
+      ],
+      "outputs": [
+        { "nickname": "V", "fullName": "Unit vector" }
+      ]
+    },
+
+    "Amplitude": {
+      "category": "Vector/Vector",
+      "inputs": [
+        { "nickname": "V", "fullName": "Vector" },
+        { "nickname": "A", "fullName": "Amplitude" }
+      ],
+      "outputs": [
+        { "nickname": "V", "fullName": "Vector" }
+      ]
+    },
+
+    "Cylinder": {
+      "category": "Surface/Primitive",
+      "inputs": [
+        { "nickname": "B", "fullName": "Base" },
+        { "nickname": "R", "fullName": "Radius" },
+        { "nickname": "L", "fullName": "Length" }
+      ],
+      "outputs": [
+        { "nickname": "C", "fullName": "Cylinder" }
+      ]
+    },
+
+    "Cap Holes": {
+      "category": "Surface/Util",
+      "inputs": [
+        { "nickname": "B", "fullName": "Brep" }
+      ],
+      "outputs": [
+        { "nickname": "B", "fullName": "Brep" }
+      ]
+    },
+
+    "Mass Addition": {
+      "category": "Maths/Operators",
+      "inputs": [
+        { "nickname": "I", "fullName": "Input", "multiInput": true }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Result" },
+        { "nickname": "P", "fullName": "Partial Results" }
+      ]
+    },
+
+    "Vector 2Pt": {
+      "category": "Vector/Vector",
+      "inputs": [
+        { "nickname": "A", "fullName": "Start Point" },
+        { "nickname": "B", "fullName": "End Point" }
+      ],
+      "outputs": [
+        { "nickname": "V", "fullName": "Vector" },
+        { "nickname": "L", "fullName": "Length" }
+      ]
+    },
+
+    "Line SDL": {
+      "category": "Curve/Primitive",
+      "inputs": [
+        { "nickname": "S", "fullName": "Start Point" },
+        { "nickname": "D", "fullName": "Direction" },
+        { "nickname": "L", "fullName": "Length" }
+      ],
+      "outputs": [
+        { "nickname": "L", "fullName": "Line" }
+      ]
+    },
+
+    "Pipe": {
+      "category": "Surface/Freeform",
+      "inputs": [
+        { "nickname": "C", "fullName": "Curve" },
+        { "nickname": "R", "fullName": "Radius" },
+        { "nickname": "E", "fullName": "Caps" }
+      ],
+      "outputs": [
+        { "nickname": "P", "fullName": "Pipe" }
+      ]
+    },
+
+    "Loft": {
+      "category": "Surface/Freeform",
+      "inputs": [
+        { "nickname": "C", "fullName": "Curves", "multiInput": true },
+        { "nickname": "O", "fullName": "Options" }
+      ],
+      "outputs": [
+        { "nickname": "L", "fullName": "Loft" }
+      ],
+      "notes": "Curves 參數需要接收多條曲線以生成放樣表面"
+    },
+
+    "Deconstruct Point": {
+      "category": "Vector/Point",
+      "inputs": [
+        { "nickname": "P", "fullName": "Point" }
+      ],
+      "outputs": [
+        { "nickname": "X", "fullName": "X" },
+        { "nickname": "Y", "fullName": "Y" },
+        { "nickname": "Z", "fullName": "Z" }
+      ]
+    },
+
+    "List Item": {
+      "category": "Sets/List",
+      "inputs": [
+        { "nickname": "L", "fullName": "List" },
+        { "nickname": "i", "fullName": "Index" },
+        { "nickname": "W", "fullName": "Wrap" }
+      ],
+      "outputs": [
+        { "nickname": "I", "fullName": "Item" }
+      ]
+    },
+
+    "Series": {
+      "category": "Sets/Sequence",
+      "inputs": [
+        { "nickname": "S", "fullName": "Start" },
+        { "nickname": "N", "fullName": "Step" },
+        { "nickname": "C", "fullName": "Count" }
+      ],
+      "outputs": [
+        { "nickname": "S", "fullName": "Series" }
+      ]
+    },
+
+    "Range": {
+      "category": "Sets/Sequence",
+      "inputs": [
+        { "nickname": "D", "fullName": "Domain" },
+        { "nickname": "N", "fullName": "Steps" }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Range" }
+      ]
+    },
+
+    "Multiplication": {
+      "category": "Maths/Operators",
+      "inputs": [
+        { "nickname": "A", "fullName": "A" },
+        { "nickname": "B", "fullName": "B" }
+      ],
+      "outputs": [
+        { "nickname": "R", "fullName": "Result" }
+      ]
+    },
+
+    "Panel": {
+      "category": "Params/Input",
+      "inputs": [
+        { "nickname": " ", "fullName": "Input" }
+      ],
+      "outputs": [
+        { "nickname": " ", "fullName": "Output" }
+      ],
+      "notes": "Panel 的 nickname 顯示為空字串"
+    }
+  },
+
+  "connection_rules": {
+    "slider_to_any": {
+      "description": "Number Slider 連接到其他組件",
+      "sourceParam": null,
+      "example": {
+        "source": "SLIDER_ID",
+        "target": "AVERAGE_ID",
+        "targetParam": "Input"
+      }
+    },
+    "multi_input": {
+      "description": "多個來源連接到同一輸入",
+      "components": ["Average", "Mass Addition", "Solid Union", "Loft"],
+      "note": "這些組件的輸入參數支持多個來源"
+    }
+  }
+}
