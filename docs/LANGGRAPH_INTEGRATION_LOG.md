@@ -173,14 +173,68 @@ GH_MCP Client:      ✓
 3. 更新 `src/__init__.py` 模組入口
 4. 測試 LangGraph → GH_MCP 流程
 
-### 測試結果
+### 測試結果 (初版)
 
 - 組件創建：10/10 ✓
 - 連接建立：5/10 (50%)
 - 失敗原因：參數名映射需要進一步優化
 
+---
+
+## 2026-01-23 優化記錄 (v0.2.1)
+
+### 問題診斷
+
+專家格式使用數字索引：
+```json
+{"from": {"component": "series", "output": 0}, "to": {"component": "sin", "input": 0}}
+```
+
+GH_MCP 需要參數名：
+```
+Series.S → Sin.x
+```
+
+### 解決方案
+
+添加參數索引映射表到 `mcp_adapter.py`：
+
+```python
+OUTPUT_INDEX_MAP = {
+    "Series": ["S"],
+    "Sine": ["y"],
+    "Multiplication": ["Result"],
+    ...
+}
+
+INPUT_INDEX_MAP = {
+    "Series": ["S", "N", "C"],  # Start, Step, Count
+    "Sine": ["x"],
+    "Multiplication": ["A", "B"],
+    ...
+}
+```
+
+### 測試結果 (優化後)
+
+| 測試案例 | 組件 | 連接 | 成功率 |
+|---------|------|------|--------|
+| 螺旋曲線 | 10/10 | 10/10 | 100% |
+| 螺旋樓梯 | 10/10 | 10/10 | 100% |
+
+### 課堂示範腳本
+
+```bash
+# 基本使用
+python scripts/demo_langgraph_spiral.py
+
+# 自定義設計意圖
+python scripts/demo_langgraph_spiral.py "創建一個參數化的波浪曲線"
+```
+
 ### 下一步
 
-1. 優化專家的 `nodes.py` 參數名生成
-2. 建立課堂用例範例
+1. ~~優化參數名映射~~ ✓ 已完成
+2. ~~建立課堂用例範例~~ ✓ 已完成
 3. 增強錯誤診斷
+4. 添加更多設計意圖模式
