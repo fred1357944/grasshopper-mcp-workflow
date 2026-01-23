@@ -24,6 +24,66 @@ from typing import Optional, Dict, List, Tuple, Any
 from dataclasses import dataclass
 from pathlib import Path
 
+# =========================================================================
+# 參數別名表 (從實際錯誤案例學習)
+# =========================================================================
+# 當連接失敗時，自動嘗試這些別名
+# 格式: "組件類型": ["優先參數", "備選1", "備選2", ...]
+
+PARAM_ALIASES = {
+    # 數學運算組件 - 輸出參數
+    "Division": ["Result", "R"],
+    "Multiplication": ["Result", "R"],
+    "Addition": ["Result", "R"],
+    "Subtraction": ["Result", "R"],
+    "Modulus": ["Result", "R"],
+    "Power": ["Result", "R"],
+    "Absolute": ["Result", "R"],
+    "Negative": ["Result", "R"],
+
+    # 三角函數組件 - 注意 Radians 組件輸出參數是全名
+    "Radians": ["Radians", "R", "Result"],
+    "Degrees": ["Degrees", "D", "Result"],
+    "Sine": ["y", "Result", "R"],
+    "Cosine": ["y", "Result", "R"],
+    "Tangent": ["y", "Result", "R"],
+
+    # 數列組件
+    "Series": ["S", "Series", "Result"],
+    "Range": ["R", "Range", "Result"],
+    "Random": ["R", "Random", "Result"],
+
+    # 點/向量組件
+    "Construct Point": ["Pt", "Point", "P"],
+    "Deconstruct Point": ["X", "Y", "Z"],  # 多輸出
+    "Unit X": ["V", "Vector", "Unit"],
+    "Unit Y": ["V", "Vector", "Unit"],
+    "Unit Z": ["V", "Vector", "Unit"],
+    "Vector XYZ": ["V", "Vector", "Result"],
+
+    # 幾何組件
+    "Center Box": ["B", "Box", "Geometry"],
+    "Circle": ["C", "Circle", "Geometry"],
+    "Line": ["L", "Line", "Geometry"],
+    "Cylinder": ["C", "Cylinder", "Geometry"],
+    "Sphere": ["S", "Sphere", "Geometry"],
+    "Pipe": ["P", "Pipe", "Geometry"],
+
+    # 變換組件
+    "Move": ["G", "Geometry", "Result"],
+    "Rotate": ["G", "Geometry", "Result"],
+    "Scale": ["G", "Geometry", "Result"],
+    "Mirror": ["G", "Geometry", "Result"],
+
+    # 曲線組件
+    "Interpolate": ["C", "Curve", "Result"],
+    "Polyline": ["Pl", "Polyline", "Result"],
+
+    # 數據組件
+    "Number Slider": ["N", "Number"],
+    "Panel": ["Out", "Output", "Data"],
+}
+
 # 嘗試導入 Gemini 分析器
 try:
     from gh_learning.src.gemini_analyzer import GeminiAnalyzer
@@ -420,6 +480,100 @@ class GH_MCP_ClientOptimized:
                 'error': str(error)
             })
             return False
+
+    def smart_connect(
+        self,
+        from_nick: str,
+        from_param: str,
+        to_nick: str,
+        to_param: str,
+        verbose: bool = True
+    ) -> bool:
+        """
+        智能連接 - 失敗時自動嘗試參數別名
+
+        工作流程：
+        1. 先嘗試原始參數名
+        2. 若失敗，根據源組件類型查找別名
+        3. 依序嘗試別名直到成功
+        4. 全部失敗則記錄並返回 False
+
+        Args:
+            from_nick: 源組件 nickname
+            from_param: 源參數名
+            to_nick: 目標組件 nickname
+            to_param: 目標參數名
+            verbose: 是否顯示別名嘗試過程
+
+        Returns:
+            bool: 連接是否成功
+        """
+        from_info = self.components.get(from_nick)
+        if not from_info:
+            if self.debug:
+                print(f"   ✗ 找不到源組件: {from_nick}")
+            return False
+
+        # 1. 先嘗試原始參數名
+        if self.connect(from_nick, from_param, to_nick, to_param):
+            return True
+
+        # 2. 查找組件類型的別名
+        comp_type = from_info.comp_type
+        aliases = PARAM_ALIASES.get(comp_type, [])
+
+        # 3. 嘗試每個別名
+        tried = [from_param]
+        for alias in aliases:
+            if alias == from_param:
+                continue  # 跳過已嘗試的
+            tried.append(alias)
+
+            # 暫時關閉 debug 避免重複輸出
+            original_debug = self.debug
+            self.debug = False
+            success = self.connect(from_nick, alias, to_nick, to_param)
+            self.debug = original_debug
+
+            if success:
+                if verbose and self.debug:
+                    print(f"   ↳ 使用別名: {from_nick}.{from_param} → {from_nick}.{alias}")
+                return True
+
+        # 4. 全部失敗
+        if self.debug:
+            print(f"   ✗ {from_nick}.{from_param} → {to_nick}.{to_param} (嘗試: {', '.join(tried)})")
+
+        return False
+
+    def smart_connect_batch(
+        self,
+        connections: List[Tuple[str, str, str, str]]
+    ) -> Tuple[int, int, List[Dict]]:
+        """
+        批量智能連接
+
+        Args:
+            connections: [(from_nick, from_param, to_nick, to_param), ...]
+
+        Returns:
+            (success_count, fail_count, failed_list)
+        """
+        success = 0
+        fail = 0
+        failed_list = []
+
+        for from_nick, from_param, to_nick, to_param in connections:
+            if self.smart_connect(from_nick, from_param, to_nick, to_param):
+                success += 1
+            else:
+                fail += 1
+                failed_list.append({
+                    'from': f"{from_nick}.{from_param}",
+                    'to': f"{to_nick}.{to_param}"
+                })
+
+        return (success, fail, failed_list)
 
     def connect_batch(
         self,
