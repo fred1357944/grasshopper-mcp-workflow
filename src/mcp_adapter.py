@@ -24,6 +24,84 @@ from grasshopper_mcp.client_optimized import (
 from src.smart_layout import SmartLayoutEngine, LayoutConfig
 
 
+# ============================================================
+# 組件參數索引映射
+# ============================================================
+# 專家格式用數字索引 (0, 1, 2...)
+# GH_MCP 需要參數名 ("N", "S", "y"...)
+
+# 輸出參數映射: 組件類型 -> [第0個輸出, 第1個輸出, ...]
+OUTPUT_INDEX_MAP = {
+    "Number Slider": ["N"],
+    "Series": ["S"],
+    "Range": ["R"],
+    "Sine": ["y"],
+    "Cosine": ["y"],
+    "Tangent": ["y"],
+    "Radians": ["Radians"],
+    "Degrees": ["Degrees"],
+    "Addition": ["Result"],
+    "Subtraction": ["Result"],
+    "Multiplication": ["Result"],
+    "Division": ["Result"],
+    "Power": ["Result"],
+    "Modulus": ["Result"],
+    "Absolute": ["Result"],
+    "Construct Point": ["Pt"],
+    "Deconstruct Point": ["X", "Y", "Z"],
+    "Vector XYZ": ["V"],
+    "Unit X": ["V"],
+    "Unit Y": ["V"],
+    "Unit Z": ["V"],
+    "Circle": ["C"],
+    "Line": ["L"],
+    "Polyline": ["Pl"],
+    "Interpolate": ["C"],
+    "Move": ["G", "T"],
+    "Rotate": ["G", "X"],
+    "Scale": ["G"],
+    "Extrude": ["E"],
+    "Loft": ["L"],
+    "Pipe": ["P"],
+    "Center Box": ["B"],
+    "Box 2Pt": ["B"],
+    "Cylinder": ["C"],
+    "Sphere": ["S"],
+}
+
+# 輸入參數映射: 組件類型 -> [第0個輸入, 第1個輸入, ...]
+INPUT_INDEX_MAP = {
+    "Series": ["S", "N", "C"],  # Start, Step, Count
+    "Range": ["D", "N"],  # Domain, Steps
+    "Sine": ["x"],
+    "Cosine": ["x"],
+    "Tangent": ["x"],
+    "Radians": ["D"],
+    "Degrees": ["R"],
+    "Addition": ["A", "B"],
+    "Subtraction": ["A", "B"],
+    "Multiplication": ["A", "B"],
+    "Division": ["A", "B"],
+    "Power": ["B", "E"],
+    "Construct Point": ["X", "Y", "Z"],
+    "Deconstruct Point": ["P"],
+    "Vector XYZ": ["X", "Y", "Z"],
+    "Circle": ["P", "R"],  # Plane, Radius
+    "Line": ["A", "B"],
+    "Polyline": ["V"],  # Vertices
+    "Interpolate": ["V", "D", "P"],  # Vertices, Degree, Periodic
+    "Move": ["G", "T"],  # Geometry, Translation
+    "Rotate": ["G", "A", "P"],  # Geometry, Angle, Plane
+    "Scale": ["G", "C", "F"],  # Geometry, Center, Factor
+    "Extrude": ["B", "D"],  # Base, Direction
+    "Loft": ["C", "O"],  # Curves, Options
+    "Pipe": ["C", "R"],  # Curve, Radius
+    "Center Box": ["B", "X", "Y", "Z"],
+    "Cylinder": ["B", "R", "L"],  # Base, Radius, Length
+    "Sphere": ["B", "R"],  # Base, Radius
+}
+
+
 @dataclass
 class DeploymentResult:
     """部署結果"""
@@ -235,37 +313,64 @@ class MCPAdapter:
 
             if isinstance(from_data, dict):
                 # 專家格式
-                from_nick = from_data.get("component", "")
-                from_param = from_data.get("output", 0)
-                # 如果是數字，轉成預設參數名
-                if isinstance(from_param, int):
-                    from_param = "N"  # Slider 預設輸出
+                from_id = from_data.get("component", "")
+                from_param_raw = from_data.get("output", 0)
             else:
                 # 本專案格式
-                from_nick = from_data or ""
-                from_param = conn.get("from_param", "N")
+                from_id = from_data or ""
+                from_param_raw = conn.get("from_param", "N")
 
             if isinstance(to_data, dict):
                 # 專家格式
-                to_nick = to_data.get("component", "")
-                to_param = to_data.get("input", "")
-                # 如果是數字，轉成預設參數名
-                if isinstance(to_param, int):
-                    to_param = "x"  # 數學組件預設輸入
+                to_id = to_data.get("component", "")
+                to_param_raw = to_data.get("input", 0)
             else:
                 # 本專案格式
-                to_nick = to_data or ""
-                to_param = conn.get("to_param", "R")
+                to_id = to_data or ""
+                to_param_raw = conn.get("to_param", "R")
 
-            # 用 nickname 映射到實際創建的組件
-            # 專家格式用 id (如 "slider_turns")，需要映射到 nickname (如 "Turns")
-            from_nick = self._resolve_nickname(from_nick)
-            to_nick = self._resolve_nickname(to_nick)
+            # 解析 nickname
+            from_nick = self._resolve_nickname(from_id)
+            to_nick = self._resolve_nickname(to_id)
+
+            # 解析參數名 (數字索引 → 實際參數名)
+            from_param = self._resolve_param(from_nick, from_param_raw, is_output=True)
+            to_param = self._resolve_param(to_nick, to_param_raw, is_output=False)
 
             if from_nick and to_nick:
                 connection_tuples.append((from_nick, from_param, to_nick, to_param))
 
         return self.client.smart_connect_batch(connection_tuples)
+
+    def _resolve_param(self, nickname: str, param_raw: Any, is_output: bool) -> str:
+        """
+        解析參數名
+
+        Args:
+            nickname: 組件 nickname
+            param_raw: 原始參數 (可能是數字索引或字串參數名)
+            is_output: True=輸出參數, False=輸入參數
+
+        Returns:
+            實際參數名
+        """
+        # 如果已經是字串，直接返回
+        if isinstance(param_raw, str) and param_raw:
+            return param_raw
+
+        # 數字索引需要查表
+        if isinstance(param_raw, int):
+            # 先找到組件類型
+            comp_info = self.client.components.get(nickname)
+            if comp_info:
+                comp_type = comp_info.comp_type
+                param_map = OUTPUT_INDEX_MAP if is_output else INPUT_INDEX_MAP
+                params = param_map.get(comp_type, [])
+                if 0 <= param_raw < len(params):
+                    return params[param_raw]
+
+        # 默認值
+        return "N" if is_output else "x"
 
     def _resolve_nickname(self, id_or_nick: str) -> str:
         """
