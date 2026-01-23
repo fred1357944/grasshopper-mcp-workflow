@@ -1,0 +1,72 @@
+{
+  "pattern_id": "spiral-staircase-v1",
+  "name": "螺旋樓梯 (Spiral Staircase)",
+  "description": "使用 Sin/Cos 極座標生成螺旋階梯，包含中心柱和扶手。核心邏輯是將角度序列轉換為 3D 座標點，再生成幾何。",
+
+  "design_intent": {
+    "geometry_type": "staircase",
+    "style": "modern",
+    "key_features": ["parametric", "spiral", "handrail", "center_pole"]
+  },
+
+  "parameters": [
+    {"name": "Steps", "default": 12, "min": 6, "max": 30, "description": "階梯數量"},
+    {"name": "TotalH", "default": 300, "min": 150, "max": 500, "description": "總高度 (cm)"},
+    {"name": "OuterR", "default": 120, "min": 80, "max": 200, "description": "外半徑 (cm)"},
+    {"name": "InnerR", "default": 25, "min": 15, "max": 50, "description": "內半徑/中心柱半徑 (cm)"},
+    {"name": "Rotation", "default": 1.0, "min": 0.5, "max": 3.0, "description": "旋轉圈數"},
+    {"name": "StepT", "default": 5, "min": 3, "max": 10, "description": "踏板厚度 (cm)"},
+    {"name": "HandrailH", "default": 90, "min": 60, "max": 120, "description": "扶手高度 (cm)"},
+    {"name": "PipeR", "default": 3, "min": 2, "max": 6, "description": "扶手管徑 (cm)"}
+  ],
+
+  "component_groups": {
+    "PARAMS": ["Steps", "TotalH", "OuterR", "InnerR", "Rotation", "StepT", "HandrailH", "PipeR", "Num360", "Num2"],
+    "CALC": ["StepSeries", "TotalAngle", "AnglePerStep", "HeightPerStep", "StepAngles", "StepHeights"],
+    "TRIG": ["Rads", "SinA", "CosA"],
+    "GEOMETRY": ["SumRadii", "MidRadius", "Xs", "Ys", "StepCenters", "StepWidth", "StepBoxes", "RotatedSteps"],
+    "COLUMN": ["Origin", "CenterPole"],
+    "HANDRAIL": ["HandrailZ", "HandX", "HandY", "HandrailPts", "HandrailCurve", "HandrailPipe"]
+  },
+
+  "key_connections": [
+    {"from": "Steps.N", "to": "StepSeries.C", "note": "階梯數量 → 序列長度"},
+    {"from": "Rotation × Num360", "to": "TotalAngle", "note": "總旋轉角度"},
+    {"from": "TotalAngle / Steps", "to": "AnglePerStep", "note": "每階角度"},
+    {"from": "StepAngles → Rads → Sin/Cos", "to": "Xs, Ys", "note": "極座標轉直角座標"},
+    {"from": "MidRadius × Cos/Sin", "to": "StepCenters", "note": "階梯中心點"},
+    {"from": "StepBoxes + Rads", "to": "RotatedSteps", "note": "旋轉踏板對齊角度"}
+  ],
+
+  "trusted_guids": {
+    "Series": "651c4fa5-dff4-4be6-ba31-6dc267d3ab47",
+    "Multiplication": "2ce3f211-76d2-49e5-9f2f-7e75deed1c0e",
+    "Division": "b16a2ec0-f873-4ef7-8e0c-a068e7571cb4",
+    "Addition": "d65c653b-7a82-4666-bd4b-a71f3bd841a6",
+    "Subtraction": "0ff0bb57-8207-48a0-a732-6fd4d4931193",
+    "Radians": "a337f645-460f-4f2a-892e-5f7f1ebb51a4",
+    "Sine": "96061e03-a68a-4d5d-a02e-f215d27f2d83",
+    "Cosine": "1ac463e0-156f-4024-988b-b61bc57965f8",
+    "Construct Point": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+    "Center Box": "d1296e28-f64c-4c2a-9a9e-49e7839460de",
+    "Cylinder": "4edaf2ed-7b3a-42ed-bce0-3119ed106792",
+    "Rotate": "19c70daf-600f-4697-ace2-567f6702144d",
+    "Interpolate": "c731696a-ea52-4c47-be86-e64bc80bde08",
+    "Pipe": "1ee25749-2e2d-4fc6-9209-0ea0515081f9"
+  },
+
+  "debug_notes": [
+    "Rotate 必須使用 GUID 19c70daf... (新版)，舊版 5944e8e2... 是 OBSOLETE",
+    "常數值使用 Number Slider 而非 Panel，避免文字→數值轉換問題",
+    "Slider 設置順序：先 min/max 再 value，避免 clamping"
+  ],
+
+  "metadata": {
+    "created_at": "2026-01-23",
+    "created_by": "Claude + User",
+    "elegance_score": 4.5,
+    "usage_count": 1,
+    "verified": true,
+    "script_path": "scripts/build_spiral_staircase.py"
+  }
+}

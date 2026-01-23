@@ -1,0 +1,1047 @@
+{
+  "description": "桌子設計 - 從 component_info.mmd 自動生成",
+  "version": "1.0",
+  "generated_from": "component_info.mmd",
+  "commands": [
+    {
+      "type": "add_component",
+      "componentId": "AVERAGE_LEG_X",
+      "componentType": "Average",
+      "x": 100.0,
+      "y": 50.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "CONSTRUCT_POINT_CENTER",
+      "componentType": "Construct Point",
+      "x": 300.0,
+      "y": 100.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "XY_PLANE_TOP",
+      "componentType": "XY Plane",
+      "x": 500.0,
+      "y": 100.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "XY_PLANE_LEG_BASE",
+      "componentType": "XY Plane",
+      "x": 1000.0,
+      "y": 100.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "XY_PLANE_LEG_REF",
+      "componentType": "XY Plane",
+      "x": 1800.0,
+      "y": 100.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "AVERAGE_LEG_Y",
+      "componentType": "Average",
+      "x": 100.0,
+      "y": 150.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "CIRCLE_LEG_BASE",
+      "componentType": "Circle",
+      "x": 1200.0,
+      "y": 150.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "BOUNDARY_SURFACES_LEG_BASE",
+      "componentType": "Boundary Surfaces",
+      "x": 1400.0,
+      "y": 150.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_WIDTH",
+      "componentType": "Number Slider",
+      "x": 100.0,
+      "y": 200.0,
+      "value": 120.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "DIVISION_X",
+      "componentType": "Division",
+      "x": 500.0,
+      "y": 200.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_RADIUS_LEG",
+      "componentType": "Number Slider",
+      "x": 1000.0,
+      "y": 200.0,
+      "value": 2.5
+    },
+    {
+      "type": "add_component",
+      "componentId": "EXTRUDE_LEG_BASE",
+      "componentType": "Extrude",
+      "x": 1600.0,
+      "y": 200.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG1_X",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 200.0,
+      "value": -50.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "MOVE_PLANE_LEG1",
+      "componentType": "Move",
+      "x": 2200.0,
+      "y": 200.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "ORIENT_LEG1",
+      "componentType": "Orient",
+      "x": 2400.0,
+      "y": 200.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_TOP_Z",
+      "componentType": "Number Slider",
+      "x": 100.0,
+      "y": 250.0,
+      "value": 72.5
+    },
+    {
+      "type": "add_component",
+      "componentId": "CONSTANT_2",
+      "componentType": "Number Slider",
+      "x": 300.0,
+      "y": 250.0,
+      "value": 2.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "AMPLITUDE_LEG_BASE",
+      "componentType": "Amplitude",
+      "x": 1200.0,
+      "y": 250.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LENGTH",
+      "componentType": "Number Slider",
+      "x": 100.0,
+      "y": 300.0,
+      "value": 80.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "DIVISION_Y",
+      "componentType": "Division",
+      "x": 500.0,
+      "y": 300.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "CENTER_BOX_TOP",
+      "componentType": "Center Box",
+      "x": 700.0,
+      "y": 300.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG_HEIGHT",
+      "componentType": "Number Slider",
+      "x": 1000.0,
+      "y": 300.0,
+      "value": 70.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG1_Y",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 300.0,
+      "value": -30.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "VECTOR_LEG1",
+      "componentType": "Vector XYZ",
+      "x": 2000.0,
+      "y": 300.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG2_X",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 350.0,
+      "value": 50.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "MOVE_PLANE_LEG2",
+      "componentType": "Move",
+      "x": 2200.0,
+      "y": 350.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "ORIENT_LEG2",
+      "componentType": "Orient",
+      "x": 2400.0,
+      "y": 350.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_TOP_HEIGHT",
+      "componentType": "Number Slider",
+      "x": 100.0,
+      "y": 400.0,
+      "value": 5.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "DIVISION_Z",
+      "componentType": "Division",
+      "x": 500.0,
+      "y": 400.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "UNIT_Z",
+      "componentType": "Unit Z",
+      "x": 1000.0,
+      "y": 400.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "BOOLEAN_UNION",
+      "componentType": "Solid Union",
+      "x": 2600.0,
+      "y": 400.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG1_Z",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 450.0,
+      "value": 0.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG2_Y",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 450.0,
+      "value": -30.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "VECTOR_LEG2",
+      "componentType": "Vector XYZ",
+      "x": 2000.0,
+      "y": 450.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG3_X",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 500.0,
+      "value": -50.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "MOVE_PLANE_LEG3",
+      "componentType": "Move",
+      "x": 2200.0,
+      "y": 500.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "ORIENT_LEG3",
+      "componentType": "Orient",
+      "x": 2400.0,
+      "y": 500.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG2_Z",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 600.0,
+      "value": 0.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG3_Y",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 600.0,
+      "value": 30.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "VECTOR_LEG3",
+      "componentType": "Vector XYZ",
+      "x": 2000.0,
+      "y": 600.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG4_X",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 650.0,
+      "value": 50.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "MOVE_PLANE_LEG4",
+      "componentType": "Move",
+      "x": 2200.0,
+      "y": 650.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "ORIENT_LEG4",
+      "componentType": "Orient",
+      "x": 2400.0,
+      "y": 650.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG3_Z",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 750.0,
+      "value": 0.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG4_Y",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 750.0,
+      "value": 30.0
+    },
+    {
+      "type": "add_component",
+      "componentId": "VECTOR_LEG4",
+      "componentType": "Vector XYZ",
+      "x": 2000.0,
+      "y": 750.0,
+      "value": null
+    },
+    {
+      "type": "add_component",
+      "componentId": "SLIDER_LEG4_Z",
+      "componentType": "Number Slider",
+      "x": 1800.0,
+      "y": 900.0,
+      "value": 0.0
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG1_X -> AVERAGE_LEG_X",
+      "parameters": {
+        "sourceId": "SLIDER_LEG1_X",
+        "targetId": "AVERAGE_LEG_X",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG2_X -> AVERAGE_LEG_X",
+      "parameters": {
+        "sourceId": "SLIDER_LEG2_X",
+        "targetId": "AVERAGE_LEG_X",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG3_X -> AVERAGE_LEG_X",
+      "parameters": {
+        "sourceId": "SLIDER_LEG3_X",
+        "targetId": "AVERAGE_LEG_X",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG4_X -> AVERAGE_LEG_X",
+      "parameters": {
+        "sourceId": "SLIDER_LEG4_X",
+        "targetId": "AVERAGE_LEG_X",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG1_Y -> AVERAGE_LEG_Y",
+      "parameters": {
+        "sourceId": "SLIDER_LEG1_Y",
+        "targetId": "AVERAGE_LEG_Y",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG2_Y -> AVERAGE_LEG_Y",
+      "parameters": {
+        "sourceId": "SLIDER_LEG2_Y",
+        "targetId": "AVERAGE_LEG_Y",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG3_Y -> AVERAGE_LEG_Y",
+      "parameters": {
+        "sourceId": "SLIDER_LEG3_Y",
+        "targetId": "AVERAGE_LEG_Y",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG4_Y -> AVERAGE_LEG_Y",
+      "parameters": {
+        "sourceId": "SLIDER_LEG4_Y",
+        "targetId": "AVERAGE_LEG_Y",
+        "sourceParam": "output",
+        "targetParam": "Number"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "AVERAGE_LEG_X -> CONSTRUCT_POINT_CENTER",
+      "parameters": {
+        "sourceId": "AVERAGE_LEG_X",
+        "targetId": "CONSTRUCT_POINT_CENTER",
+        "sourceParam": "output",
+        "targetParam": "X coordinate"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "AVERAGE_LEG_Y -> CONSTRUCT_POINT_CENTER",
+      "parameters": {
+        "sourceId": "AVERAGE_LEG_Y",
+        "targetId": "CONSTRUCT_POINT_CENTER",
+        "sourceParam": "output",
+        "targetParam": "Y coordinate"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_TOP_Z -> CONSTRUCT_POINT_CENTER",
+      "parameters": {
+        "sourceId": "SLIDER_TOP_Z",
+        "targetId": "CONSTRUCT_POINT_CENTER",
+        "sourceParam": "output",
+        "targetParam": "Z coordinate"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CONSTRUCT_POINT_CENTER -> XY_PLANE_TOP",
+      "parameters": {
+        "sourceId": "CONSTRUCT_POINT_CENTER",
+        "targetId": "XY_PLANE_TOP",
+        "sourceParam": "output",
+        "targetParam": "Origin"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_TOP -> CENTER_BOX_TOP",
+      "parameters": {
+        "sourceId": "XY_PLANE_TOP",
+        "targetId": "CENTER_BOX_TOP",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_WIDTH -> DIVISION_X",
+      "parameters": {
+        "sourceId": "SLIDER_WIDTH",
+        "targetId": "DIVISION_X",
+        "sourceParam": "output",
+        "targetParam": "A"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LENGTH -> DIVISION_Y",
+      "parameters": {
+        "sourceId": "SLIDER_LENGTH",
+        "targetId": "DIVISION_Y",
+        "sourceParam": "output",
+        "targetParam": "A"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_TOP_HEIGHT -> DIVISION_Z",
+      "parameters": {
+        "sourceId": "SLIDER_TOP_HEIGHT",
+        "targetId": "DIVISION_Z",
+        "sourceParam": "output",
+        "targetParam": "A"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CONSTANT_2 -> DIVISION_X",
+      "parameters": {
+        "sourceId": "CONSTANT_2",
+        "targetId": "DIVISION_X",
+        "sourceParam": "output",
+        "targetParam": "B"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CONSTANT_2 -> DIVISION_Y",
+      "parameters": {
+        "sourceId": "CONSTANT_2",
+        "targetId": "DIVISION_Y",
+        "sourceParam": "output",
+        "targetParam": "B"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CONSTANT_2 -> DIVISION_Z",
+      "parameters": {
+        "sourceId": "CONSTANT_2",
+        "targetId": "DIVISION_Z",
+        "sourceParam": "output",
+        "targetParam": "B"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "DIVISION_X -> CENTER_BOX_TOP",
+      "parameters": {
+        "sourceId": "DIVISION_X",
+        "targetId": "CENTER_BOX_TOP",
+        "sourceParam": "output",
+        "targetParam": "X"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "DIVISION_Y -> CENTER_BOX_TOP",
+      "parameters": {
+        "sourceId": "DIVISION_Y",
+        "targetId": "CENTER_BOX_TOP",
+        "sourceParam": "output",
+        "targetParam": "Y"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "DIVISION_Z -> CENTER_BOX_TOP",
+      "parameters": {
+        "sourceId": "DIVISION_Z",
+        "targetId": "CENTER_BOX_TOP",
+        "sourceParam": "output",
+        "targetParam": "Z"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_BASE -> CIRCLE_LEG_BASE",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_BASE",
+        "targetId": "CIRCLE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_RADIUS_LEG -> CIRCLE_LEG_BASE",
+      "parameters": {
+        "sourceId": "SLIDER_RADIUS_LEG",
+        "targetId": "CIRCLE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Radius"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CIRCLE_LEG_BASE -> BOUNDARY_SURFACES_LEG_BASE",
+      "parameters": {
+        "sourceId": "CIRCLE_LEG_BASE",
+        "targetId": "BOUNDARY_SURFACES_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Edges"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "BOUNDARY_SURFACES_LEG_BASE -> EXTRUDE_LEG_BASE",
+      "parameters": {
+        "sourceId": "BOUNDARY_SURFACES_LEG_BASE",
+        "targetId": "EXTRUDE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Base"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "UNIT_Z -> AMPLITUDE_LEG_BASE",
+      "parameters": {
+        "sourceId": "UNIT_Z",
+        "targetId": "AMPLITUDE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Vector"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG_HEIGHT -> AMPLITUDE_LEG_BASE",
+      "parameters": {
+        "sourceId": "SLIDER_LEG_HEIGHT",
+        "targetId": "AMPLITUDE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Amplitude"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "AMPLITUDE_LEG_BASE -> EXTRUDE_LEG_BASE",
+      "parameters": {
+        "sourceId": "AMPLITUDE_LEG_BASE",
+        "targetId": "EXTRUDE_LEG_BASE",
+        "sourceParam": "output",
+        "targetParam": "Direction"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG1_X -> VECTOR_LEG1",
+      "parameters": {
+        "sourceId": "SLIDER_LEG1_X",
+        "targetId": "VECTOR_LEG1",
+        "sourceParam": "output",
+        "targetParam": "X component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG1_Y -> VECTOR_LEG1",
+      "parameters": {
+        "sourceId": "SLIDER_LEG1_Y",
+        "targetId": "VECTOR_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Y component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG1_Z -> VECTOR_LEG1",
+      "parameters": {
+        "sourceId": "SLIDER_LEG1_Z",
+        "targetId": "VECTOR_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Z component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG2_X -> VECTOR_LEG2",
+      "parameters": {
+        "sourceId": "SLIDER_LEG2_X",
+        "targetId": "VECTOR_LEG2",
+        "sourceParam": "output",
+        "targetParam": "X component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG2_Y -> VECTOR_LEG2",
+      "parameters": {
+        "sourceId": "SLIDER_LEG2_Y",
+        "targetId": "VECTOR_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Y component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG2_Z -> VECTOR_LEG2",
+      "parameters": {
+        "sourceId": "SLIDER_LEG2_Z",
+        "targetId": "VECTOR_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Z component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG3_X -> VECTOR_LEG3",
+      "parameters": {
+        "sourceId": "SLIDER_LEG3_X",
+        "targetId": "VECTOR_LEG3",
+        "sourceParam": "output",
+        "targetParam": "X component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG3_Y -> VECTOR_LEG3",
+      "parameters": {
+        "sourceId": "SLIDER_LEG3_Y",
+        "targetId": "VECTOR_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Y component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG3_Z -> VECTOR_LEG3",
+      "parameters": {
+        "sourceId": "SLIDER_LEG3_Z",
+        "targetId": "VECTOR_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Z component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG4_X -> VECTOR_LEG4",
+      "parameters": {
+        "sourceId": "SLIDER_LEG4_X",
+        "targetId": "VECTOR_LEG4",
+        "sourceParam": "output",
+        "targetParam": "X component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG4_Y -> VECTOR_LEG4",
+      "parameters": {
+        "sourceId": "SLIDER_LEG4_Y",
+        "targetId": "VECTOR_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Y component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "SLIDER_LEG4_Z -> VECTOR_LEG4",
+      "parameters": {
+        "sourceId": "SLIDER_LEG4_Z",
+        "targetId": "VECTOR_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Z component"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_REF -> MOVE_PLANE_LEG1",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_REF",
+        "targetId": "MOVE_PLANE_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_REF -> MOVE_PLANE_LEG2",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_REF",
+        "targetId": "MOVE_PLANE_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_REF -> MOVE_PLANE_LEG3",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_REF",
+        "targetId": "MOVE_PLANE_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_REF -> MOVE_PLANE_LEG4",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_REF",
+        "targetId": "MOVE_PLANE_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Plane"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "VECTOR_LEG1 -> MOVE_PLANE_LEG1",
+      "parameters": {
+        "sourceId": "VECTOR_LEG1",
+        "targetId": "MOVE_PLANE_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Motion"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "VECTOR_LEG2 -> MOVE_PLANE_LEG2",
+      "parameters": {
+        "sourceId": "VECTOR_LEG2",
+        "targetId": "MOVE_PLANE_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Motion"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "VECTOR_LEG3 -> MOVE_PLANE_LEG3",
+      "parameters": {
+        "sourceId": "VECTOR_LEG3",
+        "targetId": "MOVE_PLANE_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Motion"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "VECTOR_LEG4 -> MOVE_PLANE_LEG4",
+      "parameters": {
+        "sourceId": "VECTOR_LEG4",
+        "targetId": "MOVE_PLANE_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Motion"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "EXTRUDE_LEG_BASE -> ORIENT_LEG1",
+      "parameters": {
+        "sourceId": "EXTRUDE_LEG_BASE",
+        "targetId": "ORIENT_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Geometry"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "EXTRUDE_LEG_BASE -> ORIENT_LEG2",
+      "parameters": {
+        "sourceId": "EXTRUDE_LEG_BASE",
+        "targetId": "ORIENT_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Geometry"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "EXTRUDE_LEG_BASE -> ORIENT_LEG3",
+      "parameters": {
+        "sourceId": "EXTRUDE_LEG_BASE",
+        "targetId": "ORIENT_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Geometry"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "EXTRUDE_LEG_BASE -> ORIENT_LEG4",
+      "parameters": {
+        "sourceId": "EXTRUDE_LEG_BASE",
+        "targetId": "ORIENT_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Geometry"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_BASE -> ORIENT_LEG1",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_BASE",
+        "targetId": "ORIENT_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Source"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_BASE -> ORIENT_LEG2",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_BASE",
+        "targetId": "ORIENT_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Source"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_BASE -> ORIENT_LEG3",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_BASE",
+        "targetId": "ORIENT_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Source"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "XY_PLANE_LEG_BASE -> ORIENT_LEG4",
+      "parameters": {
+        "sourceId": "XY_PLANE_LEG_BASE",
+        "targetId": "ORIENT_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Source"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "MOVE_PLANE_LEG1 -> ORIENT_LEG1",
+      "parameters": {
+        "sourceId": "MOVE_PLANE_LEG1",
+        "targetId": "ORIENT_LEG1",
+        "sourceParam": "output",
+        "targetParam": "Target"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "MOVE_PLANE_LEG2 -> ORIENT_LEG2",
+      "parameters": {
+        "sourceId": "MOVE_PLANE_LEG2",
+        "targetId": "ORIENT_LEG2",
+        "sourceParam": "output",
+        "targetParam": "Target"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "MOVE_PLANE_LEG3 -> ORIENT_LEG3",
+      "parameters": {
+        "sourceId": "MOVE_PLANE_LEG3",
+        "targetId": "ORIENT_LEG3",
+        "sourceParam": "output",
+        "targetParam": "Target"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "MOVE_PLANE_LEG4 -> ORIENT_LEG4",
+      "parameters": {
+        "sourceId": "MOVE_PLANE_LEG4",
+        "targetId": "ORIENT_LEG4",
+        "sourceParam": "output",
+        "targetParam": "Target"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "CENTER_BOX_TOP -> BOOLEAN_UNION",
+      "parameters": {
+        "sourceId": "CENTER_BOX_TOP",
+        "targetId": "BOOLEAN_UNION",
+        "sourceParam": "output",
+        "targetParam": "Breps"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "ORIENT_LEG1 -> BOOLEAN_UNION",
+      "parameters": {
+        "sourceId": "ORIENT_LEG1",
+        "targetId": "BOOLEAN_UNION",
+        "sourceParam": "output",
+        "targetParam": "Breps"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "ORIENT_LEG2 -> BOOLEAN_UNION",
+      "parameters": {
+        "sourceId": "ORIENT_LEG2",
+        "targetId": "BOOLEAN_UNION",
+        "sourceParam": "output",
+        "targetParam": "Breps"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "ORIENT_LEG3 -> BOOLEAN_UNION",
+      "parameters": {
+        "sourceId": "ORIENT_LEG3",
+        "targetId": "BOOLEAN_UNION",
+        "sourceParam": "output",
+        "targetParam": "Breps"
+      }
+    },
+    {
+      "type": "connect_components",
+      "comment": "ORIENT_LEG4 -> BOOLEAN_UNION",
+      "parameters": {
+        "sourceId": "ORIENT_LEG4",
+        "targetId": "BOOLEAN_UNION",
+        "sourceParam": "output",
+        "targetParam": "Breps"
+      }
+    }
+  ],
+  "metadata": {
+    "total_components": 47,
+    "total_connections": 66
+  }
+}

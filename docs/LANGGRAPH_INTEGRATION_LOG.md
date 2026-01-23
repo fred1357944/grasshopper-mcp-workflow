@@ -4,8 +4,38 @@
 
 | 版本 | 日期 | 說明 |
 |------|------|------|
+| v0.2.1 | 2026-01-23 | 三層防護機制 (GUID Registry + Smart Resolver + Auto Debugger) |
 | v0.2.0 | 2026-01-23 | 整合專家 LangGraph 模組 |
 | v0.1.0 | 之前 | 原始 GH_MCP Client |
+
+---
+
+## v0.2.1 更新內容
+
+### 新增模組
+
+| 模組 | 說明 |
+|------|------|
+| `guid_registry.py` | 可信 GUID 註冊表，用 category 區分同名組件 |
+| `smart_resolver.py` | 三層防護智能解析器 (Registry → AI → Human) |
+| `auto_debugger.py` | 自動排錯系統，錯誤診斷和修正建議 |
+| `scripts/smart_deploy.py` | 智能部署腳本，整合三層防護 |
+
+### 解決問題
+
+- **Line 組件版本衝突**: Line (Curve) vs Line (Params) 區分
+- **參數名縮寫**: R → Result, Pt → Point 自動修正
+- **部署腳本 GUID 遺漏**: 修復 deploy_bookshelf.py 實際使用 GUID
+
+### 三層防護機制
+
+```
+Layer 1: Registry 查詢
+         ↓ 找不到
+Layer 2: AI 推斷 (context-aware)
+         ↓ 不確定
+Layer 3: 人工確認 (interactive)
+```
 
 ---
 

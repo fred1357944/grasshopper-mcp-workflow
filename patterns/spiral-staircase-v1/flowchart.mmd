@@ -1,0 +1,141 @@
+flowchart LR
+    %% 螺旋樓梯 (方案 B) - GH 組件連接圖
+    %% 生成時間: 2026-01-23
+    %% 規格: 16階, 1圈, 高度3000mm, 外半徑1500mm, 內半徑200mm
+    %%
+    %% 請在 VSCode 中預覽：code GH_WIP/component_info.mmd
+
+    subgraph PARAMS["參數 Sliders"]
+        STEPS["Number Slider<br/>nickname: Steps<br/>value: 16<br/>range: 8-32"]
+        TOTALH["Number Slider<br/>nickname: TotalH<br/>value: 3000<br/>range: 2000-5000"]
+        OUTERR["Number Slider<br/>nickname: OuterR<br/>value: 1500<br/>range: 800-2500"]
+        INNERR["Number Slider<br/>nickname: InnerR<br/>value: 200<br/>range: 100-400"]
+        TURNS["Number Slider<br/>nickname: Turns<br/>value: 1.0<br/>range: 0.5-3.0"]
+        STEPT["Number Slider<br/>nickname: StepT<br/>value: 30<br/>range: 20-50"]
+        RAILH["Number Slider<br/>nickname: RailH<br/>value: 900<br/>range: 800-1100"]
+        RAILR["Number Slider<br/>nickname: RailR<br/>value: 25<br/>range: 15-40"]
+    end
+
+    subgraph CALC["計算邏輯"]
+        SERIES["Series<br/>nickname: StepSeries<br/>輸入: S=0, N=1, C=Steps<br/>輸出: 0,1,2...15"]
+
+        MUL_360["Multiplication<br/>nickname: TotalAngle<br/>A=360, B=Turns<br/>輸出: 360度"]
+        DIV_ANGLE["Division<br/>nickname: AngleStep<br/>A=TotalAngle, B=Steps<br/>輸出: 22.5度/階"]
+        MUL_ANGLES["Multiplication<br/>nickname: StepAngles<br/>A=Series, B=AngleStep<br/>輸出: 各階角度"]
+
+        DIV_HEIGHT["Division<br/>nickname: HeightStep<br/>A=TotalH, B=Steps<br/>輸出: 187.5mm/階"]
+        MUL_HEIGHTS["Multiplication<br/>nickname: StepHeights<br/>A=Series, B=HeightStep<br/>輸出: 各階高度"]
+    end
+
+    subgraph TRIG["三角函數"]
+        RADS["Radians<br/>nickname: Rads<br/>D=StepAngles<br/>輸出: 弧度"]
+        SIN["Sine<br/>nickname: SinA<br/>x=Rads"]
+        COS["Cosine<br/>nickname: CosA<br/>x=Rads"]
+    end
+
+    subgraph TREAD_GEO["踏板幾何"]
+        %% 踏板中心點 (在外半徑和內半徑的中間)
+        ADD_R["Addition<br/>nickname: SumR<br/>A=OuterR, B=InnerR"]
+        DIV_MID["Division<br/>nickname: MidR<br/>A=SumR, B=2<br/>輸出: 850 (中間半徑)"]
+
+        MUL_X["Multiplication<br/>nickname: Xs<br/>A=CosA, B=MidR"]
+        MUL_Y["Multiplication<br/>nickname: Ys<br/>A=SinA, B=MidR"]
+
+        PT_CENTER["Construct Point<br/>nickname: StepCenters<br/>X=Xs, Y=Ys, Z=StepHeights"]
+
+        %% 踏板尺寸
+        SUB_WIDTH["Subtraction<br/>nickname: TreadW<br/>A=OuterR, B=InnerR<br/>輸出: 1300 (踏板寬度)"]
+
+        %% 踏板 Box
+        BOX["Center Box<br/>nickname: TreadBox<br/>B=StepCenters, X=TreadW, Y=200, Z=StepT"]
+
+        %% 旋轉踏板對齊角度
+        ZAXIS["Unit Z<br/>nickname: ZAxis"]
+        ROTATE["Rotate<br/>nickname: RotatedTreads<br/>G=TreadBox, A=Rads, P=ZAxis"]
+    end
+
+    subgraph COLUMN["中心柱"]
+        ORIGIN["Construct Point<br/>nickname: Origin<br/>X=0, Y=0, Z=0"]
+        CYL["Cylinder<br/>nickname: CenterCol<br/>B=Origin, R=InnerR, L=TotalH"]
+    end
+
+    subgraph HANDRAIL["扶手"]
+        %% 扶手螺旋線
+        SUB_RAIL["Subtraction<br/>nickname: RailRadius<br/>A=OuterR, B=50<br/>輸出: 1450"]
+        ADD_RAILZ["Addition<br/>nickname: RailZ<br/>A=StepHeights, B=RailH<br/>輸出: 各點Z+900"]
+
+        MUL_RX["Multiplication<br/>nickname: RailXs<br/>A=CosA, B=RailRadius"]
+        MUL_RY["Multiplication<br/>nickname: RailYs<br/>A=SinA, B=RailRadius"]
+
+        PT_RAIL["Construct Point<br/>nickname: RailPts<br/>X=RailXs, Y=RailYs, Z=RailZ"]
+        INTERP["Interpolate<br/>nickname: RailCurve<br/>V=RailPts"]
+        PIPE["Pipe<br/>nickname: RailPipe<br/>C=RailCurve, R=RailR"]
+    end
+
+    %% === 連接關係 ===
+
+    %% 參數 → 計算
+    STEPS -->|"N → C"| SERIES
+    TURNS -->|"N → A"| MUL_360
+    MUL_360 -->|"R → A"| DIV_ANGLE
+    STEPS -->|"N → B"| DIV_ANGLE
+    SERIES -->|"S → A"| MUL_ANGLES
+    DIV_ANGLE -->|"R → B"| MUL_ANGLES
+
+    TOTALH -->|"N → A"| DIV_HEIGHT
+    STEPS -->|"N → B"| DIV_HEIGHT
+    SERIES -->|"S → A"| MUL_HEIGHTS
+    DIV_HEIGHT -->|"R → B"| MUL_HEIGHTS
+
+    %% 角度 → 三角函數
+    MUL_ANGLES -->|"R → D"| RADS
+    RADS -->|"R → x"| SIN
+    RADS -->|"R → x"| COS
+
+    %% 踏板計算
+    OUTERR -->|"N → A"| ADD_R
+    INNERR -->|"N → B"| ADD_R
+    ADD_R -->|"R → A"| DIV_MID
+
+    COS -->|"y → A"| MUL_X
+    DIV_MID -->|"R → B"| MUL_X
+    SIN -->|"y → A"| MUL_Y
+    DIV_MID -->|"R → B"| MUL_Y
+
+    MUL_X -->|"R → X"| PT_CENTER
+    MUL_Y -->|"R → Y"| PT_CENTER
+    MUL_HEIGHTS -->|"R → Z"| PT_CENTER
+
+    OUTERR -->|"N → A"| SUB_WIDTH
+    INNERR -->|"N → B"| SUB_WIDTH
+
+    PT_CENTER -->|"Pt → B"| BOX
+    SUB_WIDTH -->|"R → X"| BOX
+    STEPT -->|"N → Z"| BOX
+
+    BOX -->|"B → G"| ROTATE
+    RADS -->|"R → A"| ROTATE
+    ZAXIS -->|"V → P"| ROTATE
+
+    %% 中心柱
+    INNERR -->|"N → R"| CYL
+    TOTALH -->|"N → L"| CYL
+    ORIGIN -->|"Pt → B"| CYL
+
+    %% 扶手
+    OUTERR -->|"N → A"| SUB_RAIL
+    MUL_HEIGHTS -->|"R → A"| ADD_RAILZ
+    RAILH -->|"N → B"| ADD_RAILZ
+
+    COS -->|"y → A"| MUL_RX
+    SUB_RAIL -->|"R → B"| MUL_RX
+    SIN -->|"y → A"| MUL_RY
+    SUB_RAIL -->|"R → B"| MUL_RY
+
+    MUL_RX -->|"R → X"| PT_RAIL
+    MUL_RY -->|"R → Y"| PT_RAIL
+    ADD_RAILZ -->|"R → Z"| PT_RAIL
+
+    PT_RAIL -->|"Pt → V"| INTERP
+    INTERP -->|"C → C"| PIPE
+    RAILR -->|"N → R"| PIPE

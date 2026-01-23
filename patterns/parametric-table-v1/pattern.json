@@ -1,0 +1,78 @@
+{
+  "pattern_id": "parametric-table-v1",
+  "name": "參數化桌子 (Parametric Table)",
+  "description": "四腳桌子，包含桌面 (Center Box) 和四個圓柱形桌腳 (Extrude + Orient)。使用 Average 計算桌面中心，Move 定位桌腳，Orient 複製幾何。",
+
+  "design_intent": {
+    "geometry_type": "furniture",
+    "style": "parametric",
+    "key_features": ["table_top", "four_legs", "orient_copy", "solid_union"]
+  },
+
+  "parameters": [
+    {"name": "Width", "default": 120, "min": 60, "max": 200, "description": "桌面寬度 (cm)"},
+    {"name": "Length", "default": 80, "min": 40, "max": 150, "description": "桌面長度 (cm)"},
+    {"name": "TopHeight", "default": 5, "min": 2, "max": 10, "description": "桌面厚度 (cm)"},
+    {"name": "LegHeight", "default": 70, "min": 50, "max": 100, "description": "桌腳高度 (cm)"},
+    {"name": "LegRadius", "default": 2.5, "min": 1, "max": 5, "description": "桌腳半徑 (cm)"},
+    {"name": "Leg1_X", "default": -50, "min": -100, "max": 0, "description": "桌腳1 X位置"},
+    {"name": "Leg1_Y", "default": -30, "min": -75, "max": 0, "description": "桌腳1 Y位置"},
+    {"name": "Leg2_X", "default": 50, "min": 0, "max": 100, "description": "桌腳2 X位置"},
+    {"name": "Leg2_Y", "default": -30, "min": -75, "max": 0, "description": "桌腳2 Y位置"},
+    {"name": "Leg3_X", "default": -50, "min": -100, "max": 0, "description": "桌腳3 X位置"},
+    {"name": "Leg3_Y", "default": 30, "min": 0, "max": 75, "description": "桌腳3 Y位置"},
+    {"name": "Leg4_X", "default": 50, "min": 0, "max": 100, "description": "桌腳4 X位置"},
+    {"name": "Leg4_Y", "default": 30, "min": 0, "max": 75, "description": "桌腳4 Y位置"}
+  ],
+
+  "component_groups": {
+    "TABLE_TOP": ["AVERAGE_LEG_X", "AVERAGE_LEG_Y", "CONSTRUCT_POINT_CENTER", "XY_PLANE_TOP", "DIVISION_X", "DIVISION_Y", "DIVISION_Z", "CENTER_BOX_TOP"],
+    "LEG_BASE": ["XY_PLANE_LEG_BASE", "CIRCLE_LEG_BASE", "BOUNDARY_SURFACES_LEG_BASE", "AMPLITUDE_LEG_BASE", "EXTRUDE_LEG_BASE"],
+    "LEG_PLANES": ["XY_PLANE_LEG_REF", "VECTOR_LEG1-4", "MOVE_PLANE_LEG1-4"],
+    "ORIENT_GROUP": ["ORIENT_LEG1", "ORIENT_LEG2", "ORIENT_LEG3", "ORIENT_LEG4"],
+    "OUTPUT": ["BOOLEAN_UNION"]
+  },
+
+  "key_connections": [
+    {"from": "Leg1-4_X/Y → Average", "to": "桌面中心點計算", "note": "四個桌腳位置的平均值"},
+    {"from": "Circle → BoundarySrf → Extrude", "to": "桌腳基礎幾何", "note": "創建一個圓柱體桌腳"},
+    {"from": "XY_Plane + Vector → Move", "to": "桌腳位置平面", "note": "定位四個桌腳位置"},
+    {"from": "Extrude + XY_Plane + MovedPlane → Orient", "to": "複製桌腳", "note": "將基礎桌腳複製到四個位置"},
+    {"from": "CenterBox + Orient×4 → SolidUnion", "to": "最終合併", "note": "桌面和四個桌腳合併為一體"}
+  ],
+
+  "trusted_guids": {
+    "Number Slider": "e2bb9b8d-0d80-44e7-aa2d-2e446f5c61da",
+    "Average": "3e0451ca-da24-452d-a6b1-a6877453d4e4",
+    "Construct Point": "9dceff86-6201-4c8e-90b1-706ad5bc3d49",
+    "XY Plane": "a896f6c1-dd6c-4830-88f2-44808c07dc10",
+    "Division": "7ed9789a-7403-4eeb-9716-d6e5681f4136",
+    "Center Box": "e1f83fb4-efe0-4f10-8c20-4b38df56b36c",
+    "Circle": "40dda121-a31b-421b-94b0-e46f5774f98e",
+    "Boundary Surfaces": "9ec27fcf-b30f-4ad2-b2d1-c1934c32f855",
+    "Unit Z": "9428ce3a-b2a0-4c8f-832a-8ad2b81a9743",
+    "Amplitude": "7b93e28d-6191-425a-844e-6e9e4127dd6b",
+    "Extrude": "1c5e4c65-5f57-432c-96d3-53563470ab51",
+    "Vector XYZ": "d3116726-7a3e-4089-b3e2-216b266a1245",
+    "Move": "6af48ec9-decb-4ad7-81ac-cd20452189a2",
+    "Orient": "b08eae6f-0030-4f63-be06-9f1c7f89efd1",
+    "Solid Union": "cabe86d9-6ef0-4037-90bd-01a02e0d30f0"
+  },
+
+  "debug_notes": [
+    "桌面高度 Z = 桌腳高度 + 桌面厚度/2 (72.5 = 70 + 5/2)",
+    "使用 Average 而非手動計算桌面中心，更靈活",
+    "Orient 比 Move 更適合複製幾何（保持原點關係）",
+    "47 個組件, 66 條連接"
+  ],
+
+  "metadata": {
+    "created_at": "2026-01-07",
+    "created_by": "Claude + User",
+    "elegance_score": 4.0,
+    "usage_count": 1,
+    "verified": true,
+    "script_path": "scripts/execute_table.py",
+    "test_path": "tests/test_full_table_workflow.py"
+  }
+}

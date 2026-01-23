@@ -755,5 +755,28 @@
     "Negative 組件需要查詢 GUID (Maths/Operators/Negative)",
     "XY Plane 輸出參數可能是 P 或 Pl，需測試",
     "所有 Slider 都使用標準設定流程：先 min/max 再 value"
-  ]
+  ],
+  "metadata": {
+    "pattern_id": "industrial-bookshelf",
+    "name": "工業風書架 (Industrial Bookshelf)",
+    "version": "1.0.0",
+    "created_at": "2026-01-23",
+    "author": "GH_MCP Workflow",
+    "script_path": "scripts/deploy_bookshelf.py",
+    "default_values": {
+      "width": 80,
+      "height": 180,
+      "depth": 30,
+      "shelf_count": 5,
+      "shelf_thickness": 2,
+      "support_radius": 1.5,
+      "bracket_radius": 0.8,
+      "inset": 5
+    },
+    "lessons_learned": [
+      "Line 組件需用 Curve 類別 GUID (31957fba-b08b-45f9-9ec0-5f9e52d3236b)",
+      "XY Plane 正確 GUID: 5df6a8c1-de5e-4841-8089-41a95c741c5a",
+      "參數名使用全名 (Result, Point, Series) 而非縮寫 (R, Pt, S)"
+    ]
+  }
 }

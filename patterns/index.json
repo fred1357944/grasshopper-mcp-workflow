@@ -1,0 +1,93 @@
+{
+  "spiral-staircase-v1": {
+    "name": "螺旋樓梯 (Spiral Staircase)",
+    "description": "使用 Sin/Cos 極座標生成螺旋階梯，包含中心柱和扶手",
+    "keywords": [
+      "spiral",
+      "staircase",
+      "樓梯",
+      "螺旋",
+      "helix",
+      "stairs",
+      "parametric",
+      "sin",
+      "cos",
+      "interpolate",
+      "pipe"
+    ],
+    "component_count": 35,
+    "connection_count": 48,
+    "source_file": "scripts/build_spiral_staircase.py",
+    "metadata": {
+      "created_at": "2026-01-23",
+      "elegance_score": 4.5,
+      "usage_count": 1,
+      "verified": true,
+      "difficulty": "intermediate",
+      "teaching_notes": "學習極座標到直角座標轉換的經典範例"
+    }
+  },
+  "parametric-table-v1": {
+    "name": "參數化桌子 (Parametric Table)",
+    "description": "四腳桌子，使用 Average 計算桌面中心，Orient 複製桌腳，Solid Union 合併",
+    "keywords": [
+      "table",
+      "desk",
+      "桌子",
+      "桌",
+      "furniture",
+      "家具",
+      "four legs",
+      "parametric",
+      "orient",
+      "extrude",
+      "solid union"
+    ],
+    "component_count": 47,
+    "connection_count": 66,
+    "source_file": "scripts/execute_table.py",
+    "metadata": {
+      "created_at": "2026-01-07",
+      "elegance_score": 4.0,
+      "usage_count": 1,
+      "verified": true,
+      "difficulty": "intermediate",
+      "teaching_notes": "學習 Orient 複製幾何和 Solid Union 合併的經典範例"
+    }
+  },
+  "industrial-bookshelf": {
+    "name": "工業風書架 (Industrial Bookshelf)",
+    "description": "可調整的工業風開放式書架設計。\n- 尺寸: 可調整寬度、高度、深度\n- 層數: 2-10 層可調\n- 結構: 金屬圓管支架 + 木質層板 + 金屬托架\n- 風格: 工業風、極簡現代\n\n特點:\n- 所有參數化：一個 Slider 控制一個維度\n- 對稱設計：左右支架/托架自動鏡像\n- 結構合理：托架支撐層板，支架承重",
+    "keywords": [
+      "書架",
+      "工業風",
+      "金屬",
+      "層板",
+      "儲物架",
+      "開放式",
+      "展示架",
+      "收納",
+      "極簡",
+      "bookshelf",
+      "industrial",
+      "metal",
+      "shelf",
+      "storage",
+      "open",
+      "display",
+      "modern",
+      "minimalist",
+      "parametric",
+      "adjustable",
+      "modular"
+    ],
+    "component_count": 40,
+    "source_file": "scripts/deploy_bookshelf.py",
+    "metadata": {
+      "created_at": "2026-01-23T20:19:52.906361",
+      "elegance_score": 0,
+      "usage_count": 0,
+      "verified": false
+    }
+  }
+}
