@@ -237,4 +237,94 @@ python scripts/demo_langgraph_spiral.py "創建一個參數化的波浪曲線"
 1. ~~優化參數名映射~~ ✓ 已完成
 2. ~~建立課堂用例範例~~ ✓ 已完成
 3. 增強錯誤診斷
-4. 添加更多設計意圖模式
+4. ~~添加更多設計意圖模式~~ ✓ 已完成 (v0.2.2)
+
+---
+
+## 2026-01-23 設計模式擴展 (v0.2.2)
+
+### 新增設計模式
+
+```mermaid
+graph TD
+    subgraph "設計意圖分類"
+        A[自然語言輸入] --> B{意圖識別}
+        B --> C1[3D 螺旋 helix]
+        B --> C2[2D 螺旋 spiral]
+        B --> C3[圓形陣列 radial]
+        B --> C4[線性陣列 linear]
+        B --> C5[參數化曲線]
+    end
+
+    subgraph "模板選擇"
+        C1 --> T1[15 組件<br/>18 連接]
+        C2 --> T2[9 組件<br/>10 連接]
+        C3 --> T3[11 組件<br/>13 連接]
+        C4 --> T4[6 組件<br/>5 連接]
+        C5 --> T5[4 組件<br/>3 連接]
+    end
+
+    style A fill:#e1f5ff
+    style B fill:#fff3e0
+    style T1 fill:#c8e6c9
+    style T2 fill:#c8e6c9
+    style T3 fill:#c8e6c9
+    style T4 fill:#c8e6c9
+    style T5 fill:#c8e6c9
+```
+
+### 3D Helix 數學模型
+
+```
+t = 0 to 2π × turns
+x = radius × cos(t)
+y = radius × sin(t)
+z = (t / 2π × turns) × height
+```
+
+### 關鍵字觸發表
+
+| 意圖類型 | 觸發關鍵字 |
+|---------|----------|
+| 3D 螺旋 | "螺旋" + "高度", "helix", "3d", "立體", "樓梯" |
+| 2D 螺旋 | "螺旋", "spiral", "螺線" (無高度參數) |
+| 圓形陣列 | "圓形陣列", "radial", "circular array", "環形" |
+| 線性陣列 | "陣列", "array", "複製", "copy", "線性" |
+
+### 測試結果
+
+| 測試案例 | 組件 | 連接 | 成功率 |
+|---------|------|------|--------|
+| 3D 螺旋曲線 | 15/15 | 18/18 | 100% |
+| 螺旋樓梯 (手動) | 35/35 | 48/48 | 100% |
+
+### 使用範例
+
+```python
+# 3D 螺旋曲線 (自動識別高度參數)
+from src.langgraph import run_generation
+from src.mcp_adapter import deploy_gh_code
+
+result = run_generation(
+    design_intent="創建一個 3D 螺旋曲線，要能控制圈數、半徑和高度",
+    max_iterations=1,
+    acceptance_threshold=0.5
+)
+
+deploy_result = deploy_gh_code(result["gh_code"])
+print(f"組件: {deploy_result.components_created}")
+print(f"連接: {deploy_result.connections_made}")
+```
+
+### 檔案變更
+
+- `src/langgraph/nodes.py`: +387 行 (新增設計模式模板)
+
+---
+
+## 下一步開發方向
+
+1. **課堂即用**: 3D 螺旋曲線可直接示範
+2. **曲面生成**: 添加 Loft、Sweep 等曲面模板
+3. **錯誤診斷**: 整合 Gemini 分析失敗原因
+4. **交互式流程**: 實現三階段設計流程 (Concept → Architecture → Execution)
