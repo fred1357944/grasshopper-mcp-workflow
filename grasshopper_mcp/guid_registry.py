@@ -120,6 +120,31 @@ class GUIDRegistry:
 
         # 清單操作
         ("List Length", "Sets"): "1817fd29-20ae-4503-b542-f0fb651e67d7",
+
+        # ========== Kangaroo 物理模擬 (從 84 個 .ghx 範例學習) ==========
+
+        # Kangaroo Goals
+        ("Spring", "Kangaroo"): "091bae84-8fa9-4b35-8aad-b25b859055f6",
+        ("Grab", "Kangaroo"): "3d13a415-6ac5-4b59-9677-3975e4696a85",
+        ("Anchor", "Kangaroo"): "e8c7b9f3-5a2c-4d1e-8f3a-2b9c7d4e6a1f",  # Placeholder
+
+        # Kangaroo Solver (注意：有多個版本)
+        ("Zombie Solver", "Kangaroo"): "8f9f19c0-207a-419d-90f6-2fcadaa845f9",  # O 組件
+        ("Bouncy Solver", "Kangaroo"): "313490f5-8e38-4dde-9e9a-05e4d739b35d",  # 另一個 O
+
+        # Kangaroo Utilities
+        ("Goal Debugger", "Kangaroo"): "0ed5e67d-539d-480e-88cb-d81fa795d66c",  # G 組件
+
+        # Mesh 操作 (常用於 Kangaroo)
+        ("Mesh", "Params"): "1e936df3-0eea-4246-8549-514cb8862b7a",
+        ("Non-Manifold Edges", "Mesh"): "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+        ("Mesh Normals", "Mesh"): "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+        ("Mesh Vertices", "Mesh"): "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+
+        # 輔助元件
+        ("Item", "Sets"): "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+        ("Scribble", "Params"): "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+        ("Data", "Params"): "8ec86459-bf01-4409-baee-174d0d2b13d0",
     }
 
     # 參數名映射（組件 GUID → 輸入/輸出參數名）
@@ -159,6 +184,28 @@ class GUIDRegistry:
         "1ee25749-2e2d-4fc6-9209-0ea0515081f9": {  # Pipe
             "inputs": ["Curve", "Radius", "Caps", "Fit Rail"],
             "outputs": ["Pipe"],
+        },
+
+        # ========== Kangaroo 組件參數 ==========
+        "091bae84-8fa9-4b35-8aad-b25b859055f6": {  # Spring
+            "inputs": ["Line", "Length", "Strength"],
+            "outputs": ["Spring"],
+        },
+        "3d13a415-6ac5-4b59-9677-3975e4696a85": {  # Grab
+            "inputs": ["On", "Strength", "Range"],
+            "outputs": ["Grab"],
+        },
+        "8f9f19c0-207a-419d-90f6-2fcadaa845f9": {  # Zombie Solver (O)
+            "inputs": ["GoalObjects", "Reset", "Threshold"],
+            "outputs": ["I", "V", "O"],
+        },
+        "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": {  # Non-Manifold Edges
+            "inputs": ["Mesh"],
+            "outputs": ["Naked Edges", "Interior Edges", "Non-Manifold Edges"],
+        },
+        "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": {  # Mesh Normals
+            "inputs": ["Mesh"],
+            "outputs": ["Vertices", "Faces", "Colours"],
         },
     }
 
