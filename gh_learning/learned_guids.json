@@ -1,0 +1,4426 @@
+{
+  "summary": {
+    "total_components": 142,
+    "unique_categories": 1
+  },
+  "top_20_components": [
+    {
+      "name": "Group",
+      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+      "category": "",
+      "seen_count": 568,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "PLN_OUT",
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "category": "",
+      "seen_count": 487,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Panel",
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "category": "",
+      "seen_count": 319,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Scribble",
+      "guid": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+      "category": "",
+      "seen_count": 212,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "category": "",
+      "seen_count": 203,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Material",
+      "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+      "category": "",
+      "seen_count": 97,
+      "inputs": [
+        "Geometry",
+        "Material"
+      ],
+      "outputs": []
+    },
+    {
+      "name": "Colour Swatch",
+      "guid": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+      "category": "",
+      "seen_count": 91,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Curve",
+      "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+      "category": "",
+      "seen_count": 87,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Button",
+      "guid": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+      "category": "",
+      "seen_count": 86,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Point",
+      "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+      "category": "",
+      "seen_count": 80,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Boolean Toggle",
+      "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+      "category": "",
+      "seen_count": 73,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Geometry",
+      "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+      "category": "",
+      "seen_count": 62,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Result",
+      "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
+      "category": "",
+      "seen_count": 50,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Sketch",
+      "guid": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+      "category": "",
+      "seen_count": 39,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Brep",
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "category": "",
+      "seen_count": 33,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Colour",
+      "guid": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+      "category": "",
+      "seen_count": 19,
+      "inputs": [
+        "Lower limit",
+        "Upper limit",
+        "Parameter"
+      ],
+      "outputs": [
+        "Colour"
+      ]
+    },
+    {
+      "name": "Size",
+      "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+      "category": "",
+      "seen_count": 19,
+      "inputs": [
+        "Points",
+        "Size"
+      ],
+      "outputs": []
+    },
+    {
+      "name": "Item +9",
+      "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+      "category": "",
+      "seen_count": 16,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "Length",
+      "guid": "1817fd29-20ae-4503-b542-f0fb651e67d7",
+      "category": "",
+      "seen_count": 15,
+      "inputs": [
+        "List"
+      ],
+      "outputs": [
+        "Length"
+      ]
+    },
+    {
+      "name": "Clipped",
+      "guid": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+      "category": "",
+      "seen_count": 15,
+      "inputs": [
+        "Value",
+        "Source",
+        "Target"
+      ],
+      "outputs": [
+        "Mapped",
+        "Clipped"
+      ]
+    }
+  ],
+  "verified_guids": {
+    "Group|": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+    "PLN_OUT|": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+    "Panel|": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+    "Scribble|": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+    "Number Slider|": "57da07bd-ecab-415d-9d86-af36d7073abc",
+    "Material|": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+    "Colour Swatch|": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+    "Curve|": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
+    "Button|": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+    "Point|": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+    "Boolean Toggle|": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+    "Geometry|": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
+    "Result|": "9c85271f-89fa-4e9f-9f4a-d75802120ccc",
+    "Sketch|": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+    "Brep|": "919e146f-30ae-4aae-be34-4d72f555e7da",
+    "Colour|": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+    "Size|": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+    "Item +9|": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+    "Length|": "d93100b6-d50b-40b2-831a-814659dc38e3",
+    "Clipped|": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+    "Domain|": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
+    "Graph Mapper|": "bc984576-7aa6-491f-a91d-e444c33675a7",
+    "Transform|": "3dfb9a77-6e05-4016-9f20-94f78607d672",
+    "Unit vector|": "9103c240-a6a9-4223-9b42-dbd19bf38e2b",
+    "Centroid|": "224f7648-5956-4b26-80d9-8d771f3dfd5d",
+    "List|": "008e9a6f-478a-4813-8c8a-546273bc3a6b",
+    "Plane|": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+    "Mesh|": "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab",
+    "Random|": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
+    "Range|": "9445ca40-cc73-4861-a455-146308676855",
+    "Line|": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+    "Box|": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
+    "Distance|": "93b8e93d-f932-402c-b435-84be04d87666",
+    "Non-Manifold Edges|": "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+    "V Isocurve|": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
+    "Vertices|": "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+    "Data|": "c40dc145-9e36-4a69-ac1a-6d825c654993",
+    "Z component|": "9abae6b7-fa1d-448c-9209-4a8155345841",
+    "Series|": "e64c5fb1-845c-4ab1-8911-5f338516ba67",
+    "… or Equal to|": "ae840986-cade-4e5a-96b0-570f007d4fc0",
+    "List B|": "d8332545-21b2-4716-96e3-8559a9876e17",
+    "LOCAL + GLOBAL|": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
+    "Wireframe|": "ac750e41-2450-4f98-9658-98fef97b01b2",
+    "Justification|": "5a41528b-12b9-40dc-a3f2-842034d267c4",
+    "Normals|": "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+    "Tree|": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+    "Output Mesh/Curves|": "4098ec7a-819a-4ced-9eee-86835d7e21c9",
+    "End|": "825ea536-aebb-41e9-af32-8baeb2ecb590",
+    "After|": "d6b43673-55dd-4e2f-95c4-6c69a14513a6",
+    "Weave|": "50faccbd-9c92-4175-a5fa-d65e36013db6",
+    "Contours|": "3b112fb6-3eba-42d2-ba75-0f903c18faab",
+    "Population|": "e202025b-dc8e-4c51-ae19-4415b172886f",
+    "DoFs|": "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658",
+    "Iso|": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+    "Indices|": "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000",
+    "Angle|": "e76040ec-3b91-41e1-8e00-c74c23b89391",
+    "Point On Curve|": "7f6a9d34-0470-4bb7-aadd-07496bcbe572",
+    "Z-Axis|": "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea",
+    "Index|": "b333ff42-93bd-406b-8e17-15780719b6ec",
+    "List (B)|": "36947590-f0cb-4807-a8f9-9c90c9b20621",
+    "Compound|": "ca80054a-cde0-4f69-a132-10502b24866d",
+    "Non-Manifold|": "0148a65d-6f42-414a-9db7-9a9b2eb78437",
+    "Gaps|": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
+    "Surface|": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
+    "Segments|": "75ac008b-1bc2-4edd-b967-667d628b9d24",
+    "EL|": "24e2b0d2-d7b8-4478-8a83-1f04cba701a1",
+    "Unary|": "2019c995-53af-4eb2-976d-95b1fdc823fa",
+    "A|": "3c30b1a1-4473-4ad4-a700-ea9770726c03",
+    "O|": "4408343b-577e-4fd8-96ff-df7549189186",
+    "G|": "0ed5e67d-539d-480e-88cb-d81fa795d66c",
+    "Curves|": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
+    "Frame|": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+    "Reflex|": "b464fccb-50e7-41bd-9789-8438db9bea9f",
+    "Absolute|": "a77d0879-94c2-4101-be44-e4a616ffeb0c",
+    "File Path|": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+    "Volume Load|": "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93",
+    "Boundary Condition Setup|": "ce61205c-5d8e-429e-a0a2-e1dc3e10febc",
+    "Boundary Domain|": "c28233aa-2c4b-4865-8916-f2fa4b2f390f",
+    "Resolution|": "f2880342-70fe-41c2-bb4e-2d9277d4daeb",
+    "Performance|": "80a2b490-03cc-4d01-8115-121c7ceefa95",
+    "Analyser Parameters|": "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497",
+    "Quick Graph|": "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef",
+    "Solver|": "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f",
+    "Optimus Parameter|": "30a92849-8387-4fdc-afab-4c0081e5cffe",
+    "Kernel Statistics|": "fc276159-87f4-4f90-b1c3-ab941e699c28",
+    "Data A|": "65283518-ad00-49d3-87fb-f76823ebb162",
+    "Deflection|": "52a8ef7b-517f-46a4-acc9-afa8842ac028",
+    "Cell size|": "2f3771fd-a41e-4fba-b890-1b0b66b48484",
+    "Boundary Region|": "26ae7d91-3db7-4a06-9e26-42e790819d42",
+    "Load Region|": "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a",
+    "Support Region|": "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014",
+    "MaxDeflection|": "4811877a-1b77-443a-8be3-9b2f7eafeb03",
+    "Density|": "85b709b5-f9f8-4f91-84b8-002ee483444b",
+    "Z|": "db7d83b1-2898-4ef9-9be5-4e94b4e2048d",
+    "Boundaries|": "0b4ac802-fc4a-4201-9c66-0078b837c1eb"
+  },
+  "param_names": {
+    "537b0419-bbc2-4ff4-bf08-afe526367b2c": {
+      "inputs": [
+        "Geometry",
+        "Material"
+      ],
+      "outputs": []
+    },
+    "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7": {
+      "inputs": [
+        "Lower limit",
+        "Upper limit",
+        "Parameter"
+      ],
+      "outputs": [
+        "Colour"
+      ]
+    },
+    "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb": {
+      "inputs": [
+        "Points",
+        "Size"
+      ],
+      "outputs": []
+    },
+    "1817fd29-20ae-4503-b542-f0fb651e67d7": {
+      "inputs": [
+        "List"
+      ],
+      "outputs": [
+        "Length"
+      ]
+    },
+    "2fcc2743-8339-4cdf-a046-a1f17439191d": {
+      "inputs": [
+        "Value",
+        "Source",
+        "Target"
+      ],
+      "outputs": [
+        "Mapped",
+        "Clipped"
+      ]
+    },
+    "f44b92b0-3b5b-493a-86f4-fd7408c3daf3": {
+      "inputs": [
+        "Numbers"
+      ],
+      "outputs": [
+        "Domain"
+      ]
+    },
+    "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b": {
+      "inputs": [
+        "Geometry",
+        "Motion"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ]
+    },
+    "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69": {
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ]
+    },
+    "2e205f24-9279-47b2-b414-d06dcd0b21a7": {
+      "inputs": [
+        "Geometry"
+      ],
+      "outputs": [
+        "Area",
+        "Centroid"
+      ]
+    },
+    "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd": {
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ]
+    },
+    "008e9a6f-478a-4813-8c8a-546273bc3a6b": {
+      "inputs": [
+        "List",
+        "Cull Pattern"
+      ],
+      "outputs": [
+        "List"
+      ]
+    },
+    "3581f42a-9592-4549-bd6b-1c0fc39d067b": {
+      "inputs": [
+        "X coordinate",
+        "Y coordinate",
+        "Z coordinate"
+      ],
+      "outputs": [
+        "Point"
+      ]
+    },
+    "17b7152b-d30d-4d50-b9ef-c9fe25576fc2": {
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "60e7defa-8b21-4ee1-99aa-a9223d6134ff": {
+      "inputs": [
+        "Brep",
+        "Settings"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "2ab17f9a-d852-4405-80e1-938c5e57e78d": {
+      "inputs": [
+        "Range",
+        "Number",
+        "Seed"
+      ],
+      "outputs": [
+        "Random"
+      ]
+    },
+    "9445ca40-cc73-4861-a455-146308676855": {
+      "inputs": [
+        "Domain",
+        "Steps"
+      ],
+      "outputs": [
+        "Range"
+      ]
+    },
+    "4c619bc9-39fd-4717-82a6-1e07ea237bbe": {
+      "inputs": [
+        "Start",
+        "Direction",
+        "Length"
+      ],
+      "outputs": [
+        "Line"
+      ]
+    },
+    "0bb3d234-9097-45db-9998-621639c87d3b": {
+      "inputs": [
+        "Content",
+        "Plane"
+      ],
+      "outputs": [
+        "Box",
+        "Box"
+      ]
+    },
+    "902289da-28dc-454b-98d4-b8f8aa234516": {
+      "inputs": [
+        "Point",
+        "Geometry"
+      ],
+      "outputs": [
+        "Closest Point",
+        "Distance"
+      ]
+    },
+    "290f418a-65ee-406a-a9d0-35699815b512": {
+      "inputs": [
+        "Geometry",
+        "Plane",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ]
+    },
+    "224f7648-5956-4b26-80d9-8d771f3dfd5d": {
+      "inputs": [
+        "Geometry"
+      ],
+      "outputs": [
+        "Volume",
+        "Centroid"
+      ]
+    },
+    "9103c240-a6a9-4223-9b42-dbd19bf38e2b": {
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ]
+    },
+    "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb": {
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Naked Edges",
+        "Interior Edges",
+        "Non-Manifold Edges"
+      ]
+    },
+    "d1d57181-d594-41e8-8efb-041e29f8a5ca": {
+      "inputs": [
+        "Surface",
+        "UV point"
+      ],
+      "outputs": [
+        "U Isocurve",
+        "V Isocurve"
+      ]
+    },
+    "8d372bdc-9800-45e9-8a26-6e33c5253e21": {
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Faces",
+        "Edges",
+        "Vertices"
+      ]
+    },
+    "9abae6b7-fa1d-448c-9209-4a8155345841": {
+      "inputs": [
+        "Point"
+      ],
+      "outputs": [
+        "X component",
+        "Y component",
+        "Z component"
+      ]
+    },
+    "e64c5fb1-845c-4ab1-8911-5f338516ba67": {
+      "inputs": [
+        "Start",
+        "Step",
+        "Count"
+      ],
+      "outputs": [
+        "Series"
+      ]
+    },
+    "c40dc145-9e36-4a69-ac1a-6d825c654993": {
+      "inputs": [
+        "Data",
+        "Length"
+      ],
+      "outputs": [
+        "Data"
+      ]
+    },
+    "30d58600-1aab-42db-80a3-f1ea6c4269a0": {
+      "inputs": [
+        "First Number",
+        "Second Number"
+      ],
+      "outputs": [
+        "Larger than",
+        "… or Equal to"
+      ]
+    },
+    "439a55a5-2f9e-4f66-9de2-32f24fec2ef5": {
+      "inputs": [
+        "Plane",
+        "X Size",
+        "Y Size"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "d1a28e95-cf96-4936-bf34-8bf142d731bf": {
+      "inputs": [
+        "Domain start",
+        "Domain end"
+      ],
+      "outputs": [
+        "Domain"
+      ]
+    },
+    "9ab93e1a-ebdf-4090-9296-b000cff7b202": {
+      "inputs": [
+        "List",
+        "Index"
+      ],
+      "outputs": [
+        "List A",
+        "List B"
+      ]
+    },
+    "b7798b74-037e-4f0c-8ac7-dc1043d093e0": {
+      "inputs": [
+        "Geometry",
+        "Angle",
+        "Plane"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ]
+    },
+    "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1": {
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64": {
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "ac750e41-2450-4f98-9658-98fef97b01b2": {
+      "inputs": [
+        "Brep",
+        "Density"
+      ],
+      "outputs": [
+        "Wireframe"
+      ]
+    },
+    "5a41528b-12b9-40dc-a3f2-842034d267c4": {
+      "inputs": [
+        "Location",
+        "Text",
+        "Size",
+        "Colour",
+        "Justification"
+      ],
+      "outputs": []
+    },
+    "ba2d8f57-0738-42b4-b5a5-fe4d853517eb": {
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Vertices",
+        "Faces",
+        "Colours",
+        "Normals"
+      ]
+    },
+    "a3371040-e552-4bc8-b0ff-10a840258e88": {
+      "inputs": [
+        "Value"
+      ],
+      "outputs": [
+        "Result"
+      ]
+    },
+    "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b": {
+      "inputs": [
+        "Meshes"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "3dfb9a77-6e05-4016-9f20-94f78607d672": {
+      "inputs": [
+        "Geometry",
+        "Angle",
+        "Center",
+        "Axis"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ]
+    },
+    "610e689b-5adc-47b3-af8f-e3a32b7ea341": {
+      "inputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "outputs": [
+        "Geometry"
+      ]
+    },
+    "4098ec7a-819a-4ced-9eee-86835d7e21c9": {
+      "inputs": [
+        "Mesh/Curves",
+        "Level",
+        "Smooth Naked Edges"
+      ],
+      "outputs": [
+        "Output Mesh/Curves"
+      ]
+    },
+    "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e": {
+      "inputs": [
+        "Origin",
+        "X-Axis",
+        "Y-Axis"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "11bbd48b-bb0a-4f1b-8167-fa297590390d": {
+      "inputs": [
+        "Curve"
+      ],
+      "outputs": [
+        "Start",
+        "End"
+      ]
+    },
+    "10434a15-da85-4281-bb64-a2b3a995b9c6": {
+      "inputs": [
+        "Breps"
+      ],
+      "outputs": [
+        "Result"
+      ]
+    },
+    "d6b43673-55dd-4e2f-95c4-6c69a14513a6": {
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Breps",
+        "Before",
+        "After"
+      ]
+    },
+    "88060a82-0bf7-46bb-9af8-bdc860cf7e1d": {
+      "inputs": [
+        "Meshes"
+      ],
+      "outputs": [
+        "Result"
+      ]
+    },
+    "f6f14b09-6497-4564-8403-09e4eb5a6b82": {
+      "inputs": [
+        "Plane",
+        "Angle"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "d8332545-21b2-4716-96e3-8559a9876e17": {
+      "inputs": [
+        "List",
+        "Dispatch pattern"
+      ],
+      "outputs": [
+        "List A",
+        "List B"
+      ]
+    },
+    "3b112fb6-3eba-42d2-ba75-0f903c18faab": {
+      "inputs": [
+        "Shape",
+        "Point",
+        "Direction",
+        "Distance"
+      ],
+      "outputs": [
+        "Contours"
+      ]
+    },
+    "ae840986-cade-4e5a-96b0-570f007d4fc0": {
+      "inputs": [
+        "First Number",
+        "Second Number"
+      ],
+      "outputs": [
+        "Smaller than",
+        "… or Equal to"
+      ]
+    },
+    "e202025b-dc8e-4c51-ae19-4415b172886f": {
+      "inputs": [
+        "Region",
+        "Count",
+        "Seed",
+        "Points"
+      ],
+      "outputs": [
+        "Population"
+      ]
+    },
+    "2dc44b22-b1dd-460a-a704-6462d6e91096": {
+      "inputs": [
+        "Point",
+        "Curve"
+      ],
+      "outputs": [
+        "Point",
+        "Parameter",
+        "Distance"
+      ]
+    },
+    "4a9e9a8e-0943-4438-b360-129c30f2bb0f": {
+      "inputs": [
+        "Point",
+        "Surface"
+      ],
+      "outputs": [
+        "Point",
+        "UV Point",
+        "Distance"
+      ]
+    },
+    "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658": {
+      "inputs": [
+        "Model"
+      ],
+      "outputs": [
+        "Model Resolution",
+        "Element Count",
+        "Element Size",
+        "Node Count",
+        "DoFs"
+      ]
+    },
+    "e2c0f9db-a862-4bd9-810c-ef2610e7a56f": {
+      "inputs": [
+        "Vertices",
+        "Faces",
+        "Colours"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000": {
+      "inputs": [
+        "List",
+        "Jitter",
+        "Seed"
+      ],
+      "outputs": [
+        "Values",
+        "Indices"
+      ]
+    },
+    "56b92eab-d121-43f7-94d3-6cd8f0ddead8": {
+      "inputs": [
+        "X component",
+        "Y component",
+        "Z component"
+      ],
+      "outputs": [
+        "Vector",
+        "Length"
+      ]
+    },
+    "fad344bc-09b1-4855-a2e6-437ef5715fe3": {
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ]
+    },
+    "4c4e56eb-2f04-43f9-95a3-cc46a14f495a": {
+      "inputs": [
+        "Start Point",
+        "End Point"
+      ],
+      "outputs": [
+        "Line"
+      ]
+    },
+    "e76040ec-3b91-41e1-8e00-c74c23b89391": {
+      "inputs": [
+        "Plane",
+        "Direction"
+      ],
+      "outputs": [
+        "Plane",
+        "Angle"
+      ]
+    },
+    "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea": {
+      "inputs": [
+        "Plane"
+      ],
+      "outputs": [
+        "Origin",
+        "X-Axis",
+        "Y-Axis",
+        "Z-Axis"
+      ]
+    },
+    "b333ff42-93bd-406b-8e17-15780719b6ec": {
+      "inputs": [
+        "List",
+        "Domain",
+        "Wrap"
+      ],
+      "outputs": [
+        "List",
+        "Index"
+      ]
+    },
+    "1177d6ee-3993-4226-9558-52b7fd63e1e3": {
+      "inputs": [
+        "Tree",
+        "Depth"
+      ],
+      "outputs": [
+        "Tree"
+      ]
+    },
+    "d93100b6-d50b-40b2-831a-814659dc38e3": {
+      "inputs": [
+        "Plane",
+        "X Size",
+        "Y Size",
+        "Radius"
+      ],
+      "outputs": [
+        "Rectangle",
+        "Length"
+      ]
+    },
+    "ca80054a-cde0-4f69-a132-10502b24866d": {
+      "inputs": [
+        "Transforms"
+      ],
+      "outputs": [
+        "Compound"
+      ]
+    },
+    "0148a65d-6f42-414a-9db7-9a9b2eb78437": {
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Naked",
+        "Interior",
+        "Non-Manifold"
+      ]
+    },
+    "95866bbe-648e-4e2b-a97c-7d04679e94e0": {
+      "inputs": [
+        "Curve",
+        "Pattern"
+      ],
+      "outputs": [
+        "Dashes",
+        "Gaps"
+      ]
+    },
+    "6a9ccaab-1b03-484e-bbda-be9c81584a66": {
+      "inputs": [
+        "Surface",
+        "Domain"
+      ],
+      "outputs": [
+        "Surface"
+      ]
+    },
+    "75ac008b-1bc2-4edd-b967-667d628b9d24": {
+      "inputs": [
+        "Domain",
+        "U Count",
+        "V Count"
+      ],
+      "outputs": [
+        "Segments"
+      ]
+    },
+    "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1": {
+      "inputs": [
+        "Mesh",
+        "tolerance"
+      ],
+      "outputs": [
+        "RuntimeMessage",
+        "Mesh"
+      ]
+    },
+    "24e2b0d2-d7b8-4478-8a83-1f04cba701a1": {
+      "inputs": [
+        "Mesh",
+        "LengthFactor",
+        "Strength"
+      ],
+      "outputs": [
+        "EL"
+      ]
+    },
+    "2019c995-53af-4eb2-976d-95b1fdc823fa": {
+      "inputs": [
+        "Point",
+        "Force vector",
+        "Weighting"
+      ],
+      "outputs": [
+        "Unary"
+      ]
+    },
+    "3c30b1a1-4473-4ad4-a700-ea9770726c03": {
+      "inputs": [
+        "Point",
+        "Target",
+        "Strength"
+      ],
+      "outputs": [
+        "A"
+      ]
+    },
+    "4408343b-577e-4fd8-96ff-df7549189186": {
+      "inputs": [
+        "GoalObjects",
+        "Threshold",
+        "Tolerance",
+        "MaxIterations"
+      ],
+      "outputs": [
+        "I",
+        "V",
+        "O"
+      ]
+    },
+    "0ed5e67d-539d-480e-88cb-d81fa795d66c": {
+      "inputs": [
+        "G"
+      ],
+      "outputs": [
+        "G"
+      ]
+    },
+    "93b8e93d-f932-402c-b435-84be04d87666": {
+      "inputs": [
+        "Point A",
+        "Point B"
+      ],
+      "outputs": [
+        "Distance"
+      ]
+    },
+    "8073a420-6bec-49e3-9b18-367f6fd76ac3": {
+      "inputs": [
+        "Curves",
+        "Preserve"
+      ],
+      "outputs": [
+        "Curves"
+      ]
+    },
+    "afb96615-c59a-45c9-9cac-e27acb1c7ca0": {
+      "inputs": [
+        "Curve",
+        "Recursive"
+      ],
+      "outputs": [
+        "Segments",
+        "Vertices"
+      ]
+    },
+    "79aa7f47-397c-4d3f-9761-aaf421bb7f5f": {
+      "inputs": [
+        "Base",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "outputs": [
+        "Box"
+      ]
+    },
+    "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af": {
+      "inputs": [
+        "Curve",
+        "Brep",
+        "Direction"
+      ],
+      "outputs": [
+        "Curve"
+      ]
+    },
+    "353b206e-bde5-4f02-a913-b3b8a977d4b9": {
+      "inputs": [
+        "Surface",
+        "Point"
+      ],
+      "outputs": [
+        "Point",
+        "Normal",
+        "U direction",
+        "V direction",
+        "Frame"
+      ]
+    },
+    "b464fccb-50e7-41bd-9789-8438db9bea9f": {
+      "inputs": [
+        "Vector A",
+        "Vector B",
+        "Plane"
+      ],
+      "outputs": [
+        "Angle",
+        "Reflex"
+      ]
+    },
+    "a77d0879-94c2-4101-be44-e4a616ffeb0c": {
+      "inputs": [
+        "Geometry",
+        "Shader",
+        "Thickness",
+        "Absolute"
+      ],
+      "outputs": []
+    },
+    "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93": {
+      "inputs": [
+        "Load Mesh",
+        "Load Vector"
+      ],
+      "outputs": [
+        "Volume Load"
+      ]
+    },
+    "ce61205c-5d8e-429e-a0a2-e1dc3e10febc": {
+      "inputs": [
+        "Load",
+        "Support"
+      ],
+      "outputs": [
+        "Boundary Condition Setup"
+      ]
+    },
+    "c28233aa-2c4b-4865-8916-f2fa4b2f390f": {
+      "inputs": [
+        "Domain Mesh",
+        "Density Value",
+        "Young Modul",
+        "Poisson Number"
+      ],
+      "outputs": [
+        "Boundary Domain"
+      ]
+    },
+    "f2880342-70fe-41c2-bb4e-2d9277d4daeb": {
+      "inputs": [
+        "Resolution X"
+      ],
+      "outputs": [
+        "Resolution"
+      ]
+    },
+    "7252bec6-68cf-4a13-9990-e1cb16d4c8ce": {
+      "inputs": [
+        "Model",
+        "Analyser Parameters",
+        "Optimus Parameters",
+        "Subdivision Threshold",
+        "Reset",
+        "Run"
+      ],
+      "outputs": [
+        "Model",
+        "Compliance",
+        "Performance"
+      ]
+    },
+    "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497": {
+      "inputs": [
+        "Iterations",
+        "Tolerance"
+      ],
+      "outputs": [
+        "Analyser Parameters"
+      ]
+    },
+    "d73fc809-3b8c-4420-a70c-f17fd9edb825": {
+      "inputs": [
+        "Model",
+        "Iso Value",
+        "Deflection"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b": {
+      "inputs": [
+        "Model",
+        "Tolerance",
+        "Colours"
+      ],
+      "outputs": [
+        "PStress Values",
+        "PStress Plane",
+        "PStress Crosses",
+        "PStress Crosses Colours",
+        "PStress Min/Max",
+        "VonMieses Values",
+        "VonMieses Crosses Colours",
+        "Performance"
+      ]
+    },
+    "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f": {
+      "inputs": [
+        "Performance"
+      ],
+      "outputs": [
+        "Total Data",
+        "Events Names",
+        "Times",
+        "Memory",
+        "Solver"
+      ]
+    },
+    "fc276159-87f4-4f90-b1c3-ab941e699c28": {
+      "inputs": [
+        "Reset"
+      ],
+      "outputs": [
+        "Performance",
+        "FreeMemory",
+        "Kernel Statistics"
+      ]
+    },
+    "80a2b490-03cc-4d01-8115-121c7ceefa95": {
+      "inputs": [
+        "Boundary Domain",
+        "Boundary Condition",
+        "Boundary Properties",
+        "Model Resolution"
+      ],
+      "outputs": [
+        "Model",
+        "Performance"
+      ]
+    },
+    "52a8ef7b-517f-46a4-acc9-afa8842ac028": {
+      "inputs": [
+        "Model"
+      ],
+      "outputs": [
+        "Location",
+        "Density",
+        "Deflection"
+      ]
+    },
+    "2f3771fd-a41e-4fba-b890-1b0b66b48484": {
+      "inputs": [
+        "Model Components",
+        "XResolution"
+      ],
+      "outputs": [
+        "FE Model",
+        "Cell Centres",
+        "Cell size"
+      ]
+    },
+    "26ae7d91-3db7-4a06-9e26-42e790819d42": {
+      "inputs": [
+        "Boundary",
+        "Is Void"
+      ],
+      "outputs": [
+        "Boundary Region"
+      ]
+    },
+    "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a": {
+      "inputs": [
+        "Boundary",
+        "Load"
+      ],
+      "outputs": [
+        "Load Region"
+      ]
+    },
+    "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014": {
+      "inputs": [
+        "Boundary",
+        "Support Type",
+        "Amend Existing Supports"
+      ],
+      "outputs": [
+        "Support Region"
+      ]
+    },
+    "4811877a-1b77-443a-8be3-9b2f7eafeb03": {
+      "inputs": [
+        "FE Model",
+        "Self Weight Coefficient",
+        "Optimisation iterations",
+        "Smoothing",
+        "Penalization",
+        "Target Density",
+        "Initial Densities",
+        "Minimum Density",
+        "Delete Threshold",
+        "Periodic X",
+        "Periodic Y",
+        "Periodic Z",
+        "Load Case",
+        "All Cases"
+      ],
+      "outputs": [
+        "FE Model",
+        "MaxDeflection"
+      ]
+    },
+    "85b709b5-f9f8-4f91-84b8-002ee483444b": {
+      "inputs": [
+        "FE Model"
+      ],
+      "outputs": [
+        "Principal Stress Planes",
+        "Principal Stresses",
+        "VonMises Stress",
+        "Density"
+      ]
+    },
+    "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab": {
+      "inputs": [
+        "FE Model",
+        "Deflection",
+        "Iso Contour Value"
+      ],
+      "outputs": [
+        "Mesh"
+      ]
+    },
+    "db7d83b1-2898-4ef9-9be5-4e94b4e2048d": {
+      "inputs": [
+        "Box"
+      ],
+      "outputs": [
+        "Plane",
+        "X",
+        "Y",
+        "Z"
+      ]
+    },
+    "825ea536-aebb-41e9-af32-8baeb2ecb590": {
+      "inputs": [
+        "Domain"
+      ],
+      "outputs": [
+        "Start",
+        "End"
+      ]
+    },
+    "9c85271f-89fa-4e9f-9f4a-d75802120ccc": {
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": [
+        "Result"
+      ]
+    },
+    "0b4ac802-fc4a-4201-9c66-0078b837c1eb": {
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Boundaries"
+      ]
+    }
+  },
+  "all_components": [
+    {
+      "guid": "c552a431-af5b-46a9-a8a4-0fcbc27ef596",
+      "name": "Group",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 568,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "name": "PLN_OUT",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 487,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "name": "Panel",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 319,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "7f5c6c55-f846-4a08-9c9a-cfdc285cc6fe",
+      "name": "Scribble",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 212,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "name": "Number Slider",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 203,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+      "name": "Material",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Material"
+      ],
+      "outputs": [],
+      "seen_count": 97,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+      "name": "Colour Swatch",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 91,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+      "name": "Curve",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 87,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+      "name": "Button",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 86,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "fbac3e32-f100-4292-8692-77240a42fd1a",
+      "name": "Point",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 80,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+      "name": "Boolean Toggle",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 73,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+      "name": "Geometry",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 62,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 50,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2844fec5-142d-4381-bd5d-4cbcef6d6fed",
+      "name": "Sketch",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 39,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_07_Save_Load_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
+      "name": "Brep",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 33,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_03_Rules_Grammar.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+      "name": "Colour",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Lower limit",
+        "Upper limit",
+        "Parameter"
+      ],
+      "outputs": [
+        "Colour"
+      ],
+      "seen_count": 19,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
+      "name": "Size",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Points",
+        "Size"
+      ],
+      "outputs": [],
+      "seen_count": 19,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_10_Aggregation_Graph.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_02_MultiPart_Aggregation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+      "name": "Item +9",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 16,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "1817fd29-20ae-4503-b542-f0fb651e67d7",
+      "name": "Length",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List"
+      ],
+      "outputs": [
+        "Length"
+      ],
+      "seen_count": 15,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2fcc2743-8339-4cdf-a046-a1f17439191d",
+      "name": "Clipped",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Value",
+        "Source",
+        "Target"
+      ],
+      "outputs": [
+        "Mapped",
+        "Clipped"
+      ],
+      "seen_count": 15,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "f44b92b0-3b5b-493a-86f4-fd7408c3daf3",
+      "name": "Domain",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Numbers"
+      ],
+      "outputs": [
+        "Domain"
+      ],
+      "seen_count": 14,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "bc984576-7aa6-491f-a91d-e444c33675a7",
+      "name": "Graph Mapper",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 14,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx"
+      ]
+    },
+    {
+      "guid": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
+      "name": "Transform",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Motion"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "seen_count": 11,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "d3d195ea-2d59-4ffa-90b1-8b7ff3369f69",
+      "name": "Unit vector",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ],
+      "seen_count": 11,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "2e205f24-9279-47b2-b414-d06dcd0b21a7",
+      "name": "Centroid",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry"
+      ],
+      "outputs": [
+        "Area",
+        "Centroid"
+      ],
+      "seen_count": 11,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "79f9fbb3-8f1d-4d9a-88a9-f7961b1012cd",
+      "name": "Unit vector",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ],
+      "seen_count": 11,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
+      ]
+    },
+    {
+      "guid": "008e9a6f-478a-4813-8c8a-546273bc3a6b",
+      "name": "List",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List",
+        "Cull Pattern"
+      ],
+      "outputs": [
+        "List"
+      ],
+      "seen_count": 11,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+      "name": "Point",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "X coordinate",
+        "Y coordinate",
+        "Z coordinate"
+      ],
+      "outputs": [
+        "Point"
+      ],
+      "seen_count": 9,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "17b7152b-d30d-4d50-b9ef-c9fe25576fc2",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 9,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "60e7defa-8b21-4ee1-99aa-a9223d6134ff",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep",
+        "Settings"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 9,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_09_Parts_Catalog.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
+      "name": "Random",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Range",
+        "Number",
+        "Seed"
+      ],
+      "outputs": [
+        "Random"
+      ],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "ce46b74e-00c9-43c4-805a-193b69ea4a11",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "9445ca40-cc73-4861-a455-146308676855",
+      "name": "Range",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Domain",
+        "Steps"
+      ],
+      "outputs": [
+        "Range"
+      ],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "4c619bc9-39fd-4717-82a6-1e07ea237bbe",
+      "name": "Line",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Start",
+        "Direction",
+        "Length"
+      ],
+      "outputs": [
+        "Line"
+      ],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "0bb3d234-9097-45db-9998-621639c87d3b",
+      "name": "Box",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Content",
+        "Plane"
+      ],
+      "outputs": [
+        "Box",
+        "Box"
+      ],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "902289da-28dc-454b-98d4-b8f8aa234516",
+      "name": "Distance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point",
+        "Geometry"
+      ],
+      "outputs": [
+        "Closest Point",
+        "Distance"
+      ],
+      "seen_count": 8,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx"
+      ]
+    },
+    {
+      "guid": "290f418a-65ee-406a-a9d0-35699815b512",
+      "name": "Transform",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Plane",
+        "Scale X",
+        "Scale Y",
+        "Scale Z"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "seen_count": 7,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "224f7648-5956-4b26-80d9-8d771f3dfd5d",
+      "name": "Centroid",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry"
+      ],
+      "outputs": [
+        "Volume",
+        "Centroid"
+      ],
+      "seen_count": 7,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "9103c240-a6a9-4223-9b42-dbd19bf38e2b",
+      "name": "Unit vector",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Factor"
+      ],
+      "outputs": [
+        "Unit vector"
+      ],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2b9bf01d-5fe5-464c-b0b3-b469eb5f2efb",
+      "name": "Non-Manifold Edges",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Naked Edges",
+        "Interior Edges",
+        "Non-Manifold Edges"
+      ],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
+      "name": "V Isocurve",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Surface",
+        "UV point"
+      ],
+      "outputs": [
+        "U Isocurve",
+        "V Isocurve"
+      ],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "8d372bdc-9800-45e9-8a26-6e33c5253e21",
+      "name": "Vertices",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Faces",
+        "Edges",
+        "Vertices"
+      ],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "8ec86459-bf01-4409-baee-174d0d2b13d0",
+      "name": "Data",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "9abae6b7-fa1d-448c-9209-4a8155345841",
+      "name": "Z component",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point"
+      ],
+      "outputs": [
+        "X component",
+        "Y component",
+        "Z component"
+      ],
+      "seen_count": 6,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "c9482db6-bea9-448d-98ff-fed6d69a8efc",
+      "name": "Box",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 5,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx"
+      ]
+    },
+    {
+      "guid": "e64c5fb1-845c-4ab1-8911-5f338516ba67",
+      "name": "Series",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Start",
+        "Step",
+        "Count"
+      ],
+      "outputs": [
+        "Series"
+      ],
+      "seen_count": 5,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx"
+      ]
+    },
+    {
+      "guid": "c40dc145-9e36-4a69-ac1a-6d825c654993",
+      "name": "Data",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Data",
+        "Length"
+      ],
+      "outputs": [
+        "Data"
+      ],
+      "seen_count": 5,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "30d58600-1aab-42db-80a3-f1ea6c4269a0",
+      "name": "… or Equal to",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "First Number",
+        "Second Number"
+      ],
+      "outputs": [
+        "Larger than",
+        "… or Equal to"
+      ],
+      "seen_count": 5,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "439a55a5-2f9e-4f66-9de2-32f24fec2ef5",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Plane",
+        "X Size",
+        "Y Size"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 4,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "d1a28e95-cf96-4936-bf34-8bf142d731bf",
+      "name": "Domain",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Domain start",
+        "Domain end"
+      ],
+      "outputs": [
+        "Domain"
+      ],
+      "seen_count": 4,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
+      "name": "List B",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List",
+        "Index"
+      ],
+      "outputs": [
+        "List A",
+        "List B"
+      ],
+      "seen_count": 4,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
+      ]
+    },
+    {
+      "guid": "b7798b74-037e-4f0c-8ac7-dc1043d093e0",
+      "name": "Transform",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Angle",
+        "Plane"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "seen_count": 4,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "c3f9cea5-6fd4-4db5-959b-08cd08ed9fe1",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 3,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
+      ]
+    },
+    {
+      "guid": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
+      "name": "LOCAL + GLOBAL",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 3,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx"
+      ]
+    },
+    {
+      "guid": "8cc3a196-f6a0-49ea-9ed9-0cb343a3ae64",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 3,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
+      ]
+    },
+    {
+      "guid": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 3,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "ac750e41-2450-4f98-9658-98fef97b01b2",
+      "name": "Wireframe",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep",
+        "Density"
+      ],
+      "outputs": [
+        "Wireframe"
+      ],
+      "seen_count": 3,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "5a41528b-12b9-40dc-a3f2-842034d267c4",
+      "name": "Justification",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Location",
+        "Text",
+        "Size",
+        "Colour",
+        "Justification"
+      ],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
+      ]
+    },
+    {
+      "guid": "ba2d8f57-0738-42b4-b5a5-fe4d853517eb",
+      "name": "Normals",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Vertices",
+        "Faces",
+        "Colours",
+        "Normals"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "a3371040-e552-4bc8-b0ff-10a840258e88",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Value"
+      ],
+      "outputs": [
+        "Result"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx"
+      ]
+    },
+    {
+      "guid": "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Meshes"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "071c3940-a12d-4b77-bb23-42b5d3314a0d",
+      "name": "Tree",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "3dfb9a77-6e05-4016-9f20-94f78607d672",
+      "name": "Transform",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Angle",
+        "Center",
+        "Axis"
+      ],
+      "outputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
+      ]
+    },
+    {
+      "guid": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
+      "name": "Geometry",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Transform"
+      ],
+      "outputs": [
+        "Geometry"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
+      ]
+    },
+    {
+      "guid": "4098ec7a-819a-4ced-9eee-86835d7e21c9",
+      "name": "Output Mesh/Curves",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh/Curves",
+        "Level",
+        "Smooth Naked Edges"
+      ],
+      "outputs": [
+        "Output Mesh/Curves"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
+      ]
+    },
+    {
+      "guid": "bc3e379e-7206-4e7b-b63a-ff61f4b38a3e",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Origin",
+        "X-Axis",
+        "Y-Axis"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
+      ]
+    },
+    {
+      "guid": "11bbd48b-bb0a-4f1b-8167-fa297590390d",
+      "name": "End",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Curve"
+      ],
+      "outputs": [
+        "Start",
+        "End"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "10434a15-da85-4281-bb64-a2b3a995b9c6",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Breps"
+      ],
+      "outputs": [
+        "Result"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "d6b43673-55dd-4e2f-95c4-6c69a14513a6",
+      "name": "After",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Breps",
+        "Before",
+        "After"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "a0d62394-a118-422d-abb3-6af115c75b25",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "88060a82-0bf7-46bb-9af8-bdc860cf7e1d",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Meshes"
+      ],
+      "outputs": [
+        "Result"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
+      ]
+    },
+    {
+      "guid": "f6f14b09-6497-4564-8403-09e4eb5a6b82",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Plane",
+        "Angle"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
+      ]
+    },
+    {
+      "guid": "d8332545-21b2-4716-96e3-8559a9876e17",
+      "name": "List B",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List",
+        "Dispatch pattern"
+      ],
+      "outputs": [
+        "List A",
+        "List B"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "50faccbd-9c92-4175-a5fa-d65e36013db6",
+      "name": "Weave",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "3b112fb6-3eba-42d2-ba75-0f903c18faab",
+      "name": "Contours",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Shape",
+        "Point",
+        "Direction",
+        "Distance"
+      ],
+      "outputs": [
+        "Contours"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "ae840986-cade-4e5a-96b0-570f007d4fc0",
+      "name": "… or Equal to",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "First Number",
+        "Second Number"
+      ],
+      "outputs": [
+        "Smaller than",
+        "… or Equal to"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "e202025b-dc8e-4c51-ae19-4415b172886f",
+      "name": "Population",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Region",
+        "Count",
+        "Seed",
+        "Points"
+      ],
+      "outputs": [
+        "Population"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx"
+      ]
+    },
+    {
+      "guid": "2dc44b22-b1dd-460a-a704-6462d6e91096",
+      "name": "Distance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point",
+        "Curve"
+      ],
+      "outputs": [
+        "Point",
+        "Parameter",
+        "Distance"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx"
+      ]
+    },
+    {
+      "guid": "4a9e9a8e-0943-4438-b360-129c30f2bb0f",
+      "name": "Distance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point",
+        "Surface"
+      ],
+      "outputs": [
+        "Point",
+        "UV Point",
+        "Distance"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "ea4eb98d-8374-4ff6-a0c1-b986f4ca7658",
+      "name": "DoFs",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model"
+      ],
+      "outputs": [
+        "Model Resolution",
+        "Element Count",
+        "Element Size",
+        "Node Count",
+        "DoFs"
+      ],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "name": "Iso",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "9c007a04-d0d9-48e4-9da3-9ba142bc4d46",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 2,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "e2c0f9db-a862-4bd9-810c-ef2610e7a56f",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Vertices",
+        "Faces",
+        "Colours"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx"
+      ]
+    },
+    {
+      "guid": "f02a20f6-bb49-4e3d-b155-8ed5d3c6b000",
+      "name": "Indices",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List",
+        "Jitter",
+        "Seed"
+      ],
+      "outputs": [
+        "Values",
+        "Indices"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
+      ]
+    },
+    {
+      "guid": "56b92eab-d121-43f7-94d3-6cd8f0ddead8",
+      "name": "Length",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "X component",
+        "Y component",
+        "Z component"
+      ],
+      "outputs": [
+        "Vector",
+        "Length"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
+      ]
+    },
+    {
+      "guid": "fad344bc-09b1-4855-a2e6-437ef5715fe3",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Origin"
+      ],
+      "outputs": [
+        "Plane"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx"
+      ]
+    },
+    {
+      "guid": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+      "name": "Line",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Start Point",
+        "End Point"
+      ],
+      "outputs": [
+        "Line"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
+      ]
+    },
+    {
+      "guid": "e76040ec-3b91-41e1-8e00-c74c23b89391",
+      "name": "Angle",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Plane",
+        "Direction"
+      ],
+      "outputs": [
+        "Plane",
+        "Angle"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
+      ]
+    },
+    {
+      "guid": "7f6a9d34-0470-4bb7-aadd-07496bcbe572",
+      "name": "Point On Curve",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
+      ]
+    },
+    {
+      "guid": "3cd2949b-4ea8-4ffb-a70c-5c380f9f46ea",
+      "name": "Z-Axis",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Plane"
+      ],
+      "outputs": [
+        "Origin",
+        "X-Axis",
+        "Y-Axis",
+        "Z-Axis"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
+      ]
+    },
+    {
+      "guid": "b333ff42-93bd-406b-8e17-15780719b6ec",
+      "name": "Index",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "List",
+        "Domain",
+        "Wrap"
+      ],
+      "outputs": [
+        "List",
+        "Index"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "1177d6ee-3993-4226-9558-52b7fd63e1e3",
+      "name": "Tree",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Tree",
+        "Depth"
+      ],
+      "outputs": [
+        "Tree"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
+      ]
+    },
+    {
+      "guid": "d93100b6-d50b-40b2-831a-814659dc38e3",
+      "name": "Length",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Plane",
+        "X Size",
+        "Y Size",
+        "Radius"
+      ],
+      "outputs": [
+        "Rectangle",
+        "Length"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
+      ]
+    },
+    {
+      "guid": "36947590-f0cb-4807-a8f9-9c90c9b20621",
+      "name": "List (B)",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "ca80054a-cde0-4f69-a132-10502b24866d",
+      "name": "Compound",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Transforms"
+      ],
+      "outputs": [
+        "Compound"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "0148a65d-6f42-414a-9db7-9a9b2eb78437",
+      "name": "Non-Manifold",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Brep"
+      ],
+      "outputs": [
+        "Naked",
+        "Interior",
+        "Non-Manifold"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "95866bbe-648e-4e2b-a97c-7d04679e94e0",
+      "name": "Gaps",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Curve",
+        "Pattern"
+      ],
+      "outputs": [
+        "Dashes",
+        "Gaps"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
+      ]
+    },
+    {
+      "guid": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
+      "name": "Plane",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
+      ]
+    },
+    {
+      "guid": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
+      "name": "Surface",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Surface",
+        "Domain"
+      ],
+      "outputs": [
+        "Surface"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "75ac008b-1bc2-4edd-b967-667d628b9d24",
+      "name": "Segments",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Domain",
+        "U Count",
+        "V Count"
+      ],
+      "outputs": [
+        "Segments"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "f1f51397-fc4b-44cf-b4b0-0ab80a80a6e1",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh",
+        "tolerance"
+      ],
+      "outputs": [
+        "RuntimeMessage",
+        "Mesh"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "24e2b0d2-d7b8-4478-8a83-1f04cba701a1",
+      "name": "EL",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh",
+        "LengthFactor",
+        "Strength"
+      ],
+      "outputs": [
+        "EL"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "2019c995-53af-4eb2-976d-95b1fdc823fa",
+      "name": "Unary",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point",
+        "Force vector",
+        "Weighting"
+      ],
+      "outputs": [
+        "Unary"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "3c30b1a1-4473-4ad4-a700-ea9770726c03",
+      "name": "A",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point",
+        "Target",
+        "Strength"
+      ],
+      "outputs": [
+        "A"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "4408343b-577e-4fd8-96ff-df7549189186",
+      "name": "O",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "GoalObjects",
+        "Threshold",
+        "Tolerance",
+        "MaxIterations"
+      ],
+      "outputs": [
+        "I",
+        "V",
+        "O"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "0ed5e67d-539d-480e-88cb-d81fa795d66c",
+      "name": "G",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "G"
+      ],
+      "outputs": [
+        "G"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "93b8e93d-f932-402c-b435-84be04d87666",
+      "name": "Distance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Point A",
+        "Point B"
+      ],
+      "outputs": [
+        "Distance"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "8073a420-6bec-49e3-9b18-367f6fd76ac3",
+      "name": "Curves",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Curves",
+        "Preserve"
+      ],
+      "outputs": [
+        "Curves"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "afb96615-c59a-45c9-9cac-e27acb1c7ca0",
+      "name": "Vertices",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Curve",
+        "Recursive"
+      ],
+      "outputs": [
+        "Segments",
+        "Vertices"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
+      ]
+    },
+    {
+      "guid": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
+      "name": "Box",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Base",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "outputs": [
+        "Box"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
+      ]
+    },
+    {
+      "guid": "9df5e896-552d-4c8c-b9ca-4fc147ffa022",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
+      ]
+    },
+    {
+      "guid": "d7ee52ff-89b8-4d1a-8662-3e0dd391d0af",
+      "name": "Curve",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Curve",
+        "Brep",
+        "Direction"
+      ],
+      "outputs": [
+        "Curve"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "353b206e-bde5-4f02-a913-b3b8a977d4b9",
+      "name": "Frame",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Surface",
+        "Point"
+      ],
+      "outputs": [
+        "Point",
+        "Normal",
+        "U direction",
+        "V direction",
+        "Frame"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "b464fccb-50e7-41bd-9789-8438db9bea9f",
+      "name": "Reflex",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Vector A",
+        "Vector B",
+        "Plane"
+      ],
+      "outputs": [
+        "Angle",
+        "Reflex"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
+      ]
+    },
+    {
+      "guid": "a77d0879-94c2-4101-be44-e4a616ffeb0c",
+      "name": "Absolute",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Geometry",
+        "Shader",
+        "Thickness",
+        "Absolute"
+      ],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
+      ]
+    },
+    {
+      "guid": "06953bda-1d37-4d58-9b38-4b3c74e54c8f",
+      "name": "File Path",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx"
+      ]
+    },
+    {
+      "guid": "5c2cba66-c81d-4baa-afe0-5fe4d0be4f93",
+      "name": "Volume Load",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Load Mesh",
+        "Load Vector"
+      ],
+      "outputs": [
+        "Volume Load"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "ce61205c-5d8e-429e-a0a2-e1dc3e10febc",
+      "name": "Boundary Condition Setup",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Load",
+        "Support"
+      ],
+      "outputs": [
+        "Boundary Condition Setup"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "c28233aa-2c4b-4865-8916-f2fa4b2f390f",
+      "name": "Boundary Domain",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Domain Mesh",
+        "Density Value",
+        "Young Modul",
+        "Poisson Number"
+      ],
+      "outputs": [
+        "Boundary Domain"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "f2880342-70fe-41c2-bb4e-2d9277d4daeb",
+      "name": "Resolution",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Resolution X"
+      ],
+      "outputs": [
+        "Resolution"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "7252bec6-68cf-4a13-9990-e1cb16d4c8ce",
+      "name": "Performance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model",
+        "Analyser Parameters",
+        "Optimus Parameters",
+        "Subdivision Threshold",
+        "Reset",
+        "Run"
+      ],
+      "outputs": [
+        "Model",
+        "Compliance",
+        "Performance"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "f5fcfdc9-d2dd-42cd-9e90-579e7c5b3497",
+      "name": "Analyser Parameters",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Iterations",
+        "Tolerance"
+      ],
+      "outputs": [
+        "Analyser Parameters"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "d73fc809-3b8c-4420-a70c-f17fd9edb825",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model",
+        "Iso Value",
+        "Deflection"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "38a19be1-f4b4-486c-8d47-c5f9dbf89e2b",
+      "name": "Performance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model",
+        "Tolerance",
+        "Colours"
+      ],
+      "outputs": [
+        "PStress Values",
+        "PStress Plane",
+        "PStress Crosses",
+        "PStress Crosses Colours",
+        "PStress Min/Max",
+        "VonMieses Values",
+        "VonMieses Crosses Colours",
+        "Performance"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2b69bf71-4e69-43aa-b7be-4f6ce7e45bef",
+      "name": "Quick Graph",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "d3bb176b-137e-46c3-bc2f-6f90b9fb9b8f",
+      "name": "Solver",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Performance"
+      ],
+      "outputs": [
+        "Total Data",
+        "Events Names",
+        "Times",
+        "Memory",
+        "Solver"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "30a92849-8387-4fdc-afab-4c0081e5cffe",
+      "name": "Optimus Parameter",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "fc276159-87f4-4f90-b1c3-ab941e699c28",
+      "name": "Kernel Statistics",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Reset"
+      ],
+      "outputs": [
+        "Performance",
+        "FreeMemory",
+        "Kernel Statistics"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "80a2b490-03cc-4d01-8115-121c7ceefa95",
+      "name": "Performance",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Boundary Domain",
+        "Boundary Condition",
+        "Boundary Properties",
+        "Model Resolution"
+      ],
+      "outputs": [
+        "Model",
+        "Performance"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "65283518-ad00-49d3-87fb-f76823ebb162",
+      "name": "Data A",
+      "category": "",
+      "subcategory": "",
+      "inputs": [],
+      "outputs": [],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "52a8ef7b-517f-46a4-acc9-afa8842ac028",
+      "name": "Deflection",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model"
+      ],
+      "outputs": [
+        "Location",
+        "Density",
+        "Deflection"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
+      ]
+    },
+    {
+      "guid": "2f3771fd-a41e-4fba-b890-1b0b66b48484",
+      "name": "Cell size",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Model Components",
+        "XResolution"
+      ],
+      "outputs": [
+        "FE Model",
+        "Cell Centres",
+        "Cell size"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "26ae7d91-3db7-4a06-9e26-42e790819d42",
+      "name": "Boundary Region",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Boundary",
+        "Is Void"
+      ],
+      "outputs": [
+        "Boundary Region"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "39a8e8ea-60dd-4a84-af01-1b5e8ba02d8a",
+      "name": "Load Region",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Boundary",
+        "Load"
+      ],
+      "outputs": [
+        "Load Region"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "7e332f0d-6c4f-45cd-b3ca-dc81e3fdc014",
+      "name": "Support Region",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Boundary",
+        "Support Type",
+        "Amend Existing Supports"
+      ],
+      "outputs": [
+        "Support Region"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "4811877a-1b77-443a-8be3-9b2f7eafeb03",
+      "name": "MaxDeflection",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "FE Model",
+        "Self Weight Coefficient",
+        "Optimisation iterations",
+        "Smoothing",
+        "Penalization",
+        "Target Density",
+        "Initial Densities",
+        "Minimum Density",
+        "Delete Threshold",
+        "Periodic X",
+        "Periodic Y",
+        "Periodic Z",
+        "Load Case",
+        "All Cases"
+      ],
+      "outputs": [
+        "FE Model",
+        "MaxDeflection"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "85b709b5-f9f8-4f91-84b8-002ee483444b",
+      "name": "Density",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "FE Model"
+      ],
+      "outputs": [
+        "Principal Stress Planes",
+        "Principal Stresses",
+        "VonMises Stress",
+        "Density"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "9aaaf1f4-28b2-4fb5-93e2-f0a4bf3895ab",
+      "name": "Mesh",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "FE Model",
+        "Deflection",
+        "Iso Contour Value"
+      ],
+      "outputs": [
+        "Mesh"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "db7d83b1-2898-4ef9-9be5-4e94b4e2048d",
+      "name": "Z",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Box"
+      ],
+      "outputs": [
+        "Plane",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "825ea536-aebb-41e9-af32-8baeb2ecb590",
+      "name": "End",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Domain"
+      ],
+      "outputs": [
+        "Start",
+        "End"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "9c85271f-89fa-4e9f-9f4a-d75802120ccc",
+      "name": "Result",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "outputs": [
+        "Result"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    },
+    {
+      "guid": "0b4ac802-fc4a-4201-9c66-0078b837c1eb",
+      "name": "Boundaries",
+      "category": "",
+      "subcategory": "",
+      "inputs": [
+        "Mesh"
+      ],
+      "outputs": [
+        "Boundaries"
+      ],
+      "seen_count": 1,
+      "source_files": [
+        "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
+      ]
+    }
+  ]
+}

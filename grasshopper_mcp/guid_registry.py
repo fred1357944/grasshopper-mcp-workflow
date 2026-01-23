@@ -96,6 +96,30 @@ class GUIDRegistry:
         # 參數輸入 (Params 類別)
         ("Number Slider", "Params"): "57da07bd-ecab-415d-9d86-af36d7073abc",
         ("Panel", "Params"): "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+        ("Boolean Toggle", "Params"): "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+        ("Button", "Params"): "a8b97322-2d53-47cd-905e-b932c3ccd74e",
+        ("Colour Swatch", "Params"): "9c53bac0-ba66-40bd-8154-ce9829b9db1a",
+
+        # 參數容器 (Params/Geometry) - 注意：與 Vector 類別的 Point 不同
+        ("Point", "Params"): "fbac3e32-f100-4292-8692-77240a42fd1a",
+        ("Curve", "Params"): "d5967b9f-e8ee-436b-a8ad-29fdcecf32d5",
+        ("Brep", "Params"): "919e146f-30ae-4aae-be34-4d72f555e7da",
+        ("Geometry", "Params"): "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
+
+        # 視覺/顯示 (Display 類別)
+        ("Colour", "Display"): "6da9f120-3ad0-4b6e-9fe0-f8cde3a649b7",
+        ("Material", "Display"): "537b0419-bbc2-4ff4-bf08-afe526367b2c",
+
+        # 數學/Domain
+        ("Domain", "Maths"): "f44b92b0-3b5b-493a-86f4-99a982f48eb7",
+        ("Graph Mapper", "Maths"): "bc984576-7aa6-491f-a91d-05aa6c91bf08",
+
+        # 向量 (從 WASP 學習)
+        ("Unit vector", "Vector"): "d3d195ea-2d59-4ffa-90b1-fe7ce8f43e2c",
+        ("Centroid", "Surface"): "2e205f24-9279-47b2-b414-8a43f8b68fc5",
+
+        # 清單操作
+        ("List Length", "Sets"): "1817fd29-20ae-4503-b542-f0fb651e67d7",
     }
 
     # 參數名映射（組件 GUID → 輸入/輸出參數名）
