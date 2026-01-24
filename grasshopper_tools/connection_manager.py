@@ -33,7 +33,9 @@ class ConnectionManager:
         source_param: Optional[str] = None,
         target_param: Optional[str] = None,
         source_id_key: Optional[str] = None,
-        target_id_key: Optional[str] = None
+        target_id_key: Optional[str] = None,
+        source_param_index: Optional[int] = None,
+        target_param_index: Optional[int] = None
     ) -> bool:
         """
         連接兩個組件
@@ -70,10 +72,16 @@ class ConnectionManager:
             "sourceId": source_id,
             "targetId": target_id
         }
-        
-        if source_param:
+
+        # 優先使用索引（避免 FuzzyMatcher 映射錯誤）
+        if source_param_index is not None:
+            params["sourceParamIndex"] = source_param_index
+        elif source_param:
             params["sourceParam"] = source_param
-        if target_param:
+
+        if target_param_index is not None:
+            params["targetParamIndex"] = target_param_index
+        elif target_param:
             params["targetParam"] = target_param
         
         response = self.client.send_command("connect_components", params)
@@ -111,6 +119,8 @@ class ConnectionManager:
             target_id_key = params.get("targetId", "")
             source_param = params.get("sourceParam")
             target_param = params.get("targetParam")
+            source_param_index = params.get("sourceParamIndex")
+            target_param_index = params.get("targetParamIndex")
             
             # 嘗試從映射中獲取實際 ID
             actual_source_id = self.component_manager.get_component_id(source_id_key)
@@ -131,7 +141,9 @@ class ConnectionManager:
                 actual_source_id,
                 actual_target_id,
                 source_param,
-                target_param
+                target_param,
+                source_param_index=source_param_index,
+                target_param_index=target_param_index
             )
             
             # 添加延遲，避免 Grasshopper 處理過快

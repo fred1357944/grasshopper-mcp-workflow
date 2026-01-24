@@ -56,7 +56,37 @@ class ComponentManager:
             error = response.get("error", "未知錯誤")
             self.client.safe_print(f"創建組件失敗: {error}")
             return None
-    
+
+    def add_component_by_type(self, comp_type: str, x: float, y: float, component_id: Optional[str] = None) -> Optional[str]:
+        """
+        用類型名稱創建組件（適用於 Panel 等特殊組件）
+
+        Args:
+            comp_type: 組件類型名稱（如 'Panel', 'Scribble'）
+            x: X 座標
+            y: Y 座標
+            component_id: 可選的組件 ID（用於映射）
+
+        Returns:
+            創建的組件實際 ID，如果失敗則返回 None
+        """
+        response = self.client.send_command("add_component", {
+            "type": comp_type,
+            "x": x,
+            "y": y
+        })
+
+        if response.get("success"):
+            actual_id = self.client.extract_component_id(response)
+            if actual_id and component_id:
+                with self._map_lock:
+                    self.component_id_map[component_id] = actual_id
+            return actual_id
+        else:
+            error = response.get("error", "未知錯誤")
+            self.client.safe_print(f"創建組件失敗: {error}")
+            return None
+
     def add_components_parallel(self, commands: List[Dict[str, Any]], max_workers: int = 10) -> Tuple[int, int]:
         """
         並行創建多個組件
@@ -84,17 +114,20 @@ class ComponentManager:
             parameters = cmd.get("parameters", {})
             if parameters:
                 # 從 parameters 中提取
-                guid = parameters.get("guid") or cmd.get("guid")
+                guid = parameters.get("guid")
+                comp_type = parameters.get("type")  # 組件類型（如 Panel）
                 x = parameters.get("x") if "x" in parameters else cmd.get("x")
                 y = parameters.get("y") if "y" in parameters else cmd.get("y")
             else:
-                # 直接從命令中提取
+                # 直接從命令中提取（舊格式）
                 guid = cmd.get("guid")
+                comp_type = None  # 舊格式的 type 是命令類型，不是組件類型
                 x = cmd.get("x")
                 y = cmd.get("y")
-            
-            if not guid:
-                self.client.safe_print(f"  ✗ [{index}/{total}] 錯誤: 缺少 GUID")
+
+            # 支援 guid 或 comp_type 創建組件（Panel 等特殊組件無 guid）
+            if not guid and not comp_type:
+                self.client.safe_print(f"  ✗ [{index}/{total}] 錯誤: 缺少 GUID 或組件類型")
                 return False, None
             
             # 確保 x 和 y 是 float 類型
@@ -107,17 +140,51 @@ class ComponentManager:
             
             x_float = float(x)
             y_float = float(y)
-            
+
             comment = cmd.get("comment", component_id or f"組件 {index}")
-            self.client.safe_print(f"  [{index}/{total}] 創建組件: {comment} (GUID: {guid[:8]}...)")
-            
-            actual_id = self.add_component(guid, x_float, y_float, component_id)
+            if guid:
+                self.client.safe_print(f"  [{index}/{total}] 創建組件: {comment} (GUID: {guid[:8]}...)")
+                actual_id = self.add_component(guid, x_float, y_float, component_id)
+            else:
+                self.client.safe_print(f"  [{index}/{total}] 創建組件: {comment} (type: {comp_type})")
+                actual_id = self.add_component_by_type(comp_type, x_float, y_float, component_id)
             
             # 添加延遲，避免 Grasshopper 處理過快
             time.sleep(0.05)  # 50 毫秒延遲
             
             if actual_id:
                 self.client.safe_print(f"      ✓ 成功創建，ID: {actual_id}")
+
+                # 自動設定組件初始值 (Slider 和 Panel)
+                value = parameters.get("value") if parameters else cmd.get("value")
+
+                if comp_type == "Number Slider" or (not comp_type and "Slider" in str(comment)):
+                    # 設定 Slider 屬性
+                    min_val = parameters.get("min", 0) if parameters else cmd.get("min", 0)
+                    max_val = parameters.get("max", 100) if parameters else cmd.get("max", 100)
+                    decimals = parameters.get("decimals", 2) if parameters else cmd.get("decimals", 2)
+
+                    # 先設範圍再設值 (避免 clamping)
+                    self.client.send_command("set_slider_properties", {
+                        "id": actual_id,
+                        "min": min_val,
+                        "max": max_val,
+                        "decimals": decimals
+                    })
+
+                    if value is not None:
+                        self.client.send_command("set_slider_properties", {
+                            "id": actual_id,
+                            "value": value
+                        })
+
+                elif comp_type == "Panel" and value is not None:
+                    # 設定 Panel 內容
+                    self.client.send_command("set_component_value", {
+                        "id": actual_id,
+                        "value": str(value)
+                    })
+
                 return True, actual_id
             else:
                 self.client.safe_print("      ✗ 創建失敗")

@@ -79,9 +79,11 @@ def cmd_execute_placement(args):
     result = executor.execute_placement_info(
         json_path=args.json_path,
         max_workers=args.max_workers,
-        save_id_map=args.save_id_map
+        save_id_map=args.save_id_map,
+        clear_first=args.clear_first,
+        use_smart_layout=not args.no_smart_layout
     )
-    
+
     if result["success"]:
         print("\n✓ 所有命令執行成功！")
         sys.exit(0)
@@ -832,6 +834,8 @@ def main():
     parser_execute.add_argument('json_path', help='placement_info.json 文件路徑（例如: GH_WIP/placement_info.json）')
     parser_execute.add_argument('--max-workers', type=int, default=10, help='最大並行線程數')
     parser_execute.add_argument('--no-save-id-map', dest='save_id_map', action='store_false', help='不保存 ID 映射')
+    parser_execute.add_argument('--clear-first', action='store_true', help='執行前先清空畫布')
+    parser_execute.add_argument('--no-smart-layout', action='store_true', help='不使用智能佈局（預設使用）')
     parser_execute.set_defaults(func=cmd_execute_placement)
     
     # execute-full-workflow 命令
