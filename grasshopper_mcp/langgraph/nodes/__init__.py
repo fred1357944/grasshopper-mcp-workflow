@@ -65,6 +65,15 @@ from .workflow_pipeline import (
     get_current_stage_node,
 )
 
+# Knowledge Query nodes (v3.1 - 長文記憶增強)
+from .knowledge_query import (
+    knowledge_query_node,
+    validate_commands_node,
+    resolve_guids_node,
+    inject_knowledge_node,
+    get_quick_reference,
+)
+
 __all__ = [
     # Core workflow nodes
     "clarify_requirements_node",
@@ -135,4 +144,11 @@ __all__ = [
     "enter_workflow_mode",
     "exit_workflow_mode",
     "get_current_stage_node",
+
+    # Knowledge Query nodes (v3.1 - 長文記憶增強)
+    "knowledge_query_node",
+    "validate_commands_node",
+    "resolve_guids_node",
+    "inject_knowledge_node",
+    "get_quick_reference",
 ]

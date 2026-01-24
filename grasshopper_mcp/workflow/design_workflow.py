@@ -41,6 +41,7 @@ class WorkflowPhase(Enum):
     DECOMPOSE = 2      # Phase 2: 幾何分解
     PLAN = 3           # Phase 3: 組件規劃
     QUERY_GUID = 4     # Phase 4: GUID 查詢
+    PRE_CHECK = 45     # Phase 4.5: Pre-Execution Checklist (NEW)
     EXECUTE = 5        # Phase 5: 執行部署
     ARCHIVE = 6        # Phase 6: 歸檔
 
@@ -121,10 +122,11 @@ class DesignWorkflow:
             next_action = "在 VSCode 確認 part_info.mmd 後執行 phase3_plan()"
         elif not files["placement_info"]:
             phase = WorkflowPhase.PLAN
-            next_action = "在 VSCode 確認 component_info.mmd 後執行 phase5_execute()"
+            next_action = "在 VSCode 確認 component_info.mmd 後生成 placement_info.json"
         elif not files["id_map"]:
-            phase = WorkflowPhase.EXECUTE
-            next_action = "執行 phase5_execute() 部署到 Grasshopper"
+            # placement_info.json 存在但未執行 → 需要先通過 Pre-Check
+            phase = WorkflowPhase.PRE_CHECK
+            next_action = "執行 phase4_pre_check() 驗證後再 phase5_execute()"
         else:
             phase = WorkflowPhase.ARCHIVE
             next_action = "執行 phase6_archive() 歸檔專案"
@@ -556,17 +558,106 @@ class DesignWorkflow:
 """
 
     # =========================================================================
+    # Phase 4.5: Pre-Execution Checklist (NEW)
+    # =========================================================================
+
+    def phase4_pre_check(self, auto_continue: bool = False) -> Dict[str, Any]:
+        """
+        Phase 4.5: Pre-Execution Checklist
+
+        在執行部署前驗證 placement_info.json，檢查：
+        - 組件 GUID 是否可信
+        - 連接參數是否有 FuzzyMatcher 風險
+        - Slider/Panel 是否有初始值
+
+        Args:
+            auto_continue: 若為 True，有 warning 時自動繼續；否則需要確認
+
+        Returns:
+            驗證結果，包含是否可以繼續執行
+        """
+        from grasshopper_mcp.pre_execution_checker import PreExecutionChecker
+
+        placement_path = self.wip_path / self.PLACEMENT_INFO
+        if not placement_path.exists():
+            return {
+                "phase": "pre_check",
+                "passed": False,
+                "message": f"placement_info.json 不存在，請先完成 Phase 4: {placement_path}",
+                "can_continue": False,
+            }
+
+        # 載入配置
+        with open(placement_path, encoding="utf-8") as f:
+            placement_info = json.load(f)
+
+        # 執行驗證
+        checker = PreExecutionChecker()
+        results = checker.check_placement_info(placement_info)
+        report = checker.generate_report()
+
+        # 輸出報告
+        print("\n" + "=" * 60)
+        print("  Phase 4.5: Pre-Execution Checklist")
+        print("=" * 60)
+        print(report)
+
+        # 判斷結果
+        critical = [r for r in results if r.severity == "critical"]
+        warnings = [r for r in results if r.severity == "warning"]
+
+        if critical:
+            print("\n❌ 驗證失敗：請修復 Critical 問題後重試")
+            return {
+                "phase": "pre_check",
+                "passed": False,
+                "critical_count": len(critical),
+                "warning_count": len(warnings),
+                "can_continue": False,
+                "message": "請修復 Critical 問題",
+            }
+
+        if warnings and not auto_continue:
+            print("\n⚠️ 有 Warning，需要確認是否繼續")
+            print("  說「繼續執行」或「修復後重試」")
+            return {
+                "phase": "pre_check",
+                "passed": True,
+                "critical_count": 0,
+                "warning_count": len(warnings),
+                "can_continue": "ask_user",
+                "message": "有 Warning，等待確認",
+            }
+
+        print("\n✅ 驗證通過，可以進入 Phase 5")
+        return {
+            "phase": "pre_check",
+            "passed": True,
+            "critical_count": 0,
+            "warning_count": len(warnings),
+            "can_continue": True,
+            "message": "驗證通過",
+        }
+
+    # =========================================================================
     # Phase 5: 執行部署
     # =========================================================================
 
-    def phase5_execute(self, clear_first: bool = True) -> Dict[str, Any]:
+    def phase5_execute(
+        self,
+        clear_first: bool = True,
+        use_smart_layout: bool = True,
+        skip_pre_check: bool = False
+    ) -> Dict[str, Any]:
         """
         Phase 5: 執行部署到 Grasshopper
 
         讀取 component_info.mmd，生成 placement_info.json，然後部署
 
         Args:
-            clear_first: 是否先清空 GH 畫布
+            clear_first: 是否先清空 GH 畫布（預設 True）
+            use_smart_layout: 是否使用智能佈局避免重疊（預設 True）
+            skip_pre_check: 是否跳過 Pre-Execution Checklist
 
         Returns:
             部署結果
@@ -576,19 +667,89 @@ class DesignWorkflow:
         if not component_info_path.exists():
             raise FileNotFoundError(f"請先完成 Phase 3: {component_info_path}")
 
-        # TODO: 解析 component_info.mmd 並部署
-        # 這裡可以整合現有的 mcp_adapter.py
+        # Phase 4.5: Pre-Execution Checklist
+        if not skip_pre_check:
+            pre_check_result = self.phase4_pre_check(auto_continue=False)
+            if not pre_check_result["can_continue"]:
+                return {
+                    "phase": "execute",
+                    "status": "blocked",
+                    "message": "Pre-Execution Checklist 未通過",
+                    "pre_check": pre_check_result,
+                }
+            if pre_check_result["can_continue"] == "ask_user":
+                return {
+                    "phase": "execute",
+                    "status": "pending_confirmation",
+                    "message": "等待使用者確認 Warning 後繼續",
+                    "pre_check": pre_check_result,
+                }
 
-        print("\n🚧 Phase 5 執行部署...")
-        print("  此功能需要整合 mcp_adapter.py")
-        print("  目前可以使用原作者的 CLI 命令：")
-        print(f"  python -m grasshopper_tools.cli execute-full-workflow {self.wip_path}/placement_info.json --clear-first")
+        # 檢查 placement_info.json 存在
+        placement_info_path = self.wip_path / self.PLACEMENT_INFO
+        if not placement_info_path.exists():
+            return {
+                "phase": "execute",
+                "status": "error",
+                "message": f"請先生成 placement_info.json: {placement_info_path}",
+            }
 
-        return {
-            "phase": "execute",
-            "status": "pending",
-            "message": "請使用 CLI 命令執行",
-        }
+        # 使用 PlacementExecutor 執行部署
+        print("\n🚀 Phase 5 執行部署...")
+        print(f"   clear_first: {clear_first}")
+        print(f"   use_smart_layout: {use_smart_layout}")
+
+        try:
+            from grasshopper_tools import PlacementExecutor
+
+            executor = PlacementExecutor()
+            result = executor.execute_placement_info(
+                json_path=str(placement_info_path),
+                clear_first=clear_first,
+                use_smart_layout=use_smart_layout,
+                save_id_map=True,
+                id_map_path=str(self.wip_path / self.ID_MAP),
+            )
+
+            if result["success"]:
+                print("\n✅ 部署成功！")
+                return {
+                    "phase": "execute",
+                    "status": "success",
+                    "message": "部署完成",
+                    "result": result,
+                }
+            else:
+                print("\n⚠️ 部署有部分失敗")
+                return {
+                    "phase": "execute",
+                    "status": "partial_success",
+                    "message": "部分命令失敗",
+                    "result": result,
+                }
+
+        except ImportError as e:
+            # 如果 PlacementExecutor 無法導入，提供 CLI 命令
+            print(f"\n⚠️ 無法導入 PlacementExecutor: {e}")
+            print("  請使用 CLI 命令執行：")
+            clear_flag = "--clear-first" if clear_first else ""
+            layout_flag = "" if use_smart_layout else "--no-smart-layout"
+            cmd = f"python -m grasshopper_tools.cli execute-placement {placement_info_path} {clear_flag} {layout_flag}".strip()
+            print(f"  {cmd}")
+            return {
+                "phase": "execute",
+                "status": "pending",
+                "message": "請使用 CLI 命令執行",
+                "command": cmd,
+            }
+
+        except Exception as e:
+            print(f"\n❌ 部署錯誤: {e}")
+            return {
+                "phase": "execute",
+                "status": "error",
+                "message": str(e),
+            }
 
     # =========================================================================
     # Phase 6: 歸檔
