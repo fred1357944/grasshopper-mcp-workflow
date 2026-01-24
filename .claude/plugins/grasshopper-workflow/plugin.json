@@ -1,0 +1,7 @@
+{
+  "name": "grasshopper-workflow",
+  "version": "1.0.0",
+  "description": "六階段互動式 Grasshopper 參數化設計工作流程 - 設計先行，對話確認，VSCode 預覽",
+  "author": "laihongyi",
+  "skills": ["skills/"]
+}
