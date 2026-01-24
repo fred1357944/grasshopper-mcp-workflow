@@ -1,32 +1,49 @@
 erDiagram
-    TABLE ||--|| TABLE_TOP : contains
-    TABLE ||--o{ TABLE_LEG : contains
-    
-    TABLE_TOP ||--o{ TABLE_LEG : supports
+    %% WASP Modular Aggregation - 幾何分解圖
+    %% 立方體模組 + 6面連接點 + 隨機聚合
 
-    TABLE {
-        string name "桌子"
-        int leg_count "4"
-        float total_height "75.0"
+    WASP_SYSTEM ||--|| BASE_MODULE : contains
+    WASP_SYSTEM ||--o{ CONNECTION_POINT : has
+    WASP_SYSTEM ||--|| AGGREGATION : produces
+
+    WASP_SYSTEM {
+        string name "WASP 模組化聚合系統"
+        int module_count "20"
+        string aggregation_type "Random"
     }
 
-    TABLE_TOP {
-        string sketch_type "Rectangle"
-        string forming_method "Extrude"
-        float width "120.0"
-        float length "80.0"
-        float height "5.0"
-        plane base_plane "基準平面"
-        vector extrusion_direction "擠出方向"
+    BASE_MODULE {
+        string geometry_type "Box"
+        string forming_method "Center Box"
+        float size_x "10.0"
+        float size_y "10.0"
+        float size_z "10.0"
+        plane base_plane "XY Plane at Origin"
+        string wasp_role "Part geometry"
     }
 
-    TABLE_LEG {
-        string sketch_type "Circle"
-        string forming_method "Extrude"
-        float radius "2.5"
-        float height "70.0"
-        plane base_plane "基準平面（4個不同位置）"
-        vector extrusion_direction "擠出方向"
-        int leg_position "1-4"
+    CONNECTION_POINT {
+        string type "Plane"
+        int count "6"
+        string positions "+X, -X, +Y, -Y, +Z, -Z faces"
+        string wasp_role "Connection planes"
+        string connection_type "bidirectional"
     }
 
+    AGGREGATION {
+        string method "WASP Stochastic Aggregation"
+        int target_count "20"
+        string seed_type "Random"
+        string collision_check "enabled"
+        string output "Aggregated Geometry"
+    }
+
+    VISUALIZATION {
+        string method "Random Color per Module"
+        string material_type "Custom Preview"
+        float transparency "0.0"
+    }
+
+    BASE_MODULE ||--|{ CONNECTION_POINT : defines
+    AGGREGATION ||--o{ BASE_MODULE : instantiates
+    AGGREGATION ||--|| VISUALIZATION : applies

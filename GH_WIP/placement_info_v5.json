@@ -1,0 +1,71 @@
+{
+  "description": "WASP Cube Aggregation v5.0 - 使用 Deconstruct Brep + Area Moments 獲取面中心",
+  "project": "wasp_cube_aggregation",
+  "version": "5.0",
+  "notes": {
+    "method": "Deconstruct Brep → Area Moments → Centroid 獲取每個面的中心點",
+    "connection": "使用 Connection From Direction，需要 Mesh + CEN + UP",
+    "simplification": "直接用 Deconstruct Brep 的 Faces 輸出給 Area Moments，取得所有 6 面的 Centroid"
+  },
+  "components": [
+    {"id": "SLIDER_SIZE", "type": "Number Slider", "nickname": "Size", "x": 50, "y": 100, "value": 10, "min": 1, "max": 50},
+    {"id": "SLIDER_COUNT", "type": "Number Slider", "nickname": "Count", "x": 50, "y": 150, "value": 20, "min": 1, "max": 100},
+    {"id": "SLIDER_SEED", "type": "Number Slider", "nickname": "Seed", "x": 50, "y": 200, "value": 42, "min": 0, "max": 1000},
+    {"id": "TOGGLE_RESET", "type": "Boolean Toggle", "nickname": "Reset", "x": 50, "y": 250},
+    {"id": "PANEL_NAME", "type": "Panel", "nickname": "PartName", "x": 50, "y": 300, "value": "Cube"},
+
+    {"id": "XY_PLANE", "type": "XY Plane", "nickname": "BasePlane", "x": 250, "y": 100},
+    {"id": "CENTER_BOX", "type": "Center Box", "nickname": "CubeBrep", "x": 450, "y": 100},
+    {"id": "MESH_BREP", "type": "Mesh Brep", "nickname": "CubeMesh", "x": 600, "y": 100},
+
+    {"id": "DECON_BREP", "type": "Deconstruct Brep", "nickname": "DeconBrep", "x": 600, "y": 250},
+    {"id": "AREA_MOMENTS", "type": "Area Moments", "nickname": "FaceCenters", "x": 750, "y": 250},
+
+    {"id": "UNIT_Z", "type": "Unit Z", "nickname": "ZVec", "x": 750, "y": 350},
+    {"id": "LINE_SDL", "type": "Line SDL", "nickname": "UpLines", "x": 900, "y": 300},
+
+    {"id": "WASP_CONN", "type": "Wasp_Connection From Direction", "nickname": "WaspConn", "x": 1100, "y": 200},
+    {"id": "WASP_PART", "type": "Wasp_Basic Part", "nickname": "WaspPart", "x": 1300, "y": 150},
+    {"id": "WASP_RULES", "type": "Wasp_Rules Generator", "nickname": "WaspRules", "x": 1450, "y": 150},
+    {"id": "WASP_AGG", "type": "Wasp_Stochastic Aggregation", "nickname": "WaspAgg", "x": 1600, "y": 150},
+    {"id": "WASP_GEO", "type": "Wasp_Get Part Geometry", "nickname": "GetGeo", "x": 1750, "y": 150}
+  ],
+  "connections": [
+    {"from": "XY_PLANE", "fromParam": "Pl", "to": "CENTER_BOX", "toParam": "B"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "X"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Y"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Z"},
+
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "MESH_BREP", "toParam": "B"},
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "DECON_BREP", "toParam": "B"},
+
+    {"from": "DECON_BREP", "fromParam": "F", "to": "AREA_MOMENTS", "toParam": "G"},
+
+    {"from": "AREA_MOMENTS", "fromParam": "C", "to": "LINE_SDL", "toParam": "S"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_SDL", "toParam": "D"},
+
+    {"from": "MESH_BREP", "fromParam": "M", "to": "WASP_CONN", "toParam": "GEO"},
+    {"from": "AREA_MOMENTS", "fromParam": "C", "to": "WASP_CONN", "toParam": "CEN"},
+    {"from": "LINE_SDL", "fromParam": "L", "to": "WASP_CONN", "toParam": "UP"},
+
+    {"from": "PANEL_NAME", "fromParam": "out", "to": "WASP_PART", "toParam": "NAME"},
+    {"from": "MESH_BREP", "fromParam": "M", "to": "WASP_PART", "toParam": "GEO"},
+    {"from": "WASP_CONN", "fromParam": "CONN", "to": "WASP_PART", "toParam": "CONN"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_RULES", "toParam": "PART"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_AGG", "toParam": "PART"},
+    {"from": "SLIDER_COUNT", "fromParam": "N", "to": "WASP_AGG", "toParam": "N"},
+    {"from": "WASP_RULES", "fromParam": "R", "to": "WASP_AGG", "toParam": "RULES"},
+    {"from": "SLIDER_SEED", "fromParam": "N", "to": "WASP_AGG", "toParam": "SEED"},
+    {"from": "TOGGLE_RESET", "fromParam": "B", "to": "WASP_AGG", "toParam": "RESET"},
+
+    {"from": "WASP_AGG", "fromParam": "PART_OUT", "to": "WASP_GEO", "toParam": "PART"}
+  ],
+  "groups": [
+    {"name": "Parameters", "components": ["SLIDER_SIZE", "SLIDER_COUNT", "SLIDER_SEED", "TOGGLE_RESET", "PANEL_NAME"], "color": "#FFD700"},
+    {"name": "Geometry", "components": ["XY_PLANE", "CENTER_BOX", "MESH_BREP", "DECON_BREP"], "color": "#87CEEB"},
+    {"name": "Face Centers", "components": ["AREA_MOMENTS", "UNIT_Z", "LINE_SDL"], "color": "#98FB98"},
+    {"name": "WASP Core", "components": ["WASP_CONN", "WASP_PART", "WASP_RULES", "WASP_AGG", "WASP_GEO"], "color": "#FF6B6B"}
+  ]
+}

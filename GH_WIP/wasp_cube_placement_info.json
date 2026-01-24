@@ -1,0 +1,125 @@
+{
+  "_meta": {
+    "name": "WASP Cube Basic Aggregation",
+    "version": "1.0.0",
+    "created": "2026-01-24",
+    "source": "基於 ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
+    "description": "立方體 WASP 聚集 - 6 面全連接"
+  },
+
+  "components": [
+    {
+      "nickname": "SizeX",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "x": 50,
+      "y": 50,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "SizeY",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "x": 50,
+      "y": 100,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "SizeZ",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "x": 50,
+      "y": 150,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "Count",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "x": 50,
+      "y": 250,
+      "properties": { "min": 1, "max": 100, "value": 15, "decimals": 0 }
+    },
+    {
+      "nickname": "Seed",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "x": 50,
+      "y": 300,
+      "properties": { "min": 0, "max": 999, "value": 42, "decimals": 0 }
+    },
+    {
+      "nickname": "PartName",
+      "type": "Panel",
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "x": 50,
+      "y": 200,
+      "properties": { "value": "Cube" }
+    },
+    {
+      "nickname": "MeshBox",
+      "type": "Mesh Box",
+      "guid": "c4ac4e68-060e-4cd0-85b1-1f2e3663c449",
+      "x": 250,
+      "y": 100
+    },
+    {
+      "nickname": "FaceN",
+      "type": "Face Normals",
+      "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5",
+      "x": 450,
+      "y": 100
+    },
+    {
+      "nickname": "ConnDir",
+      "type": "Wasp_Connection From Direction",
+      "guid": "9a48eda9-6f67-47b4-915a-689acc550ffb",
+      "x": 650,
+      "y": 100
+    },
+    {
+      "nickname": "BasicPart",
+      "type": "Wasp_Basic Part",
+      "guid": "02ffc0b4-fc50-4f0c-85ad-b27949c99e51",
+      "x": 850,
+      "y": 150
+    },
+    {
+      "nickname": "Rule",
+      "type": "Wasp_Rule",
+      "guid": "6d499113-9608-4e4e-b90b-f1b0e681b4e3",
+      "x": 1050,
+      "y": 100
+    },
+    {
+      "nickname": "StochAggr",
+      "type": "Wasp_Stochastic Aggregation",
+      "guid": "e5dd0f7b-6392-466e-8ce4-f2e393ddae6e",
+      "x": 1250,
+      "y": 200
+    }
+  ],
+
+  "connections": [
+    { "from": "SizeX", "from_param": "N", "to": "MeshBox", "to_param": "X" },
+    { "from": "SizeY", "from_param": "N", "to": "MeshBox", "to_param": "Y" },
+    { "from": "SizeZ", "from_param": "N", "to": "MeshBox", "to_param": "Z" },
+
+    { "from": "MeshBox", "from_param": "M", "to": "FaceN", "to_param": "M" },
+
+    { "from": "MeshBox", "from_param": "M", "to": "ConnDir", "to_param": "GEO" },
+    { "from": "FaceN", "from_param": "C", "to": "ConnDir", "to_param": "CEN" },
+
+    { "from": "PartName", "from_param": "out", "to": "BasicPart", "to_param": "NAME" },
+    { "from": "MeshBox", "from_param": "M", "to": "BasicPart", "to_param": "GEO" },
+    { "from": "ConnDir", "from_param": "CONN", "to": "BasicPart", "to_param": "CONN" },
+
+    { "from": "BasicPart", "from_param": "PART", "to": "Rule", "to_param": "P1" },
+    { "from": "BasicPart", "from_param": "PART", "to": "Rule", "to_param": "P2" },
+
+    { "from": "BasicPart", "from_param": "PART", "to": "StochAggr", "to_param": "PART" },
+    { "from": "Rule", "from_param": "R", "to": "StochAggr", "to_param": "RULES" },
+    { "from": "Count", "from_param": "N", "to": "StochAggr", "to_param": "N" },
+    { "from": "Seed", "from_param": "N", "to": "StochAggr", "to_param": "SEED" }
+  ]
+}

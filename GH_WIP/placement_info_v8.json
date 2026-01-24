@@ -1,0 +1,69 @@
+{
+  "description": "WASP Cube Aggregation v8.0 - 官方慣例優化版 (Deconstruct Brep + Evaluate Surface)",
+  "project": "wasp_cube_aggregation",
+  "version": "8.0",
+  "notes": {
+    "method": "Center Box → Deconstruct Brep → Evaluate Surface(uv=0.5,0.5) → Connection From Plane",
+    "key_insight": "Evaluate Surface 在面中心 (0.5, 0.5) 直接輸出 Frame (Plane)，包含正確的法向量",
+    "official_reference": "基於 0_03_Vertex_Edge_Connections.ghx 的 Deconstruct Brep + Construct Plane 模式",
+    "improvement": "比 v7 更符合官方慣例，避免 Mesh 轉換和手動組合平面"
+  },
+
+  "components": [
+    {"id": "SLIDER_SIZE", "type": "Number Slider", "nickname": "Size", "x": 50, "y": 100, "value": 10, "min": 1, "max": 50, "decimals": 0},
+    {"id": "SLIDER_COUNT", "type": "Number Slider", "nickname": "Count", "x": 50, "y": 160, "value": 20, "min": 1, "max": 100, "decimals": 0},
+    {"id": "SLIDER_SEED", "type": "Number Slider", "nickname": "Seed", "x": 50, "y": 220, "value": 42, "min": 0, "max": 999, "decimals": 0},
+    {"id": "TOGGLE_RESET", "type": "Boolean Toggle", "nickname": "Reset", "x": 50, "y": 280, "value": false},
+    {"id": "PANEL_NAME", "type": "Panel", "nickname": "PartName", "x": 50, "y": 340, "value": "Cube"},
+
+    {"id": "XY_PLANE", "type": "XY Plane", "nickname": "Origin", "x": 250, "y": 100},
+    {"id": "CENTER_BOX", "type": "Center Box", "nickname": "CubeBrep", "x": 400, "y": 100},
+
+    {"id": "DEBREP", "type": "Deconstruct Brep", "nickname": "DeBrep", "x": 550, "y": 100, "comment": "解構 Brep → 6 Faces"},
+
+    {"id": "SLIDER_UV", "type": "Number Slider", "nickname": "UV", "x": 550, "y": 200, "value": 0.5, "min": 0, "max": 1, "decimals": 2, "comment": "面中心 uv 參數"},
+    {"id": "EVAL_SRF", "type": "Evaluate Surface", "nickname": "EvalSrf", "x": 700, "y": 150, "comment": "獲取面中心的 Frame"},
+
+    {"id": "WASP_CONN", "type": "Wasp_Connection From Plane", "nickname": "ConnPln", "x": 850, "y": 150},
+    {"id": "WASP_PART", "type": "Wasp_Basic Part", "nickname": "WaspPart", "x": 1000, "y": 120},
+    {"id": "WASP_RULES", "type": "Wasp_Rules Generator", "nickname": "Rules", "x": 1150, "y": 120},
+    {"id": "WASP_AGG", "type": "Wasp_Stochastic Aggregation", "nickname": "Agg", "x": 1300, "y": 100},
+    {"id": "WASP_GEO", "type": "Wasp_Get Part Geometry", "nickname": "GetGeo", "x": 1450, "y": 100}
+  ],
+
+  "connections": [
+    {"from": "XY_PLANE", "fromParam": "Pl", "to": "CENTER_BOX", "toParam": "B", "comment": "基準平面"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "X"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Y"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Z"},
+
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "DEBREP", "toParam": "B", "comment": "Brep → Deconstruct"},
+
+    {"from": "DEBREP", "fromParam": "F", "to": "EVAL_SRF", "toParam": "S", "comment": "Faces → Evaluate Surface"},
+    {"from": "SLIDER_UV", "fromParam": "N", "to": "EVAL_SRF", "toParam": "U", "comment": "U = 0.5 (中心)"},
+    {"from": "SLIDER_UV", "fromParam": "N", "to": "EVAL_SRF", "toParam": "V", "comment": "V = 0.5 (中心)"},
+
+    {"from": "EVAL_SRF", "fromParam": "F", "to": "WASP_CONN", "toParam": "PLN", "comment": "Frame → Connection Plane"},
+
+    {"from": "PANEL_NAME", "fromParam": "out", "to": "WASP_PART", "toParam": "NAME"},
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "WASP_PART", "toParam": "GEO"},
+    {"from": "WASP_CONN", "fromParam": "CONN", "to": "WASP_PART", "toParam": "CONN"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_RULES", "toParam": "PART"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_AGG", "toParam": "PART"},
+    {"from": "WASP_RULES", "fromParam": "R", "to": "WASP_AGG", "toParam": "RULES"},
+    {"from": "SLIDER_COUNT", "fromParam": "N", "to": "WASP_AGG", "toParam": "N"},
+    {"from": "SLIDER_SEED", "fromParam": "N", "to": "WASP_AGG", "toParam": "SEED"},
+    {"from": "TOGGLE_RESET", "fromParam": "B", "to": "WASP_AGG", "toParam": "RESET"},
+
+    {"from": "WASP_AGG", "fromParam": "PART_OUT", "to": "WASP_GEO", "toParam": "PART"}
+  ],
+
+  "groups": [
+    {"name": "Parameters", "components": ["SLIDER_SIZE", "SLIDER_COUNT", "SLIDER_SEED", "TOGGLE_RESET", "PANEL_NAME"], "color": "#FFD700"},
+    {"name": "Geometry", "components": ["XY_PLANE", "CENTER_BOX"], "color": "#87CEEB"},
+    {"name": "Face Decomposition", "components": ["DEBREP", "SLIDER_UV", "EVAL_SRF"], "color": "#98FB98"},
+    {"name": "WASP Core", "components": ["WASP_CONN", "WASP_PART", "WASP_RULES", "WASP_AGG", "WASP_GEO"], "color": "#FF6B6B"}
+  ]
+}

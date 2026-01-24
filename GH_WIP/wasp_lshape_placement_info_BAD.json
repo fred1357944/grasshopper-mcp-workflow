@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "project": "WASP L-Shape Module Aggregation",
+    "version": "v1-BAD",
+    "description": "故意包含錯誤的配置，用於測試 Pre-Execution Checker",
+    "mcp_commands": ["clear_canvas", "add_component", "connect_components"]
+  },
+  "components": [
+    {"id": "seed", "type": "Number Slider", "nickname": "Seed", "col": 0, "row": 0},
+    {"id": "count", "type": "Number Slider", "nickname": "Count", "col": 0, "row": 1, "value": 15},
+    {"id": "partname", "type": "Panel", "nickname": "PartName", "col": 0, "row": 2},
+    {"id": "box1", "type": "Center Box", "nickname": "Box1", "col": 2, "row": 0},
+    {"id": "box2", "type": "Center Box", "nickname": "Box2", "col": 2, "row": 1},
+    {"id": "move", "type": "Move", "nickname": "MoveBox", "col": 3, "row": 1},
+    {"id": "union", "type": "Solid Union", "nickname": "LShape", "col": 4, "row": 0},
+    {"id": "meshbrep", "type": "Mesh Brep", "nickname": "ToMesh", "col": 5, "row": 0},
+    {"id": "facenormals", "type": "Face Normals", "nickname": "FaceN", "col": 6, "row": 0, "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5"},
+    {"id": "conndir", "type": "Wasp_Connection From Direction", "nickname": "ConnDir", "col": 7, "row": 0},
+    {"id": "part", "type": "Wasp_Part", "nickname": "LPart", "col": 8, "row": 0},
+    {"id": "rule", "type": "Wasp_Rule", "nickname": "Rule", "col": 9, "row": 0},
+    {"id": "agg", "type": "Wasp_Stochastic Aggregation", "nickname": "Agg", "col": 10, "row": 0}
+  ],
+  "connections": [
+    {"from": "box1", "to": "union", "fromParam": "B", "toParam": "B"},
+    {"from": "box2", "to": "move", "fromParam": "B", "toParam": "G"},
+    {"from": "move", "to": "union", "fromParam": "G", "toParam": "B"},
+    {"from": "union", "to": "meshbrep", "fromParam": "R", "toParam": "B"},
+    {"from": "meshbrep", "to": "facenormals", "fromParam": "M", "toParam": "M"},
+    {"from": "meshbrep", "to": "conndir", "fromParam": "M", "toParam": "GEO"},
+    {"from": "facenormals", "to": "conndir", "fromParam": "C", "toParam": "CEN"},
+    {"from": "facenormals", "to": "conndir", "fromParam": "N", "toParam": "UP"},
+    {"from": "conndir", "to": "part", "fromParam": "CONN", "toParam": "CONN"},
+    {"from": "meshbrep", "to": "part", "fromParam": "M", "toParam": "GEO"},
+    {"from": "partname", "to": "part", "fromParam": "out", "toParam": "N"},
+    {"from": "part", "to": "rule", "fromParam": "PART", "toParam": "P"},
+    {"from": "part", "to": "agg", "fromParam": "PART", "toParam": "PART"},
+    {"from": "rule", "to": "agg", "fromParam": "R", "toParam": "R"},
+    {"from": "seed", "to": "agg", "fromParam": "N", "toParam": "S"},
+    {"from": "count", "to": "agg", "fromParam": "N", "toParam": "N"}
+  ]
+}

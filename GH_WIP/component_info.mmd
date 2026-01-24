@@ -1,169 +1,135 @@
 flowchart LR
-    %% 工業風書架 (Industrial Bookshelf) - GH 組件連接圖
-    %% 生成時間: 2026-01-23 (更新: 參數名修正)
-    %% 規格: 80×180×30cm, 5層, 金屬支架
-    %% 狀態: ✅ 已部署成功
-    %%
-    %% 注意：參數名已統一使用全名 (Result, Point, Series 等)
-    %% 請在 VSCode 中預覽：code GH_WIP/component_info.mmd
+    %% WASP Modular Aggregation v2.1 - 通用可變參數版
+    %% 立方體模組 + 6面連接 + 隨機聚合 20 個
+    %% 使用 set_variable_params 命令設定 Entwine 輸入數量
 
-    subgraph PARAMS["參數 Sliders"]
-        WIDTH["Number Slider<br/>nickname: Width<br/>value: 80<br/>range: 40-150"]
-        HEIGHT["Number Slider<br/>nickname: Height<br/>value: 180<br/>range: 100-250"]
-        DEPTH["Number Slider<br/>nickname: Depth<br/>value: 30<br/>range: 20-50"]
-        SHELF_COUNT["Number Slider<br/>nickname: ShelfCount<br/>value: 5<br/>range: 2-10"]
-        SHELF_T["Number Slider<br/>nickname: ShelfT<br/>value: 2<br/>range: 1-5"]
-        SUPPORT_R["Number Slider<br/>nickname: SupportR<br/>value: 1.5<br/>range: 1-3"]
-        BRACKET_R["Number Slider<br/>nickname: BracketR<br/>value: 0.8<br/>range: 0.5-1.5"]
-        INSET["Number Slider<br/>nickname: Inset<br/>value: 5<br/>range: 3-10"]
-        CONST_1["Number Slider<br/>nickname: Const1<br/>value: 1<br/>range: 0-2"]
-        CONST_2["Number Slider<br/>nickname: Const2<br/>value: 2<br/>range: 0-4"]
+    subgraph PARAMS["參數控制"]
+        SLIDER_SIZE["Number Slider<br/>nickname: Size<br/>value: 10<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
+        SLIDER_COUNT["Number Slider<br/>nickname: Count<br/>value: 20<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
+        SLIDER_SEED["Number Slider<br/>nickname: Seed<br/>value: 1<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
+        TOGGLE_RESET["Boolean Toggle<br/>nickname: Reset<br/>value: false<br/>GUID: 2e78987b-9dfb-42a2-8b76-3923ac8bd91a"]
+        PANEL_NAME["Panel<br/>nickname: PartName<br/>value: Cube<br/>GUID: 59e0b89a-e487-49f8-bab8-b5bab16be14c"]
     end
 
-    subgraph CALC_Z["層板 Z 座標計算"]
-        %% 層間距 = (Height - ShelfT) / (ShelfCount - 1)
-        SUB_H["Subtraction<br/>nickname: HeightMinusT<br/>A=Height, B=ShelfT"]
-        SUB_COUNT["Subtraction<br/>nickname: CountMinus1<br/>A=ShelfCount, B=Const1"]
-        DIV_SPACING["Division<br/>nickname: Spacing<br/>A=HeightMinusT, B=CountMinus1"]
-
-        %% 起始 Z = ShelfT / 2 (層板中心)
-        DIV_START_Z["Division<br/>nickname: StartZ<br/>A=ShelfT, B=Const2"]
-
-        %% Series 生成 Z 序列
-        SERIES_Z["Series<br/>nickname: ShelfZs<br/>S=StartZ, N=Spacing, C=ShelfCount"]
+    subgraph MODULE["模組幾何"]
+        XY_PLANE["XY Plane<br/>nickname: BasePlane<br/>GUID: 5df6a8c1-de5e-4841-8089-41a95c741c5a"]
+        CENTER_BOX["Center Box<br/>nickname: CubeGeo<br/>GUID: d1296e28-f64c-4c2a-9a9e-49e7839460de"]
     end
 
-    subgraph CALC_X["支架 X 座標計算"]
-        %% X = Width/2 - Inset
-        DIV_HALF_W["Division<br/>nickname: HalfWidth<br/>A=Width, B=Const2"]
-        SUB_INSET["Subtraction<br/>nickname: RightX<br/>A=HalfWidth, B=Inset"]
-        NEG_X["Negative<br/>nickname: LeftX<br/>x=RightX"]
+    subgraph CONNECTIONS["連接點定義 (6面)"]
+        %% 半邊長計算
+        HALF_SIZE["Division<br/>nickname: HalfSize<br/>GUID: b16a2ec0-f873-4ef7-8e0c-a068e7571cb4"]
+        SLIDER_TWO["Number Slider<br/>nickname: Two<br/>value: 2<br/>min: 2<br/>max: 2<br/>GUID: 4b69de50-1ff2-4872-a2a7-f09e1ce48178"]
+
+        %% 構建連接點位置 (Construct Point)
+        PT_PX["Construct Point<br/>nickname: Pt+X<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+        PT_NX["Construct Point<br/>nickname: Pt-X<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+        PT_PY["Construct Point<br/>nickname: Pt+Y<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+        PT_NY["Construct Point<br/>nickname: Pt-Y<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+        PT_PZ["Construct Point<br/>nickname: Pt+Z<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+        PT_NZ["Construct Point<br/>nickname: Pt-Z<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
+
+        %% 在連接點位置創建平面 (Plane Origin)
+        PLANE_PX["Plane Origin<br/>nickname: Plane+X<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+        PLANE_NX["Plane Origin<br/>nickname: Plane-X<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+        PLANE_PY["Plane Origin<br/>nickname: Plane+Y<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+        PLANE_NY["Plane Origin<br/>nickname: Plane-Y<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+        PLANE_PZ["Plane Origin<br/>nickname: Plane+Z<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+        PLANE_NZ["Plane Origin<br/>nickname: Plane-Z<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
+
+        %% 合併所有平面 (Entwine with 6 inputs via set_variable_params)
+        %% 重要: 建立組件後使用 set_variable_params 命令設定為 6 個輸入
+        ENTWINE["Entwine<br/>nickname: AllPlanes<br/>GUID: ae577ebd-229b-4ab7-a2ac-e3e4e5faeaf4<br/>⚙️ variable_params: input=6"]
     end
 
-    subgraph SHELF_GEO["層板幾何"]
-        %% 層板中心點 (X=0, Y=0, Z=Series)
-        CONST_0_X["Number Slider<br/>nickname: Zero<br/>value: 0"]
-        PT_SHELF["Construct Point<br/>nickname: ShelfCenters<br/>X=Zero, Y=Zero, Z=ShelfZs"]
-        PLANE_SHELF["XY Plane<br/>nickname: ShelfPlanes<br/>O=ShelfCenters"]
+    subgraph WASP["WASP 核心"]
+        %% 從平面建立連接
+        WASP_CONN["Wasp_Connection From Plane<br/>nickname: WaspConn<br/>GUID: 55236596-6043-4d38-8b78-75aa71b53ea3<br/>輸入: PLN, T<br/>輸出: CONN, PLN_OUT"]
 
-        %% 層板尺寸 (半尺寸)
-        DIV_W2["Division<br/>nickname: HalfW<br/>A=Width, B=Const2"]
-        DIV_D2["Division<br/>nickname: HalfD<br/>A=Depth, B=Const2"]
-        DIV_T2["Division<br/>nickname: HalfT<br/>A=ShelfT, B=Const2"]
+        %% 建立 Part
+        WASP_PART["Wasp_Basic Part<br/>nickname: WaspPart<br/>GUID: 16337c2f-e757-41b5-9fa9-2818bd3d3cb4<br/>輸入: NAME, GEO, CONN<br/>輸出: PART"]
 
-        %% Center Box
-        BOX_SHELF["Center Box<br/>nickname: Shelves<br/>B=ShelfPlanes, X=HalfW, Y=HalfD, Z=HalfT"]
+        %% 建立規則 (自我連接)
+        WASP_RULES["Wasp_Rules Generator<br/>nickname: WaspRules<br/>GUID: 59fceb35-a398-4d60-9447-cc874f078a92<br/>輸入: PART<br/>輸出: R"]
+
+        %% 隨機聚合
+        WASP_AGG["Wasp_Stochastic Aggregation<br/>nickname: WaspAgg<br/>GUID: f2db2236-90e6-4128-a574-004b14fdf26f<br/>輸入: PART, N, RULES, SEED, RESET<br/>輸出: AGGR, PART_OUT"]
     end
 
-    subgraph SUPPORT_GEO["支架幾何"]
-        %% 左支架
-        CONST_0_Y["Number Slider<br/>nickname: ZeroY<br/>value: 0"]
-        CONST_0_Z["Number Slider<br/>nickname: ZeroZ<br/>value: 0"]
-        PT_LEFT["Construct Point<br/>nickname: LeftBase<br/>X=LeftX, Y=ZeroY, Z=ZeroZ"]
-        CYL_LEFT["Cylinder<br/>nickname: LeftSupport<br/>B=LeftBase, R=SupportR, L=Height"]
-
-        %% 右支架
-        PT_RIGHT["Construct Point<br/>nickname: RightBase<br/>X=RightX, Y=ZeroY, Z=ZeroZ"]
-        CYL_RIGHT["Cylinder<br/>nickname: RightSupport<br/>B=RightBase, R=SupportR, L=Height"]
+    subgraph OUTPUT["輸出"]
+        %% 取得幾何
+        WASP_GEO["Wasp_Get Part Geometry<br/>nickname: GetGeo<br/>GUID: b7c93c50-0776-4b3a-829d-01b8cae0f6fc<br/>輸入: PART<br/>輸出: GEO"]
     end
 
-    subgraph BRACKET_GEO["托架幾何"]
-        %% 托架 Y 終點 = Depth / 2
-        DIV_BRACKET_Y["Division<br/>nickname: BracketEndY<br/>A=Depth, B=Const2"]
+    %% === 連接 ===
 
-        %% 左托架
-        PT_BL_START["Construct Point<br/>nickname: LeftBracketStart<br/>X=LeftX, Y=ZeroY, Z=ShelfZs"]
-        PT_BL_END["Construct Point<br/>nickname: LeftBracketEnd<br/>X=LeftX, Y=BracketEndY, Z=ShelfZs"]
-        LINE_BL["Line<br/>nickname: LeftBracketLines<br/>Start Point=LeftBracketStart, End Point=LeftBracketEnd"]
-        PIPE_BL["Pipe<br/>nickname: LeftBrackets<br/>Curve=LeftBracketLines, R=BracketR"]
+    %% 模組幾何
+    XY_PLANE -->|"P → B"| CENTER_BOX
+    SLIDER_SIZE -->|"N → X"| CENTER_BOX
+    SLIDER_SIZE -->|"N → Y"| CENTER_BOX
+    SLIDER_SIZE -->|"N → Z"| CENTER_BOX
 
-        %% 右托架
-        PT_BR_START["Construct Point<br/>nickname: RightBracketStart<br/>X=RightX, Y=ZeroY, Z=ShelfZs"]
-        PT_BR_END["Construct Point<br/>nickname: RightBracketEnd<br/>X=RightX, Y=BracketEndY, Z=ShelfZs"]
-        LINE_BR["Line<br/>nickname: RightBracketLines<br/>Start Point=RightBracketStart, End Point=RightBracketEnd"]
-        PIPE_BR["Pipe<br/>nickname: RightBrackets<br/>Curve=RightBracketLines, R=BracketR"]
-    end
+    %% 半邊長
+    SLIDER_SIZE -->|"N → A"| HALF_SIZE
+    SLIDER_TWO -->|"N → B"| HALF_SIZE
 
-    %% ===== 連接關係 =====
+    %% +X 連接點 (x=+half, y=0, z=0)
+    HALF_SIZE -->|"R → X"| PT_PX
+    XY_PLANE -->|"P → B"| PLANE_PX
+    PT_PX -->|"Pt → O"| PLANE_PX
 
-    %% ===== 連接關係 (使用全名參數) =====
+    %% -X 連接點 (x=-half, y=0, z=0) - 需要負值
+    NEG_HALF["Negative<br/>nickname: NegHalf<br/>GUID: 89b0c734-5552-4343-9b85-6d1276cca164"]
+    HALF_SIZE -->|"R → x"| NEG_HALF
+    NEG_HALF -->|"R → X"| PT_NX
+    XY_PLANE -->|"P → B"| PLANE_NX
+    PT_NX -->|"Pt → O"| PLANE_NX
 
-    %% 參數 → 層板 Z 計算
-    HEIGHT -->|"N → A"| SUB_H
-    SHELF_T -->|"N → B"| SUB_H
-    SHELF_COUNT -->|"N → A"| SUB_COUNT
-    CONST_1 -->|"N → B"| SUB_COUNT
-    SUB_H -->|"Result → A"| DIV_SPACING
-    SUB_COUNT -->|"Result → B"| DIV_SPACING
-    SHELF_T -->|"N → A"| DIV_START_Z
-    CONST_2 -->|"N → B"| DIV_START_Z
-    DIV_START_Z -->|"Result → S"| SERIES_Z
-    DIV_SPACING -->|"Result → N"| SERIES_Z
-    SHELF_COUNT -->|"N → C"| SERIES_Z
+    %% +Y 連接點 (x=0, y=+half, z=0)
+    HALF_SIZE -->|"R → Y"| PT_PY
+    XY_PLANE -->|"P → B"| PLANE_PY
+    PT_PY -->|"Pt → O"| PLANE_PY
 
-    %% 參數 → 支架 X 計算
-    WIDTH -->|"N → A"| DIV_HALF_W
-    CONST_2 -->|"N → B"| DIV_HALF_W
-    DIV_HALF_W -->|"Result → A"| SUB_INSET
-    INSET -->|"N → B"| SUB_INSET
-    SUB_INSET -->|"Result → x"| NEG_X
+    %% -Y 連接點 (x=0, y=-half, z=0)
+    NEG_HALF -->|"R → Y"| PT_NY
+    XY_PLANE -->|"P → B"| PLANE_NY
+    PT_NY -->|"Pt → O"| PLANE_NY
 
-    %% 層板幾何連接
-    CONST_0_X -->|"N → X"| PT_SHELF
-    CONST_0_X -->|"N → Y"| PT_SHELF
-    SERIES_Z -->|"Series → Z"| PT_SHELF
-    PT_SHELF -->|"Point → Origin"| PLANE_SHELF
-    WIDTH -->|"N → A"| DIV_W2
-    CONST_2 -->|"N → B"| DIV_W2
-    DEPTH -->|"N → A"| DIV_D2
-    CONST_2 -->|"N → B"| DIV_D2
-    SHELF_T -->|"N → A"| DIV_T2
-    CONST_2 -->|"N → B"| DIV_T2
-    PLANE_SHELF -->|"Plane → Base"| BOX_SHELF
-    DIV_W2 -->|"Result → X"| BOX_SHELF
-    DIV_D2 -->|"Result → Y"| BOX_SHELF
-    DIV_T2 -->|"Result → Z"| BOX_SHELF
+    %% +Z 連接點 (x=0, y=0, z=+half)
+    HALF_SIZE -->|"R → Z"| PT_PZ
+    XY_PLANE -->|"P → B"| PLANE_PZ
+    PT_PZ -->|"Pt → O"| PLANE_PZ
 
-    %% 左支架連接
-    NEG_X -->|"x → X"| PT_LEFT
-    CONST_0_Y -->|"N → Y"| PT_LEFT
-    CONST_0_Z -->|"N → Z"| PT_LEFT
-    PT_LEFT -->|"Point → Base"| CYL_LEFT
-    SUPPORT_R -->|"N → R"| CYL_LEFT
-    HEIGHT -->|"N → L"| CYL_LEFT
+    %% -Z 連接點 (x=0, y=0, z=-half)
+    NEG_HALF -->|"R → Z"| PT_NZ
+    XY_PLANE -->|"P → B"| PLANE_NZ
+    PT_NZ -->|"Pt → O"| PLANE_NZ
 
-    %% 右支架連接
-    SUB_INSET -->|"Result → X"| PT_RIGHT
-    CONST_0_Y -->|"N → Y"| PT_RIGHT
-    CONST_0_Z -->|"N → Z"| PT_RIGHT
-    PT_RIGHT -->|"Point → Base"| CYL_RIGHT
-    SUPPORT_R -->|"N → R"| CYL_RIGHT
-    HEIGHT -->|"N → L"| CYL_RIGHT
+    %% 合併 6 個平面到 Entwine
+    PLANE_PX -->|"Pl → {0}"| ENTWINE
+    PLANE_NX -->|"Pl → {1}"| ENTWINE
+    PLANE_PY -->|"Pl → {2}"| ENTWINE
+    PLANE_NY -->|"Pl → {3}"| ENTWINE
+    PLANE_PZ -->|"Pl → {4}"| ENTWINE
+    PLANE_NZ -->|"Pl → {5}"| ENTWINE
 
-    %% 托架 Y 計算
-    DEPTH -->|"N → A"| DIV_BRACKET_Y
-    CONST_2 -->|"N → B"| DIV_BRACKET_Y
+    %% WASP 連接
+    ENTWINE -->|"R → PLN"| WASP_CONN
 
-    %% 左托架連接
-    NEG_X -->|"x → X"| PT_BL_START
-    CONST_0_Y -->|"N → Y"| PT_BL_START
-    SERIES_Z -->|"Series → Z"| PT_BL_START
-    NEG_X -->|"x → X"| PT_BL_END
-    DIV_BRACKET_Y -->|"Result → Y"| PT_BL_END
-    SERIES_Z -->|"Series → Z"| PT_BL_END
-    PT_BL_START -->|"Point → Start Point"| LINE_BL
-    PT_BL_END -->|"Point → End Point"| LINE_BL
-    LINE_BL -->|"Line → Curve"| PIPE_BL
-    BRACKET_R -->|"N → R"| PIPE_BL
+    %% WASP Part
+    PANEL_NAME -->|"out → NAME"| WASP_PART
+    CENTER_BOX -->|"B → GEO"| WASP_PART
+    WASP_CONN -->|"CONN → CONN"| WASP_PART
 
-    %% 右托架連接
-    SUB_INSET -->|"Result → X"| PT_BR_START
-    CONST_0_Y -->|"N → Y"| PT_BR_START
-    SERIES_Z -->|"Series → Z"| PT_BR_START
-    SUB_INSET -->|"Result → X"| PT_BR_END
-    DIV_BRACKET_Y -->|"Result → Y"| PT_BR_END
-    SERIES_Z -->|"Series → Z"| PT_BR_END
-    PT_BR_START -->|"Point → Start Point"| LINE_BR
-    PT_BR_END -->|"Point → End Point"| LINE_BR
-    LINE_BR -->|"Line → Curve"| PIPE_BR
-    BRACKET_R -->|"N → R"| PIPE_BR
+    %% WASP Rules
+    WASP_PART -->|"PART → PART"| WASP_RULES
+
+    %% WASP Aggregation
+    WASP_PART -->|"PART → PART"| WASP_AGG
+    SLIDER_COUNT -->|"N → N"| WASP_AGG
+    WASP_RULES -->|"R → RULES"| WASP_AGG
+    SLIDER_SEED -->|"N → SEED"| WASP_AGG
+    TOGGLE_RESET -->|"B → RESET"| WASP_AGG
+
+    %% 輸出
+    WASP_AGG -->|"PART_OUT → PART"| WASP_GEO

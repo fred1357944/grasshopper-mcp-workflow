@@ -1,0 +1,53 @@
+%% WASP L-Shape Module Aggregation - Component Info
+%% Phase 3: 組件規劃
+%% 2026-01-24
+
+flowchart LR
+    subgraph Inputs["輸入參數"]
+        Seed[/"Seed Slider<br/>0-999"/]
+        Count[/"Count Slider<br/>5-30"/]
+        PartName[/"PartName Panel<br/>'LModule'"/]
+    end
+
+    subgraph Geometry["幾何生成"]
+        Box1["Center Box<br/>X=1, Y=2, Z=0.5"]
+        Box2["Center Box<br/>X=1, Y=1, Z=0.5"]
+        Move["Move<br/>偏移 Box2"]
+        Union["Solid Union<br/>合併為 L 形"]
+        MeshBrep["Mesh Brep<br/>轉換為 Mesh"]
+    end
+
+    subgraph WASP["WASP 組件"]
+        FaceN["Face Normals<br/>獲取面中心和法向"]
+        ConnDir["WASP Connection<br/>From Direction"]
+        Part["WASP Part"]
+        Rule["WASP Rule<br/>Type A ↔ Type A"]
+        Agg["WASP Stochastic<br/>Aggregation"]
+    end
+
+    subgraph Output["輸出"]
+        Result["Aggregated<br/>Geometry"]
+    end
+
+    %% 連接
+    Box1 --> Union
+    Box2 --> Move --> Union
+    Union --> MeshBrep --> FaceN
+    MeshBrep --> ConnDir
+    FaceN -->|C 面中心| ConnDir
+    FaceN -->|N 法向| ConnDir
+    ConnDir --> Part
+    MeshBrep --> Part
+    PartName --> Part
+    Part --> Rule
+    Part --> Agg
+    Rule --> Agg
+    Seed --> Agg
+    Count --> Agg
+    Agg --> Result
+
+%% 關鍵提醒：
+%% 1. Mesh Brep 轉換必須在 Face Normals 之前
+%% 2. WASP Connection 需要 Mesh 輸入，不是 Brep
+%% 3. Part 需要 Panel 有內容
+%% 4. Rule 連接時用 paramIndex 避免 R 參數風險

@@ -1,0 +1,73 @@
+{
+  "description": "WASP Cube Aggregation v9.0 - 精確重現官方架構 (Connection From Direction)",
+  "project": "wasp_cube_aggregation",
+  "version": "9.0",
+  "notes": {
+    "method": "完全遵循官方 0_01_Basic_Aggregation 架構",
+    "official_components": "Connection From Direction (GEO, CEN, UP)",
+    "key_difference": "官方用 Rhino 參考，我們用程式生成等效數據",
+    "approach": "Center Box → Deconstruct Brep → 6 Faces → Area (中心點) + Unit vectors (方向線)"
+  },
+
+  "components": [
+    {"id": "SLIDER_SIZE", "type": "Number Slider", "nickname": "Size", "x": 50, "y": 100, "value": 10, "min": 1, "max": 50, "decimals": 0},
+    {"id": "SLIDER_COUNT", "type": "Number Slider", "nickname": "Count", "x": 50, "y": 160, "value": 20, "min": 1, "max": 100, "decimals": 0},
+    {"id": "SLIDER_SEED", "type": "Number Slider", "nickname": "Seed", "x": 50, "y": 220, "value": 42, "min": 0, "max": 999, "decimals": 0},
+    {"id": "TOGGLE_RESET", "type": "Boolean Toggle", "nickname": "Reset", "x": 50, "y": 280, "value": false},
+    {"id": "PANEL_NAME", "type": "Panel", "nickname": "PartName", "x": 50, "y": 340, "value": "Cube"},
+
+    {"id": "XY_PLANE", "type": "XY Plane", "nickname": "Origin", "x": 250, "y": 100},
+    {"id": "CENTER_BOX", "type": "Center Box", "nickname": "CubeBrep", "x": 400, "y": 100},
+
+    {"id": "DEBREP", "type": "Deconstruct Brep", "nickname": "DeBrep", "x": 550, "y": 100, "comment": "解構 Brep → 6 Faces"},
+    {"id": "AREA", "type": "Area", "nickname": "FaceCenters", "x": 700, "y": 100, "comment": "獲取面中心點 (C)"},
+
+    {"id": "UNIT_Z", "type": "Unit Z", "nickname": "UpDir", "x": 700, "y": 200, "comment": "UP 方向向量"},
+    {"id": "LINE_SDL", "type": "Line SDL", "nickname": "UpLines", "x": 850, "y": 150, "comment": "從中心點創建方向線"},
+
+    {"id": "WASP_CONN", "type": "Wasp_Connection From Direction", "nickname": "ConnDir", "x": 1000, "y": 120},
+    {"id": "WASP_PART", "type": "Wasp_Basic Part", "nickname": "WaspPart", "x": 1150, "y": 100},
+    {"id": "WASP_RULES", "type": "Wasp_Rules Generator", "nickname": "Rules", "x": 1300, "y": 100},
+    {"id": "WASP_AGG", "type": "Wasp_Stochastic Aggregation", "nickname": "Agg", "x": 1450, "y": 80},
+    {"id": "WASP_GEO", "type": "Wasp_Get Part Geometry", "nickname": "GetGeo", "x": 1600, "y": 80}
+  ],
+
+  "connections": [
+    {"from": "XY_PLANE", "fromParam": "Pl", "to": "CENTER_BOX", "toParam": "B"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "X"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Y"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Z"},
+
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "DEBREP", "toParam": "B"},
+
+    {"from": "DEBREP", "fromParam": "F", "to": "AREA", "toParam": "G", "comment": "Faces → Area"},
+
+    {"from": "AREA", "fromParam": "C", "to": "LINE_SDL", "toParam": "S", "comment": "面中心 → 線起點"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_SDL", "toParam": "D", "comment": "Z 向量 → 方向"},
+
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "WASP_CONN", "toParam": "GEO", "comment": "官方: 幾何"},
+    {"from": "AREA", "fromParam": "C", "to": "WASP_CONN", "toParam": "CEN", "comment": "官方: 連接中心"},
+    {"from": "LINE_SDL", "fromParam": "L", "to": "WASP_CONN", "toParam": "UP", "comment": "官方: 方向線"},
+
+    {"from": "PANEL_NAME", "fromParam": "out", "to": "WASP_PART", "toParam": "NAME"},
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "WASP_PART", "toParam": "GEO"},
+    {"from": "WASP_CONN", "fromParam": "CONN", "to": "WASP_PART", "toParam": "CONN"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_RULES", "toParam": "PART"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_AGG", "toParam": "PART"},
+    {"from": "WASP_RULES", "fromParam": "R", "to": "WASP_AGG", "toParam": "RULES"},
+    {"from": "SLIDER_COUNT", "fromParam": "N", "to": "WASP_AGG", "toParam": "N"},
+    {"from": "SLIDER_SEED", "fromParam": "N", "to": "WASP_AGG", "toParam": "SEED"},
+    {"from": "TOGGLE_RESET", "fromParam": "B", "to": "WASP_AGG", "toParam": "RESET"},
+
+    {"from": "WASP_AGG", "fromParam": "PART_OUT", "to": "WASP_GEO", "toParam": "PART"}
+  ],
+
+  "groups": [
+    {"name": "Parameters", "components": ["SLIDER_SIZE", "SLIDER_COUNT", "SLIDER_SEED", "TOGGLE_RESET", "PANEL_NAME"], "color": "#FFD700"},
+    {"name": "Geometry", "components": ["XY_PLANE", "CENTER_BOX"], "color": "#87CEEB"},
+    {"name": "Face Analysis (官方架構)", "components": ["DEBREP", "AREA", "UNIT_Z", "LINE_SDL"], "color": "#98FB98"},
+    {"name": "WASP Core (官方架構)", "components": ["WASP_CONN", "WASP_PART", "WASP_RULES", "WASP_AGG", "WASP_GEO"], "color": "#FF6B6B"}
+  ]
+}

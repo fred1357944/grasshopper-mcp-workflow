@@ -1,0 +1,117 @@
+{
+  "description": "WASP Cube Aggregation v4.0 - 簡化版本，手動定義連接點",
+  "project": "wasp_cube_aggregation",
+  "version": "4.0",
+  "notes": {
+    "simplification": "使用 Construct Point 手動定義 6 個面的中心點",
+    "line_direction": "使用 Line SDL 創建 UP 方向線，長度為 1",
+    "connection_type": "使用相同的連接類型讓所有面可以互相連接"
+  },
+  "components": [
+    {"id": "SLIDER_SIZE", "type": "Number Slider", "nickname": "Size", "x": 50, "y": 100, "value": 10, "min": 1, "max": 50},
+    {"id": "SLIDER_COUNT", "type": "Number Slider", "nickname": "Count", "x": 50, "y": 150, "value": 20, "min": 1, "max": 100},
+    {"id": "SLIDER_SEED", "type": "Number Slider", "nickname": "Seed", "x": 50, "y": 200, "value": 42, "min": 0, "max": 1000},
+    {"id": "TOGGLE_RESET", "type": "Boolean Toggle", "nickname": "Reset", "x": 50, "y": 250},
+    {"id": "PANEL_NAME", "type": "Panel", "nickname": "PartName", "x": 50, "y": 300, "value": "Cube"},
+    {"id": "SLIDER_TWO", "type": "Number Slider", "nickname": "Two", "x": 50, "y": 350, "value": 2, "min": 2, "max": 2},
+
+    {"id": "XY_PLANE", "type": "XY Plane", "nickname": "BasePlane", "x": 250, "y": 100},
+    {"id": "CENTER_BOX", "type": "Center Box", "nickname": "CubeBrep", "x": 450, "y": 100},
+    {"id": "MESH_BREP", "type": "Mesh Brep", "nickname": "CubeMesh", "x": 600, "y": 100},
+
+    {"id": "HALF_SIZE", "type": "Division", "nickname": "HalfSize", "x": 250, "y": 250},
+    {"id": "NEG_HALF", "type": "Negative", "nickname": "NegHalf", "x": 400, "y": 250},
+
+    {"id": "PT_PX", "type": "Construct Point", "nickname": "Pt+X", "x": 550, "y": 300},
+    {"id": "PT_NX", "type": "Construct Point", "nickname": "Pt-X", "x": 550, "y": 360},
+    {"id": "PT_PY", "type": "Construct Point", "nickname": "Pt+Y", "x": 550, "y": 420},
+    {"id": "PT_NY", "type": "Construct Point", "nickname": "Pt-Y", "x": 550, "y": 480},
+    {"id": "PT_PZ", "type": "Construct Point", "nickname": "Pt+Z", "x": 550, "y": 540},
+    {"id": "PT_NZ", "type": "Construct Point", "nickname": "Pt-Z", "x": 550, "y": 600},
+
+    {"id": "UNIT_Z", "type": "Unit Z", "nickname": "ZVec", "x": 700, "y": 350},
+
+    {"id": "LINE_PX", "type": "Line SDL", "nickname": "Line+X", "x": 750, "y": 300},
+    {"id": "LINE_NX", "type": "Line SDL", "nickname": "Line-X", "x": 750, "y": 360},
+    {"id": "LINE_PY", "type": "Line SDL", "nickname": "Line+Y", "x": 750, "y": 420},
+    {"id": "LINE_NY", "type": "Line SDL", "nickname": "Line-Y", "x": 750, "y": 480},
+    {"id": "LINE_PZ", "type": "Line SDL", "nickname": "Line+Z", "x": 750, "y": 540},
+    {"id": "LINE_NZ", "type": "Line SDL", "nickname": "Line-Z", "x": 750, "y": 600},
+
+    {"id": "MERGE_PT", "type": "Merge", "nickname": "AllPts", "x": 900, "y": 400},
+    {"id": "MERGE_LINE", "type": "Merge", "nickname": "AllLines", "x": 900, "y": 500},
+
+    {"id": "WASP_CONN", "type": "Wasp_Connection From Direction", "nickname": "WaspConn", "x": 1100, "y": 200},
+    {"id": "WASP_PART", "type": "Wasp_Basic Part", "nickname": "WaspPart", "x": 1300, "y": 150},
+    {"id": "WASP_RULES", "type": "Wasp_Rules Generator", "nickname": "WaspRules", "x": 1450, "y": 150},
+    {"id": "WASP_AGG", "type": "Wasp_Stochastic Aggregation", "nickname": "WaspAgg", "x": 1600, "y": 150},
+    {"id": "WASP_GEO", "type": "Wasp_Get Part Geometry", "nickname": "GetGeo", "x": 1750, "y": 150}
+  ],
+  "connections": [
+    {"from": "XY_PLANE", "fromParam": "Pl", "to": "CENTER_BOX", "toParam": "B"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "X"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Y"},
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Z"},
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "MESH_BREP", "toParam": "B"},
+
+    {"from": "SLIDER_SIZE", "fromParam": "N", "to": "HALF_SIZE", "toParam": "A"},
+    {"from": "SLIDER_TWO", "fromParam": "N", "to": "HALF_SIZE", "toParam": "B"},
+    {"from": "HALF_SIZE", "fromParam": "R", "to": "NEG_HALF", "toParam": "x"},
+
+    {"from": "HALF_SIZE", "fromParam": "R", "to": "PT_PX", "toParam": "X"},
+    {"from": "NEG_HALF", "fromParam": "y", "to": "PT_NX", "toParam": "X"},
+    {"from": "HALF_SIZE", "fromParam": "R", "to": "PT_PY", "toParam": "Y"},
+    {"from": "NEG_HALF", "fromParam": "y", "to": "PT_NY", "toParam": "Y"},
+    {"from": "HALF_SIZE", "fromParam": "R", "to": "PT_PZ", "toParam": "Z"},
+    {"from": "NEG_HALF", "fromParam": "y", "to": "PT_NZ", "toParam": "Z"},
+
+    {"from": "PT_PX", "fromParam": "Pt", "to": "LINE_PX", "toParam": "S"},
+    {"from": "PT_NX", "fromParam": "Pt", "to": "LINE_NX", "toParam": "S"},
+    {"from": "PT_PY", "fromParam": "Pt", "to": "LINE_PY", "toParam": "S"},
+    {"from": "PT_NY", "fromParam": "Pt", "to": "LINE_NY", "toParam": "S"},
+    {"from": "PT_PZ", "fromParam": "Pt", "to": "LINE_PZ", "toParam": "S"},
+    {"from": "PT_NZ", "fromParam": "Pt", "to": "LINE_NZ", "toParam": "S"},
+
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_PX", "toParam": "D"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_NX", "toParam": "D"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_PY", "toParam": "D"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_NY", "toParam": "D"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_PZ", "toParam": "D"},
+    {"from": "UNIT_Z", "fromParam": "V", "to": "LINE_NZ", "toParam": "D"},
+
+    {"from": "PT_PX", "fromParam": "Pt", "to": "MERGE_PT", "toParam": "D1"},
+    {"from": "PT_NX", "fromParam": "Pt", "to": "MERGE_PT", "toParam": "D2"},
+
+    {"from": "LINE_PX", "fromParam": "L", "to": "MERGE_LINE", "toParam": "D1"},
+    {"from": "LINE_NX", "fromParam": "L", "to": "MERGE_LINE", "toParam": "D2"},
+
+    {"from": "MESH_BREP", "fromParam": "M", "to": "WASP_CONN", "toParam": "GEO"},
+    {"from": "MERGE_PT", "fromParam": "R", "to": "WASP_CONN", "toParam": "CEN"},
+    {"from": "MERGE_LINE", "fromParam": "R", "to": "WASP_CONN", "toParam": "UP"},
+
+    {"from": "PANEL_NAME", "fromParam": "out", "to": "WASP_PART", "toParam": "NAME"},
+    {"from": "MESH_BREP", "fromParam": "M", "to": "WASP_PART", "toParam": "GEO"},
+    {"from": "WASP_CONN", "fromParam": "CONN", "to": "WASP_PART", "toParam": "CONN"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_RULES", "toParam": "PART"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_AGG", "toParam": "PART"},
+    {"from": "SLIDER_COUNT", "fromParam": "N", "to": "WASP_AGG", "toParam": "N"},
+    {"from": "WASP_RULES", "fromParam": "R", "to": "WASP_AGG", "toParam": "RULES"},
+    {"from": "SLIDER_SEED", "fromParam": "N", "to": "WASP_AGG", "toParam": "SEED"},
+    {"from": "TOGGLE_RESET", "fromParam": "B", "to": "WASP_AGG", "toParam": "RESET"},
+
+    {"from": "WASP_AGG", "fromParam": "PART_OUT", "to": "WASP_GEO", "toParam": "PART"}
+  ],
+  "variable_params": [
+    {"componentId": "MERGE_PT", "side": "input", "count": 6},
+    {"componentId": "MERGE_LINE", "side": "input", "count": 6}
+  ],
+  "groups": [
+    {"name": "Parameters", "components": ["SLIDER_SIZE", "SLIDER_COUNT", "SLIDER_SEED", "TOGGLE_RESET", "PANEL_NAME", "SLIDER_TWO"], "color": "#FFD700"},
+    {"name": "Geometry", "components": ["XY_PLANE", "CENTER_BOX", "MESH_BREP", "HALF_SIZE", "NEG_HALF"], "color": "#87CEEB"},
+    {"name": "Connection Points", "components": ["PT_PX", "PT_NX", "PT_PY", "PT_NY", "PT_PZ", "PT_NZ"], "color": "#98FB98"},
+    {"name": "Direction Lines", "components": ["UNIT_Z", "LINE_PX", "LINE_NX", "LINE_PY", "LINE_NY", "LINE_PZ", "LINE_NZ"], "color": "#DDA0DD"},
+    {"name": "WASP Core", "components": ["MERGE_PT", "MERGE_LINE", "WASP_CONN", "WASP_PART", "WASP_RULES", "WASP_AGG", "WASP_GEO"], "color": "#FF6B6B"}
+  ]
+}

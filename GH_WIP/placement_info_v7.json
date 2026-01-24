@@ -1,0 +1,95 @@
+{
+  "description": "WASP Cube Aggregation v7.0 - Face Normals + Entwine 優化版",
+  "project": "wasp_cube_aggregation",
+  "version": "7.0",
+  "notes": {
+    "method": "Center Box → Mesh Box → Face Normals → Entwine(6) → Flatten → Connection From Plane",
+    "key_insight": "Face Normals 直接輸出 6 面中心(C) + 法向量(N)，Entwine 保持分支結構 {0;0}~{0;5}",
+    "improvement_v6": "v6 直接接 Face Normals 輸出，但缺少 Entwine 分支管理導致連接點順序不明確",
+    "improvement_v2": "v2.3 用 6 個 Construct Point + Plane Origin，v7 用 Face Normals 一步到位"
+  },
+
+  "components": [
+    {"id": "SLIDER_A", "type": "Number Slider", "nickname": "A", "x": 50, "y": 50, "value": 10, "min": 1, "max": 50, "comment": "參數 A - 立方體邊長"},
+    {"id": "SLIDER_N", "type": "Number Slider", "nickname": "N", "x": 50, "y": 100, "value": 20, "min": 1, "max": 100, "comment": "參數 N - 聚集數量"},
+    {"id": "SLIDER_SEED", "type": "Number Slider", "nickname": "SEED", "x": 50, "y": 150, "value": 1, "min": 0, "max": 999, "decimals": 0},
+    {"id": "TOGGLE_RESET", "type": "Boolean Toggle", "nickname": "Reset", "x": 50, "y": 200, "value": false},
+    {"id": "PANEL_NAME", "type": "Panel", "nickname": "PartName", "x": 50, "y": 280, "value": "Cube"},
+
+    {"id": "XY_PLANE", "type": "XY Plane", "nickname": "BasePlane", "x": 200, "y": 50, "comment": "模組原點"},
+    {"id": "CENTER_BOX", "type": "Center Box", "nickname": "CubeBrep", "x": 350, "y": 50, "comment": "生成 Brep Box"},
+    {"id": "MESH_BOX", "type": "Mesh Box", "nickname": "CubeMesh", "x": 350, "y": 130, "comment": "Mesh Box 直接生成，也可 Mesh Brep"},
+
+    {"id": "FACE_NORMALS", "type": "Face Normals", "nickname": "FaceN", "x": 500, "y": 130, "comment": "獲取 6 面中心(C) + 法向量(N)"},
+
+    {"id": "NEG_ONE", "type": "Number Slider", "nickname": "NegOne", "x": 500, "y": 220, "value": -1, "min": -1, "max": -1, "comment": "用於反轉法向量"},
+    {"id": "MULT_NEG", "type": "Multiplication", "nickname": "FlipN", "x": 650, "y": 200, "comment": "法向量 × -1 = 向內"},
+
+    {"id": "CONSTRUCT_PLANE", "type": "Construct Plane", "nickname": "ConnPlanes", "x": 800, "y": 150, "comment": "從 C + flipped N 構建連接平面"},
+
+    {"id": "ENTWINE", "type": "Entwine", "nickname": "Branches", "x": 950, "y": 180, "comment": "6 個平面 → 6 條分支 {0;0}~{0;5}"},
+    {"id": "FLATTEN", "type": "Flatten", "nickname": "FlatPlanes", "x": 1100, "y": 180, "comment": "Flatten 後給 WASP"},
+
+    {"id": "WASP_CONN", "type": "Wasp_Connection From Plane", "nickname": "WaspConn", "x": 1250, "y": 180},
+    {"id": "WASP_PART", "type": "Wasp_Basic Part", "nickname": "WaspPart", "x": 1400, "y": 100},
+    {"id": "WASP_RULES_SELF", "type": "Wasp_Rules Generator", "nickname": "SelfRules", "x": 1550, "y": 100, "comment": "自身連接規則"},
+    {"id": "WASP_AGG", "type": "Wasp_Stochastic Aggregation", "nickname": "WaspAgg", "x": 1700, "y": 80},
+    {"id": "WASP_GEO", "type": "Wasp_Get Part Geometry", "nickname": "GetGeo", "x": 1850, "y": 80}
+  ],
+
+  "connections": [
+    {"from": "XY_PLANE", "fromParam": "Pl", "to": "CENTER_BOX", "toParam": "B", "comment": "基準平面"},
+    {"from": "SLIDER_A", "fromParam": "N", "to": "CENTER_BOX", "toParam": "X"},
+    {"from": "SLIDER_A", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Y"},
+    {"from": "SLIDER_A", "fromParam": "N", "to": "CENTER_BOX", "toParam": "Z"},
+
+    {"from": "SLIDER_A", "fromParam": "N", "to": "MESH_BOX", "toParam": "X", "comment": "Mesh Box 尺寸"},
+    {"from": "SLIDER_A", "fromParam": "N", "to": "MESH_BOX", "toParam": "Y"},
+    {"from": "SLIDER_A", "fromParam": "N", "to": "MESH_BOX", "toParam": "Z"},
+
+    {"from": "MESH_BOX", "fromParam": "M", "to": "FACE_NORMALS", "toParam": "M", "comment": "Mesh → Face Normals"},
+
+    {"from": "FACE_NORMALS", "fromParam": "N", "to": "MULT_NEG", "toParam": "A", "comment": "法向量反轉"},
+    {"from": "NEG_ONE", "fromParam": "N", "to": "MULT_NEG", "toParam": "B"},
+
+    {"from": "FACE_NORMALS", "fromParam": "C", "to": "CONSTRUCT_PLANE", "toParam": "O", "comment": "面中心作為平面原點"},
+    {"from": "MULT_NEG", "fromParam": "R", "to": "CONSTRUCT_PLANE", "toParam": "Z", "comment": "翻轉的法向量作為 Z 軸"},
+
+    {"from": "CONSTRUCT_PLANE", "fromParam": "Pl", "to": "ENTWINE", "toParam": "{0}", "comment": "單一輸入，保持內部分支"},
+
+    {"from": "ENTWINE", "fromParam": "R", "to": "FLATTEN", "toParam": "T"},
+
+    {"from": "FLATTEN", "fromParam": "T", "to": "WASP_CONN", "toParam": "PLN", "comment": "連接平面"},
+
+    {"from": "PANEL_NAME", "fromParam": "out", "to": "WASP_PART", "toParam": "NAME"},
+    {"from": "CENTER_BOX", "fromParam": "B", "to": "WASP_PART", "toParam": "GEO", "comment": "用 Brep 作為 Part 幾何"},
+    {"from": "WASP_CONN", "fromParam": "CONN", "to": "WASP_PART", "toParam": "CONN"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_RULES_SELF", "toParam": "PART"},
+
+    {"from": "WASP_PART", "fromParam": "PART", "to": "WASP_AGG", "toParam": "PART"},
+    {"from": "WASP_RULES_SELF", "fromParam": "R", "to": "WASP_AGG", "toParam": "RULES"},
+    {"from": "SLIDER_N", "fromParam": "N", "to": "WASP_AGG", "toParam": "N"},
+    {"from": "SLIDER_SEED", "fromParam": "N", "to": "WASP_AGG", "toParam": "SEED"},
+    {"from": "TOGGLE_RESET", "fromParam": "B", "to": "WASP_AGG", "toParam": "RESET"},
+
+    {"from": "WASP_AGG", "fromParam": "PART_OUT", "to": "WASP_GEO", "toParam": "PART"}
+  ],
+
+  "variable_params": [
+    {
+      "comment": "Entwine 只需 1 個輸入 (Face Normals 輸出已有 6 個分支)",
+      "componentId": "ENTWINE",
+      "side": "input",
+      "count": 1
+    }
+  ],
+
+  "groups": [
+    {"name": "參數控制", "components": ["SLIDER_A", "SLIDER_N", "SLIDER_SEED", "TOGGLE_RESET", "PANEL_NAME"], "color": "#FFD700"},
+    {"name": "模組幾何", "components": ["XY_PLANE", "CENTER_BOX", "MESH_BOX"], "color": "#87CEEB"},
+    {"name": "連接點獲取 (優化)", "components": ["FACE_NORMALS", "NEG_ONE", "MULT_NEG", "CONSTRUCT_PLANE"], "color": "#98FB98"},
+    {"name": "分支管理", "components": ["ENTWINE", "FLATTEN"], "color": "#DDA0DD"},
+    {"name": "WASP 核心", "components": ["WASP_CONN", "WASP_PART", "WASP_RULES_SELF", "WASP_AGG", "WASP_GEO"], "color": "#FF6B6B"}
+  ]
+}
