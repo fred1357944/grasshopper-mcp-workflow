@@ -19,6 +19,7 @@ from .auto_debugger import GHAutoDebugger, validate_before_deploy
 from .intent_router import IntentRouter, ProcessingMode, IntentType, RoutingResult
 from .meta_agent import MetaAgent, SearchResult, Question, SynthesizedPattern
 from .dual_mode_workflow import DualModeWorkflow, WorkflowPhase, WorkflowState
+from .workflow_executor import WorkflowExecutor
 
 __all__ = [
     # 原有模組
@@ -41,4 +42,5 @@ __all__ = [
     "DualModeWorkflow",
     "WorkflowPhase",
     "WorkflowState",
+    "WorkflowExecutor",
 ]
