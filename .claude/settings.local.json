@@ -32,9 +32,38 @@
       "Bash(git rm:*)",
       "Bash(git push:*)",
       "Bash(pip show:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(grep:*)",
+      "Bash(brew list:*)",
+      "Bash(tree:*)",
+      "Bash(curl:*)",
+      "Bash(fd:*)",
+      "Skill(grasshopper-workflow)",
+      "WebFetch(domain:developer.rhino3d.com)",
+      "Bash(for comp in \"XY Plane\" \"Center Box\" \"Division\" \"Negative\" \"Construct Point\" \"Plane Origin\" \"Entwine\" \"Wasp\" \"Number Slider\" \"Panel\" \"Boolean Toggle\")",
+      "Bash(do echo \"=== $comp ===\" python -m grasshopper_tools.cli query-guid \"$comp\")",
+      "WebFetch(domain:discourse.mcneel.com)",
+      "WebFetch(domain:grasshopperdocs.com)",
+      "WebFetch(domain:parametrichouse.com)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp-workflow log --oneline -15)",
+      "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp-workflow status --short)",
+      "Skill(gh-review)"
     ],
     "deny": [],
     "ask": []
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/SessionStart/load_gh_knowledge.sh",
+            "statusMessage": "Loading GH_MCP knowledge..."
+          }
+        ]
+      }
+    ]
   }
 }
