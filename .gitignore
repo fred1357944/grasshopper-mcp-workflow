@@ -80,3 +80,11 @@ obj/
 .AppleDouble
 .LSOverride
 grasshopper-mcp-enhanced/
+
+# Temporary reference files
+*.zip
+GH_PKG/
+LANGGRAPH_DOCS_INDEX.md
+PROJECT_ANALYSIS_REPORT.md
+skills/
+tools/
