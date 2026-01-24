@@ -1,0 +1,292 @@
+{
+  "_meta": {
+    "description": "Grasshopper 連接模式庫",
+    "version": "2.0.0",
+    "updated": "2026-01-24",
+    "source": "GHX Skill Package + GH_MCP Debug Knowledge",
+    "total_patterns": 18,
+    "note": "每個模式包含組件連接順序，用於快速搭建常見工作流"
+  },
+
+  "patterns": {
+    "Karamba_Structural": {
+      "description": "結構分析流程 - 線性構件",
+      "category": "Structural",
+      "wiring": [
+        ["Surface", "Divide Surface", 0, 0],
+        ["Divide Surface", "Karamba LineToBeam", 0, 0],
+        ["Karamba CrossSection", "Karamba LineToBeam", 0, 1],
+        ["Karamba LineToBeam", "Karamba Assemble", 0, 1],
+        ["Karamba Assemble", "Karamba Analyze", 0, 0],
+        ["Karamba Analyze", "Galapagos", 1, 1]
+      ],
+      "keywords": ["結構", "structural", "karamba", "beam", "梁", "分析"]
+    },
+
+    "Karamba_Shell_Analysis": {
+      "description": "結構分析流程 - 殼體構件",
+      "category": "Structural",
+      "wiring": [
+        ["Mesh", "Karamba ShellToMesh", 0, 0],
+        ["Karamba ShellToMesh", "Karamba Assemble", 0, 2],
+        ["Karamba Support", "Karamba Assemble", 0, 3],
+        ["Karamba PointLoad", "Karamba Assemble", 0, 4],
+        ["Karamba Assemble", "Karamba Analyze", 0, 0],
+        ["Karamba Analyze", "Karamba ModelView", 0, 0]
+      ],
+      "keywords": ["結構", "shell", "殼", "karamba", "薄殼"]
+    },
+
+    "Ladybug_Solar": {
+      "description": "日照分析流程",
+      "category": "Environmental",
+      "wiring": [
+        ["Number Slider", "LB Sun Path", 0, 1],
+        ["Surface", "LB Shading Mask", 0, 1],
+        ["LB Sun Path", "LB Shading Mask", 0, 0],
+        ["LB Shading Mask", "Galapagos", 1, 1]
+      ],
+      "keywords": ["日照", "solar", "ladybug", "遮陽", "shading"]
+    },
+
+    "Honeybee_Energy_Model": {
+      "description": "能源模擬流程",
+      "category": "Environmental",
+      "wiring": [
+        ["Brep", "HB Room", 0, 0],
+        ["HB Room", "HB Model", 0, 0],
+        ["HB Shade", "HB Model", 0, 2],
+        ["HB Model", "HB Annual Loads", 0, 0],
+        ["LB Import EPW", "HB Annual Loads", 0, 1],
+        ["HB Annual Loads", "Panel", 0, 0]
+      ],
+      "keywords": ["能源", "energy", "honeybee", "模擬", "simulation"]
+    },
+
+    "Honeybee_Daylighting": {
+      "description": "日光分析流程",
+      "category": "Environmental",
+      "wiring": [
+        ["Brep", "HB Room", 0, 0],
+        ["HB Aperture", "HB Add Subface", 0, 1],
+        ["HB Room", "HB Add Subface", 0, 0],
+        ["HB Add Subface", "HB Model", 0, 0],
+        ["HB Model", "HB Run OSM", 0, 0]
+      ],
+      "keywords": ["日光", "daylight", "採光", "honeybee"]
+    },
+
+    "LB_Climate_Analysis": {
+      "description": "氣候數據分析",
+      "category": "Environmental",
+      "wiring": [
+        ["LB Import EPW", "LB Sun Path", 0, 0],
+        ["LB Import EPW", "LB Benefit Sky Matrix", 0, 0],
+        ["LB Benefit Sky Matrix", "LB Radiation Rose", 0, 0]
+      ],
+      "keywords": ["氣候", "climate", "EPW", "radiation"]
+    },
+
+    "Kangaroo_Form_Finding": {
+      "description": "形態找尋基礎流程",
+      "category": "Form_Finding",
+      "wiring": [
+        ["Point", "Kangaroo Anchor", 0, 0],
+        ["Surface", "Kangaroo Length", 0, 0],
+        ["Kangaroo Anchor", "Kangaroo Solver", 0, 0],
+        ["Kangaroo Length", "Kangaroo Solver", 0, 0]
+      ],
+      "keywords": ["form finding", "形態", "kangaroo", "物理模擬"]
+    },
+
+    "Kangaroo_Tensile_Structure": {
+      "description": "張力結構形態找尋",
+      "category": "Form_Finding",
+      "wiring": [
+        ["Mesh", "Kangaroo EdgeLengths", 0, 0],
+        ["Point", "Kangaroo Anchor", 0, 0],
+        ["Kangaroo EdgeLengths", "Kangaroo Solver", 0, 0],
+        ["Kangaroo Anchor", "Kangaroo Solver", 0, 0],
+        ["Kangaroo Solver", "Mesh", 0, 0]
+      ],
+      "keywords": ["tensile", "張力", "膜結構", "kangaroo"]
+    },
+
+    "Kangaroo_Inflatable": {
+      "description": "充氣結構模擬",
+      "category": "Form_Finding",
+      "wiring": [
+        ["Mesh", "Kangaroo SoapFilm", 0, 0],
+        ["Mesh", "Kangaroo Pressure", 0, 0],
+        ["Point", "Kangaroo Anchor", 0, 0],
+        ["Kangaroo SoapFilm", "Kangaroo Solver", 0, 0],
+        ["Kangaroo Pressure", "Kangaroo Solver", 0, 0],
+        ["Kangaroo Anchor", "Kangaroo Solver", 0, 0]
+      ],
+      "keywords": ["inflatable", "充氣", "壓力", "soap film"]
+    },
+
+    "WASP_Aggregation": {
+      "description": "WASP 聚集基礎流程",
+      "category": "Aggregation",
+      "wiring": [
+        ["Surface", "WASP Part", 0, 1],
+        ["WASP Connection", "WASP Part", 0, 2],
+        ["WASP Part", "WASP Rule", 0, 0],
+        ["WASP Part", "WASP Aggregation", 0, 0],
+        ["WASP Rule", "WASP Aggregation", 0, 1],
+        ["WASP Field", "WASP Aggregation", 0, 2]
+      ],
+      "keywords": ["wasp", "聚集", "aggregation", "離散"]
+    },
+
+    "WASP_Stochastic": {
+      "description": "WASP 隨機聚集流程",
+      "category": "Aggregation",
+      "wiring": [
+        ["Brep", "WASP Part", 0, 1],
+        ["WASP Connection", "WASP Part", 0, 2],
+        ["WASP Part", "WASP Rule", 0, 0],
+        ["WASP Part", "WASP Stochastic Aggregation", 0, 0],
+        ["WASP Rule", "WASP Stochastic Aggregation", 0, 1]
+      ],
+      "keywords": ["wasp", "stochastic", "隨機", "聚集"],
+      "notes": [
+        "⚠️ WASP Connection 需要 Mesh 輸入，不是 Brep",
+        "使用 Face Normals 獲取面中心點",
+        "參考 GH_MCP_DEBUG_KNOWLEDGE.md 的 WASP 章節"
+      ]
+    },
+
+    "WASP_Mesh_Part": {
+      "description": "WASP Part 從 Mesh 創建（推薦）",
+      "category": "Aggregation",
+      "wiring": [
+        ["Mesh Box", "Face Normals", 0, 0],
+        ["Face Normals", "WASP Connection From Direction", 0, 1],
+        ["Mesh Box", "WASP Connection From Direction", 0, 0],
+        ["WASP Connection From Direction", "WASP Part", 0, 2],
+        ["Mesh Box", "WASP Part", 0, 1]
+      ],
+      "keywords": ["wasp", "mesh", "part", "connection"],
+      "notes": [
+        "Face Normals.C → Connection.CEN (面中心點)",
+        "Mesh Box → Connection.GEO (幾何體)",
+        "避免使用 Brep，直接用 Mesh"
+      ]
+    },
+
+    "Octopus_Multi_Objective": {
+      "description": "多目標優化",
+      "category": "Optimization",
+      "wiring": [
+        ["Number Slider", "Octopus Genome", 0, 0],
+        ["Octopus Genome", "Octopus", 0, 0],
+        ["Karamba Analyze", "Octopus", 1, 1],
+        ["HB Annual Loads", "Octopus", 0, 1]
+      ],
+      "keywords": ["optimization", "優化", "multi-objective", "octopus"]
+    },
+
+    "Lunchbox_Panelization": {
+      "description": "表皮分割 - 菱形",
+      "category": "Panelization",
+      "wiring": [
+        ["Surface", "LB Diamond Panels", 0, 0],
+        ["Number Slider", "LB Diamond Panels", 0, 1],
+        ["Number Slider", "LB Diamond Panels", 0, 2],
+        ["LB Diamond Panels", "Panel", 0, 0]
+      ],
+      "keywords": ["panel", "分割", "lunchbox", "diamond"]
+    },
+
+    "Lunchbox_Hex_Grid": {
+      "description": "表皮分割 - 六邊形",
+      "category": "Panelization",
+      "wiring": [
+        ["Surface", "LB Hex Cells", 0, 0],
+        ["Number Slider", "LB Hex Cells", 0, 1],
+        ["LB Hex Cells", "Loft", 0, 0]
+      ],
+      "keywords": ["hex", "六邊形", "honeycomb", "lunchbox"]
+    },
+
+    "Lunchbox_Voronoi_Facade": {
+      "description": "表皮分割 - Voronoi",
+      "category": "Panelization",
+      "wiring": [
+        ["Surface", "LB Voronoi on Surface", 0, 0],
+        ["Point", "LB Voronoi on Surface", 0, 1],
+        ["LB Voronoi on Surface", "Loft", 0, 0]
+      ],
+      "keywords": ["voronoi", "facade", "表皮", "立面"]
+    },
+
+    "Weaverbird_Subdivision": {
+      "description": "Mesh 細分",
+      "category": "Mesh_Processing",
+      "wiring": [
+        ["Mesh", "WB Catmull-Clark", 0, 0],
+        ["Number Slider", "WB Catmull-Clark", 0, 1],
+        ["WB Catmull-Clark", "WB Mesh Thicken", 0, 0]
+      ],
+      "keywords": ["subdivision", "細分", "catmull", "weaverbird"]
+    },
+
+    "Pufferfish_Morph": {
+      "description": "幾何變形",
+      "category": "Morphing",
+      "wiring": [
+        ["Brep", "Pufferfish Morph to Tweened Surfaces", 0, 0],
+        ["Surface", "Pufferfish Morph to Tweened Surfaces", 0, 1],
+        ["Surface", "Pufferfish Morph to Tweened Surfaces", 0, 2],
+        ["Number Slider", "Pufferfish Morph to Tweened Surfaces", 0, 3]
+      ],
+      "keywords": ["morph", "變形", "tween", "pufferfish"]
+    }
+  },
+
+  "categories": {
+    "Structural": "結構分析相關",
+    "Environmental": "環境/能源分析",
+    "Form_Finding": "形態找尋/物理模擬",
+    "Aggregation": "離散聚集",
+    "Optimization": "優化演算法",
+    "Panelization": "表皮分割",
+    "Mesh_Processing": "Mesh 處理",
+    "Morphing": "幾何變形"
+  },
+
+  "fuzzy_risk_params": {
+    "R": ["Radius", "Result", "Rules", "Rotation"],
+    "GEO": ["Geometry"],
+    "CEN": ["Center"],
+    "UP": ["Up Vector"],
+    "N": ["Number", "Normal", "Name"],
+    "P": ["Point", "Plane", "Parameter"],
+    "C": ["Curve", "Count", "Color"],
+    "V": ["Vector", "Value", "Vertices"]
+  },
+
+  "known_conflicts": {
+    "Rotate": {
+      "correct": "Transform/Euclidean/Rotate (19c70daf-600f-4697-ace2-567f6702144d)",
+      "conflict": "Vector/Vector/Rotate",
+      "solution": "Always use GUID"
+    },
+    "Pipe": {
+      "correct": "Surface/Freeform/Pipe (1ee25749-2e2d-4fc6-9209-0ea0515081f9)",
+      "conflict": "Curve/Util/Pipe",
+      "solution": "Check category or use GUID"
+    },
+    "Series": {
+      "correct": "Sets/Sequence/Series (651c4fa5-dff4-4be6-ba31-6dc267d3ab47)",
+      "notes": "Generally safe, but verify if multiple Series components exist"
+    },
+    "Line": {
+      "correct": "Curve/Primitive/Line (31957fba-b08b-45f9-9ec0-5f9e52d3236b)",
+      "conflict": "Params/Geometry/Line",
+      "solution": "Check if creating or referencing"
+    }
+  }
+}

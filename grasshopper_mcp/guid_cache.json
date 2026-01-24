@@ -1,0 +1,26 @@
+{
+  "Line|Params": {
+    "name": "Line",
+    "guid": "c56e4913-2ebb-48c9-b4b3-dfffa2a57079",
+    "category": "Params",
+    "subcategory": "",
+    "inputs": [],
+    "outputs": [],
+    "is_obsolete": false,
+    "queried_at": "2026-01-23T20:04:23.228934"
+  },
+  "Negative|Maths": {
+    "name": "Negative",
+    "guid": "89b0c734-5552-4343-9b85-6d1276cca164",
+    "category": "Maths",
+    "subcategory": "",
+    "inputs": [
+      "Value"
+    ],
+    "outputs": [
+      "Result"
+    ],
+    "is_obsolete": false,
+    "queried_at": "2026-01-23T20:07:09.784171"
+  }
+}

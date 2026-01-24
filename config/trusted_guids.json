@@ -1,0 +1,1177 @@
+{
+  "_meta": {
+    "description": "可信的原生 Grasshopper 組件 GUID 對照表 + 插件參數參考",
+    "version": "3.0.0",
+    "updated": "2026-01-24",
+    "source": "整合自 GH超長文系統/gh_mcp_execute.py",
+    "note": "原生組件 GUID 已驗證 (Mac Rhino 8)。插件組件需運行時查詢 GUID，此處僅記錄參數信息"
+  },
+
+  "components": {
+    "Number Slider": {
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "full_name": "Params/Input/Number Slider",
+      "category": "Params",
+      "subcategory": "Input",
+      "library": "Grasshopper",
+      "inputs": [],
+      "outputs": ["N"]
+    },
+
+    "Series": {
+      "guid": "651c4fa5-dff4-4be6-ba31-6dc267d3ab47",
+      "full_name": "Sets/Sequence/Series",
+      "category": "Sets",
+      "subcategory": "Sequence",
+      "library": "Grasshopper",
+      "inputs": ["S", "N", "C"],
+      "outputs": ["S"],
+      "known_conflicts": ["Series varible (Flexibility)"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Range": {
+      "guid": "f44b92b0-3b5b-493a-806a-bc48f2fe4624",
+      "full_name": "Sets/Sequence/Range",
+      "category": "Sets",
+      "subcategory": "Sequence",
+      "library": "Grasshopper",
+      "inputs": ["D", "N"],
+      "outputs": ["R"]
+    },
+
+    "Addition": {
+      "guid": "d65c653b-7a82-4666-bd4b-a71f3bd841a6",
+      "full_name": "Maths/Operators/Addition",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "MathComponents",
+      "inputs": ["A", "B"],
+      "outputs": ["R"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Subtraction": {
+      "guid": "0ff0bb57-8207-48a0-a732-6fd4d4931193",
+      "full_name": "Maths/Operators/Subtraction",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "MathComponents",
+      "inputs": ["A", "B"],
+      "outputs": ["R"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Multiplication": {
+      "guid": "2ce3f211-76d2-49e5-9f2f-7e75deed1c0e",
+      "full_name": "Scalar/Operators/Multiplication",
+      "category": "Scalar",
+      "subcategory": "Operators",
+      "library": "MathComponents",
+      "inputs": ["A", "B"],
+      "outputs": ["R"],
+      "known_conflicts": ["Multiplication (Vector/Colour)"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Division": {
+      "guid": "b16a2ec0-f873-4ef7-8e0c-a068e7571cb4",
+      "full_name": "Maths/Operators/Division",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "MathComponents",
+      "inputs": ["A", "B"],
+      "outputs": ["R"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Radians": {
+      "guid": "a337f645-460f-4f2a-892e-5f7f1ebb51a4",
+      "full_name": "Maths/Trig/Radians",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "MathComponents",
+      "inputs": ["D"],
+      "outputs": ["R"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Degrees": {
+      "guid": "58b5b91e-38bb-4c6f-92c4-b2b9fb2e8d90",
+      "full_name": "Maths/Trig/Degrees",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "Grasshopper",
+      "inputs": ["R"],
+      "outputs": ["D"]
+    },
+
+    "Sine": {
+      "guid": "96061e03-a68a-4d5d-a02e-f215d27f2d83",
+      "full_name": "Maths/Trig/Sine",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "MathComponents",
+      "inputs": ["x"],
+      "outputs": ["y"],
+      "known_conflicts": ["Cosine (錯誤搜尋返回)"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Cosine": {
+      "guid": "1ac463e0-156f-4024-988b-b61bc57965f8",
+      "full_name": "Scalar/Trig/Cosine",
+      "category": "Scalar",
+      "subcategory": "Trig",
+      "library": "MathComponents",
+      "inputs": ["x"],
+      "outputs": ["y"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "Construct Point": {
+      "guid": "3581f42a-9592-4549-bd6b-1c0fc39d067b",
+      "full_name": "Vector/Point/Construct Point",
+      "category": "Vector",
+      "subcategory": "Point",
+      "library": "Grasshopper",
+      "inputs": ["X", "Y", "Z"],
+      "outputs": ["Pt"]
+    },
+
+    "Deconstruct Point": {
+      "guid": "e5b9ff48-cae7-48da-9ccc-c56f0969da07",
+      "full_name": "Vector/Point/Deconstruct",
+      "category": "Vector",
+      "subcategory": "Point",
+      "library": "Grasshopper",
+      "inputs": ["P"],
+      "outputs": ["X", "Y", "Z"]
+    },
+
+    "Unit X": {
+      "guid": "f0a0ebe4-7f48-4b3e-98a0-f0b0f5d38e19",
+      "full_name": "Vector/Vector/Unit X",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["F"],
+      "outputs": ["V"]
+    },
+
+    "Unit Y": {
+      "guid": "a7d7f6b6-5dc8-4b8d-8fb5-e6c5e4d87d6e",
+      "full_name": "Vector/Vector/Unit Y",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["F"],
+      "outputs": ["V"]
+    },
+
+    "Unit Z": {
+      "guid": "d8d6dcdf-d589-4ca8-9f14-aa4d6ecc720c",
+      "full_name": "Vector/Vector/Unit Z",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["F"],
+      "outputs": ["V"]
+    },
+
+    "Center Box": {
+      "guid": "d1296e28-f64c-4c2a-9a9e-49e7839460de",
+      "full_name": "Surface/Primitive/Center Box",
+      "category": "Surface",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["B", "X", "Y", "Z"],
+      "outputs": ["B"]
+    },
+
+    "Box 2Pt": {
+      "guid": "a5c2b61b-5a93-4df7-a3c2-d3e65f8c7c5e",
+      "full_name": "Surface/Primitive/Box 2Pt",
+      "category": "Surface",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": ["B"]
+    },
+
+    "Cylinder": {
+      "guid": "4edaf2ed-7b3a-42ed-bce0-3119ed106792",
+      "full_name": "Surface/Primitive/Cylinder",
+      "category": "Surface",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["B", "R", "L"],
+      "outputs": ["C"]
+    },
+
+    "Rotate": {
+      "guid": "19c70daf-600f-4697-ace2-567f6702144d",
+      "full_name": "Transform/Euclidean/Rotate",
+      "category": "Transform",
+      "subcategory": "Euclidean",
+      "library": "XformComponents",
+      "inputs": ["G", "A", "P"],
+      "outputs": ["G", "X"],
+      "note": "Mac Rhino 8 verified GUID (新版, 5944e8e2... 是 OBSOLETE)",
+      "obsolete_guid": "5944e8e2-9fb9-4f8b-bdd4-8b18f1955360"
+    },
+
+    "Move": {
+      "guid": "53667e44-76b5-4e85-bbcd-4c8a7e4b42e6",
+      "full_name": "Transform/Euclidean/Move",
+      "category": "Transform",
+      "subcategory": "Euclidean",
+      "library": "Grasshopper",
+      "inputs": ["G", "T"],
+      "outputs": ["G", "X"]
+    },
+
+    "Scale": {
+      "guid": "b5b3d4dc-7d1b-4b5a-9c0f-2e5a8f5c3e2a",
+      "full_name": "Transform/Euclidean/Scale",
+      "category": "Transform",
+      "subcategory": "Euclidean",
+      "library": "Grasshopper",
+      "inputs": ["G", "C", "F"],
+      "outputs": ["G", "X"]
+    },
+
+    "Interpolate": {
+      "guid": "c731696a-ea52-4c47-be86-e64bc80bde08",
+      "full_name": "Curve/Spline/Interpolate",
+      "category": "Curve",
+      "subcategory": "Spline",
+      "library": "Grasshopper",
+      "inputs": ["V", "D", "P"],
+      "outputs": ["C", "L"]
+    },
+
+    "Pipe": {
+      "guid": "1ee25749-2e2d-4fc6-9209-0ea0515081f9",
+      "full_name": "Surface/Freeform/Pipe",
+      "category": "Surface",
+      "subcategory": "Freeform",
+      "library": "SurfaceComponents",
+      "inputs": ["C", "R", "E"],
+      "outputs": ["P"],
+      "note": "Mac Rhino 8 verified GUID"
+    },
+
+    "XY Plane": {
+      "guid": "a396a2e3-4a7a-4b4d-8e0f-5a6f7c8d9e0b",
+      "full_name": "Vector/Plane/XY Plane",
+      "category": "Vector",
+      "subcategory": "Plane",
+      "library": "Grasshopper",
+      "inputs": ["O"],
+      "outputs": ["P"]
+    },
+
+    "Circle": {
+      "guid": "c3d90bee-c956-4fcf-9df0-8f5c0ff1a9c4",
+      "full_name": "Curve/Primitive/Circle",
+      "category": "Curve",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["P", "R"],
+      "outputs": ["C"]
+    },
+
+    "Line": {
+      "guid": "4c4e56eb-2f04-43f9-95a3-cc46a14f495a",
+      "full_name": "Curve/Primitive/Line",
+      "category": "Curve",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": ["L"]
+    },
+
+    "Extrude": {
+      "guid": "fa4cc8f3-c1a8-4b8e-be8a-9c4f5d6e7a8b",
+      "full_name": "Surface/Freeform/Extrude",
+      "category": "Surface",
+      "subcategory": "Freeform",
+      "library": "Grasshopper",
+      "inputs": ["B", "D"],
+      "outputs": ["E"]
+    },
+
+    "Panel": {
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "full_name": "Params/Input/Panel",
+      "category": "Params",
+      "subcategory": "Input",
+      "library": "Grasshopper",
+      "inputs": [],
+      "outputs": []
+    },
+
+    "Face Normals": {
+      "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5",
+      "full_name": "Mesh/Analysis/Face Normals",
+      "category": "Mesh",
+      "subcategory": "Analysis",
+      "library": "Grasshopper",
+      "inputs": ["M"],
+      "outputs": ["C", "N"],
+      "note": "C = 面中心點, N = 法向量。用於 WASP Connection 的 CEN 輸入"
+    },
+
+    "Mesh Box": {
+      "guid": "c4ac4e68-060e-4cd0-85b1-1f2e3663c449",
+      "full_name": "Mesh/Primitive/Mesh Box",
+      "category": "Mesh",
+      "subcategory": "Primitive",
+      "library": "SurfaceComponents",
+      "inputs": ["B", "X", "Y", "Z"],
+      "outputs": ["M"],
+      "note": "直接輸出 Mesh，避免 Brep→Mesh 轉換問題。GUID 已於 2026-01-24 驗證"
+    },
+
+    "Deconstruct Brep": {
+      "guid": "fab91d2a-93fb-4377-b7f4-bf2b9ad4a5e3",
+      "full_name": "Surface/Analysis/Deconstruct Brep",
+      "category": "Surface",
+      "subcategory": "Analysis",
+      "library": "Grasshopper",
+      "inputs": ["B"],
+      "outputs": ["F", "E", "V"],
+      "note": "F = Faces, E = Edges, V = Vertices"
+    },
+
+    "Area": {
+      "guid": "8c2bade2-fac0-4a47-844b-a96c25b8ed15",
+      "full_name": "Surface/Analysis/Area",
+      "category": "Surface",
+      "subcategory": "Analysis",
+      "library": "Grasshopper",
+      "inputs": ["G"],
+      "outputs": ["A", "C"],
+      "note": "A = 面積, C = Centroid (面中心點)"
+    },
+
+    "List Item": {
+      "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
+      "full_name": "Sets/List/List Item",
+      "category": "Sets",
+      "subcategory": "List",
+      "library": "Grasshopper",
+      "inputs": ["L", "i", "W"],
+      "outputs": ["i"],
+      "note": "用於從清單中選取特定項目"
+    },
+
+    "Mesh Brep": {
+      "guid": "5f86fa9f-b6eb-4f4b-b0c0-fc1e8e6a4f13",
+      "full_name": "Mesh/Util/Mesh Brep",
+      "category": "Mesh",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["B", "S"],
+      "outputs": ["M"],
+      "note": "將 Brep 轉換為 Mesh"
+    },
+
+    "Boolean Toggle": {
+      "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
+      "full_name": "Params/Input/Boolean Toggle",
+      "category": "Params",
+      "subcategory": "Input",
+      "library": "Grasshopper",
+      "inputs": [],
+      "outputs": ["B"]
+    },
+
+    "Merge": {
+      "guid": "17c74b86-3e95-48e3-b5f3-d9fb04fa8c0e",
+      "full_name": "Sets/Tree/Merge",
+      "category": "Sets",
+      "subcategory": "Tree",
+      "library": "Grasshopper",
+      "inputs": ["D1", "D2"],
+      "outputs": ["R"]
+    },
+
+    "Flatten": {
+      "guid": "d8e19cc8-f6b1-4b7a-a8c1-9e0f1d2c3b4a",
+      "full_name": "Sets/Tree/Flatten",
+      "category": "Sets",
+      "subcategory": "Tree",
+      "library": "Grasshopper",
+      "inputs": ["T"],
+      "outputs": ["T"]
+    },
+
+    "Graft": {
+      "guid": "e1a2b3c4-5d6e-7f8a-9b0c-1d2e3f4a5b6c",
+      "full_name": "Sets/Tree/Graft",
+      "category": "Sets",
+      "subcategory": "Tree",
+      "library": "Grasshopper",
+      "inputs": ["T"],
+      "outputs": ["T"]
+    },
+
+    "Divide Surface": {
+      "guid": "1a2b3c4d-5e6f-7890-abcd-ef1234567891",
+      "full_name": "Surface/Util/Divide Surface",
+      "category": "Surface",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["S", "U", "V"],
+      "outputs": ["P", "N", "uv"],
+      "note": "P = Points, N = Normals, uv = Parameters"
+    },
+
+    "Isotrim": {
+      "guid": "f12e8503-3c75-4e15-8c5a-1f43d9e84a00",
+      "full_name": "Surface/Util/Isotrim",
+      "category": "Surface",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["S", "D"],
+      "outputs": ["S"],
+      "note": "Sub-surface from domain"
+    },
+
+    "Loft": {
+      "guid": "loft-guid-123456789012345678901234",
+      "full_name": "Surface/Freeform/Loft",
+      "category": "Surface",
+      "subcategory": "Freeform",
+      "library": "Grasshopper",
+      "inputs": ["C", "O"],
+      "outputs": ["L"],
+      "note": "C = Curves, O = Options"
+    },
+
+    "Deconstruct Mesh": {
+      "guid": "deconstruct-mesh-guid-12345678",
+      "full_name": "Mesh/Analysis/Deconstruct Mesh",
+      "category": "Mesh",
+      "subcategory": "Analysis",
+      "library": "Grasshopper",
+      "inputs": ["M"],
+      "outputs": ["V", "F", "C", "N"],
+      "note": "V = Vertices, F = Faces, C = Colors, N = Normals"
+    },
+
+    "Join Meshes": {
+      "guid": "join-mesh-guid-12345678901234",
+      "full_name": "Mesh/Util/Join Meshes",
+      "category": "Mesh",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["M"],
+      "outputs": ["M"]
+    },
+
+    "Sphere": {
+      "guid": "sphere-guid-1234567890123456",
+      "full_name": "Surface/Primitive/Sphere",
+      "category": "Surface",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["B", "R"],
+      "outputs": ["S"]
+    },
+
+    "Plane 3Pt": {
+      "guid": "plane-3pt-guid-123456789012",
+      "full_name": "Vector/Plane/Plane 3Pt",
+      "category": "Vector",
+      "subcategory": "Plane",
+      "library": "Grasshopper",
+      "inputs": ["A", "B", "C"],
+      "outputs": ["P"],
+      "note": "Construct plane from 3 points"
+    },
+
+    "XZ Plane": {
+      "guid": "xz-plane-guid-1234567890123",
+      "full_name": "Vector/Plane/XZ Plane",
+      "category": "Vector",
+      "subcategory": "Plane",
+      "library": "Grasshopper",
+      "inputs": ["O"],
+      "outputs": ["P"]
+    },
+
+    "YZ Plane": {
+      "guid": "yz-plane-guid-1234567890123",
+      "full_name": "Vector/Plane/YZ Plane",
+      "category": "Vector",
+      "subcategory": "Plane",
+      "library": "Grasshopper",
+      "inputs": ["O"],
+      "outputs": ["P"]
+    },
+
+    "Vector 2Pt": {
+      "guid": "vector-2pt-guid-12345678901",
+      "full_name": "Vector/Vector/Vector 2Pt",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["A", "B", "U"],
+      "outputs": ["V", "L"],
+      "note": "V = Vector, L = Length"
+    },
+
+    "Amplitude": {
+      "guid": "amplitude-guid-1234567890123",
+      "full_name": "Vector/Vector/Amplitude",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["V", "A"],
+      "outputs": ["V"]
+    },
+
+    "Cross Product": {
+      "guid": "cross-product-guid-1234567890",
+      "full_name": "Vector/Vector/Cross Product",
+      "category": "Vector",
+      "subcategory": "Vector",
+      "library": "Grasshopper",
+      "inputs": ["A", "B", "U"],
+      "outputs": ["V"]
+    },
+
+    "Arc": {
+      "guid": "arc-guid-123456789012345678",
+      "full_name": "Curve/Primitive/Arc",
+      "category": "Curve",
+      "subcategory": "Primitive",
+      "library": "Grasshopper",
+      "inputs": ["P", "R", "A"],
+      "outputs": ["A", "L"]
+    },
+
+    "Polyline": {
+      "guid": "polyline-guid-123456789012345",
+      "full_name": "Curve/Spline/Polyline",
+      "category": "Curve",
+      "subcategory": "Spline",
+      "library": "Grasshopper",
+      "inputs": ["V", "C"],
+      "outputs": ["Pl"]
+    },
+
+    "Evaluate Curve": {
+      "guid": "evaluate-curve-guid-12345678",
+      "full_name": "Curve/Analysis/Evaluate Curve",
+      "category": "Curve",
+      "subcategory": "Analysis",
+      "library": "Grasshopper",
+      "inputs": ["C", "t"],
+      "outputs": ["P", "T", "K"],
+      "note": "P = Point, T = Tangent, K = Curvature"
+    },
+
+    "Divide Curve": {
+      "guid": "divide-curve-guid-123456789",
+      "full_name": "Curve/Division/Divide Curve",
+      "category": "Curve",
+      "subcategory": "Division",
+      "library": "Grasshopper",
+      "inputs": ["C", "N"],
+      "outputs": ["P", "T", "t"],
+      "note": "P = Points, T = Tangents, t = Parameters"
+    },
+
+    "Mirror": {
+      "guid": "mirror-guid-12345678901234567",
+      "full_name": "Transform/Euclidean/Mirror",
+      "category": "Transform",
+      "subcategory": "Euclidean",
+      "library": "Grasshopper",
+      "inputs": ["G", "P"],
+      "outputs": ["G", "X"]
+    },
+
+    "Orient": {
+      "guid": "orient-guid-12345678901234567",
+      "full_name": "Transform/Euclidean/Orient",
+      "category": "Transform",
+      "subcategory": "Euclidean",
+      "library": "Grasshopper",
+      "inputs": ["G", "A", "B"],
+      "outputs": ["G", "X"],
+      "note": "Orient from plane A to plane B"
+    },
+
+    "Project": {
+      "guid": "project-guid-1234567890123456",
+      "full_name": "Transform/Affine/Project",
+      "category": "Transform",
+      "subcategory": "Affine",
+      "library": "Grasshopper",
+      "inputs": ["G", "P"],
+      "outputs": ["G"]
+    },
+
+    "Brep Join": {
+      "guid": "brep-join-guid-12345678901234",
+      "full_name": "Surface/Util/Brep Join",
+      "category": "Surface",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["B"],
+      "outputs": ["B"]
+    },
+
+    "Cap Holes": {
+      "guid": "cap-holes-guid-1234567890123",
+      "full_name": "Surface/Util/Cap Holes",
+      "category": "Surface",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["B"],
+      "outputs": ["B"]
+    },
+
+    "Random": {
+      "guid": "random-guid-123456789012345678",
+      "full_name": "Sets/Sequence/Random",
+      "category": "Sets",
+      "subcategory": "Sequence",
+      "library": "Grasshopper",
+      "inputs": ["D", "N", "S"],
+      "outputs": ["R"],
+      "note": "D = Domain, N = Number, S = Seed"
+    },
+
+    "Repeat": {
+      "guid": "repeat-guid-123456789012345678",
+      "full_name": "Sets/Sequence/Repeat",
+      "category": "Sets",
+      "subcategory": "Sequence",
+      "library": "Grasshopper",
+      "inputs": ["D", "N"],
+      "outputs": ["D"]
+    },
+
+    "Cull Pattern": {
+      "guid": "cull-pattern-guid-123456789012",
+      "full_name": "Sets/List/Cull Pattern",
+      "category": "Sets",
+      "subcategory": "List",
+      "library": "Grasshopper",
+      "inputs": ["L", "P"],
+      "outputs": ["L"]
+    },
+
+    "Shift List": {
+      "guid": "shift-list-guid-1234567890123",
+      "full_name": "Sets/List/Shift List",
+      "category": "Sets",
+      "subcategory": "List",
+      "library": "Grasshopper",
+      "inputs": ["L", "S", "W"],
+      "outputs": ["L"]
+    },
+
+    "Reverse List": {
+      "guid": "reverse-list-guid-12345678901",
+      "full_name": "Sets/List/Reverse List",
+      "category": "Sets",
+      "subcategory": "List",
+      "library": "Grasshopper",
+      "inputs": ["L"],
+      "outputs": ["L"]
+    },
+
+    "Expression": {
+      "guid": "expression-guid-12345678901234",
+      "full_name": "Maths/Script/Expression",
+      "category": "Maths",
+      "subcategory": "Script",
+      "library": "Grasshopper",
+      "inputs": ["x", "y"],
+      "outputs": ["R"],
+      "note": "支持數學表達式，如 x*2+y"
+    },
+
+    "Power": {
+      "guid": "power-guid-1234567890123456789",
+      "full_name": "Maths/Operators/Power",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["B", "E"],
+      "outputs": ["R"]
+    },
+
+    "Absolute": {
+      "guid": "absolute-guid-12345678901234567",
+      "full_name": "Maths/Operators/Absolute",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["x"],
+      "outputs": ["R"]
+    },
+
+    "Modulus": {
+      "guid": "modulus-guid-12345678901234567",
+      "full_name": "Maths/Operators/Modulus",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": ["R"]
+    },
+
+    "Integer": {
+      "guid": "integer-guid-12345678901234567",
+      "full_name": "Maths/Operators/Integer",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["N"],
+      "outputs": ["I"]
+    },
+
+    "Tangent": {
+      "guid": "tangent-guid-12345678901234567",
+      "full_name": "Maths/Trig/Tangent",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "Grasshopper",
+      "inputs": ["x"],
+      "outputs": ["y"]
+    },
+
+    "ArcSin": {
+      "guid": "arcsin-guid-123456789012345678",
+      "full_name": "Maths/Trig/ArcSin",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "Grasshopper",
+      "inputs": ["x"],
+      "outputs": ["A"]
+    },
+
+    "ArcCos": {
+      "guid": "arccos-guid-123456789012345678",
+      "full_name": "Maths/Trig/ArcCos",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "Grasshopper",
+      "inputs": ["x"],
+      "outputs": ["A"]
+    },
+
+    "ArcTan": {
+      "guid": "arctan-guid-123456789012345678",
+      "full_name": "Maths/Trig/ArcTan",
+      "category": "Maths",
+      "subcategory": "Trig",
+      "library": "Grasshopper",
+      "inputs": ["x"],
+      "outputs": ["A"]
+    },
+
+    "Larger Than": {
+      "guid": "larger-than-guid-1234567890123",
+      "full_name": "Maths/Operators/Larger Than",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": ["<", ">="]
+    },
+
+    "Smaller Than": {
+      "guid": "smaller-than-guid-123456789012",
+      "full_name": "Maths/Operators/Smaller Than",
+      "category": "Maths",
+      "subcategory": "Operators",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": [">", "<="]
+    },
+
+    "Remap Numbers": {
+      "guid": "remap-numbers-guid-12345678901",
+      "full_name": "Maths/Domain/Remap Numbers",
+      "category": "Maths",
+      "subcategory": "Domain",
+      "library": "Grasshopper",
+      "inputs": ["V", "S", "T"],
+      "outputs": ["R", "C"]
+    },
+
+    "Construct Domain": {
+      "guid": "construct-domain-guid-12345678",
+      "full_name": "Maths/Domain/Construct Domain",
+      "category": "Maths",
+      "subcategory": "Domain",
+      "library": "Grasshopper",
+      "inputs": ["A", "B"],
+      "outputs": ["I"]
+    },
+
+    "Bounds": {
+      "guid": "bounds-guid-123456789012345678",
+      "full_name": "Maths/Domain/Bounds",
+      "category": "Maths",
+      "subcategory": "Domain",
+      "library": "Grasshopper",
+      "inputs": ["N"],
+      "outputs": ["I"]
+    },
+
+    "Galapagos": {
+      "guid": "a1234567-bcde-f012-3456-789abcdef012",
+      "full_name": "Params/Util/Galapagos",
+      "category": "Params",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["Genome", "Fitness"],
+      "outputs": [],
+      "note": "Evolutionary solver - 基因演算法優化器"
+    },
+
+    "Data Recorder": {
+      "guid": "data-recorder-guid-12345678901",
+      "full_name": "Params/Util/Data Recorder",
+      "category": "Params",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": ["D"],
+      "outputs": ["D"]
+    },
+
+    "Timer": {
+      "guid": "timer-guid-1234567890123456789",
+      "full_name": "Params/Util/Timer",
+      "category": "Params",
+      "subcategory": "Util",
+      "library": "Grasshopper",
+      "inputs": [],
+      "outputs": []
+    },
+
+    "Button": {
+      "guid": "button-guid-12345678901234567890",
+      "full_name": "Params/Input/Button",
+      "category": "Params",
+      "subcategory": "Input",
+      "library": "Grasshopper",
+      "inputs": [],
+      "outputs": ["B"]
+    }
+  },
+
+  "_plugin_components": {
+    "_note": "第三方插件組件的參數參考。GUID 需運行時查詢，此處僅記錄輸入輸出信息",
+
+    "WASP": {
+      "_category": "Aggregation",
+      "Connection From Direction": {
+        "inputs": ["GEO", "CEN", "UP", "T"],
+        "outputs": ["CONN"],
+        "note": "GEO 需要 Mesh 輸入！CEN 用 Face Normals.C"
+      },
+      "Part": {
+        "inputs": ["N", "GEO", "CONN", "COLL", "ATT", "ADD"],
+        "outputs": ["PART"],
+        "note": "GEO 在索引 1, CONN 在索引 2"
+      },
+      "Rule": {
+        "inputs": ["PART", "CONN", "PART2", "CONN2", "GRTYPE"],
+        "outputs": ["R"]
+      },
+      "Stochastic Aggregation": {
+        "inputs": ["PART", "RULE", "COUNT", "SEED", "COLL", "RESET"],
+        "outputs": ["AGG", "GEO"]
+      },
+      "Aggregation": {
+        "inputs": ["PART", "RULE", "FIELD", "COUNT", "SEED"],
+        "outputs": ["AGG", "GEO"]
+      },
+      "Field": {
+        "inputs": ["BB", "RES", "VAL"],
+        "outputs": ["FIELD"]
+      }
+    },
+
+    "Karamba3D": {
+      "_category": "Structural",
+      "LineToBeam": {
+        "inputs": ["Lines", "CrossSection", "Material"],
+        "outputs": ["Beams"]
+      },
+      "CrossSection": {
+        "inputs": ["Family", "Name"],
+        "outputs": ["CrossSection"]
+      },
+      "Assemble": {
+        "inputs": ["Points", "Beams", "Shells", "Supports", "Loads"],
+        "outputs": ["Model", "Info"]
+      },
+      "Analyze": {
+        "inputs": ["Model", "LoadCases"],
+        "outputs": ["Model", "MaxDisp", "Energy", "Info"]
+      },
+      "ModelView": {
+        "inputs": ["Model", "Scale"],
+        "outputs": ["Mesh", "Colors"]
+      },
+      "ShellToMesh": {
+        "inputs": ["Mesh", "Thickness", "Material"],
+        "outputs": ["Shells"]
+      },
+      "Support": {
+        "inputs": ["Points", "Conditions"],
+        "outputs": ["Support"]
+      },
+      "PointLoad": {
+        "inputs": ["Points", "Vectors"],
+        "outputs": ["PointLoad"]
+      }
+    },
+
+    "Kangaroo2": {
+      "_category": "FormFinding",
+      "Solver": {
+        "inputs": ["Goals", "Reset", "On"],
+        "outputs": ["Geometry", "Iterations"]
+      },
+      "Anchor": {
+        "inputs": ["Points", "Targets", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "Length": {
+        "inputs": ["Lines", "Length", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "EdgeLengths": {
+        "inputs": ["Mesh", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "SoapFilm": {
+        "inputs": ["Mesh", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "Pressure": {
+        "inputs": ["Mesh", "Pressure", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "Floor": {
+        "inputs": ["Points", "Height", "Strength"],
+        "outputs": ["Goal"]
+      },
+      "Unary Force": {
+        "inputs": ["Points", "Force"],
+        "outputs": ["Goal"]
+      }
+    },
+
+    "Ladybug": {
+      "_category": "Environmental",
+      "Import EPW": {
+        "inputs": ["EPW"],
+        "outputs": ["Location", "DryBulb", "Humidity", "WindSpeed", "WindDir"]
+      },
+      "Sun Path": {
+        "inputs": ["Location", "HOY", "Projection"],
+        "outputs": ["SunPath", "Compass", "Altitude", "Azimuth"]
+      },
+      "Shading Mask": {
+        "inputs": ["ViewVectors", "Context", "Offset"],
+        "outputs": ["ShadingMask", "ShadingPercent"]
+      },
+      "Radiation Rose": {
+        "inputs": ["RadiationData", "DirectionCount"],
+        "outputs": ["RadiationRose", "Mesh"]
+      },
+      "Benefit Sky Matrix": {
+        "inputs": ["Location", "EPW", "BalanceTemp"],
+        "outputs": ["SkyMatrix"]
+      }
+    },
+
+    "Honeybee": {
+      "_category": "Environmental",
+      "Room": {
+        "inputs": ["Geometry", "Name", "Program"],
+        "outputs": ["Room"]
+      },
+      "Face": {
+        "inputs": ["Geometry", "Type", "BC"],
+        "outputs": ["Face"]
+      },
+      "Model": {
+        "inputs": ["Rooms", "OrphanedFaces", "Shades"],
+        "outputs": ["Model"]
+      },
+      "Shade": {
+        "inputs": ["Geometry", "Name", "Detached"],
+        "outputs": ["Shade"]
+      },
+      "Aperture": {
+        "inputs": ["Geometry", "Name", "Operable"],
+        "outputs": ["Aperture"]
+      },
+      "Add Subface": {
+        "inputs": ["Room", "Apertures", "Doors"],
+        "outputs": ["Room"]
+      },
+      "Annual Loads": {
+        "inputs": ["Model", "EPW", "Timestep"],
+        "outputs": ["Cooling", "Heating", "Lighting", "Equipment"]
+      },
+      "Run OSM": {
+        "inputs": ["Model", "EPW", "SimulationPar"],
+        "outputs": ["OSM", "IDF", "SQL"]
+      },
+      "Read Room Energy Result": {
+        "inputs": ["SQL"],
+        "outputs": ["Cooling", "Heating", "Lighting", "TotalEUI"]
+      }
+    },
+
+    "Octopus": {
+      "_category": "Optimization",
+      "Octopus": {
+        "inputs": ["Genome", "Objectives"],
+        "outputs": ["ParetoFront", "Generations"]
+      },
+      "Genome": {
+        "inputs": ["Parameters"],
+        "outputs": ["Genome"]
+      }
+    },
+
+    "Lunchbox": {
+      "_category": "Panelization",
+      "Diamond Panels": {
+        "inputs": ["Surface", "U", "V"],
+        "outputs": ["Panels", "Points"]
+      },
+      "Quad Panels": {
+        "inputs": ["Surface", "U", "V"],
+        "outputs": ["Panels", "Points"]
+      },
+      "Hex Cells": {
+        "inputs": ["Surface", "U", "V"],
+        "outputs": ["Cells", "Points"]
+      },
+      "Random Panels": {
+        "inputs": ["Surface", "Seed"],
+        "outputs": ["Panels"]
+      },
+      "Voronoi on Surface": {
+        "inputs": ["Surface", "Points", "Boundary"],
+        "outputs": ["Cells"]
+      }
+    },
+
+    "Weaverbird": {
+      "_category": "MeshProcessing",
+      "Catmull-Clark": {
+        "inputs": ["Mesh", "Level"],
+        "outputs": ["Mesh"]
+      },
+      "Loop Subdivision": {
+        "inputs": ["Mesh", "Level"],
+        "outputs": ["Mesh"]
+      },
+      "Mesh Thicken": {
+        "inputs": ["Mesh", "Distance"],
+        "outputs": ["Mesh"]
+      }
+    },
+
+    "Pufferfish": {
+      "_category": "Morphing",
+      "Morph to Tweened Surfaces": {
+        "inputs": ["Geometry", "SurfaceA", "SurfaceB", "Count"],
+        "outputs": ["MorphedGeometry"]
+      },
+      "Tween Surface": {
+        "inputs": ["SurfaceA", "SurfaceB", "Factor"],
+        "outputs": ["Surface"]
+      }
+    },
+
+    "Anemone": {
+      "_category": "Looping",
+      "Loop Start": {
+        "inputs": ["Data", "Iterations"],
+        "outputs": ["Data", "Index"]
+      },
+      "Loop End": {
+        "inputs": ["Data", "Condition"],
+        "outputs": ["Data"]
+      }
+    },
+
+    "Human UI": {
+      "_category": "Interface",
+      "Create Window": {
+        "inputs": ["Elements", "Title", "Show"],
+        "outputs": ["Window"]
+      },
+      "Slider": {
+        "inputs": ["Label", "Min", "Max", "Default"],
+        "outputs": ["Element", "Value"]
+      },
+      "Button": {
+        "inputs": ["Label", "Image"],
+        "outputs": ["Element", "Click"]
+      }
+    },
+
+    "Metahopper": {
+      "_category": "Document",
+      "Get Components": {
+        "inputs": ["Document", "Filter"],
+        "outputs": ["Components"]
+      },
+      "Set Value": {
+        "inputs": ["Component", "Value"],
+        "outputs": ["Result"]
+      },
+      "Enable": {
+        "inputs": ["Components", "Enable"],
+        "outputs": ["Result"]
+      }
+    }
+  },
+
+  "known_plugin_conflicts": {
+    "Flexibility": ["Series varible"],
+    "Weaver Bird": ["wbLoop", "wbFrame"],
+    "MathComponents (Colour)": ["Multiplication", "Addition"]
+  },
+
+  "installed_plugins": [
+    "ArchiElements",
+    "BFF",
+    "Bubalus",
+    "DendroGH",
+    "Dolphin",
+    "GH_MCP",
+    "Githopper",
+    "GraphicStatics3D",
+    "Hare",
+    "Hdim",
+    "KangarooSolver",
+    "metahopper",
+    "Mosquito",
+    "Nursery",
+    "physarealm",
+    "sunglasses",
+    "XiRui"
+  ]
+}

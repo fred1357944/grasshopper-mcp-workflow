@@ -1,0 +1,217 @@
+{
+  "_meta": {
+    "description": "GH_MCP 可用命令參考",
+    "version": "1.1.0",
+    "updated": "2026-01-24",
+    "source": "GHX Skill Package + GH_MCP Debug Knowledge",
+    "note": "此文件記錄所有 MCP 命令的可用性和參數，避免 Claude 調用不存在的命令"
+  },
+
+  "available": {
+    "add_component": {
+      "description": "新增組件到畫布",
+      "required": ["type"],
+      "optional": ["nickname", "x", "y", "guid"],
+      "examples": [
+        {"type": "Number Slider", "nickname": "Height", "x": 100, "y": 100},
+        {"guid": "19c70daf-600f-4697-ace2-567f6702144d", "nickname": "Rotate", "x": 200, "y": 100}
+      ],
+      "notes": [
+        "優先使用 guid 而非 type，避免插件衝突",
+        "x, y 是畫布座標 (通常 100-2000 範圍)"
+      ]
+    },
+
+    "connect_components": {
+      "description": "連接兩個組件的參數",
+      "required": ["sourceId", "targetId"],
+      "optional": ["sourceParam", "targetParam"],
+      "examples": [
+        {"sourceId": "abc123", "sourceParam": "N", "targetId": "def456", "targetParam": "A"}
+      ],
+      "notes": [
+        "使用 NickName (如 'N', 'A', 'R') 而非全名",
+        "如果省略參數名，會連接第一個可用的端口"
+      ]
+    },
+
+    "set_slider_properties": {
+      "description": "設置 Number Slider 的屬性",
+      "required": ["id"],
+      "optional": ["min", "max", "value", "decimals"],
+      "examples": [
+        {"id": "slider123", "min": 0, "max": 720},
+        {"id": "slider123", "value": 360}
+      ],
+      "notes": [
+        "⚠️ 重要：先設置 min/max，再設置 value",
+        "預設範圍是 0-1，value 會被 clamp",
+        "建議分兩次調用：第一次設範圍，第二次設值"
+      ]
+    },
+
+    "set_component_value": {
+      "description": "設置組件的值（Panel 等）",
+      "required": ["id", "value"],
+      "optional": [],
+      "examples": [
+        {"id": "panel123", "value": "Hello World"}
+      ],
+      "notes": [
+        "⚠️ 不適用於 Number Slider，Slider 用 set_slider_properties",
+        "Panel 輸出文字類型，不能直接連接數學組件"
+      ]
+    },
+
+    "get_component_candidates": {
+      "description": "模糊搜索組件",
+      "required": ["name"],
+      "optional": ["maxResults"],
+      "examples": [
+        {"name": "Rotate", "maxResults": 20}
+      ],
+      "notes": [
+        "⚠️ 會返回第三方插件的同名組件",
+        "檢查返回的 library 欄位，選擇原生組件",
+        "優先使用 trusted_guids.json 中的 GUID"
+      ]
+    },
+
+    "get_errors": {
+      "description": "獲取畫布上的錯誤信息",
+      "required": [],
+      "optional": [],
+      "examples": [{}],
+      "notes": [
+        "返回所有組件的錯誤和警告",
+        "用於診斷連接問題"
+      ]
+    },
+
+    "get_document_info": {
+      "description": "獲取文檔資訊",
+      "required": [],
+      "optional": [],
+      "examples": [{}],
+      "notes": ["返回組件數量、連接數量等"]
+    },
+
+    "get_component_info": {
+      "description": "獲取特定組件的詳細資訊",
+      "required": ["id"],
+      "optional": [],
+      "examples": [
+        {"id": "comp123"}
+      ],
+      "notes": ["返回組件的輸入輸出參數、當前值等"]
+    },
+
+    "clear_document": {
+      "description": "清空畫布上所有組件",
+      "required": [],
+      "optional": [],
+      "examples": [{}],
+      "notes": [
+        "清空整個 GH 文檔",
+        "執行前確認用戶同意",
+        "注意：命令名是 clear_document 不是 clear_canvas"
+      ]
+    },
+
+    "delete_component": {
+      "description": "刪除組件",
+      "required": ["id"],
+      "optional": [],
+      "examples": [
+        {"id": "comp123"}
+      ]
+    },
+
+    "disconnect_components": {
+      "description": "斷開連接",
+      "required": ["sourceId", "targetId"],
+      "optional": ["sourceParam", "targetParam"],
+      "examples": [
+        {"sourceId": "abc123", "targetId": "def456"}
+      ]
+    }
+  },
+
+  "unavailable": [
+    "clear_canvas",
+    "new_document",
+    "get_all_components",
+    "select_all",
+    "select_component",
+    "group_components",
+    "ungroup_components",
+    "copy_components",
+    "paste_components",
+    "undo",
+    "redo",
+    "save_document",
+    "load_document",
+    "export_ghx",
+    "import_ghx"
+  ],
+
+  "workarounds": {
+    "clear_canvas": "使用 clear_document 命令（注意命令名不是 clear_canvas）",
+    "new_document": "用戶手動操作：File → New Document",
+    "save_document": "用戶手動操作：File → Save 或 Ctrl+S",
+    "select_all": "用戶手動操作：Ctrl+A",
+    "undo": "用戶手動操作：Ctrl+Z",
+    "get_all_components": "使用 get_document_info 獲取組件列表概要"
+  },
+
+  "common_mistakes": {
+    "clear_canvas_call": {
+      "wrong": "client.send_command('clear_canvas')",
+      "correct": "使用 clear_document 命令",
+      "reason": "clear_canvas 命令不存在，正確命令是 clear_document",
+      "frequency": "高"
+    },
+    "slider_value_first": {
+      "wrong": "set_slider_properties(id, value=360)",
+      "correct": "先 set_slider_properties(id, min=0, max=720)，再 set_slider_properties(id, value=360)",
+      "reason": "預設範圍 0-1，value 會被 clamp",
+      "frequency": "中"
+    },
+    "panel_as_number": {
+      "wrong": "Panel → Multiplication",
+      "correct": "Number Slider → Multiplication",
+      "reason": "Panel 輸出文字，不能作為數值輸入",
+      "frequency": "中"
+    },
+    "type_without_guid": {
+      "wrong": "add_component(type='Rotate')",
+      "correct": "add_component(guid='19c70daf-...')",
+      "reason": "type 可能返回插件的同名組件",
+      "frequency": "高"
+    },
+    "paramName_vs_paramIndex": {
+      "wrong": "fromParam: 'R'",
+      "correct": "fromParamIndex: 0",
+      "reason": "FuzzyMatcher 可能將 R 解析為 Radius 而非 Result/Rules",
+      "frequency": "高"
+    },
+    "panel_empty": {
+      "wrong": "Panel 無內容",
+      "correct": "Panel 必須有內容 (set_component_value)",
+      "reason": "WASP Part Name 需要非空 Panel",
+      "frequency": "中"
+    }
+  },
+
+  "execution_order": {
+    "description": "推薦的執行順序",
+    "steps": [
+      "1. clear_document（如需要）",
+      "2. add_component（所有組件）",
+      "3. set_slider_properties（所有 Slider）",
+      "4. set_component_value（所有 Panel）",
+      "5. connect_components（所有連接）",
+      "6. get_errors（驗證）"
+    ]
+  }
+}
