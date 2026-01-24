@@ -94,12 +94,9 @@ def execute_add_commands(client: GrasshopperClient, commands: list[dict], max_wo
     return results
 
 
-def execute_connect_commands(client: GrasshopperClient, commands: list[dict], id_map: dict, sequential: bool = True) -> dict:
+def execute_connect_commands(client: GrasshopperClient, commands: list[dict], id_map: dict, max_workers: int = 3) -> dict:
     """
-    執行 connect_components 命令
-
-    Args:
-        sequential: True 使用串行執行（更可靠），False 使用並行
+    執行 connect_components 命令（並行）
 
     Returns:
         {
@@ -112,10 +109,7 @@ def execute_connect_commands(client: GrasshopperClient, commands: list[dict], id
         "fail": 0
     }
 
-    total = len(commands)
-    print(f"\n連接 {total} 對組件（{'串行' if sequential else '並行'}）...")
-
-    for index, cmd in enumerate(commands, 1):
+    def execute_single(cmd: dict, index: int, total: int) -> bool:
         params = cmd.get("parameters", {})
         source_key = params.get("sourceId")
         target_key = params.get("targetId")
@@ -128,42 +122,47 @@ def execute_connect_commands(client: GrasshopperClient, commands: list[dict], id
 
         if not source_id:
             print(f"  ✗ [{index}/{total}] 找不到源組件: {source_key}")
-            results["fail"] += 1
-            continue
+            return False
 
         if not target_id:
             print(f"  ✗ [{index}/{total}] 找不到目標組件: {target_key}")
-            results["fail"] += 1
-            continue
+            return False
 
-        # 傳遞參數名（多輸入組件必需）
         connect_params = {
             "sourceId": source_id,
             "targetId": target_id
         }
 
-        # 如果有指定 targetParam，傳遞它（關鍵！）
-        target_param = params.get("targetParam")
-        if target_param and target_param != "output":
+        if source_param:
+            connect_params["sourceParam"] = source_param
+        if target_param:
             connect_params["targetParam"] = target_param
 
         response = client.send_command("connect_components", connect_params)
 
-        # 檢查嵌套的 success
-        inner_response = response.get("data", {})
-        success = inner_response.get("success", False) if isinstance(inner_response, dict) else False
-
-        if response.get("success") and success:
+        if response.get("success"):
             print(f"  ✓ [{index}/{total}] {source_key} -> {target_key}")
-            results["success"] += 1
+            return True
         else:
-            error = inner_response.get("error", "") if isinstance(inner_response, dict) else response.get("error", "Unknown")
-            print(f"  ✗ [{index}/{total}] {source_key} -> {target_key}: {error[:40]}")
-            results["fail"] += 1
+            error = response.get("error", "Unknown")
+            print(f"  ✗ [{index}/{total}] {source_key} -> {target_key}: {error[:30]}")
+            return False
 
-        # 串行執行時加入小延遲
-        if sequential:
-            time.sleep(0.05)
+    total = len(commands)
+    print(f"\n連接 {total} 對組件...")
+
+    # 連接需要更謹慎，減少並行數
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(execute_single, cmd, i, total): cmd
+            for i, cmd in enumerate(commands, 1)
+        }
+
+        for future in as_completed(futures):
+            if future.result():
+                results["success"] += 1
+            else:
+                results["fail"] += 1
 
     return results
 

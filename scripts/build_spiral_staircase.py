@@ -99,15 +99,8 @@ def build_spiral_staircase():
     # =========================================================================
     print("\n5. 極座標計算...")
 
-    # 360 度常數
-    client.add_component("Number", "Num360", col=1, row=1)
-    time.sleep(0.1)
-    # 設置值為 360
-    result = client.send_command(
-        'set_slider_properties',
-        id=client.components["Num360"].comp_id,
-        value=360
-    )
+    # 360 度常數 - 使用 Number Slider
+    client.add_slider("Num360", col=1, row=1, value=360, min_val=0, max_val=720)
 
     # Rotation * 360 = 總旋轉角度
     client.add_component("Multiplication", "TotalAngle", col=2, row=1)
@@ -156,13 +149,8 @@ def build_spiral_staircase():
     client.connect("OuterR", "N", "SumRadii", "A")
     client.connect("InnerR", "N", "SumRadii", "B")
 
-    client.add_component("Number", "Num2", col=5, row=2)
-    time.sleep(0.1)
-    client.send_command(
-        'set_slider_properties',
-        id=client.components["Num2"].comp_id,
-        value=2
-    )
+    # 常數 2 - 使用 Number Slider
+    client.add_slider("Num2", col=5, row=2, value=2, min_val=1, max_val=10)
 
     client.add_component("Division", "MidRadius", col=6, row=1)
     client.connect("SumRadii", "Result", "MidRadius", "A")
@@ -221,7 +209,10 @@ def build_spiral_staircase():
     print("   StepBoxes (Center Box)")
 
     # 旋轉每個階梯使其指向外
-    client.add_component("Rotate", "RotatedSteps", col=10, row=1)
+    # 關鍵: 必須使用 XformComponents/Rotate 的 GUID，避免被 VectorComponents/Rotate 取代
+    # 注意: 5944e8e2... 是 OBSOLETE 版本，改用 19c70daf... (新版)
+    ROTATE_GUID = "19c70daf-600f-4697-ace2-567f6702144d"  # XformComponents/Rotate (新版)
+    client.add_component("Rotate", "RotatedSteps", col=10, row=1, guid=ROTATE_GUID)
     client.connect("StepBoxes", "B", "RotatedSteps", "G")
     client.connect("Rads", "Radians", "RotatedSteps", "A")  # 用完整參數名 Radians
     print("   RotatedSteps (旋轉對齊)")
