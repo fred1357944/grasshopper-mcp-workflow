@@ -442,6 +442,7 @@ namespace GrasshopperMCP.Commands
                     if (component is GH_Panel panel)
                     {
                         panel.UserText = value;
+                        panel.ExpireSolution(true);
                     }
                     else if (component is GH_NumberSlider slider)
                     {
@@ -1441,6 +1442,409 @@ namespace GrasshopperMCP.Commands
             }
             
             return result;
+        }
+
+        /// <summary>
+        /// 通用的可變參數組件設定命令
+        ///
+        /// 此命令適用於所有實現 IGH_VariableParameterComponent 介面的 Grasshopper 組件，
+        /// 包括但不限於：Entwine、Merge、List Item、Sort、Dispatch、Gate、Stream Filter、
+        /// Expression、Concatenate、Format、Construct Path、Split Tree 等。
+        ///
+        /// 支援動態調整 Input 和 Output 兩側的參數數量。
+        /// </summary>
+        /// <param name="command">命令參數</param>
+        /// <returns>操作結果</returns>
+        /// <remarks>
+        /// 參數說明：
+        /// - id (必填): 組件的 InstanceGuid
+        /// - side (必填): "input" 或 "output"，指定要調整哪一側的參數
+        /// - count (必填): 目標參數數量
+        ///
+        /// 使用範例：
+        /// 1. 設置 Entwine 組件為 6 個輸入分支：
+        ///    { "id": "xxx", "side": "input", "count": 6 }
+        ///
+        /// 2. 設置 Merge 組件為 5 個輸入：
+        ///    { "id": "xxx", "side": "input", "count": 5 }
+        ///
+        /// 3. 設置 Split Tree 組件為 4 個輸出：
+        ///    { "id": "xxx", "side": "output", "count": 4 }
+        ///
+        /// 注意事項：
+        /// - 如果組件不支援可變參數（未實現 IGH_VariableParameterComponent），會返回錯誤
+        /// - 某些組件可能有最小參數數量限制
+        /// - 調整後會自動觸發組件重新計算
+        /// </remarks>
+        public static object SetVariableParams(Command command)
+        {
+            string componentId = command.GetParameter<string>("id");
+            string side = command.GetParameter<string>("side");
+            int? count = command.GetParameter<int?>("count");
+
+            // 參數驗證
+            if (string.IsNullOrEmpty(componentId))
+            {
+                throw new ArgumentException("Component ID ('id') is required");
+            }
+
+            if (string.IsNullOrEmpty(side))
+            {
+                throw new ArgumentException("Parameter side ('side') is required. Use 'input' or 'output'.");
+            }
+
+            side = side.ToLowerInvariant();
+            if (side != "input" && side != "output")
+            {
+                throw new ArgumentException($"Invalid side '{side}'. Must be 'input' or 'output'.");
+            }
+
+            if (!count.HasValue || count.Value < 0)
+            {
+                throw new ArgumentException("Parameter count ('count') must be a non-negative integer");
+            }
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Grasshopper.Instances.ActiveCanvas?.Document;
+                    if (doc == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper document");
+                    }
+
+                    Guid guid;
+                    if (!Guid.TryParse(componentId, out guid))
+                    {
+                        throw new ArgumentException($"Invalid component ID: {componentId}");
+                    }
+
+                    var component = doc.FindObject(guid, true) as IGH_Component;
+                    if (component == null)
+                    {
+                        throw new ArgumentException($"Component not found or is not a component: {componentId}");
+                    }
+
+                    // 檢查是否支援可變參數
+                    var variableParams = component as Grasshopper.Kernel.IGH_VariableParameterComponent;
+                    if (variableParams == null)
+                    {
+                        throw new ArgumentException(
+                            $"Component '{component.Name}' ({component.GetType().Name}) does not support variable parameters. " +
+                            "Only components implementing IGH_VariableParameterComponent can use this command."
+                        );
+                    }
+
+                    GH_ParameterSide paramSide = side == "input" ? GH_ParameterSide.Input : GH_ParameterSide.Output;
+                    var paramList = side == "input" ? component.Params.Input : component.Params.Output;
+
+                    int currentCount = paramList.Count;
+                    int targetCount = count.Value;
+
+                    int addedCount = 0;
+                    int removedCount = 0;
+                    var failedOperations = new List<string>();
+
+                    // 添加參數
+                    if (targetCount > currentCount)
+                    {
+                        for (int i = currentCount; i < targetCount; i++)
+                        {
+                            // 先檢查是否允許插入
+                            if (!variableParams.CanInsertParameter(paramSide, i))
+                            {
+                                failedOperations.Add($"Cannot insert {side} parameter at index {i}");
+                                continue;
+                            }
+
+                            // 創建新參數
+                            var newParam = variableParams.CreateParameter(paramSide, i);
+                            if (newParam == null)
+                            {
+                                failedOperations.Add($"CreateParameter returned null for {side} at index {i}");
+                                continue;
+                            }
+
+                            // 註冊參數
+                            if (side == "input")
+                            {
+                                component.Params.RegisterInputParam(newParam);
+                            }
+                            else
+                            {
+                                component.Params.RegisterOutputParam(newParam);
+                            }
+                            addedCount++;
+                        }
+                    }
+                    // 移除參數（從後往前移除，避免索引錯位）
+                    else if (targetCount < currentCount)
+                    {
+                        for (int i = currentCount - 1; i >= targetCount; i--)
+                        {
+                            // 先檢查是否允許移除
+                            if (!variableParams.CanRemoveParameter(paramSide, i))
+                            {
+                                failedOperations.Add($"Cannot remove {side} parameter at index {i}");
+                                continue;
+                            }
+
+                            // 通知組件即將移除參數
+                            variableParams.DestroyParameter(paramSide, i);
+
+                            // 取消註冊參數
+                            if (side == "input")
+                            {
+                                component.Params.UnregisterInputParameter(component.Params.Input[i]);
+                            }
+                            else
+                            {
+                                component.Params.UnregisterOutputParameter(component.Params.Output[i]);
+                            }
+                            removedCount++;
+                        }
+                    }
+
+                    // 觸發參數維護回調
+                    variableParams.VariableParameterMaintenance();
+
+                    // 通知參數變更並重新計算
+                    component.Params.OnParametersChanged();
+                    component.ExpireSolution(true);
+                    doc.NewSolution(false);
+
+                    // 收集更新後的參數資訊
+                    var updatedParams = new List<object>();
+                    var finalParamList = side == "input" ? component.Params.Input : component.Params.Output;
+                    foreach (var param in finalParamList)
+                    {
+                        updatedParams.Add(new
+                        {
+                            index = finalParamList.IndexOf(param),
+                            name = param.Name,
+                            nickName = param.NickName,
+                            typeName = param.TypeName
+                        });
+                    }
+
+                    result = new
+                    {
+                        success = true,
+                        message = $"Variable parameters updated: {addedCount} added, {removedCount} removed",
+                        componentId = componentId,
+                        componentName = component.Name,
+                        componentType = component.GetType().Name,
+                        side = side,
+                        previousCount = currentCount,
+                        targetCount = targetCount,
+                        finalCount = finalParamList.Count,
+                        addedCount = addedCount,
+                        removedCount = removedCount,
+                        parameters = updatedParams,
+                        warnings = failedOperations.Count > 0 ? failedOperations : null
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"Error in SetVariableParams: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 查詢組件是否支援可變參數，以及當前的參數狀態
+        /// </summary>
+        /// <param name="command">命令參數</param>
+        /// <returns>組件的可變參數能力和當前狀態</returns>
+        /// <remarks>
+        /// 參數說明：
+        /// - id (必填): 組件的 InstanceGuid
+        ///
+        /// 返回資訊包括：
+        /// - 是否支援可變參數
+        /// - 當前輸入/輸出參數數量
+        /// - 每個參數是否可以添加/移除
+        ///
+        /// 使用此命令可以在調用 set_variable_params 之前，
+        /// 先了解組件的能力和限制。
+        /// </remarks>
+        public static object GetVariableParamsInfo(Command command)
+        {
+            string componentId = command.GetParameter<string>("id");
+
+            if (string.IsNullOrEmpty(componentId))
+            {
+                throw new ArgumentException("Component ID ('id') is required");
+            }
+
+            object result = null;
+            Exception exception = null;
+
+            RhinoApp.InvokeOnUiThread(new Action(() =>
+            {
+                try
+                {
+                    var doc = Grasshopper.Instances.ActiveCanvas?.Document;
+                    if (doc == null)
+                    {
+                        throw new InvalidOperationException("No active Grasshopper document");
+                    }
+
+                    Guid guid;
+                    if (!Guid.TryParse(componentId, out guid))
+                    {
+                        throw new ArgumentException($"Invalid component ID: {componentId}");
+                    }
+
+                    var component = doc.FindObject(guid, true) as IGH_Component;
+                    if (component == null)
+                    {
+                        throw new ArgumentException($"Component not found or is not a component: {componentId}");
+                    }
+
+                    var variableParams = component as Grasshopper.Kernel.IGH_VariableParameterComponent;
+                    bool supportsVariable = variableParams != null;
+
+                    // 收集輸入參數資訊
+                    var inputParams = new List<object>();
+                    for (int i = 0; i < component.Params.Input.Count; i++)
+                    {
+                        var param = component.Params.Input[i];
+                        inputParams.Add(new
+                        {
+                            index = i,
+                            name = param.Name,
+                            nickName = param.NickName,
+                            typeName = param.TypeName,
+                            canInsertAfter = supportsVariable && variableParams.CanInsertParameter(GH_ParameterSide.Input, i + 1),
+                            canRemove = supportsVariable && variableParams.CanRemoveParameter(GH_ParameterSide.Input, i)
+                        });
+                    }
+
+                    // 收集輸出參數資訊
+                    var outputParams = new List<object>();
+                    for (int i = 0; i < component.Params.Output.Count; i++)
+                    {
+                        var param = component.Params.Output[i];
+                        outputParams.Add(new
+                        {
+                            index = i,
+                            name = param.Name,
+                            nickName = param.NickName,
+                            typeName = param.TypeName,
+                            canInsertAfter = supportsVariable && variableParams.CanInsertParameter(GH_ParameterSide.Output, i + 1),
+                            canRemove = supportsVariable && variableParams.CanRemoveParameter(GH_ParameterSide.Output, i)
+                        });
+                    }
+
+                    // 測試是否可以在末尾添加參數
+                    bool canAddInput = supportsVariable && variableParams.CanInsertParameter(GH_ParameterSide.Input, component.Params.Input.Count);
+                    bool canAddOutput = supportsVariable && variableParams.CanInsertParameter(GH_ParameterSide.Output, component.Params.Output.Count);
+
+                    result = new
+                    {
+                        componentId = componentId,
+                        componentName = component.Name,
+                        componentType = component.GetType().Name,
+                        supportsVariableParams = supportsVariable,
+                        input = new
+                        {
+                            count = component.Params.Input.Count,
+                            canAddMore = canAddInput,
+                            parameters = inputParams
+                        },
+                        output = new
+                        {
+                            count = component.Params.Output.Count,
+                            canAddMore = canAddOutput,
+                            parameters = outputParams
+                        }
+                    };
+                }
+                catch (Exception ex)
+                {
+                    exception = ex;
+                    RhinoApp.WriteLine($"Error in GetVariableParamsInfo: {ex.Message}");
+                }
+            }));
+
+            while (result == null && exception == null)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            return result;
+        }
+
+        // ========== 向後兼容的別名方法 ==========
+        // 這些方法會調用通用的 SetVariableParams，保持 API 向後兼容
+
+        /// <summary>
+        /// [向後兼容] 設置 Entwine 組件的輸入數量
+        /// 內部調用 SetVariableParams
+        /// </summary>
+        public static object SetEntwineInputs(Command command)
+        {
+            // 轉換參數格式
+            var id = command.GetParameter<string>("id");
+            var branchCount = command.GetParameter<int?>("branchCount");
+
+            // 創建新命令調用通用方法
+            var newCommand = new Command(
+                "set_variable_params",
+                new Dictionary<string, object>
+                {
+                    { "id", id },
+                    { "side", "input" },
+                    { "count", branchCount }
+                }
+            );
+
+            return SetVariableParams(newCommand);
+        }
+
+        /// <summary>
+        /// [向後兼容] 設置可變參數組件的輸入數量
+        /// 內部調用 SetVariableParams
+        /// </summary>
+        public static object SetMergeInputs(Command command)
+        {
+            var id = command.GetParameter<string>("id");
+            var inputCount = command.GetParameter<int?>("inputCount");
+
+            var newCommand = new Command(
+                "set_variable_params",
+                new Dictionary<string, object>
+                {
+                    { "id", id },
+                    { "side", "input" },
+                    { "count", inputCount }
+                }
+            );
+
+            return SetVariableParams(newCommand);
         }
     }
 }

@@ -92,6 +92,18 @@ namespace GH_MCP.Commands
             
             // 縮放到組件
             RegisterCommand("zoom_to_components", ComponentCommandHandler.ZoomToComponents);
+
+            // ========== 通用可變參數命令 (推薦使用) ==========
+            // 適用於所有實現 IGH_VariableParameterComponent 的組件：
+            // Entwine, Merge, List Item, Sort, Dispatch, Gate, Stream Filter,
+            // Expression, Concatenate, Format, Construct Path, Split Tree 等
+            RegisterCommand("set_variable_params", ComponentCommandHandler.SetVariableParams);
+            RegisterCommand("get_variable_params_info", ComponentCommandHandler.GetVariableParamsInfo);
+
+            // ========== 向後兼容的別名命令 ==========
+            // 這些命令內部會調用 set_variable_params，保持舊 API 兼容
+            RegisterCommand("set_entwine_inputs", ComponentCommandHandler.SetEntwineInputs);
+            RegisterCommand("set_variable_inputs", ComponentCommandHandler.SetMergeInputs);
         }
 
         /// <summary>

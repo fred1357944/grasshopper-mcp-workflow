@@ -154,7 +154,8 @@ namespace GH_MCP.Utils
             
             // 尺寸參數
             { "radius", "Radius" },
-            { "r", "Radius" },
+            // Note: "r" -> "Radius" removed because it conflicts with WASP plugin's R parameter (Rules output)
+            // { "r", "Radius" },
             { "size", "Size" },
             { "xsize", "X Size" },
             { "ysize", "Y Size" },
@@ -182,7 +183,8 @@ namespace GH_MCP.Utils
             { "result", "Result" },
             { "output", "Output" },
             { "geometry", "Geometry" },
-            { "geo", "Geometry" },
+            // Note: "geo" -> "Geometry" removed because it conflicts with WASP plugin's GEO parameter
+            // { "geo", "Geometry" },
             { "brep", "Brep" }
         };
         
