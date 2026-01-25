@@ -1,0 +1,140 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4a90d9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2a5a8a', 'lineColor': '#5a5a5a', 'secondaryColor': '#f0f4f8', 'tertiaryColor': '#e8f4e8'}}}%%
+
+flowchart TB
+    subgraph HEADER["🏗️ GH_MCP Dual System v2.1 — 混合架構"]
+        direction LR
+        H1["Reference-First + Design-First + LLM Semantic Review"]
+    end
+
+    %% 用戶輸入
+    USER[/"👤 用戶請求<br/>「做一個 WASP 離散聚集」"/]
+
+    %% Phase 0: Reference Search
+    subgraph PHASE0["Phase 0: Reference Search"]
+        direction TB
+        RS_SEARCH["🔍 搜索 Reference Library<br/>關鍵字匹配 + 語義相似度"]
+        RS_MATCH{"信心度 ≥ 0.5?"}
+    end
+
+    %% Phase 1a: Reference Confirm
+    subgraph PHASE1A["Phase 1a: Reference Confirm"]
+        direction TB
+        RC_SHOW["📋 展示配置摘要<br/>• 組件數量<br/>• 連接數量<br/>• lessons_learned"]
+        RC_CHOICE{"用戶選擇"}
+        RC_USE["✅ 使用"]
+        RC_MODIFY["🔧 修改參數"]
+        RC_NEW["🆕 重新設計"]
+    end
+
+    %% Phase 1b: Design-First
+    subgraph PHASE1B["Phase 1b: Design-First Workflow"]
+        direction TB
+        DF_CLARIFY["Phase 1: CLARIFY<br/>需求釐清"]
+        DF_DECOMPOSE["Phase 2: DECOMPOSE<br/>幾何分解"]
+        DF_PLAN["Phase 3: PLAN<br/>組件規劃"]
+        DF_QUERY["Phase 4: QUERY<br/>GUID 查詢"]
+    end
+
+    %% Phase 2: Pre-Execution Check (v2.1: 移到語義審查前)
+    subgraph PHASE2["Phase 2: Pre-Execution Check ⚡"]
+        direction TB
+        PE_SYNTAX["📝 語法驗證 (快速)<br/>• GUID 可信度<br/>• 參數名風險<br/>• MCP 命令可用"]
+        PE_RESULT{"驗證結果"}
+        PE_OK["✅ 通過"]
+        PE_CRITICAL["❌ Critical<br/>阻擋執行"]
+    end
+
+    %% Phase 3: Semantic Review (v2.1: 只在語法通過後執行)
+    subgraph PHASE3["Phase 3: LLM Semantic Review 🧠"]
+        direction TB
+        SR_ANALYZE["🔬 Claude 自我對話<br/>─────────────────<br/>• 追蹤資料流<br/>• 估算每個節點輸出數量<br/>• 識別「資料爆炸」風險<br/>─────────────────<br/>💡 只在語法通過後執行<br/>（節省 tokens）"]
+        SR_CHECK{"語義檢查"}
+        SR_PASS["✅ 通過<br/>「資料流正常」"]
+        SR_WARN["⚠️ 警告<br/>「有風險但可繼續」"]
+        SR_FAIL["❌ 阻擋<br/>「Mesh Box 將產生<br/>6000 個面！」"]
+        SR_CONFIRM{"用戶確認<br/>「這符合意圖嗎？」"}
+    end
+
+    %% Phase 4: Execute
+    subgraph PHASE4["Phase 4: Execute"]
+        direction TB
+        EX_CLEAR["🧹 clear_document<br/>清空畫布"]
+        EX_LAYOUT["📐 Smart Layout<br/>計算組件位置"]
+        EX_ADD["➕ add_component<br/>創建組件"]
+        EX_CONNECT["🔗 connect_components<br/>建立連接"]
+        EX_RESULT{"執行結果"}
+    end
+
+    %% Phase 5: Archive & Learn
+    subgraph PHASE5["Phase 5: Archive & Learn"]
+        direction TB
+        AL_SUCCESS["🏆 成功<br/>────────<br/>• 提升 confidence<br/>• 連續成功 3 次<br/>  → 升級 Golden"]
+        AL_FAIL["📝 失敗<br/>────────<br/>• 記錄 lessons_learned<br/>• 降低 confidence<br/>• 詢問重試/放棄"]
+    end
+
+    %% 連接線
+    USER --> RS_SEARCH
+    RS_SEARCH --> RS_MATCH
+
+    RS_MATCH -->|"有匹配"| RC_SHOW
+    RS_MATCH -->|"無匹配"| DF_CLARIFY
+
+    RC_SHOW --> RC_CHOICE
+    RC_CHOICE --> RC_USE
+    RC_CHOICE --> RC_MODIFY
+    RC_CHOICE --> RC_NEW
+
+    RC_USE --> PE_SYNTAX
+    RC_MODIFY --> PE_SYNTAX
+    RC_NEW --> DF_CLARIFY
+
+    DF_CLARIFY --> DF_DECOMPOSE
+    DF_DECOMPOSE --> DF_PLAN
+    DF_PLAN --> DF_QUERY
+    DF_QUERY --> PE_SYNTAX
+
+    PE_SYNTAX --> PE_RESULT
+    PE_RESULT --> PE_OK
+    PE_RESULT --> PE_CRITICAL
+
+    PE_OK --> SR_ANALYZE
+    PE_CRITICAL -->|"修復後重試"| PE_SYNTAX
+
+    SR_ANALYZE --> SR_CHECK
+    SR_CHECK --> SR_PASS
+    SR_CHECK --> SR_WARN
+    SR_CHECK --> SR_FAIL
+
+    SR_PASS --> SR_CONFIRM
+    SR_WARN --> SR_CONFIRM
+    SR_FAIL -->|"需要修改配置"| RC_SHOW
+
+    SR_CONFIRM -->|"確認"| EX_CLEAR
+    SR_CONFIRM -->|"修改"| RC_SHOW
+
+    EX_CLEAR --> EX_LAYOUT
+    EX_LAYOUT --> EX_ADD
+    EX_ADD --> EX_CONNECT
+    EX_CONNECT --> EX_RESULT
+
+    EX_RESULT -->|"成功"| AL_SUCCESS
+    EX_RESULT -->|"失敗"| AL_FAIL
+
+    AL_FAIL -->|"重試"| EX_CLEAR
+
+    %% 樣式定義
+    classDef phaseBox fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef syntaxCheck fill:#e1f5fe,stroke:#03a9f4,stroke-width:3px
+    classDef newFeature fill:#fff3e0,stroke:#ff9800,stroke-width:3px
+    classDef success fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    classDef fail fill:#ffebee,stroke:#f44336,stroke-width:2px
+    classDef warning fill:#fff8e1,stroke:#ffc107,stroke-width:2px
+    classDef user fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+
+    class PHASE0,PHASE1A,PHASE1B,PHASE4,PHASE5 phaseBox
+    class PHASE2 syntaxCheck
+    class PHASE3 newFeature
+    class SR_PASS,PE_OK,AL_SUCCESS,RC_USE success
+    class SR_FAIL,PE_CRITICAL,AL_FAIL fail
+    class SR_WARN,RC_MODIFY warning
+    class USER user

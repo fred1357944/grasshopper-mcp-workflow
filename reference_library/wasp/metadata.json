@@ -1,0 +1,33 @@
+{
+  "category": "wasp",
+  "description": "WASP 離散聚集相關配置",
+  "version": "2.0.0",
+  "updated_at": "2026-01-24",
+  
+  "configs": {
+    "cube_basic_aggregation": {
+      "status": "DEPRECATED",
+      "confidence": 0.3,
+      "reason": "使用 Mesh Box 會導致資料爆炸，已被 v2 取代",
+      "replacement": "cube_basic_aggregation_v2",
+      "deprecated_at": "2026-01-24"
+    },
+    "cube_basic_aggregation_v2": {
+      "status": "ACTIVE",
+      "preferred": true,
+      "confidence": 1.0,
+      "reason": "使用 Center Box + Deconstruct Brep，避免資料爆炸",
+      "created_at": "2026-01-24"
+    }
+  },
+  
+  "lessons_learned": [
+    {
+      "date": "2026-01-24",
+      "issue": "Mesh Box X/Y/Z 語義誤解",
+      "description": "Mesh Box 的 X/Y/Z 參數是細分數量，不是尺寸。輸入 10x10x10 會產生 600+ 個網格面，導致後續運算爆炸。",
+      "solution": "改用 Center Box (Brep) 取代 Mesh Box",
+      "affected_configs": ["cube_basic_aggregation"]
+    }
+  ]
+}

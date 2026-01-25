@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "path": "reference_library/wasp/golden/cube_basic_aggregation_v2.json",
+      "category": "wasp",
+      "name": "WASP Cube Basic Aggregation v2",
+      "keywords": [
+        "wasp",
+        "cube",
+        "聚集",
+        "stochastic",
+        "離散",
+        "aggregation",
+        "立方體",
+        "方塊",
+        "基本",
+        "basic"
+      ],
+      "confidence": 1.0,
+      "verified": true,
+      "description": "優化版 WASP 立方體聚集，使用 Center Box + Deconstruct Brep 避免資料爆炸",
+      "is_variation": false,
+      "deprecated": false,
+      "preferred": true
+    },
+    {
+      "path": "reference_library/wasp/golden/cube_basic_aggregation.json",
+      "category": "wasp",
+      "name": "WASP Cube Basic Aggregation",
+      "keywords": [
+        "wasp",
+        "cube",
+        "聚集",
+        "stochastic",
+        "立方體",
+        "基礎"
+      ],
+      "confidence": 0.3,
+      "verified": true,
+      "description": "立方體 WASP 聚集 - 6 面全連接，使用 Line SDL 提供 UP 方向",
+      "is_variation": false,
+      "deprecated": true,
+      "preferred": false
+    },
+    {
+      "path": "reference_library/kangaroo/golden/tensile_membrane_basic.json",
+      "category": "kangaroo",
+      "name": "Kangaroo Tensile Membrane Basic",
+      "keywords": [
+        "kangaroo",
+        "tensile",
+        "membrane",
+        "form finding",
+        "張力",
+        "膜結構",
+        "形態找尋",
+        "物理模擬",
+        "fabric",
+        "tension"
+      ],
+      "confidence": 1.0,
+      "verified": true,
+      "description": "Kangaroo 基礎張力膜形態找尋，從矩形 Mesh 開始，固定四角並施加均勻張力",
+      "is_variation": false,
+      "deprecated": false,
+      "preferred": true
+    }
+  ],
+  "version": "2.2",
+  "categories": {
+    "wasp": "WASP 離散聚集",
+    "kangaroo": "Kangaroo2 物理模擬與形態找尋"
+  }
+}

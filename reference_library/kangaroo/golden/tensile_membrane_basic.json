@@ -1,0 +1,357 @@
+{
+  "_meta": {
+    "id": "kangaroo-tensile-basic",
+    "name": "Kangaroo Tensile Membrane Basic",
+    "version": "1.0.0",
+    "source": "Form-finding standard workflow",
+    "verified": true,
+    "verified_date": "2026-01-25",
+    "keywords": [
+      "kangaroo",
+      "tensile",
+      "membrane",
+      "form finding",
+      "張力",
+      "膜結構",
+      "形態找尋",
+      "物理模擬",
+      "fabric",
+      "tension"
+    ],
+    "confidence": 1.0,
+    "description": "Kangaroo 基礎張力膜形態找尋，從矩形 Mesh 開始，固定四角並施加均勻張力",
+    "lessons_learned": [
+      "Kangaroo2 需要 Reset toggle 來重新計算",
+      "Anchor 強度設為 1e10 確保點不移動",
+      "EdgeLengths 的 RestLength 設為 0 會使邊長趨向收縮",
+      "Solver 的 On 參數控制是否運行"
+    ]
+  },
+  "_stats": {
+    "usage_count": 0,
+    "success_count": 0,
+    "last_used": null
+  },
+  "layout": {
+    "strategy": "horizontal_flow",
+    "column_width": 150,
+    "row_height": 80,
+    "groups": [
+      {
+        "name": "Input Geometry",
+        "cols": [0, 1]
+      },
+      {
+        "name": "Goals",
+        "cols": [2, 3]
+      },
+      {
+        "name": "Solver",
+        "cols": [4, 5]
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "slider_width",
+      "nickname": "Width",
+      "type": "Number Slider",
+      "col": 0,
+      "row": 0,
+      "properties": {
+        "min": 10,
+        "max": 200,
+        "default": 100,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "slider_height",
+      "nickname": "Height",
+      "type": "Number Slider",
+      "col": 0,
+      "row": 1,
+      "properties": {
+        "min": 10,
+        "max": 200,
+        "default": 100,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "slider_u_div",
+      "nickname": "U_Div",
+      "type": "Number Slider",
+      "col": 0,
+      "row": 2,
+      "properties": {
+        "min": 2,
+        "max": 50,
+        "default": 10,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "slider_v_div",
+      "nickname": "V_Div",
+      "type": "Number Slider",
+      "col": 0,
+      "row": 3,
+      "properties": {
+        "min": 2,
+        "max": 50,
+        "default": 10,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "rectangle",
+      "nickname": "Rect",
+      "type": "Rectangle",
+      "col": 1,
+      "row": 0,
+      "properties": {
+        "_note": "建立基礎矩形"
+      }
+    },
+    {
+      "id": "mesh_surface",
+      "nickname": "MeshSrf",
+      "type": "Mesh Surface",
+      "col": 1,
+      "row": 1,
+      "properties": {
+        "_note": "將 Surface 轉換為 Mesh"
+      }
+    },
+    {
+      "id": "mesh_corners",
+      "nickname": "Corners",
+      "type": "Mesh Corners",
+      "col": 2,
+      "row": 0,
+      "properties": {
+        "_note": "取得 Mesh 四角點作為錨點"
+      }
+    },
+    {
+      "id": "slider_strength",
+      "nickname": "Strength",
+      "type": "Number Slider",
+      "col": 2,
+      "row": 2,
+      "properties": {
+        "min": 0.1,
+        "max": 10,
+        "default": 1,
+        "decimal_places": 1
+      }
+    },
+    {
+      "id": "anchor_goal",
+      "nickname": "AnchorGoal",
+      "type": "Kangaroo2 Anchor",
+      "col": 3,
+      "row": 0,
+      "properties": {
+        "_note": "固定四角點，強度設為極大值"
+      }
+    },
+    {
+      "id": "length_goal",
+      "nickname": "LengthGoal",
+      "type": "Kangaroo2 EdgeLengths",
+      "col": 3,
+      "row": 1,
+      "properties": {
+        "_note": "邊長約束，產生張力"
+      }
+    },
+    {
+      "id": "toggle_reset",
+      "nickname": "Reset",
+      "type": "Boolean Toggle",
+      "col": 4,
+      "row": 0,
+      "properties": {
+        "value": false,
+        "_note": "雙擊切換為 true 重置模擬"
+      }
+    },
+    {
+      "id": "toggle_on",
+      "nickname": "On",
+      "type": "Boolean Toggle",
+      "col": 4,
+      "row": 1,
+      "properties": {
+        "value": true,
+        "_note": "控制 Solver 是否運行"
+      }
+    },
+    {
+      "id": "slider_iterations",
+      "nickname": "Iterations",
+      "type": "Number Slider",
+      "col": 4,
+      "row": 2,
+      "properties": {
+        "min": 1,
+        "max": 1000,
+        "default": 100,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "solver",
+      "nickname": "Solver",
+      "type": "Kangaroo2 Zombie Solver",
+      "col": 5,
+      "row": 0,
+      "properties": {
+        "_note": "Zombie Solver 不需要 Timer，自動迭代"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from_id": "slider_width",
+      "from_param": "Number",
+      "to_id": "rectangle",
+      "to_param": "X"
+    },
+    {
+      "from_id": "slider_height",
+      "from_param": "Number",
+      "to_id": "rectangle",
+      "to_param": "Y"
+    },
+    {
+      "from_id": "rectangle",
+      "from_param": "Rectangle",
+      "to_id": "mesh_surface",
+      "to_param": "Surface"
+    },
+    {
+      "from_id": "slider_u_div",
+      "from_param": "Number",
+      "to_id": "mesh_surface",
+      "to_param": "U"
+    },
+    {
+      "from_id": "slider_v_div",
+      "from_param": "Number",
+      "to_id": "mesh_surface",
+      "to_param": "V"
+    },
+    {
+      "from_id": "mesh_surface",
+      "from_param": "Mesh",
+      "to_id": "mesh_corners",
+      "to_param": "Mesh"
+    },
+    {
+      "from_id": "mesh_corners",
+      "from_param": "Corners",
+      "to_id": "anchor_goal",
+      "to_param": "Points"
+    },
+    {
+      "from_id": "mesh_surface",
+      "from_param": "Mesh",
+      "to_id": "length_goal",
+      "to_param": "Mesh"
+    },
+    {
+      "from_id": "slider_strength",
+      "from_param": "Number",
+      "to_id": "length_goal",
+      "to_param": "Strength"
+    },
+    {
+      "from_id": "anchor_goal",
+      "from_param": "Goal",
+      "to_id": "solver",
+      "to_param": "Goals"
+    },
+    {
+      "from_id": "length_goal",
+      "from_param": "Goal",
+      "to_id": "solver",
+      "to_param": "Goals"
+    },
+    {
+      "from_id": "toggle_reset",
+      "from_param": "Boolean",
+      "to_id": "solver",
+      "to_param": "Reset"
+    },
+    {
+      "from_id": "toggle_on",
+      "from_param": "Boolean",
+      "to_id": "solver",
+      "to_param": "On"
+    },
+    {
+      "from_id": "slider_iterations",
+      "from_param": "Number",
+      "to_id": "solver",
+      "to_param": "Iterations"
+    }
+  ],
+  "customization_points": [
+    {
+      "component_id": "slider_width",
+      "param": "default",
+      "description": "膜結構寬度",
+      "type": "number",
+      "range": [10, 200]
+    },
+    {
+      "component_id": "slider_height",
+      "param": "default",
+      "description": "膜結構高度",
+      "type": "number",
+      "range": [10, 200]
+    },
+    {
+      "component_id": "slider_u_div",
+      "param": "default",
+      "description": "U 方向細分數",
+      "type": "number",
+      "range": [2, 50]
+    },
+    {
+      "component_id": "slider_v_div",
+      "param": "default",
+      "description": "V 方向細分數",
+      "type": "number",
+      "range": [2, 50]
+    },
+    {
+      "component_id": "slider_strength",
+      "param": "default",
+      "description": "張力強度",
+      "type": "number",
+      "range": [0.1, 10]
+    },
+    {
+      "component_id": "slider_iterations",
+      "param": "default",
+      "description": "迭代次數",
+      "type": "number",
+      "range": [1, 1000]
+    }
+  ],
+  "data_flow_analysis": {
+    "input": "Width, Height, U_Div, V_Div sliders",
+    "rectangle": "1 Rectangle",
+    "mesh_surface": "1 Mesh with (U_Div+1)*(V_Div+1) vertices",
+    "mesh_corners": "4 corner points",
+    "goals": "1 Anchor goal + 1 EdgeLengths goal",
+    "solver": "形態找尋結果",
+    "output": "優化後的 Mesh",
+    "risk_level": "LOW",
+    "note": "細分數控制在 50 以內，頂點數最多 2601"
+  }
+}

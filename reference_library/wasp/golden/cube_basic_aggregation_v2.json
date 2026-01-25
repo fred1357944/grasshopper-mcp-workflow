@@ -1,0 +1,314 @@
+{
+  "_meta": {
+    "id": "wasp-cube-basic-v2",
+    "name": "WASP Cube Basic Aggregation v2",
+    "version": "2.0.0",
+    "source": "Wasp basic.ghx (optimized)",
+    "verified": true,
+    "verified_date": "2026-01-24",
+    "keywords": [
+      "wasp",
+      "cube",
+      "聚集",
+      "stochastic",
+      "離散",
+      "aggregation",
+      "立方體",
+      "方塊",
+      "基本",
+      "basic"
+    ],
+    "confidence": 1.0,
+    "description": "優化版 WASP 立方體聚集，使用 Center Box + Deconstruct Brep 避免資料爆炸",
+    "lessons_learned": [
+      "Mesh Box 的 X/Y/Z 是細分數量，不是尺寸，會導致資料爆炸",
+      "使用 Center Box (Brep) 取代 Mesh Box 可避免此問題",
+      "Connection From Plane 比 Connection From Direction 更穩定"
+    ]
+  },
+  "_stats": {
+    "usage_count": 7,
+    "success_count": 7,
+    "last_used": "2026-01-25T08:32:32.720828"
+  },
+  "layout": {
+    "strategy": "horizontal_flow",
+    "column_width": 150,
+    "row_height": 80,
+    "groups": [
+      {
+        "name": "Geometry Input",
+        "cols": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "WASP Setup",
+        "cols": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Aggregation",
+        "cols": [
+          4,
+          5
+        ]
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "slider_size",
+      "nickname": "Size",
+      "type": "Number Slider",
+      "col": 0,
+      "row": 0,
+      "properties": {
+        "min": 1,
+        "max": 50,
+        "default": 10,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "center_box",
+      "nickname": "CenterBox",
+      "type": "Center Box",
+      "col": 1,
+      "row": 0,
+      "properties": {
+        "_note": "X/Y/Z 是實際尺寸，不是細分數量"
+      }
+    },
+    {
+      "id": "deconstruct_brep",
+      "nickname": "DeconstructBrep",
+      "type": "Deconstruct Brep",
+      "col": 2,
+      "row": 0,
+      "properties": {
+        "_note": "分解 Brep 得到 6 個面"
+      }
+    },
+    {
+      "id": "evaluate_surface",
+      "nickname": "EvalSrf",
+      "type": "Evaluate Surface",
+      "col": 2,
+      "row": 1,
+      "properties": {
+        "u": 0.5,
+        "v": 0.5,
+        "_note": "取得每個面的中心點和法向量"
+      }
+    },
+    {
+      "id": "panel_name",
+      "nickname": "PartName",
+      "type": "Panel",
+      "col": 0,
+      "row": 1,
+      "properties": {
+        "content": "Cube"
+      }
+    },
+    {
+      "id": "wasp_connection",
+      "nickname": "Connections",
+      "type": "WASP Connection From Plane",
+      "col": 3,
+      "row": 0,
+      "properties": {
+        "_note": "使用 Plane 而非 Direction，更穩定"
+      }
+    },
+    {
+      "id": "wasp_part",
+      "nickname": "Part",
+      "type": "WASP Part",
+      "col": 3,
+      "row": 1,
+      "properties": {}
+    },
+    {
+      "id": "slider_count",
+      "nickname": "Count",
+      "type": "Number Slider",
+      "col": 4,
+      "row": 0,
+      "properties": {
+        "min": 1,
+        "max": 500,
+        "default": 100,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "slider_seed",
+      "nickname": "Seed",
+      "type": "Number Slider",
+      "col": 4,
+      "row": 1,
+      "properties": {
+        "min": 0,
+        "max": 999,
+        "default": 42,
+        "decimal_places": 0
+      }
+    },
+    {
+      "id": "wasp_rule",
+      "nickname": "Rules",
+      "type": "WASP Rule",
+      "col": 5,
+      "row": 0,
+      "properties": {}
+    },
+    {
+      "id": "wasp_aggregation",
+      "nickname": "Aggregation",
+      "type": "WASP Stochastic Aggregation",
+      "col": 6,
+      "row": 0,
+      "properties": {}
+    }
+  ],
+  "connections": [
+    {
+      "from_id": "slider_size",
+      "from_param": "Number",
+      "to_id": "center_box",
+      "to_param": "X"
+    },
+    {
+      "from_id": "slider_size",
+      "from_param": "Number",
+      "to_id": "center_box",
+      "to_param": "Y"
+    },
+    {
+      "from_id": "slider_size",
+      "from_param": "Number",
+      "to_id": "center_box",
+      "to_param": "Z"
+    },
+    {
+      "from_id": "center_box",
+      "from_param": "Box",
+      "to_id": "deconstruct_brep",
+      "to_param": "Brep"
+    },
+    {
+      "from_id": "deconstruct_brep",
+      "from_param": "Faces",
+      "to_id": "evaluate_surface",
+      "to_param": "Surface"
+    },
+    {
+      "from_id": "evaluate_surface",
+      "from_param": "Point",
+      "to_id": "wasp_connection",
+      "to_param": "Origin"
+    },
+    {
+      "from_id": "evaluate_surface",
+      "from_param": "Normal",
+      "to_id": "wasp_connection",
+      "to_param": "Z"
+    },
+    {
+      "from_id": "center_box",
+      "from_param": "Box",
+      "to_id": "wasp_part",
+      "to_param": "Geometry"
+    },
+    {
+      "from_id": "wasp_connection",
+      "from_param": "Connections",
+      "to_id": "wasp_part",
+      "to_param": "Connections"
+    },
+    {
+      "from_id": "panel_name",
+      "from_param": "Text",
+      "to_id": "wasp_part",
+      "to_param": "Name"
+    },
+    {
+      "from_id": "wasp_part",
+      "from_param": "Part",
+      "to_id": "wasp_rule",
+      "to_param": "Parts"
+    },
+    {
+      "from_id": "wasp_part",
+      "from_param": "Part",
+      "to_id": "wasp_aggregation",
+      "to_param": "Parts"
+    },
+    {
+      "from_id": "wasp_rule",
+      "from_param": "Rules",
+      "to_id": "wasp_aggregation",
+      "to_param": "Rules"
+    },
+    {
+      "from_id": "slider_count",
+      "from_param": "Number",
+      "to_id": "wasp_aggregation",
+      "to_param": "Count"
+    },
+    {
+      "from_id": "slider_seed",
+      "from_param": "Number",
+      "to_id": "wasp_aggregation",
+      "to_param": "Seed"
+    }
+  ],
+  "customization_points": [
+    {
+      "component_id": "slider_size",
+      "param": "default",
+      "description": "立方體尺寸（實際尺寸，非細分）",
+      "type": "number",
+      "range": [
+        1,
+        50
+      ]
+    },
+    {
+      "component_id": "slider_count",
+      "param": "default",
+      "description": "聚集數量",
+      "type": "number",
+      "range": [
+        1,
+        500
+      ]
+    },
+    {
+      "component_id": "slider_seed",
+      "param": "default",
+      "description": "隨機種子",
+      "type": "number",
+      "range": [
+        0,
+        999
+      ]
+    }
+  ],
+  "data_flow_analysis": {
+    "input": "Size slider (1 value)",
+    "center_box": "1 Brep",
+    "deconstruct_brep": "6 faces (固定)",
+    "evaluate_surface": "6 points + 6 normals",
+    "wasp_connection": "6 connections",
+    "wasp_rule": "最多 36 rules (6×6)",
+    "output": "聚集結果",
+    "risk_level": "LOW",
+    "note": "資料量固定為 6，不會隨參數增長而爆炸"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "category": "kangaroo",
+  "description": "Kangaroo2 物理模擬與形態找尋相關配置",
+  "version": "1.0.0",
+  "updated_at": "2026-01-25",
+
+  "configs": {
+    "tensile_membrane_basic": {
+      "status": "ACTIVE",
+      "preferred": true,
+      "confidence": 1.0,
+      "reason": "使用 Zombie Solver，不需要 Timer，適合自動化執行",
+      "created_at": "2026-01-25"
+    }
+  },
+
+  "lessons_learned": [
+    {
+      "date": "2026-01-25",
+      "issue": "Solver 類型選擇",
+      "description": "Kangaroo2 有多種 Solver：BouncySolver 需要 Timer，Zombie Solver 可設定迭代次數自動完成。MCP 環境下建議使用 Zombie Solver。",
+      "solution": "使用 Zombie Solver 並設定 Iterations 參數",
+      "affected_configs": ["tensile_membrane_basic"]
+    },
+    {
+      "date": "2026-01-25",
+      "issue": "Reset 行為",
+      "description": "Kangaroo Solver 有 Reset 輸入，設為 true 時會重置模擬狀態。在 MCP 中需要確保 Reset 在首次執行時為 true。",
+      "solution": "使用 Boolean Toggle 控制 Reset，預設為 false，需要時手動切換",
+      "affected_configs": ["tensile_membrane_basic"]
+    }
+  ],
+
+  "component_notes": {
+    "Zombie Solver": {
+      "description": "非實時 Solver，指定迭代次數後自動完成",
+      "inputs": ["Goals", "Reset", "On", "Iterations"],
+      "outputs": ["Geometry", "Iterations"]
+    },
+    "EdgeLengths": {
+      "description": "邊長約束，可設定目標長度和強度",
+      "inputs": ["Mesh", "RestLength", "Strength"],
+      "outputs": ["Goal"],
+      "tip": "RestLength 設為 0 會使邊長趨向收縮"
+    },
+    "Anchor": {
+      "description": "錨點約束，固定點位置",
+      "inputs": ["Points", "Targets", "Strength"],
+      "outputs": ["Goal"],
+      "tip": "Strength 設為 1e10 確保點完全不移動"
+    }
+  }
+}

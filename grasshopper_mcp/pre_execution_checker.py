@@ -302,10 +302,15 @@ class PreExecutionChecker:
     def _check_component_values(self, components: List[Dict]):
         """檢查 Slider/Panel 初始值"""
         for comp in components:
-            comp_id = comp.get("id", "unknown")
+            comp_id = comp.get("id", comp.get("nickname", "unknown"))
             comp_type = comp.get("type", "")
             nickname = comp.get("nickname", comp_id)
+
+            # 支援兩種格式：直接 value 或 properties.value
             value = comp.get("value")
+            if value is None:
+                properties = comp.get("properties", {})
+                value = properties.get("value")
 
             # Panel 必須有值
             if comp_type in self.config.require_value_types and value is None:

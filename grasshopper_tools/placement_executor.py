@@ -140,36 +140,55 @@ class PlacementExecutor:
             print(f"格式: v2.x (components/connections 分離)")
 
             # 使用 Smart Layout 計算位置（避免重疊）
-            if use_smart_layout:
+            # 但如果組件已有 x, y 座標，則跳過 Smart Layout（尊重 Golden Config 設計）
+            has_explicit_coords = any(
+                (c.get("x") and c.get("x") != 0) or (c.get("y") and c.get("y") != 0)
+                for c in components_v2
+            )
+
+            if use_smart_layout and not has_explicit_coords:
                 print("📐 使用 Smart Layout 計算位置...")
                 components_v2 = self._apply_smart_layout(components_v2, connections_v2)
+            elif has_explicit_coords:
+                print("📐 使用 placement_info 中的座標（已有明確位置定義）")
+                # 如果有 col/row 但沒有 x/y，轉換為座標
+                components_v2 = self._apply_simple_grid_layout(components_v2)
 
             # 轉換 components 為 add_component 命令
             for comp in components_v2:
+                # 支援兩種 ID 格式：id (新) 或 nickname (舊)
+                comp_id = comp.get("id") or comp.get("nickname")
+                # 支援 properties 欄位（wasp_cube 格式）
+                props = comp.get("properties", {})
                 add_commands.append({
                     "type": "add_component",
-                    "componentId": comp.get("id"),
-                    "comment": f"{comp.get('nickname', comp.get('id'))} ({comp.get('type', 'Unknown')})",
+                    "componentId": comp_id,
+                    "comment": f"{comp.get('nickname', comp_id)} ({comp.get('type', 'Unknown')})",
                     "parameters": {
                         "guid": comp.get("guid"),
                         "type": comp.get("type"),  # 組件類型（Panel 等特殊組件用）
                         "x": comp.get("x", 0),
                         "y": comp.get("y", 0),
                         "nickname": comp.get("nickname"),
-                        "value": comp.get("value")
+                        "value": comp.get("value") or props.get("value"),
+                        "min": comp.get("min") or props.get("min"),
+                        "max": comp.get("max") or props.get("max"),
+                        "decimals": comp.get("decimals") or props.get("decimals")
                     }
                 })
 
             # 轉換 connections 為 connect_components 命令
+            # 支援兩種參數名格式：camelCase (fromParam) 和 snake_case (from_param)
             for conn in connections_v2:
                 connect_commands.append({
                     "type": "connect_components",
                     "parameters": {
                         "sourceId": conn.get("from"),
-                        "sourceParam": conn.get("fromParam"),
+                        "sourceParam": conn.get("fromParam") or conn.get("from_param"),
+                        "sourceParamIndex": conn.get("fromParamIndex") or conn.get("from_param_index"),
                         "targetId": conn.get("to"),
-                        "targetParam": conn.get("toParam"),
-                        "targetParamIndex": conn.get("toParamIndex")
+                        "targetParam": conn.get("toParam") or conn.get("to_param"),
+                        "targetParamIndex": conn.get("toParamIndex") or conn.get("to_param_index")
                     }
                 })
         else:

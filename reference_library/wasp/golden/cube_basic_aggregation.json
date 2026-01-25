@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "name": "WASP Cube Basic Aggregation",
+    "version": "1.1.0",
+    "source": "從 Wasp basic.ghx 學習的正確配置",
+    "verified": true,
+    "verified_date": "2026-01-24",
+    "keywords": ["wasp", "cube", "聚集", "stochastic", "立方體", "基礎"],
+    "confidence": 1.0,
+    "description": "立方體 WASP 聚集 - 6 面全連接，使用 Line SDL 提供 UP 方向"
+  },
+
+  "layout": {
+    "strategy": "horizontal_flow",
+    "column_width": 150,
+    "row_height": 50,
+    "description": "橫向流程佈局，資料從左到右流動"
+  },
+
+  "components": [
+    {
+      "nickname": "SizeX",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 0,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "SizeY",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 1,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "SizeZ",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 2,
+      "properties": { "min": 1, "max": 50, "value": 10 }
+    },
+    {
+      "nickname": "PartName",
+      "type": "Panel",
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "col": 0, "row": 3,
+      "properties": { "value": "Cube" }
+    },
+    {
+      "nickname": "Count",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 4,
+      "properties": { "min": 1, "max": 100, "value": 15, "decimals": 0 }
+    },
+    {
+      "nickname": "Seed",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 5,
+      "properties": { "min": 0, "max": 999, "value": 42, "decimals": 0 }
+    },
+    {
+      "nickname": "Reset",
+      "type": "Boolean Toggle",
+      "guid": "6cc8e77e-9503-48b5-ae75-0ecd74c9b8a7",
+      "col": 0, "row": 6,
+      "properties": { "value": false },
+      "_comment": "重要！StochAggr 需要 RESET 輸入"
+    },
+    {
+      "nickname": "MeshBox",
+      "type": "Mesh Box",
+      "col": 2, "row": 1,
+      "_note": "不使用 GUID，讓 MCP fuzzy search 自動匹配"
+    },
+    {
+      "nickname": "FaceN",
+      "type": "Face Normals",
+      "col": 3, "row": 1,
+      "_note": "不使用 GUID，讓 MCP fuzzy search 自動匹配"
+    },
+    {
+      "nickname": "LineSDL",
+      "type": "Line SDL",
+      "col": 4, "row": 1,
+      "_comment": "從中心點延伸到法向量方向，創建 UP 方向線",
+      "_note": "不使用 GUID，讓 MCP fuzzy search 自動匹配"
+    },
+    {
+      "nickname": "ConnDir",
+      "type": "Wasp_Connection From Direction",
+      "col": 5, "row": 1,
+      "_comment": "插件組件，無固定 GUID"
+    },
+    {
+      "nickname": "BasicPart",
+      "type": "Wasp_Basic Part",
+      "col": 6, "row": 2
+    },
+    {
+      "nickname": "RuleGen",
+      "type": "Wasp_Rules Generator",
+      "col": 7, "row": 1,
+      "_comment": "使用 Rules Generator (不是 Rule)，只需 PART 輸入"
+    },
+    {
+      "nickname": "StochAggr",
+      "type": "Wasp_Stochastic Aggregation",
+      "col": 8, "row": 2
+    }
+  ],
+
+  "connections": [
+    {"from": "SizeX", "from_param": "N", "to": "MeshBox", "to_param": "X"},
+    {"from": "SizeY", "from_param": "N", "to": "MeshBox", "to_param": "Y"},
+    {"from": "SizeZ", "from_param": "N", "to": "MeshBox", "to_param": "Z"},
+
+    {"from": "MeshBox", "from_param": "M", "to": "FaceN", "to_param": "M"},
+
+    {"from": "FaceN", "from_param": "C", "to": "LineSDL", "to_param": "S", "_comment": "中心點作為起點"},
+    {"from": "FaceN", "from_param": "N", "to": "LineSDL", "to_param": "D", "_comment": "法向量作為方向"},
+
+    {"from": "MeshBox", "from_param": "M", "to": "ConnDir", "to_param": "GEO"},
+    {"from": "FaceN", "from_param": "C", "to": "ConnDir", "to_param": "CEN"},
+    {"from": "LineSDL", "from_param": "L", "to": "ConnDir", "to_param": "UP", "_comment": "方向線作為 UP (Line, 非 Vector)"},
+
+    {"from": "PartName", "from_param": "out", "to": "BasicPart", "to_param": "NAME"},
+    {"from": "MeshBox", "from_param": "M", "to": "BasicPart", "to_param": "GEO"},
+    {"from": "ConnDir", "from_param": "CONN", "to": "BasicPart", "to_param": "CONN"},
+
+    {"from": "BasicPart", "from_param": "PART", "to": "RuleGen", "to_param": "PART", "_comment": "Rules Generator 只需 PART 輸入"},
+
+    {"from": "BasicPart", "from_param": "PART", "to": "StochAggr", "to_param": "PART"},
+    {"from": "RuleGen", "from_param_index": 0, "to": "StochAggr", "to_param": "RULES", "_comment": "使用 index 避免 R 被 FuzzyMatcher 映射為 Radius"},
+    {"from": "Count", "from_param": "N", "to": "StochAggr", "to_param": "N"},
+    {"from": "Seed", "from_param": "N", "to": "StochAggr", "to_param": "SEED"},
+    {"from": "Reset", "from_param_index": 0, "to": "StochAggr", "to_param": "RESET", "_comment": "重要！Boolean Toggle 連接到 RESET"}
+  ],
+
+  "_lessons_learned": [
+    "使用 Wasp_Rules Generator (不是 Wasp_Rule)，只需 PART 輸入",
+    "StochAggr 的 RESET 輸入必須連接 Boolean Toggle",
+    "ConnDir 的 UP 參數需要 Line (不是 Vector)，用 Line SDL 組件創建",
+    "佈局必須橫向 (col 增加 = x 增加)，資料流從左到右",
+    "插件組件沒有固定 GUID，依賴 MCP 的 fuzzy search",
+    "單字母參數名 (R, N, C 等) 有 FuzzyMatcher 風險，應使用 from_param_index 替代"
+  ]
+}

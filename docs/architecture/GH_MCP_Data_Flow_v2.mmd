@@ -1,0 +1,59 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4a90d9'}}}%%
+
+flowchart LR
+    subgraph TITLE["🔄 GH_MCP v2.0 資料流追蹤示意圖"]
+        direction LR
+    end
+
+    subgraph CORRECT["✅ 正確配置 (v2.0)"]
+        direction LR
+        C_SIZE["SizeX/Y/Z<br/>10, 10, 10"]
+        C_BOX["Center Box<br/>────────<br/>X/Y/Z = 尺寸<br/>輸出: 1 個 Brep"]
+        C_DECON["Deconstruct<br/>Brep<br/>────────<br/>輸出: 6 個面"]
+        C_EVAL["Evaluate<br/>Surface<br/>────────<br/>UV=0.5<br/>輸出: 6 個點"]
+        C_CONN["Connection<br/>From Plane<br/>────────<br/>輸出: 6 個連接"]
+        C_PART["WASP Part"]
+        C_AGG["Stochastic<br/>Aggregation"]
+
+        C_SIZE --> C_BOX
+        C_BOX -->|"1 Brep"| C_DECON
+        C_DECON -->|"6 面"| C_EVAL
+        C_EVAL -->|"6 點"| C_CONN
+        C_CONN -->|"6 連接"| C_PART
+        C_PART --> C_AGG
+    end
+
+    subgraph WRONG["❌ 錯誤配置 (v1.x)"]
+        direction LR
+        W_SIZE["SizeX/Y/Z<br/>10, 10, 10"]
+        W_MESH["Mesh Box<br/>────────<br/>X/Y/Z = 細分數<br/>輸出: 600+ 面"]
+        W_NORMAL["Face Normals<br/>────────<br/>輸出: 600+ 法向量"]
+        W_CONN["Connection<br/>From Direction<br/>────────<br/>輸出: 600+ 連接"]
+        W_CRASH["💥 CRASH<br/>Rhino 崩潰"]
+
+        W_SIZE --> W_MESH
+        W_MESH -->|"600+ 面"| W_NORMAL
+        W_NORMAL -->|"600+ 法向量"| W_CONN
+        W_CONN -->|"資料爆炸!"| W_CRASH
+    end
+
+    subgraph SEMANTIC["🧠 LLM Semantic Review 檢查點"]
+        direction TB
+        S1["1. 識別 Mesh Box"]
+        S2["2. 計算: 10×10×6 ≈ 600"]
+        S3["3. 標記: 🔴 Critical"]
+        S4["4. 建議: 用 Center Box"]
+
+        S1 --> S2 --> S3 --> S4
+    end
+
+    %% 樣式
+    classDef correct fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    classDef wrong fill:#ffebee,stroke:#f44336,stroke-width:2px
+    classDef semantic fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef crash fill:#f44336,stroke:#b71c1c,stroke-width:3px,color:#fff
+
+    class CORRECT correct
+    class WRONG wrong
+    class SEMANTIC semantic
+    class W_CRASH crash

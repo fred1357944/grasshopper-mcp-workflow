@@ -1,0 +1,50 @@
+%%{init: {'theme': 'base'}}%%
+
+flowchart TB
+    subgraph BEFORE["❌ Before (v1.x) — 只有語法檢查"]
+        direction TB
+        B_INPUT["placement_info.json"]
+        B_CHECK["Pre-Execution Checker<br/>──────────────────<br/>✓ GUID 驗證<br/>✓ 參數名驗證<br/>✓ MCP 命令驗證<br/>✗ 語義驗證 (缺失!)"]
+        B_EXEC["Execute"]
+        B_CRASH["💥 CRASH<br/>Rhino 崩潰"]
+
+        B_INPUT --> B_CHECK
+        B_CHECK --> B_EXEC
+        B_EXEC --> B_CRASH
+    end
+
+    subgraph AFTER["✅ After (v2.0) — 語法 + 語義 雙重驗證"]
+        direction TB
+        A_INPUT["placement_info.json"]
+
+        subgraph A_SYNTAX["Phase 3: 語法驗證"]
+            A_CHECK["Pre-Execution Checker<br/>──────────────────<br/>✓ GUID 驗證<br/>✓ 參數名驗證<br/>✓ MCP 命令驗證"]
+        end
+
+        subgraph A_SEMANTIC["Phase 2: 語義審查 🧠 (NEW!)"]
+            A_REVIEW["LLM Semantic Review<br/>──────────────────<br/>✓ 組件行為理解<br/>✓ 資料流追蹤<br/>✓ 「爆炸點」識別<br/>✓ 用戶確認"]
+        end
+
+        A_CONFIRM{"用戶確認"}
+        A_EXEC["Execute"]
+        A_SUCCESS["✅ SUCCESS"]
+
+        A_INPUT --> A_SEMANTIC
+        A_SEMANTIC --> A_CONFIRM
+        A_CONFIRM -->|"確認"| A_SYNTAX
+        A_SYNTAX --> A_EXEC
+        A_EXEC --> A_SUCCESS
+    end
+
+    %% 樣式
+    classDef before fill:#ffebee,stroke:#f44336,stroke-width:2px
+    classDef after fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    classDef semantic fill:#fff3e0,stroke:#ff9800,stroke-width:3px
+    classDef crash fill:#f44336,stroke:#b71c1c,color:#fff
+    classDef success fill:#4caf50,stroke:#2e7d32,color:#fff
+
+    class BEFORE before
+    class AFTER after
+    class A_SEMANTIC semantic
+    class B_CRASH crash
+    class A_SUCCESS success

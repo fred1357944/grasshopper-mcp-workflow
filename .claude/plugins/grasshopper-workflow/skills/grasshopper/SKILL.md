@@ -1,16 +1,133 @@
 ---
 name: grasshopper
-description: 六階段互動式 Grasshopper 參數化設計工作流程 — 設計先行，對話確認，VSCode 預覽
+description: 三軌智能 Grasshopper 參數化設計工作流程 — Reference First + 設計先行 + Meta-Agent
 ---
 
-# /grasshopper — 設計先行工作流程
+# /grasshopper — 三軌智能工作流程
 
 ## 核心理念
 
-**不要一次跑到底**。複雜設計需要：
-1. 分階段討論確認
-2. Mermaid 架構視覺化 (VSCode 預覽)
-3. 使用者明確同意後才進入下一階段
+**Reference First**：不讓 Claude 猜測，而是找到成功案例後複製和微調。
+
+```
+「找到 → 確認 → 複製 → 微調」vs 舊的「猜測 → 失敗 → 調試 → 重複」
+```
+
+**三軌架構**（優先順序）：
+1. **Reference Mode**: 搜索 Reference Library，使用驗證過的 Golden Config
+2. **Workflow Mode**: 確定性 6 階段管線，適合已知模式
+3. **Meta-Agent Mode**: 彈性探索，適合未知情況
+
+---
+
+## Reference Mode (優先) - v2.1 整合版
+
+### 觸發條件
+
+當 Reference Library 有高信心度匹配（≥ 0.8）時自動使用。
+
+### 流程 (v2.1 優化版)
+
+```
+用戶請求
+    ↓
+【Phase 1: Router】兩階段路由
+    ├── Stage 1: Reference Match (≥0.8 直接使用)
+    └── Stage 2: 三維評估 (Intent + Tool + Pattern)
+    ↓ 有匹配
+【Phase 2: Confirm】使用 AskUserQuestion 確認
+    ↓ 確認
+【Phase 3: Pre-Check】語法檢查 (快速、不用 LLM)
+    ↓ 通過
+【Phase 4: Semantic Review】語義審查 (LLM 自我對話)
+    ↓ 通過
+【Phase 5: Execute】部署到 Grasshopper
+    ↓
+【Phase 6: Archive】歸檔 + 學習
+```
+
+**v2.1 優化**: Pre-Check 在 Semantic Review 之前，語法不過就不消耗 LLM tokens。
+
+### Claude Code 交互模式
+
+在 Claude Code 對話中使用 `/grasshopper` 時，系統會自動使用 AskUserQuestion 進行交互：
+
+```python
+from grasshopper_mcp.claude_code_adapter import GrasshopperWorkflow
+
+workflow = GrasshopperWorkflow()
+
+# 執行請求（會在需要時使用 AskUserQuestion）
+result = await workflow.run("做一個 WASP 立方體聚集")
+
+# 根據 result.status 決定下一步
+if result["status"] == "awaiting_confirmation":
+    # Claude 使用 AskUserQuestion 詢問使用者
+    pass
+elif result["status"] == "ready_to_execute":
+    # 可以執行部署
+    print(result["execute_command"])
+```
+
+### 交互點 (HITL - Human In The Loop)
+
+系統會在以下時機使用 AskUserQuestion：
+
+| 階段 | 問題 | 選項 |
+|------|------|------|
+| Reference Confirm | 找到配置，要如何處理？ | 使用 / 修改 / 重新設計 |
+| Semantic Review | 發現問題，要繼續嗎？ | 繼續 / 取消 |
+| Execute | 準備部署，確認嗎？ | 執行 / 取消 |
+
+### AskUserQuestion 格式範例
+
+```python
+# Claude 會這樣詢問使用者
+{
+    "questions": [{
+        "question": "找到參考配置「WASP Cube Basic Aggregation v2」(信心度 100%)，要如何處理？",
+        "header": "配置選擇",
+        "options": [
+            {"label": "直接使用", "description": "使用這個配置（11 組件）"},
+            {"label": "修改參數", "description": "調整參數後再使用"},
+            {"label": "重新設計", "description": "不使用參考，從頭設計"}
+        ],
+        "multiSelect": False
+    }]
+}
+```
+
+### 自動模式 (測試用)
+
+```python
+# 跳過所有交互，自動執行
+result = await workflow.run("做一個 WASP 立方體聚集", auto_mode=True)
+```
+
+### Reference Library 結構
+
+```
+reference_library/
+├── wasp/
+│   ├── metadata.json          # 索引 + 關鍵字
+│   ├── golden/                # 已驗證配置 (confidence = 1.0)
+│   │   └── cube_basic.json
+│   └── variations/            # 變體 (confidence ≥ 0.9)
+├── karamba/
+│   └── ...
+└── ladybug/
+    └── ...
+```
+
+### 學習機制
+
+- 成功執行 → 存入 Pattern Library
+- 連續成功 3 次 → 升級到 `golden/`
+- 失敗 → 降低 confidence
+
+---
+
+## Workflow Mode (六階段)
 
 ## 狀態機 (File-Driven State)
 
@@ -303,6 +420,122 @@ print(checker.generate_report())
 ### 結論: ⚠️ 有條件通過
 
 是否繼續執行？(Y/修復後重試)
+```
+
+---
+
+### Phase 4.6: Semantic Review (NEW - LLM 語義審查)
+
+**觸發條件**: Pre-Execution Checklist 通過後
+
+**為什麼需要這個階段？**:
+- Pre-Execution Checker 只驗證「語法」（GUID、參數名、命令）
+- **語法正確 ≠ 語義正確**
+- 例如：Mesh Box 的 X/Y/Z=10 語法正確，但語義錯誤（10 是細分數，會產生 6000 個面導致崩潰）
+
+**核心理念**:
+- **讓 LLM 審查語義**，而非 hardcoded 規則
+- 規則庫永遠無法完備，但 LLM 理解語義的能力可以處理未知情況
+- Claude 自己生成配置，自己審查配置，發現問題
+
+**必須做的事**:
+1. 生成語義審查提示詞
+2. **Claude 自我對話**：分析配置的語義正確性
+3. 追蹤資料流，估算每個節點的輸出數量
+4. 識別「資料爆炸」風險（輸出 > 100）
+5. **等待使用者確認**：「這符合你的意圖嗎？」
+
+**審查重點**:
+| 審查項目 | 問題示例 | 影響 |
+|----------|----------|------|
+| 組件行為 | Mesh Box 的 X/Y/Z 是細分數，不是尺寸 | 語義錯誤 |
+| 資料流 | 10×10×10 細分 → 600+ 面 → 600+ 連接點 | 系統崩潰 |
+| 模式選擇 | WASP 應用 Center Box，不是 Mesh Box | 設計不當 |
+
+**使用方式**:
+```python
+from grasshopper_mcp.semantic_review_prompt import generate_semantic_review_prompt
+
+with open('GH_WIP/placement_info.json') as f:
+    config = json.load(f)
+
+# 生成審查提示詞
+prompt = generate_semantic_review_prompt(config)
+
+# Claude 執行自我審查（內部對話）
+# 分析資料流，識別風險
+```
+
+**Claude 自我審查流程**:
+```
+1. 讀取 placement_info.json
+2. 追蹤資料流：從輸入 → 每個組件 → 輸出
+3. 估算每個節點的輸出數量
+4. 識別爆炸點（輸出 > 100）
+5. 生成審查報告
+6. 詢問使用者確認
+```
+
+**正確配置輸出格式**:
+```
+【Phase 4.6: Semantic Review】
+
+## 🧠 資料流追蹤
+
+SizeX/Y/Z (10, 10, 10)
+    ↓
+Center Box: 創建 10×10×10 尺寸的 Brep
+    ↓ 輸出: 1 個 Brep
+Deconstruct Brep: 分解為面/邊/頂點
+    ↓ 輸出: 6 個面
+Evaluate Surface (UV=0.5): 獲取面中心
+    ↓ 輸出: 6 個點 + 6 個法向量
+Connection From Plane: 創建連接點
+    ↓ 輸出: 6 個 WASP 連接點
+
+## ✅ 風險評估
+
+✓ 資料流正常：最大輸出 6 個
+✓ 模式正確：使用 Center Box + Deconstruct Brep
+
+## 結論: ✅ 通過
+
+這符合你的意圖嗎？(Y/修改配置)
+```
+
+**錯誤配置輸出格式（Mesh Box 誤用）**:
+```
+【Phase 4.6: Semantic Review】
+
+## 🧠 資料流追蹤
+
+SizeX/Y/Z (10, 10, 10)
+    ↓
+Mesh Box: X=10, Y=10, Z=10 「細分」(不是尺寸！)
+    ↓ 輸出: 10×10×6 ≈ 600+ mesh faces
+Face Normals: 處理每個面
+    ↓ 輸出: 600+ 個中心點 + 法向量
+Connection From Direction: 為每個中心創建連接
+    ↓ 輸出: 600+ 個連接點 💥
+
+## 🔴 Critical 問題
+
+1. **資料流爆炸**
+   - Mesh Box 的 X/Y/Z 是「細分數量」，不是「尺寸」
+   - 10×10×10 細分 → 600+ mesh faces
+   - 後續處理 600+ 個資料項 → 系統崩潰
+
+2. **模式錯誤**
+   - WASP 最佳實踐: Center Box + Deconstruct Brep (6 個面)
+   - 當前配置: Mesh Box (600+ 個面)
+
+## 建議
+
+替換: Mesh Box → Center Box + Deconstruct Brep + Evaluate Surface
+
+## 結論: ❌ 需要修改
+
+請修改配置後重新審查。
 ```
 
 ---
