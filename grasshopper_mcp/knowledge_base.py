@@ -79,13 +79,29 @@ class ConnectionKnowledgeBase:
         if triplet_file.exists():
             try:
                 with open(triplet_file, 'r', encoding='utf-8') as f:
-                    self.connection_triplets = json.load(f)
+                    data = json.load(f)
+                    # Handle structured format from connection_analyzer.py
+                    if isinstance(data, dict) and "triplets" in data:
+                        # Convert triplets list to dict format
+                        for triplet in data.get("triplets", []):
+                            key = f"{triplet['source_component']}.{triplet['source_param']}->{triplet['target_component']}.{triplet['target_param']}"
+                            self.connection_triplets[key] = triplet.get("frequency", 1)
+                    else:
+                        # Legacy format: direct dict
+                        self.connection_triplets = data
             except Exception as e:
                 print(f"Error loading triplets: {e}")
 
-        # Load signatures from wasp_component_params.json or similar if available
-        # This is a placeholder for loading specific library definitions
-        pass
+        # Load wasp_component_params.json for component signatures
+        wasp_params_file = directory / "wasp_component_params.json"
+        if wasp_params_file.exists():
+            try:
+                with open(wasp_params_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    for name, comp_data in data.get("components", {}).items():
+                        self.register_component_from_json(name, comp_data)
+            except Exception as e:
+                print(f"Error loading wasp_component_params: {e}")
 
     def save_knowledge(self, directory: Path):
         """Saves learned data to JSON files."""
