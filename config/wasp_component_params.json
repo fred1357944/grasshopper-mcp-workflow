@@ -1,0 +1,1884 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "從 WASP GHX 範例提取的組件參數資訊",
+    "source": "gh_learning/ghx_samples/",
+    "component_count": 54
+  },
+  "components": {
+    "Wasp_Connection From Direction": {
+      "inputs": [
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Geometry of the part to which the connection belongs"
+        },
+        {
+          "name": "CEN",
+          "nickname": "CEN",
+          "description": "Origin of the connection plane"
+        },
+        {
+          "name": "UP",
+          "nickname": "UP",
+          "description": "Line idetifying the X-axis of the connection plane - determines the plane orientation to mantain when transforming"
+        },
+        {
+          "name": "T",
+          "nickname": "T",
+          "description": "OPTIONAL // Connection type (to be used with Rule Generator component)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "out",
+          "nickname": "out",
+          "description": "The execution information, as output and error streams"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connection object"
+        },
+        {
+          "name": "PLN_OUT",
+          "nickname": "PLN_OUT",
+          "description": "Plane for each connection object (for debugging)"
+        }
+      ]
+    },
+    "Wasp_Get Attribute by Name": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part from which to extract the attribute"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Name of the attribute to extract"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Value stored in the requested attribute"
+        }
+      ]
+    },
+    "Wasp_Graph-Grammar Aggregation": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to be aggregated (can be more than one)"
+        },
+        {
+          "name": "PREV",
+          "nickname": "PREV",
+          "description": "Previous aggregated parts. It is possible to input the results of a previous aggregation, or parts transformed with the TransformPart component"
+        },
+        {
+          "name": "RULES",
+          "nickname": "RULES",
+          "description": "Rules sequence in text form (WIP)"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "OPTIONAL // Aggregation ID (to avoid overwriting when having different aggregation components in the same file)"
+        },
+        {
+          "name": "RESET",
+          "nickname": "RESET",
+          "description": "Recompute the whole aggregation"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation object"
+        },
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Aggregated parts (includes both PREV input and newly aggregated parts)"
+        }
+      ]
+    },
+    "Wasp_Attribute": {
+      "inputs": [
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Name of the attribute"
+        },
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Value of the attribute (any type of Gh-compatible data possible)"
+        },
+        {
+          "name": "TR",
+          "nickname": "TR",
+          "description": "OPTIONAL // Transformable. Set it to True for Geometry, False for other types of data (False by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "Attribute instance to attach to a component"
+        }
+      ]
+    },
+    "Wasp_Basic Part": {
+      "inputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Part name"
+        },
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Part geometry. It will be converted to mesh - to improve performance, perform the conversion before adding to the part and user a low-poly count"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connections list"
+        },
+        {
+          "name": "COLL",
+          "nickname": "COLL",
+          "description": "OPTIONAL // Collider geometry (for collision detection). A collider will be automatically generated. For complex parts, automatic generation might not"
+        },
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "OPTIONAL // Part attributes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part instance"
+        }
+      ]
+    },
+    "Wasp_Update File": {
+      "inputs": [
+        {
+          "name": "UPDATE",
+          "nickname": "UPDATE",
+          "description": "Set to \"True\" if you want this component to search through the current Grasshopper file and update all Wasp components."
+        },
+        {
+          "name": "SUB_FOL",
+          "nickname": "SUB_FOL",
+          "description": "OPTIONAL // If the Wasp user objects have been placed in a sub-folder, name of the sub-folder in the Gh UserObjects folder."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LOG",
+          "nickname": "LOG",
+          "description": "List of updated files."
+        }
+      ]
+    },
+    "Wasp_Load From DisCo": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts definition for the aggregation"
+        },
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "File where the DisCo aggregation is saved (.json)"
+        },
+        {
+          "name": "RENUM",
+          "nickname": "RENUM",
+          "description": "True to renumber ids coming from DisCo. This is necessary to allow correct import of aggregations where the delete commands have been used (True by de"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Script variable DisCoLoad"
+        },
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Imported aggregation parts"
+        }
+      ]
+    },
+    "Wasp_Save to DisCo": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation to save"
+        },
+        {
+          "name": "PATH",
+          "nickname": "PATH",
+          "description": "Path where to save the aggregation"
+        },
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Name of the exported file"
+        },
+        {
+          "name": "SAVE",
+          "nickname": "SAVE",
+          "description": "True to export"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "TXT",
+          "nickname": "TXT",
+          "description": "Text representation of the aggregation"
+        },
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "Script variable WaspSave"
+        }
+      ]
+    },
+    "Wasp_DisCo Rule Group": {
+      "inputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Rule group name. It will be used to activate/deactivate the rules contained in DisCo"
+        },
+        {
+          "name": "GR",
+          "nickname": "GR",
+          "description": "Rule grammars to be included in the group"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "RULE_G",
+          "nickname": "RULE_G",
+          "description": "Rule Group instance"
+        }
+      ]
+    },
+    "Wasp_Transform Part": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part to be transformed"
+        },
+        {
+          "name": "TR",
+          "nickname": "TR",
+          "description": "Transformation"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Transformed part"
+        }
+      ]
+    },
+    "Wasp_DisCo Player": {
+      "inputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Player name"
+        },
+        {
+          "name": "VRFPS",
+          "nickname": "VRFPS",
+          "description": "Player mode: 0 for VR player, 1 for FPS player"
+        },
+        {
+          "name": "SCALE",
+          "nickname": "SCALE",
+          "description": "Player scale factor (1.0 by default)"
+        },
+        {
+          "name": "TS",
+          "nickname": "TS",
+          "description": "OPTIONAL // Tool settings (all tools availabe by default)"
+        },
+        {
+          "name": "PS",
+          "nickname": "PS",
+          "description": "OPTIONAL // Placement settings (all placement modes availabe by default)"
+        },
+        {
+          "name": "IOS",
+          "nickname": "IOS",
+          "description": "OPTIONAL // IO settings (all IO modes availabe by default)"
+        },
+        {
+          "name": "PC",
+          "nickname": "PC",
+          "description": "OPTIONAL // Point constraints for fixing the player position"
+        },
+        {
+          "name": "BC",
+          "nickname": "BC",
+          "description": "OPTIONAL // Box constraints for limiting the player movement area"
+        },
+        {
+          "name": "CC",
+          "nickname": "CC",
+          "description": "OPTIONAL // Curve constraints for limiting the player movement along the curve"
+        },
+        {
+          "name": "CCS",
+          "nickname": "CCS",
+          "description": "OPTIONAL // Curve constraint sample resolution (0.1 by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PLAY",
+          "nickname": "PLAY",
+          "description": "DisCo Player settings"
+        }
+      ]
+    },
+    "Wasp_Stochastic Aggregation": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to be aggregated (can be more than one)"
+        },
+        {
+          "name": "PREV",
+          "nickname": "PREV",
+          "description": "OPTIONAL // Previous aggregated parts. It is possible to input the results of a previous aggregation, or parts transformed with the TransformPart comp"
+        },
+        {
+          "name": "N",
+          "nickname": "N",
+          "description": "Number of parts to be aggregated (does not count parts provided in PREV)"
+        },
+        {
+          "name": "RULES",
+          "nickname": "RULES",
+          "description": "Rules for the aggregation"
+        },
+        {
+          "name": "SEED",
+          "nickname": "SEED",
+          "description": "OPTIONAL // Random seed. Set this to a fixed number to allow recreating the same aggregation every time you reset."
+        },
+        {
+          "name": "CAT",
+          "nickname": "CAT",
+          "description": "OPTIONAL // Part Catalog (to specify fixed numbers or proportions between part types"
+        },
+        {
+          "name": "MODE",
+          "nickname": "MODE",
+          "description": "OPTIONAL // Switches between aggregation modes: 0 = no constraints, 1 = local constraints, 2 = global constraints, 3 = local + global constraints"
+        },
+        {
+          "name": "GC",
+          "nickname": "GC",
+          "description": "OPTIONAL // Global constraints to apply to aggregation"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "OPTIONAL // Aggregation ID"
+        },
+        {
+          "name": "RESET",
+          "nickname": "RESET",
+          "description": "Recompute the whole aggregation"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Script variable RndAggr"
+        },
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Aggregated parts (includes both PREV input and newly aggregated parts)"
+        }
+      ]
+    },
+    "Wasp_Get Part Geometry": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part from where to extract the geometry"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Part geometry"
+        }
+      ]
+    },
+    "Wasp_DisCo Aggregation Setup": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to be aggregated in DisCo"
+        },
+        {
+          "name": "RULES",
+          "nickname": "RULES",
+          "description": "Aggregation rules"
+        },
+        {
+          "name": "RULE_G",
+          "nickname": "RULE_G",
+          "description": "OPTIONAL // Rule groups for filtering"
+        },
+        {
+          "name": "PROB",
+          "nickname": "PROB",
+          "description": "OPTIONAL // Probability distribution for each part"
+        },
+        {
+          "name": "SPAWN_N",
+          "nickname": "SPAWN_N",
+          "description": "OPTIONAL // Number of each part created at start-up"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SETUP",
+          "nickname": "SETUP",
+          "description": "DisCo setup data"
+        }
+      ]
+    },
+    "Wasp_Rules Generator": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts from which to generate aggregation rules"
+        },
+        {
+          "name": "SELF_P",
+          "nickname": "SELF_P",
+          "description": "OPTIONAL // Create rules between connections belonging to the same part (True by default)"
+        },
+        {
+          "name": "SELF_C",
+          "nickname": "SELF_C",
+          "description": "OPTIONAL // Create rules between connection with same id (True by default)"
+        },
+        {
+          "name": "TYP",
+          "nickname": "TYP",
+          "description": "OPTIONAL // Create rules only between connections of the same type (False by default). Make sure this component is set to False when using Rule Gramma"
+        },
+        {
+          "name": "GR",
+          "nickname": "GR",
+          "description": "OPTIONAL // Custom connection grammar with format \"ConnType\">\"ConnType\""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "R",
+          "nickname": "R",
+          "description": "Generated aggregation rules"
+        }
+      ]
+    },
+    "Wasp_Filter Parts by Name": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to filter"
+        },
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Name of the parts to extract"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Filtered parts"
+        },
+        {
+          "name": "MASK",
+          "nickname": "MASK",
+          "description": "Boolean mask for the filtered parts"
+        }
+      ]
+    },
+    "Wasp_Mesh Constraint": {
+      "inputs": [
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Plane to use as constraints"
+        },
+        {
+          "name": "IN",
+          "nickname": "IN",
+          "description": "OPTIONAL // False to allow only parts outside the constraint geometry, True to allow parts only inside (True by default)"
+        },
+        {
+          "name": "SOFT",
+          "nickname": "SOFT",
+          "description": "OPTIONAL // True to check only the part center point, False to check also for geometry intersection (True by default)"
+        },
+        {
+          "name": "REQ",
+          "nickname": "REQ",
+          "description": "OPTIONAL // True to make the constrains necessary for the aggregation to happen, False to make it optional (True by default)"
+        },
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "OPTIONAL // Name of the parts to which the constraint is supposed to be applied on. If not specified, the constraint is applied to all parts"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GC",
+          "nickname": "GC",
+          "description": "Mesh constraint"
+        }
+      ]
+    },
+    "Wasp_DisCo Tool Settings": {
+      "inputs": [
+        {
+          "name": "NP",
+          "nickname": "NP",
+          "description": "OPTIONAL // Allow control over the number of affected parts (True by default)"
+        },
+        {
+          "name": "PF",
+          "nickname": "PF",
+          "description": "OPTIONAL // Allow use of the Part Filter (True by default)"
+        },
+        {
+          "name": "RF",
+          "nickname": "RF",
+          "description": "OPTIONAL // Allow use of Rules Filter (True by default)"
+        },
+        {
+          "name": "PLACE",
+          "nickname": "PLACE",
+          "description": "OPTIONAL // Allow choice between different placement modes. Available modes are defined with the DisCo Placement Settings component (True by default)"
+        },
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "OPTIONAL // Allow use of the Field drawing tool (True by default)"
+        },
+        {
+          "name": "SL",
+          "nickname": "SL",
+          "description": "OPTIONAL // Allow to access the Save-Load tool. Available Modes are defined with the DisCo IO Settings component (True by default)"
+        },
+        {
+          "name": "SIM",
+          "nickname": "SIM",
+          "description": "OPTIONAL // Allow to simulate rigid-body physics (True by default)"
+        },
+        {
+          "name": "CHAR",
+          "nickname": "CHAR",
+          "description": "OPTIONAL // Allow access to Fly and NoClip characted modes (True by default)"
+        },
+        {
+          "name": "SCALE",
+          "nickname": "SCALE",
+          "description": "OPTIONAL // Allow to change the character scale (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "TS",
+          "nickname": "TS",
+          "description": "DisCo tool settings (to use with the DisCoPlayer component)"
+        }
+      ]
+    },
+    "Wasp_DisCo Placement Settings": {
+      "inputs": [
+        {
+          "name": "PLACE",
+          "nickname": "PLACE",
+          "description": "OPTIONAL // Allow use of the Place tool (True by default)"
+        },
+        {
+          "name": "CHOREO",
+          "nickname": "CHOREO",
+          "description": "OPTIONAL // Allow use of the Choreograph tool (True by default)"
+        },
+        {
+          "name": "SHOOT",
+          "nickname": "SHOOT",
+          "description": "OPTIONAL // Allow use of the Shoot tool (True by default)"
+        },
+        {
+          "name": "GROW",
+          "nickname": "GROW",
+          "description": "OPTIONAL // Allow use of the Grow tool (True by default)"
+        },
+        {
+          "name": "PICK",
+          "nickname": "PICK",
+          "description": "OPTIONAL // Allow use of the Pick-and-Place tool (True by default)"
+        },
+        {
+          "name": "DEL",
+          "nickname": "DEL",
+          "description": "OPTIONAL // Allow use of the Delete tool (True by default)"
+        },
+        {
+          "name": "DEL_R",
+          "nickname": "DEL_R",
+          "description": "OPTIONAL // Allow to save and load results (True by default)"
+        },
+        {
+          "name": "DEL_SP",
+          "nickname": "DEL_SP",
+          "description": "OPTIONAL // Allow use of the Sphere Delete tool (True by default)"
+        },
+        {
+          "name": "DIS",
+          "nickname": "DIS",
+          "description": "OPTIONAL // Allow use of the Disable-Enable tool (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PS",
+          "nickname": "PS",
+          "description": "DisCo placement settings (to use with the DisCoPlayer component)"
+        }
+      ]
+    },
+    "Wasp_DisCo IO Settings": {
+      "inputs": [
+        {
+          "name": "SAVE",
+          "nickname": "SAVE",
+          "description": "OPTIONAL // Allow to save game results to file (True by default)"
+        },
+        {
+          "name": "LOAD",
+          "nickname": "LOAD",
+          "description": "OPTIONAL // Allow to load previously saved files (True by default)"
+        },
+        {
+          "name": "NEWG",
+          "nickname": "NEWG",
+          "description": "OPTIONAL // Allow to start a new game (True by default)"
+        },
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "OPTIONAL // Allow to save user-drawn fields (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IOS",
+          "nickname": "IOS",
+          "description": "DisCo IO settings (to use with the DisCoPlayer component)"
+        }
+      ]
+    },
+    "Wasp_DisCo Environment": {
+      "inputs": [
+        {
+          "name": "GA",
+          "nickname": "GA",
+          "description": "OPTIONAL // Game Area as a box. Default is (-5.0, 5.0, -5.0, 5.0, 0, 5.0)"
+        },
+        {
+          "name": "EG",
+          "nickname": "EG",
+          "description": "OPTIONAL // Additional environment geometry as mesh"
+        },
+        {
+          "name": "BPG",
+          "nickname": "BPG",
+          "description": "OPTIONAL // Blueprint geometry for assembly guidance (does not act as collider)"
+        },
+        {
+          "name": "GP",
+          "nickname": "GP",
+          "description": "OPTIONAL // Activate ground plane (True by default)"
+        },
+        {
+          "name": "FR",
+          "nickname": "FR",
+          "description": "OPTIONAL // Field resolution"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ENV",
+          "nickname": "ENV",
+          "description": "DisCo environment data"
+        }
+      ]
+    },
+    "Wasp_Export to DisCo": {
+      "inputs": [
+        {
+          "name": "SETUP",
+          "nickname": "SETUP",
+          "description": "OPTIONAL // DisCo setup data"
+        },
+        {
+          "name": "ENV",
+          "nickname": "ENV",
+          "description": "OPTIONAL // DisCo environment data"
+        },
+        {
+          "name": "PLAY",
+          "nickname": "PLAY",
+          "description": "OPTIONAL // DisCo player settings for multi-player mode"
+        },
+        {
+          "name": "PATH",
+          "nickname": "PATH",
+          "description": "Path where to save the DisCo .json file"
+        },
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Export file name"
+        },
+        {
+          "name": "SAVE",
+          "nickname": "SAVE",
+          "description": "True to export"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FILES",
+          "nickname": "FILES",
+          "description": ".Path to the setup and players files"
+        },
+        {
+          "name": "SF",
+          "nickname": "SF",
+          "description": "Setup file data as string"
+        },
+        {
+          "name": "PF",
+          "nickname": "PF",
+          "description": "Players file data as string"
+        }
+      ]
+    },
+    "Wasp_Get Valid Smart Attributes": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation from which to extract the smart attributes"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Script input ID."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Script output VAL."
+        }
+      ]
+    },
+    "Wasp_Deconstruct Connection": {
+      "inputs": [
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connection to deconstruct"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Connection plane"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Connection ID"
+        },
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part to which the connection belongs to"
+        },
+        {
+          "name": "T",
+          "nickname": "T",
+          "description": "Connection type"
+        }
+      ]
+    },
+    "Wasp_Smart Attribute": {
+      "inputs": [
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Name of the attribute"
+        },
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Value of the attribute (any type of Gh-compatible data possible)"
+        },
+        {
+          "name": "TR",
+          "nickname": "TR",
+          "description": "OPTIONAL // Transformable. Set it to True for Geometry, False for other types of data (False by default)"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connections controlling the activation of the SmartAttribute instance"
+        },
+        {
+          "name": "CM",
+          "nickname": "CM",
+          "description": "Connection mask, with one value for each connection provided in CONN, describing the required layout (1 for free connection, -1 for occupied connectio"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "SmartAttribute instance to attach to a component"
+        }
+      ]
+    },
+    "Wasp_Advanced Part": {
+      "inputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Part name"
+        },
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Part geometry. It will be converted to mesh - to improve performance, perform the conversion before adding to the part and user a low-poly count"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connections list"
+        },
+        {
+          "name": "COLL",
+          "nickname": "COLL",
+          "description": "OPTIONAL // Collider geometry (for collision detection). A collider will be automatically generated. For complex parts, automatic generation might not"
+        },
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "OPTIONAL // Field to associate with the part for Field-Driven Aggegation (Needed only when using multiple fields within one aggregation)"
+        },
+        {
+          "name": "HI",
+          "nickname": "HI",
+          "description": "OPTIONAL // Hierarchy: List of parts composing the part at a lower heriarchical level in the aggregation"
+        },
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "OPTIONAL // Part attributes"
+        },
+        {
+          "name": "E_COLL",
+          "nickname": "E_COLL",
+          "description": "OPTIONAL // Additional collider geometry (e.g. assembly tool), to be checked in Local Constraints mode"
+        },
+        {
+          "name": "SUP",
+          "nickname": "SUP",
+          "description": "OPTIONAL // Required supports for part placement, to be checked in Local Constraints mode"
+        },
+        {
+          "name": "AEC",
+          "nickname": "AEC",
+          "description": "OPTIONAL // Adjacency/Exclusion constraints, to be checked in Local Constraints mode"
+        },
+        {
+          "name": "OC",
+          "nickname": "OC",
+          "description": "OPTIONAL // Orientation constraints, to be checked in Local Constraints mode"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Part instance"
+        }
+      ]
+    },
+    "Wasp_Support": {
+      "inputs": [
+        {
+          "name": "DIR",
+          "nickname": "DIR",
+          "description": "Directions of the support locations as lines"
+        },
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "OPTIONAL // Geometry of the part the support belongs to (useful for checking if the supports are correctly placed)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SUP",
+          "nickname": "SUP",
+          "description": "Support instance"
+        }
+      ]
+    },
+    "Wasp_Adjacency Exclusion Constraint": {
+      "inputs": [
+        {
+          "name": "DIR",
+          "nickname": "DIR",
+          "description": "Directions of the support locations as lines"
+        },
+        {
+          "name": "PN",
+          "nickname": "PN",
+          "description": "OPTIONAL // If the adjacency/exclusion direction has to be associated to a specific part"
+        },
+        {
+          "name": "AE",
+          "nickname": "AE",
+          "description": "OPTIONAL // Constraint type: True for adjacency, False for exclusion (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AEC",
+          "nickname": "AEC",
+          "description": "Adjacency/Exclusion Constraint instance"
+        }
+      ]
+    },
+    "Wasp_Plane Constraint": {
+      "inputs": [
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Plane to use as constraints"
+        },
+        {
+          "name": "POS",
+          "nickname": "POS",
+          "description": "OPTIONAL // True to place parts on the positive direction of the Z axis, False for the negative direction (True by default)"
+        },
+        {
+          "name": "SOFT",
+          "nickname": "SOFT",
+          "description": "OPTIONAL // True to check only the part center point, False to check also for geometry intersection (True by default)"
+        },
+        {
+          "name": "REQ",
+          "nickname": "REQ",
+          "description": "OPTIONAL // True to make the constrains necessary for the aggregation to happen, False to make it optional (True by default)"
+        },
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "OPTIONAL // Name of the parts to which the constraint is supposed to be applied on. If not specified, the constraint is applied to all parts"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PC",
+          "nickname": "PC",
+          "description": "Plane constraint"
+        }
+      ]
+    },
+    "Wasp_Connection From Plane": {
+      "inputs": [
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Connection plane"
+        },
+        {
+          "name": "T",
+          "nickname": "T",
+          "description": "OPTIONAL // Connection type (to be used with Rule Generator component)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Connection object"
+        },
+        {
+          "name": "PLN_OUT",
+          "nickname": "PLN_OUT",
+          "description": "Connection plane (for debugging)"
+        }
+      ]
+    },
+    "Wasp_Orientation Constraint": {
+      "inputs": [
+        {
+          "name": "DIR",
+          "nickname": "DIR",
+          "description": "Directions of the part orientation to be tested (as Line or Vector)"
+        },
+        {
+          "name": "R",
+          "nickname": "R",
+          "description": "Angle range which is allowed for the transformed part"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "OPTIONAL // Plane where to calculate the angle (Default is RhinoXY)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "OC",
+          "nickname": "OC",
+          "description": "Orientation Constraint instance"
+        }
+      ]
+    },
+    "Wasp_Deconstruct Part": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to deconstruct"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Name of the part"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Pard ID"
+        },
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Geometry of the part (as mesh). If Brep geometry is needed, can be stored in the component as attribute, or obtained by transforming the original geom"
+        },
+        {
+          "name": "CENTER",
+          "nickname": "CENTER",
+          "description": "Script variable DePart"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "Part connections"
+        },
+        {
+          "name": "COLL",
+          "nickname": "COLL",
+          "description": "Part collider"
+        },
+        {
+          "name": "TR",
+          "nickname": "TR",
+          "description": "Transformation applied to the part. Can be used to transform other geometries in a similar way (eg. replace a low poly component with a more detailed "
+        },
+        {
+          "name": "PARENT",
+          "nickname": "PARENT",
+          "description": "Parent of the part"
+        },
+        {
+          "name": "CHILD",
+          "nickname": "CHILD",
+          "description": "Children parts attached to the part"
+        },
+        {
+          "name": "ADD_COLL",
+          "nickname": "ADD_COLL",
+          "description": "Additional collider applied to the part"
+        },
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "Part attributes"
+        }
+      ]
+    },
+    "Wasp_Rule From Text": {
+      "inputs": [
+        {
+          "name": "TXT",
+          "nickname": "TXT",
+          "description": "Text description of the rule with format \"Part1|Conn1_Part2|Conn2\""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "R",
+          "nickname": "R",
+          "description": "Rule"
+        }
+      ]
+    },
+    "Wasp_Deconstruct Collider": {
+      "inputs": [
+        {
+          "name": "COLL",
+          "nickname": "COLL",
+          "description": "Collider object"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Collider geometry"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "If collider is Multiple, connections associated with the collider"
+        },
+        {
+          "name": "VC",
+          "nickname": "VC",
+          "description": "If collider is Multiple, valid connections not causing collisions"
+        }
+      ]
+    },
+    "Wasp_Collider": {
+      "inputs": [
+        {
+          "name": "GEO",
+          "nickname": "GEO",
+          "description": "Geometry of the collider(s)"
+        },
+        {
+          "name": "MUL",
+          "nickname": "MUL",
+          "description": "OPTIONAL // Set to True if you are using multiple colliders and it is sufficient for one of them not to collide (False by default)"
+        },
+        {
+          "name": "ALL",
+          "nickname": "ALL",
+          "description": "OPTIONAL // If MUL is set to True, set to True to check all colliders (False by default, search will stop after finding a valid collider)"
+        },
+        {
+          "name": "CONN",
+          "nickname": "CONN",
+          "description": "OPTIONAL // If MUL is set to True, associate a connection to each collider (e.g. a picking position for the tool collider)."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "COLL",
+          "nickname": "COLL",
+          "description": "Collider instance"
+        }
+      ]
+    },
+    "Wasp_Aggregation Graph": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation from which to extract the graph"
+        },
+        {
+          "name": "FG",
+          "nickname": "FG",
+          "description": "OPTIONAL // True to compute the full graph (including edges on overlapping connections), False to create only the aggregation sequence graph (True by "
+        },
+        {
+          "name": "TOL",
+          "nickname": "TOL",
+          "description": "OPTIONAL // Tolerance below which two connections will be considered connected (only for full graph mode - default is Wasp global tolerance)"
+        },
+        {
+          "name": "FR",
+          "nickname": "FR",
+          "description": "OPTIONAL // When computing the full graph, filter the found connections according to a custom rule set (False by default)"
+        },
+        {
+          "name": "CR",
+          "nickname": "CR",
+          "description": "OPTIONAL // When computing the full graph with FR set to True, rules to use as connection filter (default values are the Aggregation rules)"
+        },
+        {
+          "name": "F",
+          "nickname": "F",
+          "description": "OPTIONAL // True to flatten the edges list, False to maintain edges grouped by node (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "G",
+          "nickname": "G",
+          "description": "Aggregation graph"
+        },
+        {
+          "name": "N",
+          "nickname": "N",
+          "description": "Graph nodes (each placed at a part's center)"
+        },
+        {
+          "name": "E",
+          "nickname": "E",
+          "description": "Graph edges as lines"
+        },
+        {
+          "name": "ES_ID",
+          "nickname": "ES_ID",
+          "description": "part ID at edge start"
+        },
+        {
+          "name": "EE_ID",
+          "nickname": "EE_ID",
+          "description": "part ID at edge end"
+        },
+        {
+          "name": "CS_ID",
+          "nickname": "CS_ID",
+          "description": "connection ID at edge start"
+        },
+        {
+          "name": "CE_ID",
+          "nickname": "CE_ID",
+          "description": "connection ID at edge end"
+        }
+      ]
+    },
+    "Wasp_Load Aggregation from File": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts definition for the aggregation"
+        },
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "File where the aggregation is saved (.json)"
+        },
+        {
+          "name": "RENUM",
+          "nickname": "RENUM",
+          "description": "If True, Part IDs are renumbered in sequential order, avoiding issues with missing IDs if elements have been removed from the Aggregation (False by de"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Imported aggregation parts"
+        }
+      ]
+    },
+    "Wasp_Save Aggregation to File": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation to save"
+        },
+        {
+          "name": "PATH",
+          "nickname": "PATH",
+          "description": "Path where to save the aggregation"
+        },
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Name of the exported file"
+        },
+        {
+          "name": "SAVE",
+          "nickname": "SAVE",
+          "description": "True to export"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "TXT",
+          "nickname": "TXT",
+          "description": "Text representation of the aggregation"
+        },
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "Path to the saved file"
+        }
+      ]
+    },
+    "Wasp_Parts Catalog": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts from which to generate a parts catalog"
+        },
+        {
+          "name": "NUM",
+          "nickname": "NUM",
+          "description": "Amounts of each part in the catalog"
+        },
+        {
+          "name": "LIM",
+          "nickname": "LIM",
+          "description": "OPTIONAL // If True, the catalog will be limited, and aggregation will stop after using the given parts numbers. If False, the given numbers will be u"
+        },
+        {
+          "name": "AD",
+          "nickname": "AD",
+          "description": "OPTIONAL // If True, catalog will be adaptive, and change its internal probabilities according to the aggregation state (False by default). Works only"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CAT",
+          "nickname": "CAT",
+          "description": "Parts catalog"
+        }
+      ]
+    },
+    "Wasp_Rule": {
+      "inputs": [
+        {
+          "name": "P1",
+          "nickname": "P1",
+          "description": "Name of base part"
+        },
+        {
+          "name": "C1",
+          "nickname": "C1",
+          "description": "Id of base connection"
+        },
+        {
+          "name": "P2",
+          "nickname": "P2",
+          "description": "Name of new part to be aggregated"
+        },
+        {
+          "name": "C2",
+          "nickname": "C2",
+          "description": "Id of new connection"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "R",
+          "nickname": "R",
+          "description": "Rule"
+        }
+      ]
+    },
+    "Wasp_Rules from Aggregation": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation from which to extract the rules"
+        },
+        {
+          "name": "ON",
+          "nickname": "ON",
+          "description": "OPTIONAL // If replacing parts, old names of the existing parts in the aggregation"
+        },
+        {
+          "name": "NN",
+          "nickname": "NN",
+          "description": "OPTIONAL // If replacing parts, new names of the parts to replace with. Order should match the order provided in ON"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GR",
+          "nickname": "GR",
+          "description": "Graph rules to recreate the aggregation"
+        },
+        {
+          "name": "PREV",
+          "nickname": "PREV",
+          "description": "If the provided aggregation contained parts assigned before the aggregation algorithm (in the PREV input), those parts are returned here. WARNING: whe"
+        }
+      ]
+    },
+    "Wasp_Rules Visualizer": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts from which to visualize the rules"
+        },
+        {
+          "name": "R",
+          "nickname": "R",
+          "description": "Rules to visualize"
+        },
+        {
+          "name": "SF",
+          "nickname": "SF",
+          "description": "OPTIONAL // Spacing factor between rules visualizations (2.0 by default)"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "OPTIONAL // If the rules should be visualized in a different location than the worldXY, base plane of the desired coordinate system"
+        },
+        {
+          "name": "SI",
+          "nickname": "SI",
+          "description": "OPTIONAL // True to show rule index in the list, False to hide it (True by default)"
+        },
+        {
+          "name": "ST",
+          "nickname": "ST",
+          "description": "OPTIONAL // True to show connection types, False to hide them (True by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "BP",
+          "nickname": "BP",
+          "description": "Base part for the rule"
+        },
+        {
+          "name": "NP",
+          "nickname": "NP",
+          "description": "Added part for the rule"
+        },
+        {
+          "name": "RTL",
+          "nickname": "RTL",
+          "description": "Rule text location"
+        },
+        {
+          "name": "RT",
+          "nickname": "RT",
+          "description": "Rule text"
+        }
+      ]
+    },
+    "Wasp_Assemble Part Hierarchy": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Sub-parts to be assembled"
+        },
+        {
+          "name": "TR",
+          "nickname": "TR",
+          "description": "Relative transformation of each sub-part in the higher hierarchy assembly"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "HIE",
+          "nickname": "HIE",
+          "description": "Assembled parts"
+        }
+      ]
+    },
+    "Wasp_Deconstruct Attribute": {
+      "inputs": [
+        {
+          "name": "ATTR",
+          "nickname": "ATTR",
+          "description": "Attribute to deconstruct"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "Name of the attribute"
+        },
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Value stored in the attribute"
+        }
+      ]
+    },
+    "Wasp_Get Parts Hierarchy": {
+      "inputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation from which to extract hierarchical parts"
+        },
+        {
+          "name": "LEVEL",
+          "nickname": "LEVEL",
+          "description": "Hierarchy level (0 to return the same parts in input)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SUB_P",
+          "nickname": "SUB_P",
+          "description": "Parts at the selected hierarchy level"
+        }
+      ]
+    },
+    "Wasp_Field Points": {
+      "inputs": [
+        {
+          "name": "BOU",
+          "nickname": "BOU",
+          "description": "List of geometries defining the boundaries of the field. Geometries must be closed breps or meshes."
+        },
+        {
+          "name": "RES",
+          "nickname": "RES",
+          "description": "Resolution (Dimension of each cell)"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "OPTIONAL // Field base plane (WorldXY by default)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "E_FIELD",
+          "nickname": "E_FIELD",
+          "description": "Empty field. Assign values with the \"Wasp_Field\" component"
+        },
+        {
+          "name": "PTS",
+          "nickname": "PTS",
+          "description": "Field points"
+        }
+      ]
+    },
+    "Wasp_Field-driven Aggregation": {
+      "inputs": [
+        {
+          "name": "PART",
+          "nickname": "PART",
+          "description": "Parts to be aggregated (can be more than one)"
+        },
+        {
+          "name": "PREV",
+          "nickname": "PREV",
+          "description": "OPTIONAL // Previous aggregated parts. It is possible to input the results of a previous aggregation, or parts transformed with the TransformPart comp"
+        },
+        {
+          "name": "N",
+          "nickname": "N",
+          "description": "Number of parts to be aggregated (does not count parts provided in PREV)"
+        },
+        {
+          "name": "RULES",
+          "nickname": "RULES",
+          "description": "Rules for the aggregation"
+        },
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Scalar field to drive the aggregation (parts will be added following higher values in the field)"
+        },
+        {
+          "name": "CAT",
+          "nickname": "CAT",
+          "description": "OPTIONAL // Part Catalog (to specify fixed numbers or proportions between part types"
+        },
+        {
+          "name": "MODE",
+          "nickname": "MODE",
+          "description": "OPTIONAL // Switches between aggregation modes: 0 = no constraints, 1 = local constraints, 2 = global constraints, 3 = local + global constraints"
+        },
+        {
+          "name": "GC",
+          "nickname": "GC",
+          "description": "OPTIONAL // Global constraints to apply to aggregation"
+        },
+        {
+          "name": "ID",
+          "nickname": "ID",
+          "description": "OPTIONAL // Aggregation ID"
+        },
+        {
+          "name": "RESET",
+          "nickname": "RESET",
+          "description": "Recompute the whole aggregation"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AGGR",
+          "nickname": "AGGR",
+          "description": "Aggregation object"
+        },
+        {
+          "name": "PART_OUT",
+          "nickname": "PART_OUT",
+          "description": "Aggregated parts (includes both PREV input and newly aggregated parts)"
+        }
+      ]
+    },
+    "Wasp_Field": {
+      "inputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Script variable Field"
+        },
+        {
+          "name": "E_FIELD",
+          "nickname": "E_FIELD",
+          "description": "List of geometries defining the boundaries of the field. Geometries must be closed breps or meshes. All points of the field outside the geometries wil"
+        },
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Values to assign to each cell"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field object (to be used to drive the FieldAggr component)"
+        }
+      ]
+    },
+    "Wasp_Deconstruct Field": {
+      "inputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field to deconstruct"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Field name"
+        },
+        {
+          "name": "PTS",
+          "nickname": "PTS",
+          "description": "Field points"
+        },
+        {
+          "name": "COUNT",
+          "nickname": "COUNT",
+          "description": "Points count on x,y,z axes"
+        },
+        {
+          "name": "RES",
+          "nickname": "RES",
+          "description": "Field resolution"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Field base plane"
+        },
+        {
+          "name": "VAL",
+          "nickname": "VAL",
+          "description": "Field values"
+        },
+        {
+          "name": "BOU",
+          "nickname": "BOU",
+          "description": "Field boundaries"
+        },
+        {
+          "name": "BB",
+          "nickname": "BB",
+          "description": "Field bounding box (aligned to the base plane)"
+        }
+      ]
+    },
+    "Wasp_Orient Field": {
+      "inputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field to be transformed"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Target plane"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "F_TR",
+          "nickname": "F_TR",
+          "description": "Transformed field"
+        }
+      ]
+    },
+    "Wasp_Field Isolines": {
+      "inputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field object to extract isolines from"
+        },
+        {
+          "name": "PLN",
+          "nickname": "PLN",
+          "description": "Plane for isolines extraction (0: XY Plane, 1: YZ Plane, 2: XZ Plane)"
+        },
+        {
+          "name": "T",
+          "nickname": "T",
+          "description": "Z parameter where to extract isolines"
+        },
+        {
+          "name": "ISO",
+          "nickname": "ISO",
+          "description": "Isolevel of the curves"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CRV",
+          "nickname": "CRV",
+          "description": "Isocurves"
+        }
+      ]
+    },
+    "Wasp_Field Iso Voxels": {
+      "inputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field object to extract iso-voxels from"
+        },
+        {
+          "name": "ISO",
+          "nickname": "ISO",
+          "description": "Isolevel of the voxel mesh"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VM",
+          "nickname": "VM",
+          "description": "Voxel mesh at the chosen iso-level"
+        }
+      ]
+    },
+    "Wasp_Save Field to File": {
+      "inputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Field to save"
+        },
+        {
+          "name": "PATH",
+          "nickname": "PATH",
+          "description": "Path where to save the field"
+        },
+        {
+          "name": "NAME",
+          "nickname": "NAME",
+          "description": "Name of the exported file"
+        },
+        {
+          "name": "SAVE",
+          "nickname": "SAVE",
+          "description": "True to export"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "Path to the saved file"
+        }
+      ]
+    },
+    "Wasp_Load Field from File": {
+      "inputs": [
+        {
+          "name": "FILE",
+          "nickname": "FILE",
+          "description": "File where the field is saved (.json)"
+        },
+        {
+          "name": "LOAD",
+          "nickname": "LOAD",
+          "description": "True to reload the saved file"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FIELD",
+          "nickname": "FIELD",
+          "description": "Imported field"
+        }
+      ]
+    }
+  }
+}

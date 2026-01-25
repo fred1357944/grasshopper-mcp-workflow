@@ -215,13 +215,28 @@ class GHXParser:
                 elif item_name == 'Name' and not name:
                     name = item.text or ''
 
-            # 提取輸入參數
+            # 提取輸入參數 - 支援多種格式
+            # 格式 1: param_input (原生 GH 組件)
             for param_chunk in container.findall(".//chunk[@name='param_input']"):
                 param = self._parse_param_chunk(param_chunk)
                 if param:
                     inputs.append(param)
 
-            # 提取輸出參數
+            # 格式 2: InputParam (插件組件，如 WASP, Karamba)
+            # 這些參數在 ParameterData chunk 內
+            param_data = container.find(".//chunk[@name='ParameterData']")
+            if param_data is not None:
+                for param_chunk in param_data.findall(".//chunk[@name='InputParam']"):
+                    param = self._parse_param_chunk(param_chunk)
+                    if param:
+                        inputs.append(param)
+
+                for param_chunk in param_data.findall(".//chunk[@name='OutputParam']"):
+                    param = self._parse_param_chunk(param_chunk)
+                    if param:
+                        outputs.append(param)
+
+            # 提取輸出參數 - 格式 1: param_output (原生 GH 組件)
             for param_chunk in container.findall(".//chunk[@name='param_output']"):
                 param = self._parse_param_chunk(param_chunk)
                 if param:

@@ -1,15 +1,67 @@
 {
   "_meta": {
-    "version": "1.0.0",
-    "description": "從 .ghx 文件自動萃取的組件參數",
-    "source": "GHX Parser + Knowledge Extractor"
+    "version": "2.0.0",
+    "description": "從 GHX 範例自動萃取的組件參數（修復版）",
+    "source": "gh_learning/ghx_samples/",
+    "total_components": 196,
+    "parser_version": "ghx_parser.py v2.0 (支援 ParameterData/InputParam 格式)"
   },
   "components": {
-    "Wasp_Save to DisCo": {
+    "Wasp_Connection From Direction": {
       "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
-      "inputs": [],
-      "outputs": [],
-      "usage_count": 487
+      "inputs": [
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "CEN",
+          "name": "CEN"
+        },
+        {
+          "nickname": "UP",
+          "name": "UP"
+        },
+        {
+          "nickname": "T",
+          "name": "T"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "out",
+          "name": "out"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "PLN_OUT",
+          "name": "PLN_OUT"
+        }
+      ],
+      "usage_count": 80
+    },
+    "Wasp_Get Attribute by Name": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        }
+      ],
+      "usage_count": 21
     },
     "Geometry": {
       "guid": "ac2bc2cb-70fb-4dd5-9c78-7e1ea97fe278",
@@ -37,15 +89,101 @@
     },
     "Merge": {
       "guid": "3cadddef-1e2b-4c09-9390-0e8f78f7609f",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "D1",
+          "name": "Data 1"
+        },
+        {
+          "nickname": "D2",
+          "name": "Data 2"
+        },
+        {
+          "nickname": "D3",
+          "name": "Data 3"
+        },
+        {
+          "nickname": "D4",
+          "name": "Data 4"
+        },
+        {
+          "nickname": "D5",
+          "name": "Data 5"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
       "usage_count": 50
+    },
+    "Wasp_Graph-Grammar Aggregation": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "PREV",
+          "name": "PREV"
+        },
+        {
+          "nickname": "RULES",
+          "name": "RULES"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "RESET",
+          "name": "RESET"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 3
     },
     "Button": {
       "guid": "a8b97322-2d53-47cd-905e-b932c3ccd74e",
       "inputs": [],
       "outputs": [],
       "usage_count": 86
+    },
+    "Wasp_Attribute": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        },
+        {
+          "nickname": "TR",
+          "name": "TR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        }
+      ],
+      "usage_count": 20
     },
     "Boolean Toggle": {
       "guid": "2e78987b-9dfb-42a2-8b76-3923ac8bd91a",
@@ -65,20 +203,48 @@
       "outputs": [],
       "usage_count": 212
     },
+    "Wasp_Basic Part": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "COLL",
+          "name": "COLL"
+        },
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "usage_count": 44
+    },
     "Custom Preview": {
       "guid": "537b0419-bbc2-4ff4-bf08-afe526367b2c",
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "M",
-          "fullName": "Material"
-        },
-        {
-          "nickname": "S",
-          "fullName": "Shader"
+          "name": "Material"
         }
       ],
       "outputs": [],
@@ -90,11 +256,287 @@
       "outputs": [],
       "usage_count": 91
     },
+    "Wasp_Update File": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "UPDATE",
+          "name": "UPDATE"
+        },
+        {
+          "nickname": "SUB_FOL",
+          "name": "SUB_FOL"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "LOG",
+          "name": "LOG"
+        }
+      ],
+      "usage_count": 39
+    },
+    "Wasp_Load From DisCo": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        },
+        {
+          "nickname": "RENUM",
+          "name": "RENUM"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Save to DisCo": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PATH",
+          "name": "PATH"
+        },
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "SAVE",
+          "name": "SAVE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "TXT",
+          "name": "TXT"
+        },
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_DisCo Rule Group": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "GR",
+          "name": "GR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "RULE_G",
+          "name": "RULE_G"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Wasp_Transform Part": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "TR",
+          "name": "TR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 12
+    },
+    "Wasp_DisCo Player": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "VRFPS",
+          "name": "VRFPS"
+        },
+        {
+          "nickname": "SCALE",
+          "name": "SCALE"
+        },
+        {
+          "nickname": "TS",
+          "name": "TS"
+        },
+        {
+          "nickname": "PS",
+          "name": "PS"
+        },
+        {
+          "nickname": "IOS",
+          "name": "IOS"
+        },
+        {
+          "nickname": "PC",
+          "name": "PC"
+        },
+        {
+          "nickname": "BC",
+          "name": "BC"
+        },
+        {
+          "nickname": "CC",
+          "name": "CC"
+        },
+        {
+          "nickname": "CCS",
+          "name": "CCS"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PLAY",
+          "name": "PLAY"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Stochastic Aggregation": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "PREV",
+          "name": "PREV"
+        },
+        {
+          "nickname": "N",
+          "name": "N"
+        },
+        {
+          "nickname": "RULES",
+          "name": "RULES"
+        },
+        {
+          "nickname": "SEED",
+          "name": "SEED"
+        },
+        {
+          "nickname": "CAT",
+          "name": "CAT"
+        },
+        {
+          "nickname": "MODE",
+          "name": "MODE"
+        },
+        {
+          "nickname": "GC",
+          "name": "GC"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "RESET",
+          "name": "RESET"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 27
+    },
+    "Wasp_Get Part Geometry": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        }
+      ],
+      "usage_count": 45
+    },
     "Brep": {
       "guid": "919e146f-30ae-4aae-be34-4d72f555e7da",
       "inputs": [],
       "outputs": [],
       "usage_count": 33
+    },
+    "Wasp_DisCo Aggregation Setup": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "RULES",
+          "name": "RULES"
+        },
+        {
+          "nickname": "RULE_G",
+          "name": "RULE_G"
+        },
+        {
+          "nickname": "PROB",
+          "name": "PROB"
+        },
+        {
+          "nickname": "SPAWN_N",
+          "name": "SPAWN_N"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "SETUP",
+          "name": "SETUP"
+        }
+      ],
+      "usage_count": 1
     },
     "Number Slider": {
       "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
@@ -102,26 +544,82 @@
       "outputs": [],
       "usage_count": 203
     },
+    "Wasp_Rules Generator": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "SELF_P",
+          "name": "SELF_P"
+        },
+        {
+          "nickname": "SELF_C",
+          "name": "SELF_C"
+        },
+        {
+          "nickname": "TYP",
+          "name": "TYP"
+        },
+        {
+          "nickname": "GR",
+          "name": "GR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "R"
+        }
+      ],
+      "usage_count": 28
+    },
+    "Wasp_Filter Parts by Name": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        },
+        {
+          "nickname": "MASK",
+          "name": "MASK"
+        }
+      ],
+      "usage_count": 21
+    },
     "Move": {
       "guid": "e9eb1dcf-92f6-4d4d-84ae-96222d60f56b",
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "T",
-          "fullName": "Motion"
+          "name": "Motion"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "X",
-          "fullName": "Transform"
+          "name": "Transform"
         }
       ],
       "usage_count": 11
@@ -131,16 +629,172 @@
       "inputs": [
         {
           "nickname": "F",
-          "fullName": "Factor"
+          "name": "Factor"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Unit vector"
+          "name": "Unit vector"
         }
       ],
       "usage_count": 6
+    },
+    "Wasp_Mesh Constraint": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "IN",
+          "name": "IN"
+        },
+        {
+          "nickname": "SOFT",
+          "name": "SOFT"
+        },
+        {
+          "nickname": "REQ",
+          "name": "REQ"
+        },
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "GC",
+          "name": "GC"
+        }
+      ],
+      "usage_count": 4
+    },
+    "Wasp_DisCo Tool Settings": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NP",
+          "name": "NP"
+        },
+        {
+          "nickname": "PF",
+          "name": "PF"
+        },
+        {
+          "nickname": "RF",
+          "name": "RF"
+        },
+        {
+          "nickname": "PLACE",
+          "name": "PLACE"
+        },
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "SL",
+          "name": "SL"
+        },
+        {
+          "nickname": "SIM",
+          "name": "SIM"
+        },
+        {
+          "nickname": "CHAR",
+          "name": "CHAR"
+        },
+        {
+          "nickname": "SCALE",
+          "name": "SCALE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "TS",
+          "name": "TS"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_DisCo Placement Settings": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PLACE",
+          "name": "PLACE"
+        },
+        {
+          "nickname": "CHOREO",
+          "name": "CHOREO"
+        },
+        {
+          "nickname": "SHOOT",
+          "name": "SHOOT"
+        },
+        {
+          "nickname": "GROW",
+          "name": "GROW"
+        },
+        {
+          "nickname": "PICK",
+          "name": "PICK"
+        },
+        {
+          "nickname": "DEL",
+          "name": "DEL"
+        },
+        {
+          "nickname": "DEL_R",
+          "name": "DEL_R"
+        },
+        {
+          "nickname": "DEL_SP",
+          "name": "DEL_SP"
+        },
+        {
+          "nickname": "DIS",
+          "name": "DIS"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PS",
+          "name": "PS"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_DisCo IO Settings": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "SAVE",
+          "name": "SAVE"
+        },
+        {
+          "nickname": "LOAD",
+          "name": "LOAD"
+        },
+        {
+          "nickname": "NEWG",
+          "name": "NEWG"
+        },
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "IOS",
+          "name": "IOS"
+        }
+      ],
+      "usage_count": 1
     },
     "Box": {
       "guid": "c9482db6-bea9-448d-98ff-fed6d69a8efc",
@@ -148,28 +802,152 @@
       "outputs": [],
       "usage_count": 5
     },
+    "Wasp_DisCo Environment": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "GA",
+          "name": "GA"
+        },
+        {
+          "nickname": "EG",
+          "name": "EG"
+        },
+        {
+          "nickname": "BPG",
+          "name": "BPG"
+        },
+        {
+          "nickname": "GP",
+          "name": "GP"
+        },
+        {
+          "nickname": "FR",
+          "name": "FR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "ENV",
+          "name": "ENV"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Export to DisCo": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "SETUP",
+          "name": "SETUP"
+        },
+        {
+          "nickname": "ENV",
+          "name": "ENV"
+        },
+        {
+          "nickname": "PLAY",
+          "name": "PLAY"
+        },
+        {
+          "nickname": "PATH",
+          "name": "PATH"
+        },
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "SAVE",
+          "name": "SAVE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FILES",
+          "name": "FILES"
+        },
+        {
+          "nickname": "SF",
+          "name": "SF"
+        },
+        {
+          "nickname": "PF",
+          "name": "PF"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Get Valid Smart Attributes": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Wasp_Deconstruct Connection": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "T",
+          "name": "T"
+        }
+      ],
+      "usage_count": 1
+    },
     "Text Tag 3D": {
       "guid": "5a41528b-12b9-40dc-a3f2-842034d267c4",
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "Location"
+          "name": "Location"
         },
         {
           "nickname": "T",
-          "fullName": "Text"
+          "name": "Text"
         },
         {
           "nickname": "S",
-          "fullName": "Size"
+          "name": "Size"
         },
         {
           "nickname": "C",
-          "fullName": "Colour"
+          "name": "Colour"
         },
         {
           "nickname": "J",
-          "fullName": "Justification"
+          "name": "Justification"
         }
       ],
       "outputs": [],
@@ -180,13 +958,13 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 3
@@ -196,25 +974,25 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Vertices"
+          "name": "Vertices"
         },
         {
           "nickname": "F",
-          "fullName": "Faces"
+          "name": "Faces"
         },
         {
           "nickname": "C",
-          "fullName": "Colours"
+          "name": "Colours"
         },
         {
           "nickname": "N",
-          "fullName": "Normals"
+          "name": "Normals"
         }
       ],
       "usage_count": 2
@@ -224,21 +1002,21 @@
       "inputs": [
         {
           "nickname": "V",
-          "fullName": "Vertices"
+          "name": "Vertices"
         },
         {
           "nickname": "F",
-          "fullName": "Faces"
+          "name": "Faces"
         },
         {
           "nickname": "C",
-          "fullName": "Colours"
+          "name": "Colours"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 1
@@ -248,24 +1026,112 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "outputs": [
         {
           "nickname": "E1",
-          "fullName": "Naked Edges"
+          "name": "Naked Edges"
         },
         {
           "nickname": "E2",
-          "fullName": "Interior Edges"
+          "name": "Interior Edges"
         },
         {
           "nickname": "E3",
-          "fullName": "Non-Manifold Edges"
+          "name": "Non-Manifold Edges"
         }
       ],
       "usage_count": 6
+    },
+    "Wasp_Smart Attribute": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        },
+        {
+          "nickname": "TR",
+          "name": "TR"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "CM",
+          "name": "CM"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Wasp_Advanced Part": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "COLL",
+          "name": "COLL"
+        },
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "HI",
+          "name": "HI"
+        },
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        },
+        {
+          "nickname": "E_COLL",
+          "name": "E_COLL"
+        },
+        {
+          "nickname": "SUP",
+          "name": "SUP"
+        },
+        {
+          "nickname": "AEC",
+          "name": "AEC"
+        },
+        {
+          "nickname": "OC",
+          "name": "OC"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "usage_count": 12
     },
     "Value List": {
       "guid": "00027467-0d24-4fa7-b178-8dc0ac5f42ec",
@@ -275,30 +1141,104 @@
     },
     "List Item": {
       "guid": "59daf374-bc21-4a5e-8282-5504fb7ae9ae",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "L",
+          "name": "List"
+        },
+        {
+          "nickname": "i",
+          "name": "Index"
+        },
+        {
+          "nickname": "W",
+          "name": "Wrap"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "i",
+          "name": "Item"
+        },
+        {
+          "nickname": "+1",
+          "name": "Item +1"
+        },
+        {
+          "nickname": "+2",
+          "name": "Item +2"
+        },
+        {
+          "nickname": "+3",
+          "name": "Item +3"
+        },
+        {
+          "nickname": "+4",
+          "name": "Item +4"
+        },
+        {
+          "nickname": "+5",
+          "name": "Item +5"
+        },
+        {
+          "nickname": "+6",
+          "name": "Item +6"
+        },
+        {
+          "nickname": "+7",
+          "name": "Item +7"
+        },
+        {
+          "nickname": "+8",
+          "name": "Item +8"
+        },
+        {
+          "nickname": "+9",
+          "name": "Item +9"
+        }
+      ],
       "usage_count": 16
+    },
+    "Wasp_Support": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "DIR",
+          "name": "DIR"
+        },
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "SUP",
+          "name": "SUP"
+        }
+      ],
+      "usage_count": 5
     },
     "Random": {
       "guid": "2ab17f9a-d852-4405-80e1-938c5e57e78d",
       "inputs": [
         {
           "nickname": "R",
-          "fullName": "Range"
+          "name": "Range"
         },
         {
           "nickname": "N",
-          "fullName": "Number"
+          "name": "Number"
         },
         {
           "nickname": "S",
-          "fullName": "Seed"
+          "name": "Seed"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Random"
+          "name": "Random"
         }
       ],
       "usage_count": 8
@@ -308,33 +1248,51 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "J",
-          "fullName": "Jitter"
+          "name": "Jitter"
         },
         {
           "nickname": "S",
-          "fullName": "Seed"
+          "name": "Seed"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Values"
+          "name": "Values"
         },
         {
           "nickname": "I",
-          "fullName": "Indices"
+          "name": "Indices"
         }
       ],
       "usage_count": 1
     },
     "Multiplication": {
       "guid": "ce46b74e-00c9-43c4-805a-193b69ea4a11",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "A",
+          "name": "A"
+        },
+        {
+          "nickname": "B",
+          "name": "B"
+        },
+        {
+          "nickname": "C",
+          "name": "C"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
       "usage_count": 8
     },
     "Vector XYZ": {
@@ -342,25 +1300,25 @@
       "inputs": [
         {
           "nickname": "X",
-          "fullName": "X component"
+          "name": "X component"
         },
         {
           "nickname": "Y",
-          "fullName": "Y component"
+          "name": "Y component"
         },
         {
           "nickname": "Z",
-          "fullName": "Z component"
+          "name": "Z component"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Vector"
+          "name": "Vector"
         },
         {
           "nickname": "L",
-          "fullName": "Length"
+          "name": "Length"
         }
       ],
       "usage_count": 1
@@ -370,13 +1328,13 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "Length"
+          "name": "Length"
         }
       ],
       "usage_count": 15
@@ -386,21 +1344,21 @@
       "inputs": [
         {
           "nickname": "L0",
-          "fullName": "Lower limit"
+          "name": "Lower limit"
         },
         {
           "nickname": "L1",
-          "fullName": "Upper limit"
+          "name": "Upper limit"
         },
         {
           "nickname": "t",
-          "fullName": "Parameter"
+          "name": "Parameter"
         }
       ],
       "outputs": [
         {
           "nickname": "C",
-          "fullName": "Colour"
+          "name": "Colour"
         }
       ],
       "usage_count": 19
@@ -410,13 +1368,13 @@
       "inputs": [
         {
           "nickname": "F",
-          "fullName": "Factor"
+          "name": "Factor"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Unit vector"
+          "name": "Unit vector"
         }
       ],
       "usage_count": 11
@@ -426,45 +1384,69 @@
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Start"
+          "name": "Start"
         },
         {
           "nickname": "N",
-          "fullName": "Step"
+          "name": "Step"
         },
         {
           "nickname": "C",
-          "fullName": "Count"
+          "name": "Count"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Series"
+          "name": "Series"
         }
       ],
       "usage_count": 5
+    },
+    "Wasp_Adjacency Exclusion Constraint": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "DIR",
+          "name": "DIR"
+        },
+        {
+          "nickname": "PN",
+          "name": "PN"
+        },
+        {
+          "nickname": "AE",
+          "name": "AE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AEC",
+          "name": "AEC"
+        }
+      ],
+      "usage_count": 3
     },
     "Iso Curve": {
       "guid": "d1d57181-d594-41e8-8efb-041e29f8a5ca",
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Surface"
+          "name": "Surface"
         },
         {
           "nickname": "uv",
-          "fullName": "UV point"
+          "name": "UV point"
         }
       ],
       "outputs": [
         {
           "nickname": "U",
-          "fullName": "U Isocurve"
+          "name": "U Isocurve"
         },
         {
           "nickname": "V",
-          "fullName": "V Isocurve"
+          "name": "V Isocurve"
         }
       ],
       "usage_count": 6
@@ -474,17 +1456,17 @@
       "inputs": [
         {
           "nickname": "D",
-          "fullName": "Domain"
+          "name": "Domain"
         },
         {
           "nickname": "N",
-          "fullName": "Steps"
+          "name": "Steps"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Range"
+          "name": "Range"
         }
       ],
       "usage_count": 8
@@ -494,37 +1476,69 @@
       "inputs": [
         {
           "nickname": "X",
-          "fullName": "X coordinate"
+          "name": "X coordinate"
         },
         {
           "nickname": "Y",
-          "fullName": "Y coordinate"
+          "name": "Y coordinate"
         },
         {
           "nickname": "Z",
-          "fullName": "Z coordinate"
+          "name": "Z coordinate"
         }
       ],
       "outputs": [
         {
           "nickname": "Pt",
-          "fullName": "Point"
+          "name": "Point"
         }
       ],
       "usage_count": 9
+    },
+    "Wasp_Plane Constraint": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "POS",
+          "name": "POS"
+        },
+        {
+          "nickname": "SOFT",
+          "name": "SOFT"
+        },
+        {
+          "nickname": "REQ",
+          "name": "REQ"
+        },
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PC",
+          "name": "PC"
+        }
+      ],
+      "usage_count": 4
     },
     "XY Plane": {
       "guid": "17b7152b-d30d-4d50-b9ef-c9fe25576fc2",
       "inputs": [
         {
           "nickname": "O",
-          "fullName": "Origin"
+          "name": "Origin"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 9
@@ -534,13 +1548,13 @@
       "inputs": [
         {
           "nickname": "O",
-          "fullName": "Origin"
+          "name": "Origin"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 3
@@ -550,13 +1564,13 @@
       "inputs": [
         {
           "nickname": "x",
-          "fullName": "Value"
+          "name": "Value"
         }
       ],
       "outputs": [
         {
           "nickname": "y",
-          "fullName": "Result"
+          "name": "Result"
         }
       ],
       "usage_count": 2
@@ -566,21 +1580,21 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "X",
-          "fullName": "X Size"
+          "name": "X Size"
         },
         {
           "nickname": "Y",
-          "fullName": "Y Size"
+          "name": "Y Size"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 4
@@ -590,13 +1604,13 @@
       "inputs": [
         {
           "nickname": "O",
-          "fullName": "Origin"
+          "name": "Origin"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 1
@@ -606,17 +1620,17 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "Domain start"
+          "name": "Domain start"
         },
         {
           "nickname": "B",
-          "fullName": "Domain end"
+          "name": "Domain end"
         }
       ],
       "outputs": [
         {
           "nickname": "I",
-          "fullName": "Domain"
+          "name": "Domain"
         }
       ],
       "usage_count": 4
@@ -626,21 +1640,21 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         }
       ],
       "outputs": [
         {
           "nickname": "F",
-          "fullName": "Faces"
+          "name": "Faces"
         },
         {
           "nickname": "E",
-          "fullName": "Edges"
+          "name": "Edges"
         },
         {
           "nickname": "V",
-          "fullName": "Vertices"
+          "name": "Vertices"
         }
       ],
       "usage_count": 6
@@ -650,17 +1664,17 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         }
       ],
       "outputs": [
         {
           "nickname": "A",
-          "fullName": "Area"
+          "name": "Area"
         },
         {
           "nickname": "C",
-          "fullName": "Centroid"
+          "name": "Centroid"
         }
       ],
       "usage_count": 11
@@ -670,21 +1684,21 @@
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Start"
+          "name": "Start"
         },
         {
           "nickname": "D",
-          "fullName": "Direction"
+          "name": "Direction"
         },
         {
           "nickname": "L",
-          "fullName": "Length"
+          "name": "Length"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "Line"
+          "name": "Line"
         }
       ],
       "usage_count": 8
@@ -694,17 +1708,17 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "Start Point"
+          "name": "Start Point"
         },
         {
           "nickname": "B",
-          "fullName": "End Point"
+          "name": "End Point"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "Line"
+          "name": "Line"
         }
       ],
       "usage_count": 1
@@ -714,37 +1728,141 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "D",
-          "fullName": "Direction"
+          "name": "Direction"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "A",
-          "fullName": "Angle"
+          "name": "Angle"
         }
       ],
       "usage_count": 1
+    },
+    "Wasp_Connection From Plane": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "T",
+          "name": "T"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "PLN_OUT",
+          "name": "PLN_OUT"
+        }
+      ],
+      "usage_count": 4
+    },
+    "Wasp_Orientation Constraint": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "DIR",
+          "name": "DIR"
+        },
+        {
+          "nickname": "R",
+          "name": "R"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "OC",
+          "name": "OC"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Deconstruct Part": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "CENTER",
+          "name": "CENTER"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "COLL",
+          "name": "COLL"
+        },
+        {
+          "nickname": "TR",
+          "name": "TR"
+        },
+        {
+          "nickname": "PARENT",
+          "name": "PARENT"
+        },
+        {
+          "nickname": "CHILD",
+          "name": "CHILD"
+        },
+        {
+          "nickname": "ADD_COLL",
+          "name": "ADD_COLL"
+        },
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        }
+      ],
+      "usage_count": 4
     },
     "Mesh Join": {
       "guid": "4bc9dbbf-fec8-4348-a3af-e33e7edc8e7b",
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Meshes"
+          "name": "Meshes"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 2
@@ -754,49 +1872,125 @@
       "inputs": [
         {
           "nickname": "F",
-          "fullName": "Factor"
+          "name": "Factor"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Unit vector"
+          "name": "Unit vector"
         }
       ],
       "usage_count": 11
     },
     "Clean Tree": {
       "guid": "071c3940-a12d-4b77-bb23-42b5d3314a0d",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "N",
+          "name": "Remove Nulls"
+        },
+        {
+          "nickname": "X",
+          "name": "Remove Invalid"
+        },
+        {
+          "nickname": "E",
+          "name": "Remove Empty"
+        },
+        {
+          "nickname": "T",
+          "name": "Tree"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "T",
+          "name": "Tree"
+        }
+      ],
       "usage_count": 2
     },
     "Entwine": {
       "guid": "c9785b8e-2f30-4f90-8ee3-cca710f82402",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "{0;0}",
+          "name": "Branch {0;0}"
+        },
+        {
+          "nickname": "{0;1}",
+          "name": "Branch {0;1}"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
       "usage_count": 3
+    },
+    "Wasp_Rule From Text": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "TXT",
+          "name": "TXT"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "R"
+        }
+      ],
+      "usage_count": 15
+    },
+    "Wasp_Deconstruct Collider": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "COLL",
+          "name": "COLL"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        },
+        {
+          "nickname": "VC",
+          "name": "VC"
+        }
+      ],
+      "usage_count": 1
     },
     "Split List": {
       "guid": "9ab93e1a-ebdf-4090-9296-b000cff7b202",
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "i",
-          "fullName": "Index"
+          "name": "Index"
         }
       ],
       "outputs": [
         {
           "nickname": "A",
-          "fullName": "List A"
+          "name": "List A"
         },
         {
           "nickname": "B",
-          "fullName": "List B"
+          "name": "List B"
         }
       ],
       "usage_count": 4
@@ -807,37 +2001,181 @@
       "outputs": [],
       "usage_count": 6
     },
+    "Wasp_Collider": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "GEO",
+          "name": "GEO"
+        },
+        {
+          "nickname": "MUL",
+          "name": "MUL"
+        },
+        {
+          "nickname": "ALL",
+          "name": "ALL"
+        },
+        {
+          "nickname": "CONN",
+          "name": "CONN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "COLL",
+          "name": "COLL"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Aggregation Graph": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "FG",
+          "name": "FG"
+        },
+        {
+          "nickname": "TOL",
+          "name": "TOL"
+        },
+        {
+          "nickname": "FR",
+          "name": "FR"
+        },
+        {
+          "nickname": "CR",
+          "name": "CR"
+        },
+        {
+          "nickname": "F",
+          "name": "F"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "G",
+          "name": "G"
+        },
+        {
+          "nickname": "N",
+          "name": "N"
+        },
+        {
+          "nickname": "E",
+          "name": "E"
+        },
+        {
+          "nickname": "ES_ID",
+          "name": "ES_ID"
+        },
+        {
+          "nickname": "EE_ID",
+          "name": "EE_ID"
+        },
+        {
+          "nickname": "CS_ID",
+          "name": "CS_ID"
+        },
+        {
+          "nickname": "CE_ID",
+          "name": "CE_ID"
+        }
+      ],
+      "usage_count": 1
+    },
     "Point List": {
       "guid": "cc14daa5-911a-4fcc-8b3b-1149bf7f2eeb",
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Points"
+          "name": "Points"
         },
         {
           "nickname": "S",
-          "fullName": "Size"
+          "name": "Size"
         }
       ],
       "outputs": [],
       "usage_count": 19
+    },
+    "Wasp_Load Aggregation from File": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        },
+        {
+          "nickname": "RENUM",
+          "name": "RENUM"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Save Aggregation to File": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PATH",
+          "name": "PATH"
+        },
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "SAVE",
+          "name": "SAVE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "TXT",
+          "name": "TXT"
+        },
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        }
+      ],
+      "usage_count": 1
     },
     "Mesh Brep": {
       "guid": "60e7defa-8b21-4ee1-99aa-a9223d6134ff",
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         },
         {
           "nickname": "S",
-          "fullName": "Settings"
+          "name": "Settings"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 9
@@ -847,49 +2185,77 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "A",
-          "fullName": "Angle"
+          "name": "Angle"
         },
         {
           "nickname": "C",
-          "fullName": "Center"
+          "name": "Center"
         },
         {
           "nickname": "X",
-          "fullName": "Axis"
+          "name": "Axis"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "X",
-          "fullName": "Transform"
+          "name": "Transform"
         }
       ],
       "usage_count": 2
+    },
+    "Wasp_Parts Catalog": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "NUM",
+          "name": "NUM"
+        },
+        {
+          "nickname": "LIM",
+          "name": "LIM"
+        },
+        {
+          "nickname": "AD",
+          "name": "AD"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "CAT",
+          "name": "CAT"
+        }
+      ],
+      "usage_count": 1
     },
     "Transform": {
       "guid": "610e689b-5adc-47b3-af8f-e3a32b7ea341",
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "T",
-          "fullName": "Transform"
+          "name": "Transform"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         }
       ],
       "usage_count": 2
@@ -899,21 +2265,21 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh/Curves"
+          "name": "Mesh/Curves"
         },
         {
           "nickname": "L",
-          "fullName": "Level"
+          "name": "Level"
         },
         {
           "nickname": "S",
-          "fullName": "Smooth Naked Edges"
+          "name": "Smooth Naked Edges"
         }
       ],
       "outputs": [
         {
           "nickname": "O",
-          "fullName": "Output Mesh/Curves"
+          "name": "Output Mesh/Curves"
         }
       ],
       "usage_count": 2
@@ -923,17 +2289,17 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "P",
-          "fullName": "Cull Pattern"
+          "name": "Cull Pattern"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         }
       ],
       "usage_count": 11
@@ -949,21 +2315,21 @@
       "inputs": [
         {
           "nickname": "O",
-          "fullName": "Origin"
+          "name": "Origin"
         },
         {
           "nickname": "X",
-          "fullName": "X-Axis"
+          "name": "X-Axis"
         },
         {
           "nickname": "Y",
-          "fullName": "Y-Axis"
+          "name": "Y-Axis"
         }
       ],
       "outputs": [
         {
           "nickname": "Pl",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 2
@@ -973,61 +2339,117 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "outputs": [
         {
           "nickname": "O",
-          "fullName": "Origin"
+          "name": "Origin"
         },
         {
           "nickname": "X",
-          "fullName": "X-Axis"
+          "name": "X-Axis"
         },
         {
           "nickname": "Y",
-          "fullName": "Y-Axis"
+          "name": "Y-Axis"
         },
         {
           "nickname": "Z",
-          "fullName": "Z-Axis"
+          "name": "Z-Axis"
         }
       ],
       "usage_count": 1
+    },
+    "Wasp_Rule": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "P1",
+          "name": "P1"
+        },
+        {
+          "nickname": "C1",
+          "name": "C1"
+        },
+        {
+          "nickname": "P2",
+          "name": "P2"
+        },
+        {
+          "nickname": "C2",
+          "name": "C2"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "R"
+        }
+      ],
+      "usage_count": 3
+    },
+    "Wasp_Rules from Aggregation": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "ON",
+          "name": "ON"
+        },
+        {
+          "nickname": "NN",
+          "name": "NN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "GR",
+          "name": "GR"
+        },
+        {
+          "nickname": "PREV",
+          "name": "PREV"
+        }
+      ],
+      "usage_count": 2
     },
     "Scale NU": {
       "guid": "290f418a-65ee-406a-a9d0-35699815b512",
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "X",
-          "fullName": "Scale X"
+          "name": "Scale X"
         },
         {
           "nickname": "Y",
-          "fullName": "Scale Y"
+          "name": "Scale Y"
         },
         {
           "nickname": "Z",
-          "fullName": "Scale Z"
+          "name": "Scale Z"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "X",
-          "fullName": "Transform"
+          "name": "Transform"
         }
       ],
       "usage_count": 7
@@ -1037,17 +2459,17 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         }
       ],
       "outputs": [
         {
           "nickname": "V",
-          "fullName": "Volume"
+          "name": "Volume"
         },
         {
           "nickname": "C",
-          "fullName": "Centroid"
+          "name": "Centroid"
         }
       ],
       "usage_count": 7
@@ -1057,25 +2479,25 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "A",
-          "fullName": "Angle"
+          "name": "Angle"
         },
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "X",
-          "fullName": "Transform"
+          "name": "Transform"
         }
       ],
       "usage_count": 4
@@ -1085,17 +2507,17 @@
       "inputs": [
         {
           "nickname": "D",
-          "fullName": "Data"
+          "name": "Data"
         },
         {
           "nickname": "L",
-          "fullName": "Length"
+          "name": "Length"
         }
       ],
       "outputs": [
         {
           "nickname": "D",
-          "fullName": "Data"
+          "name": "Data"
         }
       ],
       "usage_count": 5
@@ -1105,25 +2527,73 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "D",
-          "fullName": "Domain"
+          "name": "Domain"
         },
         {
           "nickname": "W",
-          "fullName": "Wrap"
+          "name": "Wrap"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "I",
-          "fullName": "Index"
+          "name": "Index"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Rules Visualizer": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "R",
+          "name": "R"
+        },
+        {
+          "nickname": "SF",
+          "name": "SF"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "SI",
+          "name": "SI"
+        },
+        {
+          "nickname": "ST",
+          "name": "ST"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "BP",
+          "name": "BP"
+        },
+        {
+          "nickname": "NP",
+          "name": "NP"
+        },
+        {
+          "nickname": "RTL",
+          "name": "RTL"
+        },
+        {
+          "nickname": "RT",
+          "name": "RT"
         }
       ],
       "usage_count": 1
@@ -1133,17 +2603,17 @@
       "inputs": [
         {
           "nickname": "T",
-          "fullName": "Tree"
+          "name": "Tree"
         },
         {
           "nickname": "D",
-          "fullName": "Depth"
+          "name": "Depth"
         }
       ],
       "outputs": [
         {
           "nickname": "T",
-          "fullName": "Tree"
+          "name": "Tree"
         }
       ],
       "usage_count": 1
@@ -1153,49 +2623,89 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "X",
-          "fullName": "X Size"
+          "name": "X Size"
         },
         {
           "nickname": "Y",
-          "fullName": "Y Size"
+          "name": "Y Size"
         },
         {
           "nickname": "R",
-          "fullName": "Radius"
+          "name": "Radius"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Rectangle"
+          "name": "Rectangle"
         },
         {
           "nickname": "L",
-          "fullName": "Length"
+          "name": "Length"
         }
       ],
       "usage_count": 1
+    },
+    "Wasp_Assemble Part Hierarchy": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "TR",
+          "name": "TR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "HIE",
+          "name": "HIE"
+        }
+      ],
+      "usage_count": 3
     },
     "End Points": {
       "guid": "11bbd48b-bb0a-4f1b-8167-fa297590390d",
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Start"
+          "name": "Start"
         },
         {
           "nickname": "E",
-          "fullName": "End"
+          "name": "End"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Wasp_Deconstruct Attribute": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "ATTR",
+          "name": "ATTR"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "VAL",
+          "name": "VAL"
         }
       ],
       "usage_count": 2
@@ -1205,13 +2715,13 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Breps"
+          "name": "Breps"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Result"
+          "name": "Result"
         }
       ],
       "usage_count": 2
@@ -1221,29 +2731,63 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         }
       ],
       "outputs": [
         {
           "nickname": "B",
-          "fullName": "Breps"
+          "name": "Breps"
         },
         {
           "nickname": "N0",
-          "fullName": "Before"
+          "name": "Before"
         },
         {
           "nickname": "N1",
-          "fullName": "After"
+          "name": "After"
+        }
+      ],
+      "usage_count": 2
+    },
+    "Wasp_Get Parts Hierarchy": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "LEVEL",
+          "name": "LEVEL"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "SUB_P",
+          "name": "SUB_P"
         }
       ],
       "usage_count": 2
     },
     "Addition": {
       "guid": "a0d62394-a118-422d-abb3-6af115c75b25",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "A",
+          "name": "A"
+        },
+        {
+          "nickname": "B",
+          "name": "B"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
       "usage_count": 2
     },
     "Mesh Union": {
@@ -1251,21 +2795,39 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Meshes"
+          "name": "Meshes"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Result"
+          "name": "Result"
         }
       ],
       "usage_count": 2
     },
     "Cross Reference": {
       "guid": "36947590-f0cb-4807-a8f9-9c90c9b20621",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "A",
+          "name": "List (A)"
+        },
+        {
+          "nickname": "B",
+          "name": "List (B)"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "name": "List (A)"
+        },
+        {
+          "nickname": "B",
+          "name": "List (B)"
+        }
+      ],
       "usage_count": 1
     },
     "Compound": {
@@ -1273,13 +2835,13 @@
       "inputs": [
         {
           "nickname": "T",
-          "fullName": "Transforms"
+          "name": "Transforms"
         }
       ],
       "outputs": [
         {
           "nickname": "X",
-          "fullName": "Compound"
+          "name": "Compound"
         }
       ],
       "usage_count": 1
@@ -1289,21 +2851,21 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         }
       ],
       "outputs": [
         {
           "nickname": "En",
-          "fullName": "Naked"
+          "name": "Naked"
         },
         {
           "nickname": "Ei",
-          "fullName": "Interior"
+          "name": "Interior"
         },
         {
           "nickname": "Em",
-          "fullName": "Non-Manifold"
+          "name": "Non-Manifold"
         }
       ],
       "usage_count": 1
@@ -1313,41 +2875,129 @@
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         },
         {
           "nickname": "Pt",
-          "fullName": "Pattern"
+          "name": "Pattern"
         }
       ],
       "outputs": [
         {
           "nickname": "D",
-          "fullName": "Dashes"
+          "name": "Dashes"
         },
         {
           "nickname": "G",
-          "fullName": "Gaps"
+          "name": "Gaps"
         }
       ],
       "usage_count": 1
+    },
+    "Wasp_Field Points": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "BOU",
+          "name": "BOU"
+        },
+        {
+          "nickname": "RES",
+          "name": "RES"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "E_FIELD",
+          "name": "E_FIELD"
+        },
+        {
+          "nickname": "PTS",
+          "name": "PTS"
+        }
+      ],
+      "usage_count": 13
+    },
+    "Wasp_Field-driven Aggregation": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "PART",
+          "name": "PART"
+        },
+        {
+          "nickname": "PREV",
+          "name": "PREV"
+        },
+        {
+          "nickname": "N",
+          "name": "N"
+        },
+        {
+          "nickname": "RULES",
+          "name": "RULES"
+        },
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "CAT",
+          "name": "CAT"
+        },
+        {
+          "nickname": "MODE",
+          "name": "MODE"
+        },
+        {
+          "nickname": "GC",
+          "name": "GC"
+        },
+        {
+          "nickname": "ID",
+          "name": "ID"
+        },
+        {
+          "nickname": "RESET",
+          "name": "RESET"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "AGGR",
+          "name": "AGGR"
+        },
+        {
+          "nickname": "PART_OUT",
+          "name": "PART_OUT"
+        }
+      ],
+      "usage_count": 13
     },
     "Bounding Box": {
       "guid": "0bb3d234-9097-45db-9998-621639c87d3b",
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Content"
+          "name": "Content"
         },
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "outputs": [
         {
           "nickname": "B",
-          "fullName": "Box"
+          "name": "Box"
+        },
+        {
+          "nickname": "B",
+          "name": "Box"
         }
       ],
       "usage_count": 8
@@ -1357,21 +3007,21 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Closest Point"
+          "name": "Closest Point"
         },
         {
           "nickname": "D",
-          "fullName": "Distance"
+          "name": "Distance"
         }
       ],
       "usage_count": 8
@@ -1381,25 +3031,25 @@
       "inputs": [
         {
           "nickname": "V",
-          "fullName": "Value"
+          "name": "Value"
         },
         {
           "nickname": "S",
-          "fullName": "Source"
+          "name": "Source"
         },
         {
           "nickname": "T",
-          "fullName": "Target"
+          "name": "Target"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Mapped"
+          "name": "Mapped"
         },
         {
           "nickname": "C",
-          "fullName": "Clipped"
+          "name": "Clipped"
         }
       ],
       "usage_count": 15
@@ -1409,13 +3059,13 @@
       "inputs": [
         {
           "nickname": "N",
-          "fullName": "Numbers"
+          "name": "Numbers"
         }
       ],
       "outputs": [
         {
           "nickname": "I",
-          "fullName": "Domain"
+          "name": "Domain"
         }
       ],
       "usage_count": 14
@@ -1425,6 +3075,74 @@
       "inputs": [],
       "outputs": [],
       "usage_count": 14
+    },
+    "Wasp_Field": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "E_FIELD",
+          "name": "E_FIELD"
+        },
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        }
+      ],
+      "usage_count": 14
+    },
+    "Wasp_Deconstruct Field": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "PTS",
+          "name": "PTS"
+        },
+        {
+          "nickname": "COUNT",
+          "name": "COUNT"
+        },
+        {
+          "nickname": "RES",
+          "name": "RES"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "VAL",
+          "name": "VAL"
+        },
+        {
+          "nickname": "BOU",
+          "name": "BOU"
+        },
+        {
+          "nickname": "BB",
+          "name": "BB"
+        }
+      ],
+      "usage_count": 8
     },
     "Plane": {
       "guid": "4f8984c4-7c7a-4d69-b0a2-183cbb330d20",
@@ -1437,37 +3155,57 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "A",
-          "fullName": "Angle"
+          "name": "Angle"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "usage_count": 2
+    },
+    "Wasp_Orient Field": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "F_TR",
+          "name": "F_TR"
+        }
+      ],
+      "usage_count": 1
     },
     "Isotrim": {
       "guid": "6a9ccaab-1b03-484e-bbda-be9c81584a66",
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Surface"
+          "name": "Surface"
         },
         {
           "nickname": "D",
-          "fullName": "Domain"
+          "name": "Domain"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Surface"
+          "name": "Surface"
         }
       ],
       "usage_count": 1
@@ -1477,21 +3215,21 @@
       "inputs": [
         {
           "nickname": "I",
-          "fullName": "Domain"
+          "name": "Domain"
         },
         {
           "nickname": "U",
-          "fullName": "U Count"
+          "name": "U Count"
         },
         {
           "nickname": "V",
-          "fullName": "V Count"
+          "name": "V Count"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Segments"
+          "name": "Segments"
         }
       ],
       "usage_count": 1
@@ -1501,21 +3239,21 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         },
         {
           "nickname": "t",
-          "fullName": "tolerance"
+          "name": "tolerance"
         }
       ],
       "outputs": [
         {
           "nickname": "out",
-          "fullName": "RuntimeMessage"
+          "name": "RuntimeMessage"
         },
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 1
@@ -1525,21 +3263,21 @@
       "inputs": [
         {
           "nickname": "Mesh",
-          "fullName": "Mesh"
+          "name": "Mesh"
         },
         {
           "nickname": "LengthFactor",
-          "fullName": "LengthFactor"
+          "name": "LengthFactor"
         },
         {
           "nickname": "Strength",
-          "fullName": "Strength"
+          "name": "Strength"
         }
       ],
       "outputs": [
         {
           "nickname": "EL",
-          "fullName": "EL"
+          "name": "EL"
         }
       ],
       "usage_count": 1
@@ -1549,21 +3287,21 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "FV",
-          "fullName": "Force vector"
+          "name": "Force vector"
         },
         {
           "nickname": "W",
-          "fullName": "Weighting"
+          "name": "Weighting"
         }
       ],
       "outputs": [
         {
           "nickname": "U",
-          "fullName": "Unary"
+          "name": "Unary"
         }
       ],
       "usage_count": 1
@@ -1573,21 +3311,21 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "T",
-          "fullName": "Target"
+          "name": "Target"
         },
         {
           "nickname": "Strength",
-          "fullName": "Strength"
+          "name": "Strength"
         }
       ],
       "outputs": [
         {
           "nickname": "A",
-          "fullName": "A"
+          "name": "A"
         }
       ],
       "usage_count": 1
@@ -1597,33 +3335,33 @@
       "inputs": [
         {
           "nickname": "GoalObjects",
-          "fullName": "GoalObjects"
+          "name": "GoalObjects"
         },
         {
           "nickname": "Threshold",
-          "fullName": "Threshold"
+          "name": "Threshold"
         },
         {
           "nickname": "Tolerance",
-          "fullName": "Tolerance"
+          "name": "Tolerance"
         },
         {
           "nickname": "MaxIterations",
-          "fullName": "MaxIterations"
+          "name": "MaxIterations"
         }
       ],
       "outputs": [
         {
           "nickname": "I",
-          "fullName": "I"
+          "name": "I"
         },
         {
           "nickname": "V",
-          "fullName": "V"
+          "name": "V"
         },
         {
           "nickname": "O",
-          "fullName": "O"
+          "name": "O"
         }
       ],
       "usage_count": 1
@@ -1633,13 +3371,13 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "G"
+          "name": "G"
         }
       ],
       "outputs": [
         {
           "nickname": "G",
-          "fullName": "G"
+          "name": "G"
         }
       ],
       "usage_count": 1
@@ -1649,17 +3387,17 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "Point A"
+          "name": "Point A"
         },
         {
           "nickname": "B",
-          "fullName": "Point B"
+          "name": "Point B"
         }
       ],
       "outputs": [
         {
           "nickname": "D",
-          "fullName": "Distance"
+          "name": "Distance"
         }
       ],
       "usage_count": 1
@@ -1669,21 +3407,21 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "First Number"
+          "name": "First Number"
         },
         {
           "nickname": "B",
-          "fullName": "Second Number"
+          "name": "Second Number"
         }
       ],
       "outputs": [
         {
           "nickname": ">",
-          "fullName": "Larger than"
+          "name": "Larger than"
         },
         {
           "nickname": ">=",
-          "fullName": "… or Equal to"
+          "name": "… or Equal to"
         }
       ],
       "usage_count": 5
@@ -1693,17 +3431,17 @@
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Curves"
+          "name": "Curves"
         },
         {
           "nickname": "P",
-          "fullName": "Preserve"
+          "name": "Preserve"
         }
       ],
       "outputs": [
         {
           "nickname": "C",
-          "fullName": "Curves"
+          "name": "Curves"
         }
       ],
       "usage_count": 1
@@ -1713,21 +3451,21 @@
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         },
         {
           "nickname": "R",
-          "fullName": "Recursive"
+          "name": "Recursive"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Segments"
+          "name": "Segments"
         },
         {
           "nickname": "V",
-          "fullName": "Vertices"
+          "name": "Vertices"
         }
       ],
       "usage_count": 1
@@ -1737,29 +3475,47 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "List"
+          "name": "List"
         },
         {
           "nickname": "P",
-          "fullName": "Dispatch pattern"
+          "name": "Dispatch pattern"
         }
       ],
       "outputs": [
         {
           "nickname": "A",
-          "fullName": "List A"
+          "name": "List A"
         },
         {
           "nickname": "B",
-          "fullName": "List B"
+          "name": "List B"
         }
       ],
       "usage_count": 2
     },
     "Weave": {
       "guid": "50faccbd-9c92-4175-a5fa-d65e36013db6",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "P",
+          "name": "Pattern"
+        },
+        {
+          "nickname": "0",
+          "name": "Stream 0"
+        },
+        {
+          "nickname": "1",
+          "name": "Stream 1"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "W",
+          "name": "Weave"
+        }
+      ],
       "usage_count": 2
     },
     "Contour": {
@@ -1767,25 +3523,25 @@
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Shape"
+          "name": "Shape"
         },
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "N",
-          "fullName": "Direction"
+          "name": "Direction"
         },
         {
           "nickname": "D",
-          "fullName": "Distance"
+          "name": "Distance"
         }
       ],
       "outputs": [
         {
           "nickname": "C",
-          "fullName": "Contours"
+          "name": "Contours"
         }
       ],
       "usage_count": 2
@@ -1795,21 +3551,21 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         }
       ],
       "outputs": [
         {
           "nickname": "X",
-          "fullName": "X component"
+          "name": "X component"
         },
         {
           "nickname": "Y",
-          "fullName": "Y component"
+          "name": "Y component"
         },
         {
           "nickname": "Z",
-          "fullName": "Z component"
+          "name": "Z component"
         }
       ],
       "usage_count": 6
@@ -1819,57 +3575,127 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "First Number"
+          "name": "First Number"
         },
         {
           "nickname": "B",
-          "fullName": "Second Number"
+          "name": "Second Number"
         }
       ],
       "outputs": [
         {
           "nickname": "<",
-          "fullName": "Smaller than"
+          "name": "Smaller than"
         },
         {
           "nickname": "<=",
-          "fullName": "… or Equal to"
+          "name": "… or Equal to"
         }
       ],
       "usage_count": 2
+    },
+    "Wasp_Field Isolines": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "PLN",
+          "name": "PLN"
+        },
+        {
+          "nickname": "T",
+          "name": "T"
+        },
+        {
+          "nickname": "ISO",
+          "name": "ISO"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "CRV",
+          "name": "CRV"
+        }
+      ],
+      "usage_count": 5
     },
     "Domain Box": {
       "guid": "79aa7f47-397c-4d3f-9761-aaf421bb7f5f",
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Base"
+          "name": "Base"
         },
         {
           "nickname": "X",
-          "fullName": "X"
+          "name": "X"
         },
         {
           "nickname": "Y",
-          "fullName": "Y"
+          "name": "Y"
         },
         {
           "nickname": "Z",
-          "fullName": "Z"
+          "name": "Z"
         }
       ],
       "outputs": [
         {
           "nickname": "B",
-          "fullName": "Box"
+          "name": "Box"
         }
       ],
       "usage_count": 1
     },
     "Expression": {
       "guid": "9df5e896-552d-4c8c-b9ca-4fc147ffa022",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "x",
+          "name": "Variable x"
+        },
+        {
+          "nickname": "y",
+          "name": "Variable y"
+        },
+        {
+          "nickname": "z",
+          "name": "Variable z"
+        },
+        {
+          "nickname": "scale",
+          "name": "Variable scale"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Field Iso Voxels": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "ISO",
+          "name": "ISO"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "VM",
+          "name": "VM"
+        }
+      ],
       "usage_count": 1
     },
     "Brep Wireframe": {
@@ -1877,17 +3703,17 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         },
         {
           "nickname": "D",
-          "fullName": "Density"
+          "name": "Density"
         }
       ],
       "outputs": [
         {
           "nickname": "W",
-          "fullName": "Wireframe"
+          "name": "Wireframe"
         }
       ],
       "usage_count": 3
@@ -1897,25 +3723,25 @@
       "inputs": [
         {
           "nickname": "R",
-          "fullName": "Region"
+          "name": "Region"
         },
         {
           "nickname": "N",
-          "fullName": "Count"
+          "name": "Count"
         },
         {
           "nickname": "S",
-          "fullName": "Seed"
+          "name": "Seed"
         },
         {
           "nickname": "P",
-          "fullName": "Points"
+          "name": "Points"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Population"
+          "name": "Population"
         }
       ],
       "usage_count": 2
@@ -1925,25 +3751,25 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "t",
-          "fullName": "Parameter"
+          "name": "Parameter"
         },
         {
           "nickname": "D",
-          "fullName": "Distance"
+          "name": "Distance"
         }
       ],
       "usage_count": 2
@@ -1953,21 +3779,21 @@
       "inputs": [
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         },
         {
           "nickname": "B",
-          "fullName": "Brep"
+          "name": "Brep"
         },
         {
           "nickname": "D",
-          "fullName": "Direction"
+          "name": "Direction"
         }
       ],
       "outputs": [
         {
           "nickname": "C",
-          "fullName": "Curve"
+          "name": "Curve"
         }
       ],
       "usage_count": 1
@@ -1977,33 +3803,33 @@
       "inputs": [
         {
           "nickname": "S",
-          "fullName": "Surface"
+          "name": "Surface"
         },
         {
           "nickname": "uv",
-          "fullName": "Point"
+          "name": "Point"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "N",
-          "fullName": "Normal"
+          "name": "Normal"
         },
         {
           "nickname": "U",
-          "fullName": "U direction"
+          "name": "U direction"
         },
         {
           "nickname": "V",
-          "fullName": "V direction"
+          "name": "V direction"
         },
         {
           "nickname": "F",
-          "fullName": "Frame"
+          "name": "Frame"
         }
       ],
       "usage_count": 1
@@ -2013,25 +3839,25 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "S",
-          "fullName": "Surface"
+          "name": "Surface"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Point"
+          "name": "Point"
         },
         {
           "nickname": "uvP",
-          "fullName": "UV Point"
+          "name": "UV Point"
         },
         {
           "nickname": "D",
-          "fullName": "Distance"
+          "name": "Distance"
         }
       ],
       "usage_count": 2
@@ -2041,25 +3867,25 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "Vector A"
+          "name": "Vector A"
         },
         {
           "nickname": "B",
-          "fullName": "Vector B"
+          "name": "Vector B"
         },
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         }
       ],
       "outputs": [
         {
           "nickname": "A",
-          "fullName": "Angle"
+          "name": "Angle"
         },
         {
           "nickname": "R",
-          "fullName": "Reflex"
+          "name": "Reflex"
         }
       ],
       "usage_count": 1
@@ -2069,22 +3895,70 @@
       "inputs": [
         {
           "nickname": "G",
-          "fullName": "Geometry"
+          "name": "Geometry"
         },
         {
           "nickname": "S",
-          "fullName": "Shader"
+          "name": "Shader"
         },
         {
           "nickname": "T",
-          "fullName": "Thickness"
+          "name": "Thickness"
         },
         {
           "nickname": "A",
-          "fullName": "Absolute"
+          "name": "Absolute"
         }
       ],
       "outputs": [],
+      "usage_count": 1
+    },
+    "Wasp_Save Field to File": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "PATH",
+          "name": "PATH"
+        },
+        {
+          "nickname": "NAME",
+          "name": "NAME"
+        },
+        {
+          "nickname": "SAVE",
+          "name": "SAVE"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        }
+      ],
+      "usage_count": 1
+    },
+    "Wasp_Load Field from File": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FILE",
+          "name": "FILE"
+        },
+        {
+          "nickname": "LOAD",
+          "name": "LOAD"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        }
+      ],
       "usage_count": 1
     },
     "File Path": {
@@ -2098,17 +3972,17 @@
       "inputs": [
         {
           "nickname": "LM",
-          "fullName": "Load Mesh"
+          "name": "Load Mesh"
         },
         {
           "nickname": "LV",
-          "fullName": "Load Vector"
+          "name": "Load Vector"
         }
       ],
       "outputs": [
         {
           "nickname": "VL",
-          "fullName": "Volume Load"
+          "name": "Volume Load"
         }
       ],
       "usage_count": 1
@@ -2118,17 +3992,17 @@
       "inputs": [
         {
           "nickname": "L",
-          "fullName": "Load"
+          "name": "Load"
         },
         {
           "nickname": "S",
-          "fullName": "Support"
+          "name": "Support"
         }
       ],
       "outputs": [
         {
           "nickname": "BC",
-          "fullName": "Boundary Condition Setup"
+          "name": "Boundary Condition Setup"
         }
       ],
       "usage_count": 1
@@ -2138,25 +4012,25 @@
       "inputs": [
         {
           "nickname": "DM",
-          "fullName": "Domain Mesh"
+          "name": "Domain Mesh"
         },
         {
           "nickname": "Dv",
-          "fullName": "Density Value"
+          "name": "Density Value"
         },
         {
           "nickname": "Y",
-          "fullName": "Young Modul"
+          "name": "Young Modul"
         },
         {
           "nickname": "P",
-          "fullName": "Poisson Number"
+          "name": "Poisson Number"
         }
       ],
       "outputs": [
         {
           "nickname": "BD",
-          "fullName": "Boundary Domain"
+          "name": "Boundary Domain"
         }
       ],
       "usage_count": 1
@@ -2166,13 +4040,13 @@
       "inputs": [
         {
           "nickname": "ResX",
-          "fullName": "Resolution X"
+          "name": "Resolution X"
         }
       ],
       "outputs": [
         {
           "nickname": "Res",
-          "fullName": "Resolution"
+          "name": "Resolution"
         }
       ],
       "usage_count": 1
@@ -2182,41 +4056,41 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         },
         {
           "nickname": "AP",
-          "fullName": "Analyser Parameters"
+          "name": "Analyser Parameters"
         },
         {
           "nickname": "OP",
-          "fullName": "Optimus Parameters"
+          "name": "Optimus Parameters"
         },
         {
           "nickname": "St",
-          "fullName": "Subdivision Threshold"
+          "name": "Subdivision Threshold"
         },
         {
           "nickname": "Rs",
-          "fullName": "Reset"
+          "name": "Reset"
         },
         {
           "nickname": "R",
-          "fullName": "Run"
+          "name": "Run"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         },
         {
           "nickname": "C",
-          "fullName": "Compliance"
+          "name": "Compliance"
         },
         {
           "nickname": "P",
-          "fullName": "Performance"
+          "name": "Performance"
         }
       ],
       "usage_count": 1
@@ -2226,29 +4100,29 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         }
       ],
       "outputs": [
         {
           "nickname": "MR",
-          "fullName": "Model Resolution"
+          "name": "Model Resolution"
         },
         {
           "nickname": "E",
-          "fullName": "Element Count"
+          "name": "Element Count"
         },
         {
           "nickname": "ES",
-          "fullName": "Element Size"
+          "name": "Element Size"
         },
         {
           "nickname": "N",
-          "fullName": "Node Count"
+          "name": "Node Count"
         },
         {
           "nickname": "Dof",
-          "fullName": "DoFs"
+          "name": "DoFs"
         }
       ],
       "usage_count": 2
@@ -2258,17 +4132,17 @@
       "inputs": [
         {
           "nickname": "I",
-          "fullName": "Iterations"
+          "name": "Iterations"
         },
         {
           "nickname": "T",
-          "fullName": "Tolerance"
+          "name": "Tolerance"
         }
       ],
       "outputs": [
         {
           "nickname": "AP",
-          "fullName": "Analyser Parameters"
+          "name": "Analyser Parameters"
         }
       ],
       "usage_count": 1
@@ -2278,21 +4152,21 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         },
         {
           "nickname": "V",
-          "fullName": "Iso Value"
+          "name": "Iso Value"
         },
         {
           "nickname": "D",
-          "fullName": "Deflection"
+          "name": "Deflection"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 1
@@ -2302,49 +4176,49 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         },
         {
           "nickname": "t",
-          "fullName": "Tolerance"
+          "name": "Tolerance"
         },
         {
           "nickname": "C",
-          "fullName": "Colours"
+          "name": "Colours"
         }
       ],
       "outputs": [
         {
           "nickname": "PSv",
-          "fullName": "PStress Values"
+          "name": "PStress Values"
         },
         {
           "nickname": "PSp",
-          "fullName": "PStress Plane"
+          "name": "PStress Plane"
         },
         {
           "nickname": "PSc",
-          "fullName": "PStress Crosses"
+          "name": "PStress Crosses"
         },
         {
           "nickname": "PScc",
-          "fullName": "PStress Crosses Colours"
+          "name": "PStress Crosses Colours"
         },
         {
           "nickname": "Pm",
-          "fullName": "PStress Min/Max"
+          "name": "PStress Min/Max"
         },
         {
           "nickname": "VM",
-          "fullName": "VonMieses Values"
+          "name": "VonMieses Values"
         },
         {
           "nickname": "VMcc",
-          "fullName": "VonMieses Crosses Colours"
+          "name": "VonMieses Crosses Colours"
         },
         {
           "nickname": "P",
-          "fullName": "Performance"
+          "name": "Performance"
         }
       ],
       "usage_count": 1
@@ -2360,37 +4234,63 @@
       "inputs": [
         {
           "nickname": "P",
-          "fullName": "Performance"
+          "name": "Performance"
         }
       ],
       "outputs": [
         {
           "nickname": "TD",
-          "fullName": "Total Data"
+          "name": "Total Data"
         },
         {
           "nickname": "E",
-          "fullName": "Events Names"
+          "name": "Events Names"
         },
         {
           "nickname": "T",
-          "fullName": "Times"
+          "name": "Times"
         },
         {
           "nickname": "M",
-          "fullName": "Memory"
+          "name": "Memory"
         },
         {
           "nickname": "S",
-          "fullName": "Solver"
+          "name": "Solver"
         }
       ],
       "usage_count": 1
     },
     "Optimius Parameters": {
       "guid": "30a92849-8387-4fdc-afab-4c0081e5cffe",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "I",
+          "name": "Optimisation Iteration"
+        },
+        {
+          "nickname": "V",
+          "name": "Volume Fraction"
+        },
+        {
+          "nickname": "P",
+          "name": "Penalty"
+        },
+        {
+          "nickname": "C",
+          "name": "Change"
+        },
+        {
+          "nickname": "Sr",
+          "name": "Sensitivity Filter Radius"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "OP",
+          "name": "Optimus Parameter"
+        }
+      ],
       "usage_count": 1
     },
     "CudaCtx": {
@@ -2398,21 +4298,21 @@
       "inputs": [
         {
           "nickname": "Reset",
-          "fullName": "Reset"
+          "name": "Reset"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Performance"
+          "name": "Performance"
         },
         {
           "nickname": "M",
-          "fullName": "FreeMemory"
+          "name": "FreeMemory"
         },
         {
           "nickname": "K",
-          "fullName": "Kernel Statistics"
+          "name": "Kernel Statistics"
         }
       ],
       "usage_count": 1
@@ -2422,43 +4322,94 @@
       "inputs": [
         {
           "nickname": "BD",
-          "fullName": "Boundary Domain"
+          "name": "Boundary Domain"
         },
         {
           "nickname": "BC",
-          "fullName": "Boundary Condition"
+          "name": "Boundary Condition"
         },
         {
           "nickname": "BP",
-          "fullName": "Boundary Properties"
+          "name": "Boundary Properties"
         },
         {
           "nickname": "R",
-          "fullName": "Model Resolution"
+          "name": "Model Resolution"
         }
       ],
       "outputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         },
         {
           "nickname": "P",
-          "fullName": "Performance"
+          "name": "Performance"
         }
       ],
       "usage_count": 1
     },
+    "DensPreview": {
+      "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
+      "inputs": [
+        {
+          "nickname": "M",
+          "name": "Model"
+        },
+        {
+          "nickname": "Iso",
+          "name": "Iso"
+        }
+      ],
+      "outputs": [],
+      "usage_count": 1
+    },
     "Element Data Preview": {
       "guid": "f31d8d7a-7536-4ac8-9c96-fde6ecda4d0a",
-      "inputs": [],
-      "outputs": [],
-      "usage_count": 2
+      "inputs": [
+        {
+          "nickname": "M",
+          "name": "Model"
+        },
+        {
+          "nickname": "Iso",
+          "name": "Iso"
+        },
+        {
+          "nickname": "Mv",
+          "name": "Move"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "Pt",
+          "name": "Point"
+        },
+        {
+          "nickname": "Col",
+          "name": "Colour"
+        },
+        {
+          "nickname": "Range",
+          "name": "Domain"
+        }
+      ],
+      "usage_count": 1
     },
     "Data Dam": {
       "guid": "65283518-ad00-49d3-87fb-f76823ebb162",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "A",
+          "name": "Data A"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "A",
+          "name": "Data A"
+        }
+      ],
       "usage_count": 1
     },
     "Node Data": {
@@ -2466,21 +4417,49 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model"
+          "name": "Model"
         }
       ],
       "outputs": [
         {
           "nickname": "L",
-          "fullName": "Location"
+          "name": "Location"
         },
         {
           "nickname": "D",
-          "fullName": "Density"
+          "name": "Density"
         },
         {
           "nickname": "Df",
-          "fullName": "Deflection"
+          "name": "Deflection"
+        }
+      ],
+      "usage_count": 1
+    },
+    "GhPython Script": {
+      "guid": "410755b1-224a-4c1e-a407-bf32fb45ea7e",
+      "inputs": [
+        {
+          "nickname": "FIELD",
+          "name": "FIELD"
+        },
+        {
+          "nickname": "L",
+          "name": "L"
+        },
+        {
+          "nickname": "D",
+          "name": "D"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "F_OUT",
+          "name": "F_OUT"
+        },
+        {
+          "nickname": "VALS",
+          "name": "VALS"
         }
       ],
       "usage_count": 1
@@ -2490,25 +4469,25 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Model Components"
+          "name": "Model Components"
         },
         {
           "nickname": "XR",
-          "fullName": "XResolution"
+          "name": "XResolution"
         }
       ],
       "outputs": [
         {
           "nickname": "FE",
-          "fullName": "FE Model"
+          "name": "FE Model"
         },
         {
           "nickname": "CP",
-          "fullName": "Cell Centres"
+          "name": "Cell Centres"
         },
         {
           "nickname": "Size",
-          "fullName": "Cell size"
+          "name": "Cell size"
         }
       ],
       "usage_count": 1
@@ -2518,17 +4497,17 @@
       "inputs": [
         {
           "nickname": "Boundary",
-          "fullName": "Boundary"
+          "name": "Boundary"
         },
         {
           "nickname": "IsVoid",
-          "fullName": "Is Void"
+          "name": "Is Void"
         }
       ],
       "outputs": [
         {
           "nickname": "BReg",
-          "fullName": "Boundary Region"
+          "name": "Boundary Region"
         }
       ],
       "usage_count": 1
@@ -2538,17 +4517,17 @@
       "inputs": [
         {
           "nickname": "Boundary",
-          "fullName": "Boundary"
+          "name": "Boundary"
         },
         {
           "nickname": "L",
-          "fullName": "Load"
+          "name": "Load"
         }
       ],
       "outputs": [
         {
           "nickname": "LReg",
-          "fullName": "Load Region"
+          "name": "Load Region"
         }
       ],
       "usage_count": 1
@@ -2558,21 +4537,21 @@
       "inputs": [
         {
           "nickname": "Boundary",
-          "fullName": "Boundary"
+          "name": "Boundary"
         },
         {
           "nickname": "SUP",
-          "fullName": "Support Type"
+          "name": "Support Type"
         },
         {
           "nickname": "AM",
-          "fullName": "Amend Existing Supports"
+          "name": "Amend Existing Supports"
         }
       ],
       "outputs": [
         {
           "nickname": "SReg",
-          "fullName": "Support Region"
+          "name": "Support Region"
         }
       ],
       "usage_count": 1
@@ -2582,69 +4561,69 @@
       "inputs": [
         {
           "nickname": "FE",
-          "fullName": "FE Model"
+          "name": "FE Model"
         },
         {
           "nickname": "SWC",
-          "fullName": "Self Weight Coefficient"
+          "name": "Self Weight Coefficient"
         },
         {
           "nickname": "O",
-          "fullName": "Optimisation iterations"
+          "name": "Optimisation iterations"
         },
         {
           "nickname": "S",
-          "fullName": "Smoothing"
+          "name": "Smoothing"
         },
         {
           "nickname": "P",
-          "fullName": "Penalization"
+          "name": "Penalization"
         },
         {
           "nickname": "T",
-          "fullName": "Target Density"
+          "name": "Target Density"
         },
         {
           "nickname": "D",
-          "fullName": "Initial Densities"
+          "name": "Initial Densities"
         },
         {
           "nickname": "MD",
-          "fullName": "Minimum Density"
+          "name": "Minimum Density"
         },
         {
           "nickname": "DTH",
-          "fullName": "Delete Threshold"
+          "name": "Delete Threshold"
         },
         {
           "nickname": "PerX",
-          "fullName": "Periodic X"
+          "name": "Periodic X"
         },
         {
           "nickname": "PerY",
-          "fullName": "Periodic Y"
+          "name": "Periodic Y"
         },
         {
           "nickname": "PerZ",
-          "fullName": "Periodic Z"
+          "name": "Periodic Z"
         },
         {
           "nickname": "Load Case",
-          "fullName": "Load Case"
+          "name": "Load Case"
         },
         {
           "nickname": "All Cases",
-          "fullName": "All Cases"
+          "name": "All Cases"
         }
       ],
       "outputs": [
         {
           "nickname": "FE",
-          "fullName": "FE Model"
+          "name": "FE Model"
         },
         {
           "nickname": "maxu",
-          "fullName": "MaxDeflection"
+          "name": "MaxDeflection"
         }
       ],
       "usage_count": 1
@@ -2654,25 +4633,25 @@
       "inputs": [
         {
           "nickname": "FE",
-          "fullName": "FE Model"
+          "name": "FE Model"
         }
       ],
       "outputs": [
         {
           "nickname": "PStressP",
-          "fullName": "Principal Stress Planes"
+          "name": "Principal Stress Planes"
         },
         {
           "nickname": "PStress",
-          "fullName": "Principal Stresses"
+          "name": "Principal Stresses"
         },
         {
           "nickname": "VStress",
-          "fullName": "VonMises Stress"
+          "name": "VonMises Stress"
         },
         {
           "nickname": "Density",
-          "fullName": "Density"
+          "name": "Density"
         }
       ],
       "usage_count": 1
@@ -2682,21 +4661,21 @@
       "inputs": [
         {
           "nickname": "FE",
-          "fullName": "FE Model"
+          "name": "FE Model"
         },
         {
           "nickname": "D",
-          "fullName": "Deflection"
+          "name": "Deflection"
         },
         {
           "nickname": "Iso",
-          "fullName": "Iso Contour Value"
+          "name": "Iso Contour Value"
         }
       ],
       "outputs": [
         {
           "nickname": "Mesh",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "usage_count": 1
@@ -2706,25 +4685,25 @@
       "inputs": [
         {
           "nickname": "B",
-          "fullName": "Box"
+          "name": "Box"
         }
       ],
       "outputs": [
         {
           "nickname": "P",
-          "fullName": "Plane"
+          "name": "Plane"
         },
         {
           "nickname": "X",
-          "fullName": "X"
+          "name": "X"
         },
         {
           "nickname": "Y",
-          "fullName": "Y"
+          "name": "Y"
         },
         {
           "nickname": "Z",
-          "fullName": "Z"
+          "name": "Z"
         }
       ],
       "usage_count": 1
@@ -2734,17 +4713,17 @@
       "inputs": [
         {
           "nickname": "I",
-          "fullName": "Domain"
+          "name": "Domain"
         }
       ],
       "outputs": [
         {
           "nickname": "S",
-          "fullName": "Start"
+          "name": "Start"
         },
         {
           "nickname": "E",
-          "fullName": "End"
+          "name": "End"
         }
       ],
       "usage_count": 1
@@ -2754,25 +4733,39 @@
       "inputs": [
         {
           "nickname": "A",
-          "fullName": "A"
+          "name": "A"
         },
         {
           "nickname": "B",
-          "fullName": "B"
+          "name": "B"
         }
       ],
       "outputs": [
         {
           "nickname": "R",
-          "fullName": "Result"
+          "name": "Result"
         }
       ],
       "usage_count": 1
     },
     "Subtraction": {
       "guid": "9c007a04-d0d9-48e4-9da3-9ba142bc4d46",
-      "inputs": [],
-      "outputs": [],
+      "inputs": [
+        {
+          "nickname": "A",
+          "name": "A"
+        },
+        {
+          "nickname": "B",
+          "name": "B"
+        }
+      ],
+      "outputs": [
+        {
+          "nickname": "R",
+          "name": "Result"
+        }
+      ],
       "usage_count": 2
     },
     "Face Boundaries": {
@@ -2780,13 +4773,13 @@
       "inputs": [
         {
           "nickname": "M",
-          "fullName": "Mesh"
+          "name": "Mesh"
         }
       ],
       "outputs": [
         {
           "nickname": "B",
-          "fullName": "Boundaries"
+          "name": "Boundaries"
         }
       ],
       "usage_count": 1
