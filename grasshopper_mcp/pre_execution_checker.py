@@ -131,6 +131,8 @@ class CheckerConfig:
     })
 
 
+from grasshopper_mcp.knowledge_base import ConnectionKnowledgeBase
+
 class PreExecutionChecker:
     """
     執行前驗證器
@@ -169,6 +171,22 @@ class PreExecutionChecker:
 
         self.config_dir = Path(config_dir)
         self._load_knowledge()
+        
+        # 初始化連接知識庫 (Round 3 Feature)
+        self.kb = ConnectionKnowledgeBase(storage_dir=self.config_dir)
+        self._load_component_definitions()
+
+    def _load_component_definitions(self):
+        """載入組件定義到知識庫"""
+        wasp_params_path = self.config_dir / "wasp_component_params.json"
+        if wasp_params_path.exists():
+            try:
+                with open(wasp_params_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    for name, comp_data in data.get("components", {}).items():
+                        self.kb.register_component_from_json(name, comp_data)
+            except Exception as e:
+                print(f"Warning: Failed to load wasp_component_params.json: {e}")
 
     def _load_knowledge(self):
         """載入知識庫"""
@@ -219,6 +237,7 @@ class PreExecutionChecker:
         # 2. 檢查連接
         self._check_connection_params(connections, components)
         self._check_connection_completeness(connections, components)
+        self._check_connection_types(connections, components)  # New in Round 3
 
         # 3. 檢查 variable_params（如 Entwine）
         variable_params = placement_info.get("variable_params", [])
@@ -423,6 +442,66 @@ class PreExecutionChecker:
                 component_id=comp_id,
                 suggestion="確認是否缺少連接"
             ))
+
+    def _check_connection_types(self, connections: List[Dict], components: List[Dict]):
+        """檢查連接類型相容性 (使用 KnowledgeBase)"""
+        comp_lookup = {c.get("id"): c for c in components}
+        
+        for conn in connections:
+            from_id = conn.get("from", "")
+            to_id = conn.get("to", "")
+            from_param = conn.get("fromParam", "")
+            to_param = conn.get("toParam", "")
+            
+            src_comp = comp_lookup.get(from_id)
+            tgt_comp = comp_lookup.get(to_id)
+            
+            if not (src_comp and tgt_comp):
+                continue
+                
+            src_type_name = src_comp.get("type", "")
+            tgt_type_name = tgt_comp.get("type", "")
+            
+            # 從 KB 獲取簽名
+            src_sig = self.kb.signatures.get(src_type_name)
+            tgt_sig = self.kb.signatures.get(tgt_type_name)
+            
+            if not src_sig or not tgt_sig:
+                # 如果沒有簽名，無法驗證類型，跳過 (或者可以發出 Info)
+                continue
+                
+            # 獲取 Port 資訊 (需要處理 nickname 匹配)
+            # 這裡簡化處理：假設 fromParam 就是 name 或 nickname
+            src_port = src_sig.outputs.get(from_param)
+            # 嘗試反向查找 (如果 fromParam 是 nickname)
+            if not src_port:
+                for p in src_sig.outputs.values():
+                    if p.nickname == from_param:
+                        src_port = p
+                        break
+            
+            tgt_port = tgt_sig.inputs.get(to_param)
+            if not tgt_port:
+                for p in tgt_sig.inputs.values():
+                    if p.nickname == to_param:
+                        tgt_port = p
+                        break
+            
+            if src_port and tgt_port:
+                # 檢查類型相容性
+                if not self.kb.is_type_compatible(src_port.type_hint_id, tgt_port.type_hint_id):
+                    self.results.append(CheckResult(
+                        passed=False,
+                        category="type", # New category string
+                        severity=Severity.CRITICAL, # 類型錯誤通常會導致執行失敗
+                        message=f"類型不匹配: {src_type_name}.{from_param} ({src_port.type_hint_id}) -> {tgt_type_name}.{to_param} ({tgt_port.type_hint_id})",
+                        component_id=from_id,
+                        suggestion=f"請檢查參數類型，{to_param} 需要 {tgt_port.type_hint_id}",
+                        details={
+                            "src_type": src_port.type_hint_id,
+                            "tgt_type": tgt_port.type_hint_id
+                        }
+                    ))
 
     def _check_variable_params(self, variable_params: List[Dict], components: List[Dict]):
         """檢查 variable_params 配置"""

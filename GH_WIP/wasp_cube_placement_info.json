@@ -1,10 +1,10 @@
 {
   "_meta": {
     "name": "WASP Cube Basic Aggregation",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "created": "2026-01-24",
     "source": "基於 ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx",
-    "description": "立方體 WASP 聚集 - 6 面全連接"
+    "description": "立方體 WASP 聚集 - 6 面全連接，使用 Line SDL 提供 UP 方向"
   },
 
   "components": [
@@ -71,6 +71,13 @@
       "y": 100
     },
     {
+      "nickname": "LineSDL",
+      "type": "Line SDL",
+      "x": 500,
+      "y": 150,
+      "_comment": "從中心點延伸到法向量方向，創建 UP 方向線"
+    },
+    {
       "nickname": "ConnDir",
       "type": "Wasp_Connection From Direction",
       "guid": "9a48eda9-6f67-47b4-915a-689acc550ffb",
@@ -107,15 +114,18 @@
 
     { "from": "MeshBox", "from_param": "M", "to": "FaceN", "to_param": "M" },
 
+    { "from": "FaceN", "from_param": "C", "to": "LineSDL", "to_param": "S", "_comment": "中心點作為起點" },
+    { "from": "FaceN", "from_param": "N", "to": "LineSDL", "to_param": "D", "_comment": "法向量作為方向" },
+
     { "from": "MeshBox", "from_param": "M", "to": "ConnDir", "to_param": "GEO" },
     { "from": "FaceN", "from_param": "C", "to": "ConnDir", "to_param": "CEN" },
+    { "from": "LineSDL", "from_param": "L", "to": "ConnDir", "to_param": "UP", "_comment": "方向線作為 UP" },
 
     { "from": "PartName", "from_param": "out", "to": "BasicPart", "to_param": "NAME" },
     { "from": "MeshBox", "from_param": "M", "to": "BasicPart", "to_param": "GEO" },
     { "from": "ConnDir", "from_param": "CONN", "to": "BasicPart", "to_param": "CONN" },
 
-    { "from": "BasicPart", "from_param": "PART", "to": "Rule", "to_param": "P1" },
-    { "from": "BasicPart", "from_param": "PART", "to": "Rule", "to_param": "P2" },
+    { "from": "BasicPart", "from_param": "PART", "to": "Rule", "to_param": "PART", "_comment": "RuleGen 用 PART 輸入" },
 
     { "from": "BasicPart", "from_param": "PART", "to": "StochAggr", "to_param": "PART" },
     { "from": "Rule", "from_param": "R", "to": "StochAggr", "to_param": "RULES" },

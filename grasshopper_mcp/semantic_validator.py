@@ -71,6 +71,8 @@ class SemanticCheckResult:
     suggestion: Optional[str] = None
 
 
+from grasshopper_mcp.knowledge_base import ConnectionKnowledgeBase
+
 class SemanticValidator:
     """
     語義驗證器
@@ -249,9 +251,23 @@ class SemanticValidator:
     # 資料流爆炸警戒值
     OUTPUT_EXPLOSION_THRESHOLD = 100
 
-    def __init__(self):
+    def __init__(self, config_dir: Optional[Path] = None):
         self.results: List[SemanticCheckResult] = []
         self.data_flow_estimates: List[DataFlowEstimate] = []
+        
+        # Load Knowledge Base
+        if config_dir is None:
+            possible_paths = [
+                Path(__file__).parent.parent / "config",
+                Path.cwd() / "config",
+            ]
+            for p in possible_paths:
+                if p.exists():
+                    config_dir = p
+                    break
+            else:
+                config_dir = possible_paths[0]
+        self.kb = ConnectionKnowledgeBase(storage_dir=config_dir)
 
     def validate(self, placement_info: Dict) -> List[SemanticCheckResult]:
         """執行語義驗證"""
@@ -270,8 +286,47 @@ class SemanticValidator:
 
         # 3. 檢查特定模式的風險
         self._check_pattern_risks(components, connections)
+        
+        # 4. 檢查連接信心度 (KB Based)
+        self._check_connection_confidence(components, connections)
 
         return self.results
+
+    def _check_connection_confidence(self, components: List[Dict], connections: List[Dict]):
+        """使用知識庫檢查連接的信心度 (統計學驗證)"""
+        comp_lookup = {c.get("id"): c for c in components}
+        
+        for conn in connections:
+            from_id = conn.get("from")
+            to_id = conn.get("to")
+            from_param = conn.get("fromParam")
+            to_param = conn.get("toParam")
+            
+            src_comp = comp_lookup.get(from_id)
+            tgt_comp = comp_lookup.get(to_id)
+            
+            if src_comp and tgt_comp:
+                confidence = self.kb.get_connection_confidence(
+                    src_comp.get("type", ""), from_param,
+                    tgt_comp.get("type", ""), to_param
+                )
+                
+                # 如果信心度過低 (且不是第一次遇到的組件)
+                # 這裡假設如果 KB 是空的，confidence 會是 0，我們不希望全部報錯。
+                # 所以可以加一個閾值：如果 KB 中有該組件的其他連接記錄，但沒有這個特定連接，則報警。
+                
+                if confidence == 0.0:
+                    # 這是一個未見過的連接
+                    # 我們將其標記為 Low Risk (Info)，提醒用戶這是一個新穎的用法
+                    self.results.append(SemanticCheckResult(
+                        passed=True,
+                        component_id=from_id,
+                        check_type="confidence",
+                        risk_level=SemanticRisk.LOW,
+                        message=f"New Pattern: {src_comp.get('type')} -> {tgt_comp.get('type')}",
+                        explanation=f"This connection pattern ({from_param}->{to_param}) has not been recorded in the Knowledge Base yet.",
+                        suggestion="If this works, it will be added to the KB automatically."
+                    ))
 
     def _check_component_behavior(self, component: Dict):
         """檢查單一組件的行為是否符合預期"""

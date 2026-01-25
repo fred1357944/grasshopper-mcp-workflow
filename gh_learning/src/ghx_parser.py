@@ -19,7 +19,10 @@ class Parameter:
     nickname: str
     name: str
     type_hint: Optional[str] = None
+    type_hint_id: Optional[str] = None  # TypeHintID GUID
+    access: int = 0  # 0=Item, 1=List, 2=Tree
     source_count: int = 0
+    is_optional: bool = False  # 根據描述或 source_count 推斷
 
 
 @dataclass
@@ -256,10 +259,13 @@ class GHXParser:
         )
 
     def _parse_param_chunk(self, param_chunk: ET.Element) -> Optional[Parameter]:
-        """解析參數 chunk"""
+        """解析參數 chunk - 增強版：提取 Access, TypeHintID"""
         name = ''
         nickname = ''
         source_count = 0
+        access = 0  # 預設 Item
+        type_hint_id = None
+        description = ''
 
         for item in param_chunk.findall("items/item"):
             item_name = item.get('name', '')
@@ -269,12 +275,28 @@ class GHXParser:
                 nickname = item.text or ''
             elif item_name == 'SourceCount':
                 source_count = int(item.text or '0')
+            elif item_name == 'Access':
+                # Access: 0=Item, 1=List, 2=Tree
+                try:
+                    access = int(item.text or '0')
+                except ValueError:
+                    access = 0
+            elif item_name == 'TypeHintID':
+                type_hint_id = item.text or None
+            elif item_name == 'Description':
+                description = item.text or ''
+
+        # 推斷是否為選填參數（描述中包含 Optional 或 source_count 通常為 0）
+        is_optional = 'optional' in description.lower() if description else False
 
         if nickname or name:
             return Parameter(
                 nickname=nickname or name,
                 name=name or nickname,
-                source_count=source_count
+                type_hint_id=type_hint_id,
+                access=access,
+                source_count=source_count,
+                is_optional=is_optional
             )
         return None
 
@@ -304,8 +326,14 @@ class GHXParser:
             if not comp_instance_guid:
                 continue
 
-            # 記錄所有輸出參數
-            for param_chunk in container.findall(".//chunk[@name='param_output']"):
+            # 記錄所有輸出參數 - 支援兩種格式
+            # 格式 1: param_output (原生 GH 組件)
+            # 格式 2: ParameterData/OutputParam (插件組件如 WASP, Karamba)
+            output_chunks = (
+                container.findall(".//chunk[@name='param_output']") +
+                container.findall(".//chunk[@name='OutputParam']")
+            )
+            for param_chunk in output_chunks:
                 param_instance_guid = ''
                 param_name = ''
                 for item in param_chunk.findall("items/item"):
@@ -335,8 +363,12 @@ class GHXParser:
             if not to_comp_guid:
                 continue
 
-            # 檢查每個輸入參數的 Source
-            for param_chunk in container.findall(".//chunk[@name='param_input']"):
+            # 檢查每個輸入參數的 Source - 支援兩種格式
+            input_chunks = (
+                container.findall(".//chunk[@name='param_input']") +
+                container.findall(".//chunk[@name='InputParam']")
+            )
+            for param_chunk in input_chunks:
                 to_param_name = ''
                 for item in param_chunk.findall("items/item"):
                     if item.get('name') == 'NickName':

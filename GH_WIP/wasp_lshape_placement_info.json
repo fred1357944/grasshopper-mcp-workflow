@@ -1,41 +1,131 @@
 {
   "_meta": {
     "project": "WASP L-Shape Module Aggregation",
-    "version": "v1-FIXED",
-    "description": "修復後的配置，應該通過 Pre-Execution Checker",
+    "version": "v4-SIMPLIFIED",
+    "description": "簡化配置：Rule 只需要 P1/P2，無需 C1/C2（參照 wasp_cube 成功案例）",
     "mcp_commands": ["add_component", "connect_components", "set_slider_properties", "clear_document"]
   },
   "components": [
-    {"id": "seed", "type": "Number Slider", "nickname": "Seed", "col": 0, "row": 0, "min": 0, "max": 999, "value": 42},
-    {"id": "count", "type": "Number Slider", "nickname": "Count", "col": 0, "row": 1, "min": 5, "max": 30, "value": 15},
-    {"id": "partname", "type": "Panel", "nickname": "PartName", "col": 0, "row": 2, "value": "LModule"},
-    {"id": "box1", "type": "Center Box", "nickname": "Box1", "col": 2, "row": 0},
-    {"id": "box2", "type": "Center Box", "nickname": "Box2", "col": 2, "row": 1},
-    {"id": "move", "type": "Move", "nickname": "MoveBox", "col": 3, "row": 1},
-    {"id": "union", "type": "Solid Union", "nickname": "LShape", "col": 4, "row": 0},
-    {"id": "meshbrep", "type": "Mesh Brep", "nickname": "ToMesh", "col": 5, "row": 0},
-    {"id": "facenormals", "type": "Face Normals", "nickname": "FaceN", "col": 6, "row": 0, "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5"},
-    {"id": "conndir", "type": "Wasp_Connection From Direction", "nickname": "ConnDir", "col": 7, "row": 0},
-    {"id": "part", "type": "Wasp_Basic Part", "nickname": "LPart", "col": 8, "row": 0},
-    {"id": "rule", "type": "Wasp_Rule", "nickname": "Rule", "col": 9, "row": 0},
-    {"id": "agg", "type": "Wasp_Stochastic Aggregation", "nickname": "Agg", "col": 10, "row": 0}
+    {
+      "nickname": "Seed",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 0,
+      "properties": {"min": 0, "max": 999, "value": 42}
+    },
+    {
+      "nickname": "Count",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 1,
+      "properties": {"min": 5, "max": 30, "value": 15}
+    },
+    {
+      "nickname": "PartName",
+      "type": "Panel",
+      "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+      "col": 0, "row": 2,
+      "properties": {"value": "LModule"}
+    },
+    {
+      "nickname": "BoxSize",
+      "type": "Number Slider",
+      "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+      "col": 0, "row": 3,
+      "properties": {"min": 1, "max": 20, "value": 5}
+    },
+    {
+      "nickname": "Box1",
+      "type": "Center Box",
+      "guid": "d1296e28-f64c-4c2a-9a9e-49e7839460de",
+      "col": 2, "row": 0
+    },
+    {
+      "nickname": "Box2",
+      "type": "Center Box",
+      "guid": "d1296e28-f64c-4c2a-9a9e-49e7839460de",
+      "col": 2, "row": 1
+    },
+    {
+      "nickname": "MoveDir",
+      "type": "Unit X",
+      "guid": "f0a0ebe4-7f48-4b3e-98a0-f0b0f5d38e19",
+      "col": 2, "row": 2
+    },
+    {
+      "nickname": "MoveBox",
+      "type": "Move",
+      "guid": "53667e44-76b5-4e85-bbcd-4c8a7e4b42e6",
+      "col": 3, "row": 1
+    },
+    {
+      "nickname": "LShape",
+      "type": "Solid Union",
+      "col": 4, "row": 0
+    },
+    {
+      "nickname": "ToMesh",
+      "type": "Mesh Brep",
+      "guid": "5f86fa9f-b6eb-4f4b-b0c0-fc1e8e6a4f13",
+      "col": 5, "row": 0
+    },
+    {
+      "nickname": "FaceN",
+      "type": "Face Normals",
+      "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5",
+      "col": 6, "row": 0
+    },
+    {
+      "nickname": "ConnDir",
+      "type": "Wasp_Connection From Direction",
+      "col": 7, "row": 0
+    },
+    {
+      "nickname": "LPart",
+      "type": "Wasp_Basic Part",
+      "col": 8, "row": 0
+    },
+    {
+      "nickname": "Rule",
+      "type": "Wasp_Rule",
+      "col": 9, "row": 0
+    },
+    {
+      "nickname": "Agg",
+      "type": "Wasp_Stochastic Aggregation",
+      "col": 10, "row": 0
+    }
   ],
   "connections": [
-    {"from": "box1", "to": "union", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "box2", "to": "move", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "move", "to": "union", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "union", "to": "meshbrep", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "meshbrep", "to": "facenormals", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "meshbrep", "to": "conndir", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "facenormals", "to": "conndir", "fromParamIndex": 0, "toParamIndex": 1},
-    {"from": "facenormals", "to": "conndir", "fromParamIndex": 1, "toParamIndex": 2},
-    {"from": "conndir", "to": "part", "fromParamIndex": 0, "toParamIndex": 2},
-    {"from": "meshbrep", "to": "part", "fromParamIndex": 0, "toParamIndex": 1},
-    {"from": "partname", "to": "part", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "part", "to": "rule", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "part", "to": "agg", "fromParamIndex": 0, "toParamIndex": 0},
-    {"from": "rule", "to": "agg", "fromParamIndex": 0, "toParamIndex": 1},
-    {"from": "seed", "to": "agg", "fromParamIndex": 0, "toParamIndex": 2},
-    {"from": "count", "to": "agg", "fromParamIndex": 0, "toParamIndex": 3}
+    {"from": "BoxSize", "from_param": "N", "to": "Box1", "to_param": "X"},
+    {"from": "BoxSize", "from_param": "N", "to": "Box1", "to_param": "Y"},
+    {"from": "BoxSize", "from_param": "N", "to": "Box1", "to_param": "Z"},
+    {"from": "BoxSize", "from_param": "N", "to": "Box2", "to_param": "X"},
+    {"from": "BoxSize", "from_param": "N", "to": "Box2", "to_param": "Y"},
+    {"from": "BoxSize", "from_param": "N", "to": "Box2", "to_param": "Z"},
+    {"from": "BoxSize", "from_param": "N", "to": "MoveDir", "to_param": "F"},
+
+    {"from": "Box1", "from_param": "B", "to": "LShape", "to_param": "A"},
+    {"from": "Box2", "from_param": "B", "to": "MoveBox", "to_param": "G"},
+    {"from": "MoveDir", "from_param": "V", "to": "MoveBox", "to_param": "T"},
+    {"from": "MoveBox", "from_param": "G", "to": "LShape", "to_param": "A"},
+
+    {"from": "LShape", "from_param": "R", "to": "ToMesh", "to_param": "B"},
+    {"from": "ToMesh", "from_param": "M", "to": "FaceN", "to_param": "M"},
+
+    {"from": "ToMesh", "from_param": "M", "to": "ConnDir", "to_param": "GEO"},
+    {"from": "FaceN", "from_param": "C", "to": "ConnDir", "to_param": "CEN"},
+
+    {"from": "PartName", "from_param": "out", "to": "LPart", "to_param": "NAME"},
+    {"from": "ToMesh", "from_param": "M", "to": "LPart", "to_param": "GEO"},
+    {"from": "ConnDir", "from_param": "CONN", "to": "LPart", "to_param": "CONN"},
+
+    {"from": "LPart", "from_param": "PART", "to": "Rule", "to_param": "P1"},
+    {"from": "LPart", "from_param": "PART", "to": "Rule", "to_param": "P2"},
+
+    {"from": "LPart", "from_param": "PART", "to": "Agg", "to_param": "PART"},
+    {"from": "Rule", "from_param": "R", "to": "Agg", "to_param": "RULES"},
+    {"from": "Count", "from_param": "N", "to": "Agg", "to_param": "N"},
+    {"from": "Seed", "from_param": "N", "to": "Agg", "to_param": "SEED"}
   ]
 }

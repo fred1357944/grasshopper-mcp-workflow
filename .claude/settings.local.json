@@ -48,7 +48,15 @@
       "Bash(wc:*)",
       "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp-workflow log --oneline -15)",
       "Bash(git -C /Users/laihongyi/Downloads/grasshopper-mcp-workflow status --short)",
-      "Skill(gh-review)"
+      "Skill(gh-review)",
+      "Bash(git tag:*)",
+      "Skill(recover)",
+      "Bash(/bin/ls:*)",
+      "Skill(reflect)",
+      "Bash(unzip:*)",
+      "mcp__chrome-devtools__list_pages",
+      "Bash(tee:*)",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

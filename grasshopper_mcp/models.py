@@ -57,6 +57,13 @@ class Parameter:
     is_principal: bool = True  # 是否為主要參數
     default_value: Optional[Any] = None
     
+    # 額外元資料 (WASP/Python 組件常用)
+    description: str = ""
+    access: int = 0  # 0=Item, 1=List, 2=Tree
+    optional: bool = False
+    source_count: int = 0
+    type_hint_id: Optional[str] = None
+    
     # 連接資訊 (在解析後填充)
     connected_sources: List[str] = field(default_factory=list)  # 來源 component_id:output_index
     connected_targets: List[str] = field(default_factory=list)  # 目標 component_id:input_index
@@ -69,6 +76,11 @@ class Parameter:
             "data_type": self.data_type.value,
             "is_principal": self.is_principal,
             "default_value": self.default_value,
+            "description": self.description,
+            "access": self.access,
+            "optional": self.optional,
+            "source_count": self.source_count,
+            "type_hint_id": self.type_hint_id,
             "connected_sources": self.connected_sources,
             "connected_targets": self.connected_targets
         }

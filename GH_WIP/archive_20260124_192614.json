@@ -1,0 +1,258 @@
+{
+  "timestamp": "20260124_192614",
+  "mode": "reference",
+  "reference_used": null,
+  "modifications": null,
+  "placement_info": {
+    "_meta": {
+      "name": "WASP Cube Basic Aggregation",
+      "version": "1.0.0",
+      "source": "從 Wasp basic.ghx 驗證成功的配置",
+      "verified": true,
+      "verified_date": "2026-01-24",
+      "keywords": [
+        "wasp",
+        "cube",
+        "聚集",
+        "stochastic",
+        "立方體",
+        "基礎"
+      ],
+      "confidence": 1.0,
+      "description": "立方體 WASP 聚集 - 6 面全連接，使用 Line SDL 提供 UP 方向"
+    },
+    "components": [
+      {
+        "nickname": "SizeX",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 50,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "SizeY",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 100,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "SizeZ",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 150,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "PartName",
+        "type": "Panel",
+        "x": 50,
+        "y": 200,
+        "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+        "properties": {
+          "value": "Cube"
+        }
+      },
+      {
+        "nickname": "Count",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 250,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 100,
+          "value": 15,
+          "decimals": 0
+        }
+      },
+      {
+        "nickname": "Seed",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 300,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 0,
+          "max": 999,
+          "value": 42,
+          "decimals": 0
+        }
+      },
+      {
+        "nickname": "MeshBox",
+        "type": "Mesh Box",
+        "x": 350,
+        "y": 100,
+        "guid": "c4ac4e68-060e-4cd0-85b1-1f2e3663c449"
+      },
+      {
+        "nickname": "FaceN",
+        "type": "Face Normals",
+        "x": 500,
+        "y": 100,
+        "guid": "f4370b82-4bd6-4ca7-90e8-c88584b280d5"
+      },
+      {
+        "nickname": "LineSDL",
+        "type": "Line SDL",
+        "x": 650,
+        "y": 100,
+        "guid": "3187e3e5-0264-41fb-8876-bc16346c8ad8"
+      },
+      {
+        "nickname": "ConnDir",
+        "type": "Wasp_Connection From Direction",
+        "x": 800,
+        "y": 100
+      },
+      {
+        "nickname": "BasicPart",
+        "type": "Wasp_Basic Part",
+        "x": 950,
+        "y": 150
+      },
+      {
+        "nickname": "Rule",
+        "type": "Wasp_Rule",
+        "x": 1100,
+        "y": 100
+      },
+      {
+        "nickname": "StochAggr",
+        "type": "Wasp_Stochastic Aggregation",
+        "x": 1250,
+        "y": 150
+      }
+    ],
+    "connections": [
+      {
+        "from": "SizeX",
+        "from_param": "N",
+        "to": "MeshBox",
+        "to_param": "X"
+      },
+      {
+        "from": "SizeY",
+        "from_param": "N",
+        "to": "MeshBox",
+        "to_param": "Y"
+      },
+      {
+        "from": "SizeZ",
+        "from_param": "N",
+        "to": "MeshBox",
+        "to_param": "Z"
+      },
+      {
+        "from": "MeshBox",
+        "from_param": "M",
+        "to": "FaceN",
+        "to_param": "M"
+      },
+      {
+        "from": "FaceN",
+        "from_param": "C",
+        "to": "LineSDL",
+        "to_param": "S",
+        "_comment": "中心點作為起點"
+      },
+      {
+        "from": "FaceN",
+        "from_param": "N",
+        "to": "LineSDL",
+        "to_param": "D",
+        "_comment": "法向量作為方向"
+      },
+      {
+        "from": "MeshBox",
+        "from_param": "M",
+        "to": "ConnDir",
+        "to_param": "GEO"
+      },
+      {
+        "from": "FaceN",
+        "from_param": "C",
+        "to": "ConnDir",
+        "to_param": "CEN"
+      },
+      {
+        "from": "LineSDL",
+        "from_param": "L",
+        "to": "ConnDir",
+        "to_param": "UP",
+        "_comment": "方向線作為 UP (Line, 非 Vector)"
+      },
+      {
+        "from": "PartName",
+        "from_param": "out",
+        "to": "BasicPart",
+        "to_param": "NAME"
+      },
+      {
+        "from": "MeshBox",
+        "from_param": "M",
+        "to": "BasicPart",
+        "to_param": "GEO"
+      },
+      {
+        "from": "ConnDir",
+        "from_param": "CONN",
+        "to": "BasicPart",
+        "to_param": "CONN"
+      },
+      {
+        "from": "BasicPart",
+        "from_param": "PART",
+        "to": "Rule",
+        "to_param": "PART",
+        "_comment": "新版 RuleGen 只用 PART"
+      },
+      {
+        "from": "BasicPart",
+        "from_param": "PART",
+        "to": "StochAggr",
+        "to_param": "PART"
+      },
+      {
+        "from": "Rule",
+        "from_param": "R",
+        "to": "StochAggr",
+        "to_param": "RULES"
+      },
+      {
+        "from": "Count",
+        "from_param": "N",
+        "to": "StochAggr",
+        "to_param": "N"
+      },
+      {
+        "from": "Seed",
+        "from_param": "N",
+        "to": "StochAggr",
+        "to_param": "SEED"
+      }
+    ],
+    "layout": {
+      "strategy": "horizontal_flow",
+      "column_width": 150,
+      "row_height": 50,
+      "description": "橫向流程佈局，資料從左到右流動"
+    }
+  }
+}

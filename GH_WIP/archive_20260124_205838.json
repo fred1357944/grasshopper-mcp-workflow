@@ -1,0 +1,294 @@
+{
+  "timestamp": "20260124_205838",
+  "mode": "reference",
+  "reference_used": "Cube Basic Aggregation v2",
+  "modifications": null,
+  "semantic_review": "\n  ## 語義審查報告\n\n  **配置名稱**: WASP Cube Basic Aggregation\n  **描述**: 立方體 WASP 聚集 - 使用 Center Box + Deconstruct Brep + Evaluate Surface + Connection From Plane\n\n  ### 資料流追蹤\n  **SizeX** (Slider): 10\n  **SizeY** (Slider): 10\n  **SizeZ** (Slider): 10\n  **Count** (Slider): 15\n  **Seed** (Slider): 42\n  **UV_Value** (Slider): 0.5\n  **CenterBox** (Center Box): 單一 Brep (6 個面)\n  **DeconBrep** (Deconstruct Brep): → 6 個面 (立方體)\n\n  ### ✅ 風險評估\n  ✓ 資料流正常\n  ✓ 無 Critical 問題\n\n  ### 結論: ✅ 通過",
+  "placement_info": {
+    "_meta": {
+      "name": "WASP Cube Basic Aggregation",
+      "version": "2.0.0",
+      "source": "從 Wasp basic.ghx 學習的正確配置",
+      "verified": true,
+      "verified_date": "2026-01-24",
+      "keywords": [
+        "wasp",
+        "cube",
+        "聚集",
+        "stochastic",
+        "立方體",
+        "基礎"
+      ],
+      "confidence": 1.0,
+      "description": "立方體 WASP 聚集 - 使用 Center Box + Deconstruct Brep + Evaluate Surface + Connection From Plane",
+      "lessons_learned": [
+        "Center Box 的 X/Y/Z 是尺寸，Mesh Box 的 X/Y/Z 是細分數量",
+        "使用 Deconstruct Brep 分解 Brep 得到 6 個面",
+        "使用 Evaluate Surface 獲取面的中心點和法向量 (UV=0.5,0.5)",
+        "使用 Wasp_Connection From Plane (不是 From Direction)",
+        "Wasp_Rules Generator 只需 PART 輸入",
+        "StochAggr 的 RESET 必須連接 Boolean Toggle"
+      ]
+    },
+    "components": [
+      {
+        "nickname": "SizeX",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 50,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "SizeY",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 100,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "SizeZ",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 150,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 50,
+          "value": 10
+        }
+      },
+      {
+        "nickname": "PartName",
+        "type": "Panel",
+        "x": 50,
+        "y": 200,
+        "guid": "59e0b89a-e487-49f8-bab8-b5bab16be14c",
+        "properties": {
+          "value": "Cube"
+        }
+      },
+      {
+        "nickname": "Count",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 250,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 1,
+          "max": 100,
+          "value": 15,
+          "decimals": 0
+        }
+      },
+      {
+        "nickname": "Seed",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 300,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 0,
+          "max": 999,
+          "value": 42,
+          "decimals": 0
+        }
+      },
+      {
+        "nickname": "Reset",
+        "type": "Boolean Toggle",
+        "x": 50,
+        "y": 350,
+        "guid": "6cc8e77e-9503-48b5-ae75-0ecd74c9b8a7",
+        "properties": {
+          "value": false
+        }
+      },
+      {
+        "nickname": "UV_Value",
+        "type": "Number Slider",
+        "x": 50,
+        "y": 400,
+        "guid": "57da07bd-ecab-415d-9d86-af36d7073abc",
+        "properties": {
+          "min": 0,
+          "max": 1,
+          "value": 0.5,
+          "decimals": 2
+        }
+      },
+      {
+        "nickname": "CenterBox",
+        "type": "Center Box",
+        "x": 350,
+        "y": 100,
+        "guid": "28061aae-04fb-4cb5-ac45-16f3b66bc0a4"
+      },
+      {
+        "nickname": "DeconBrep",
+        "type": "Deconstruct Brep",
+        "x": 500,
+        "y": 100
+      },
+      {
+        "nickname": "EvalSrf",
+        "type": "Evaluate Surface",
+        "x": 650,
+        "y": 100
+      },
+      {
+        "nickname": "ConnPlane",
+        "type": "Wasp_Connection From Plane",
+        "x": 800,
+        "y": 100
+      },
+      {
+        "nickname": "BasicPart",
+        "type": "Wasp_Basic Part",
+        "x": 950,
+        "y": 150
+      },
+      {
+        "nickname": "RuleGen",
+        "type": "Wasp_Rules Generator",
+        "x": 1100,
+        "y": 100
+      },
+      {
+        "nickname": "StochAggr",
+        "type": "Wasp_Stochastic Aggregation",
+        "x": 1250,
+        "y": 150
+      }
+    ],
+    "connections": [
+      {
+        "from": "SizeX",
+        "from_param": "N",
+        "to": "CenterBox",
+        "to_param": "X"
+      },
+      {
+        "from": "SizeY",
+        "from_param": "N",
+        "to": "CenterBox",
+        "to_param": "Y"
+      },
+      {
+        "from": "SizeZ",
+        "from_param": "N",
+        "to": "CenterBox",
+        "to_param": "Z"
+      },
+      {
+        "from": "CenterBox",
+        "from_param": "B",
+        "to": "DeconBrep",
+        "to_param": "B",
+        "_comment": "Box → Deconstruct Brep"
+      },
+      {
+        "from": "DeconBrep",
+        "from_param": "F",
+        "to": "EvalSrf",
+        "to_param": "S",
+        "_comment": "Faces → Evaluate Surface"
+      },
+      {
+        "from": "UV_Value",
+        "from_param": "N",
+        "to": "EvalSrf",
+        "to_param": "U"
+      },
+      {
+        "from": "UV_Value",
+        "from_param": "N",
+        "to": "EvalSrf",
+        "to_param": "V"
+      },
+      {
+        "from": "CenterBox",
+        "from_param": "B",
+        "to": "ConnPlane",
+        "to_param": "GEO",
+        "_comment": "Box 幾何"
+      },
+      {
+        "from": "EvalSrf",
+        "from_param": "F",
+        "to": "ConnPlane",
+        "to_param": "PLN",
+        "_comment": "Frame (Plane) 從 Evaluate Surface"
+      },
+      {
+        "from": "PartName",
+        "from_param": "out",
+        "to": "BasicPart",
+        "to_param": "NAME"
+      },
+      {
+        "from": "CenterBox",
+        "from_param": "B",
+        "to": "BasicPart",
+        "to_param": "GEO"
+      },
+      {
+        "from": "ConnPlane",
+        "from_param": "CONN",
+        "to": "BasicPart",
+        "to_param": "CONN"
+      },
+      {
+        "from": "BasicPart",
+        "from_param": "PART",
+        "to": "RuleGen",
+        "to_param": "PART"
+      },
+      {
+        "from": "BasicPart",
+        "from_param": "PART",
+        "to": "StochAggr",
+        "to_param": "PART"
+      },
+      {
+        "from": "RuleGen",
+        "from_param_index": 0,
+        "to": "StochAggr",
+        "to_param": "RULES"
+      },
+      {
+        "from": "Count",
+        "from_param": "N",
+        "to": "StochAggr",
+        "to_param": "N"
+      },
+      {
+        "from": "Seed",
+        "from_param": "N",
+        "to": "StochAggr",
+        "to_param": "SEED"
+      },
+      {
+        "from": "Reset",
+        "from_param_index": 0,
+        "to": "StochAggr",
+        "to_param": "RESET"
+      }
+    ],
+    "layout": {
+      "strategy": "horizontal_flow",
+      "column_width": 150,
+      "row_height": 50,
+      "description": "橫向流程佈局，資料從左到右流動"
+    }
+  }
+}
