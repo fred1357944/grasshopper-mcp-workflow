@@ -98,6 +98,14 @@ from .ghx_auto_learner import (
     LearningResult,
     SearchResult,
 )
+from .component_validator import (
+    ComponentValidator,
+    ValidationStatus,
+    ComponentValidation,
+    ValidationReport,
+    validate_placement_info,
+    quick_validate,
+)
 
 __all__ = [
     # 原有模組
@@ -181,4 +189,11 @@ __all__ = [
     "ExtractedPattern",
     "LearningResult",
     "SearchResult",
+    # Component Validator (Validation-First Architecture)
+    "ComponentValidator",
+    "ValidationStatus",
+    "ComponentValidation",
+    "ValidationReport",
+    "validate_placement_info",
+    "quick_validate",
 ]
