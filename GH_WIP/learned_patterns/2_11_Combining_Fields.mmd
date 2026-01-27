@@ -1,0 +1,76 @@
+---
+title: 2_11_Combining_Fields
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: advanced
+confidence: 0.90
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx
+    %% Components: 38, Connections: 26
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    BBox["Bounding Box<br/>BBox"]
+    Volume["Volume<br/>Volume"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Dispatch["Dispatch<br/>Dispatch"]
+    Lng["List Length<br/>Lng"]
+    Repeat["Repeat Data<br/>Repeat"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Dom["Construct Domain<br/>Dom"]
+    Graph["Graph Mapper<br/>Graph"]
+    Weave["Weave<br/>Weave"]
+    Panel["Panel<br/>Panel"]
+    Preview["Custom Preview<br/>Preview"]
+    Gradient["Gradient<br/>Gradient"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Merge["Merge<br/>Merge"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Contour["Contour<br/>Contour"]
+    Random["Random<br/>Random"]
+    Item["List Item<br/>Item"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Pull["Pull Point<br/>Pull"]
+    pDecon["Deconstruct<br/>pDecon"]
+    Smaller["Smaller Than<br/>Smaller"]
+    Project["Project<br/>Project"]
+    A×B["Multiplication<br/>A×B"]
+    EvalSrf["Evaluate Surface<br/>EvalSrf"]
+    Srf_CP["Surface Closest Point<br/>Srf CP"]
+    Angle["Angle<br/>Angle"]
+    Z["Unit Z<br/>Z"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    BBox -->|"Box → Geometry"| Volume
+    BBox -->|"Box → Geometry"| Scale_NU
+    Volume -->|"Centroid → Plane"| Scale_NU
+    Pull -->|"Distance → List"| Dispatch
+    Smaller -->|"Smaller than → Dispatch pattern"| Dispatch
+    UpdateFile -->|"output → List"| Lng
+    Lng -->|"Length → Length"| Repeat
+    Angle -->|"Angle → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Angle -->|"Angle → Numbers"| Bnd
+    Smaller -->|"Smaller than → Pattern"| Weave
+    Repeat -->|"Data → Stream 1"| Weave
+    UpdateFile -->|"output → Geometry"| Preview
+    Gradient -->|"Colour → Material"| Preview
+    Weave -->|"Weave → Parameter"| Gradient
+    Lng -->|"Length → Number"| Random
+    Merge -->|"Result → List"| Item
+    Random -->|"Random → Index"| Item
+    Project -->|"Curve → Geometry"| Pull
+    UpdateFile -->|"output → Point"| pDecon
+    pDecon -->|"Z component → First Number"| Smaller
+    pDecon -->|"Z component → Second Number"| Smaller
+    Weave -->|"Weave → A"| A×B
+    Srf_CP -->|"UV Point → Point"| EvalSrf
+    Z -->|"Unit vector → Vector A"| Angle
+    EvalSrf -->|"Normal → Vector B"| Angle

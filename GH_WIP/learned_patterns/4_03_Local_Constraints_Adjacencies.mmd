@@ -1,0 +1,34 @@
+---
+title: 4_03_Local_Constraints_Adjacencies
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx
+    %% Components: 17, Connections: 5
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Y["Unit Y<br/>Y"]
+    Move["Move<br/>Move"]
+    Series["Series<br/>Series"]
+    Merge["Merge<br/>Merge"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+
+    Series -->|"Series → Factor"| Y
+    Y -->|"Unit vector → Motion"| Move
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Geometry"| Preview

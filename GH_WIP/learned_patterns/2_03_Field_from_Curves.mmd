@@ -1,0 +1,44 @@
+---
+title: 2_03_Field_from_Curves
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx
+    %% Components: 24, Connections: 8
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Crv["Curve<br/>Crv"]
+    BBox["Bounding Box<br/>BBox"]
+    Volume["Volume<br/>Volume"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Pt["Point<br/>Pt"]
+    Crv_CP["Curve Closest Point<br/>Crv CP"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Graph["Graph Mapper<br/>Graph"]
+    Brep["Brep<br/>Brep"]
+    Panel["Panel<br/>Panel"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Button["Button<br/>Button"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+    Points["Point List<br/>Points"]
+    PLANE["Value List<br/>PLANE"]
+    Preview["Custom Preview<br/>Preview"]
+    Range["Range<br/>Range"]
+    Gradient["Gradient<br/>Gradient"]
+    Swatch["Colour Swatch<br/>Swatch"]
+
+    BBox -->|"Box → Geometry"| Volume
+    BBox -->|"Box → Geometry"| Scale_NU
+    Volume -->|"Centroid → Plane"| Scale_NU
+    Crv_CP -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Crv_CP -->|"Distance → Numbers"| Bnd
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Range -->|"Range → Parameter"| Gradient

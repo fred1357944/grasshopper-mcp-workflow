@@ -1,0 +1,58 @@
+---
+title: 5_02_Hierarchical_Aggregation_LEGO
+intent: aggregation
+tags: parametric, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx
+    %% Components: 27, Connections: 19
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    DeBrep["Deconstruct Brep<br/>DeBrep"]
+    Item["List Item<br/>Item"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Area["Area<br/>Area"]
+    Line["Line SDL<br/>Line"]
+    X["Unit X<br/>X"]
+    Panel["Panel<br/>Panel"]
+    Y["Unit Y<br/>Y"]
+    End["End Points<br/>End"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Move["Move<br/>Move"]
+    SUnion["Solid Union<br/>SUnion"]
+    Button["Button<br/>Button"]
+    FMerge["Merge Faces<br/>FMerge"]
+    Split["Split List<br/>Split"]
+    Lng["List Length<br/>Lng"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    A+B["Addition<br/>A+B"]
+    A×B["Multiplication<br/>A×B"]
+    Merge["Merge<br/>Merge"]
+    MUnion["Mesh Union<br/>MUnion"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+
+    DeBrep -->|"Faces → List"| Item
+    Item -->|"Item → Geometry"| Area
+    Area -->|"Centroid → Start"| Line
+    X -->|"Unit vector → Direction"| Line
+    Y -->|"Unit vector → Direction"| Line
+    Line -->|"Line → Curve"| End
+    A×B -->|"Result → Motion"| Move
+    UpdateFile -->|"output → Breps"| SUnion
+    SUnion -->|"Result → Brep"| FMerge
+    UpdateFile -->|"output → List"| Split
+    Lng -->|"Length → Index"| Split
+    UpdateFile -->|"LOG → List"| Lng
+    UpdateFile -->|"LOG → Geometry"| Preview
+    X -->|"Unit vector → A"| A+B
+    Y -->|"Unit vector → B"| A+B
+    A+B -->|"Result → A"| A×B
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"output → Meshes"| MUnion

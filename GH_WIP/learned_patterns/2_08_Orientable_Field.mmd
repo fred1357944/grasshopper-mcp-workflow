@@ -1,0 +1,53 @@
+---
+title: 2_08_Orientable_Field
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx
+    %% Components: 28, Connections: 13
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Points["Point List<br/>Points"]
+    Button["Button<br/>Button"]
+    BBox["Bounding Box<br/>BBox"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Volume["Volume<br/>Volume"]
+    Pull["Pull Point<br/>Pull"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Preview["Custom Preview<br/>Preview"]
+    Gradient["Gradient<br/>Gradient"]
+    Graph["Graph Mapper<br/>Graph"]
+    Pln["Plane<br/>Pln"]
+    XY["XY Plane<br/>XY"]
+    PRot["Rotate Plane<br/>PRot"]
+    Rot3D["Rotate 3D<br/>Rot3D"]
+    X["Unit X<br/>X"]
+    Pt["Construct Point<br/>Pt"]
+    XZ["XZ Plane<br/>XZ"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+    Swatch["Colour Swatch<br/>Swatch"]
+
+    BBox -->|"Box → Geometry"| Scale_NU
+    Volume -->|"Centroid → Plane"| Scale_NU
+    BBox -->|"Box → Geometry"| Volume
+    UpdateFile -->|"output → Point"| Pull
+    Pull -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Pull -->|"Distance → Numbers"| Bnd
+    UpdateFile -->|"LOG → Geometry"| Preview
+    UpdateFile -->|"output → Parameter"| Gradient
+    XZ -->|"Plane → Plane"| PRot
+    PRot -->|"Plane → Geometry"| Rot3D
+    X -->|"Unit vector → Axis"| Rot3D
+    Pt -->|"Point → Origin"| XZ

@@ -1,0 +1,42 @@
+---
+title: 1_04_Rules_Visualizer
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx
+    %% Components: 21, Connections: 9
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Panel["Panel<br/>Panel"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Merge["Merge<br/>Merge"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Tag["Text Tag 3D<br/>Tag"]
+    XY["XY Plane<br/>XY"]
+    Pt["Construct Point<br/>Pt"]
+    MEdges["Mesh Edges<br/>MEdges"]
+    Trim["Trim Tree<br/>Trim"]
+    Item["List Item<br/>Item"]
+    Rectangle["Rectangle<br/>Rectangle"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+
+    Trim -->|"Tree → Geometry"| Preview
+    Merge -->|"Result → Material"| Preview
+    UpdateFile -->|"output → Location"| Tag
+    UpdateFile -->|"output → Text"| Tag
+    Pt -->|"Point → Origin"| XY
+    UpdateFile -->|"LOG → Mesh"| MEdges
+    MEdges -->|"Interior Edges → Tree"| Trim
+    Rectangle -->|"Rectangle → List"| Item
+    UpdateFile -->|"output → Plane"| Rectangle

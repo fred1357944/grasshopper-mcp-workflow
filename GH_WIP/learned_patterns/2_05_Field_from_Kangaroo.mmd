@@ -1,0 +1,93 @@
+---
+title: 2_05_Field_from_Kangaroo
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: advanced
+confidence: 0.90
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx
+    %% Components: 43, Connections: 38
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Preview["Custom Preview<br/>Preview"]
+    PlaneSrf["Plane Surface<br/>PlaneSrf"]
+    SubSrf["Isotrim<br/>SubSrf"]
+    Divide["Divide Domain²<br/>Divide"]
+    Mesh["Mesh Brep<br/>Mesh"]
+    MJoin["Mesh Join<br/>MJoin"]
+    weldVertices["Mesh WeldVertices<br/>weldVertices"]
+    EdgeLengths["EdgeLengths<br/>EdgeLengths"]
+    Load["Load<br/>Load"]
+    DeMesh["Deconstruct Mesh<br/>DeMesh"]
+    Anchor["Anchor<br/>Anchor"]
+    Z["Unit Z<br/>Z"]
+    ZombieSolver["ZombieSolver<br/>ZombieSolver"]
+    Show["Show<br/>Show"]
+    Clean["Clean Tree<br/>Clean"]
+    Item["List Item<br/>Item"]
+    BBox["Bounding Box<br/>BBox"]
+    Volume["Volume<br/>Volume"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Pull["Pull Point<br/>Pull"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Graph["Graph Mapper<br/>Graph"]
+    Area["Area<br/>Area"]
+    Dist["Distance<br/>Dist"]
+    Larger["Larger Than<br/>Larger"]
+    Cull["Cull Pattern<br/>Cull"]
+    MEdges["Mesh Edges<br/>MEdges"]
+    Join["Join Curves<br/>Join"]
+    Explode["Explode<br/>Explode"]
+    XY["XY Plane<br/>XY"]
+
+    MEdges -->|"Naked Edges → Geometry"| Preview
+    MEdges -->|"Interior Edges → Geometry"| Preview
+    PlaneSrf -->|"Plane → Surface"| SubSrf
+    Divide -->|"Segments → Domain"| SubSrf
+    PlaneSrf -->|"Plane → Domain"| Divide
+    Cull -->|"List → Brep"| Mesh
+    Mesh -->|"Mesh → Meshes"| MJoin
+    MJoin -->|"Mesh → Mesh"| weldVertices
+    weldVertices -->|"Mesh → Mesh"| EdgeLengths
+    DeMesh -->|"Vertices → Point"| Load
+    Z -->|"Unit vector → Force vector"| Load
+    weldVertices -->|"Mesh → Mesh"| DeMesh
+    Explode -->|"Vertices → Point"| Anchor
+    EdgeLengths -->|"EL → GoalObjects"| ZombieSolver
+    Load -->|"Unary → GoalObjects"| ZombieSolver
+    Anchor -->|"A → GoalObjects"| ZombieSolver
+    Show -->|"G → GoalObjects"| ZombieSolver
+    weldVertices -->|"Mesh → G"| Show
+    ZombieSolver -->|"O → Tree"| Clean
+    Clean -->|"Tree → List"| Item
+    Item -->|"Item → Content"| BBox
+    BBox -->|"Box → Geometry"| Volume
+    BBox -->|"Box → Geometry"| Scale_NU
+    Volume -->|"Centroid → Plane"| Scale_NU
+    UpdateFile -->|"output → Point"| Pull
+    Item -->|"Item → Geometry"| Pull
+    Pull -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Pull -->|"Distance → Numbers"| Bnd
+    SubSrf -->|"Surface → Geometry"| Area
+    Area -->|"Centroid → Point A"| Dist
+    Area -->|"Centroid → Point B"| Dist
+    Dist -->|"Distance → First Number"| Larger
+    SubSrf -->|"Surface → List"| Cull
+    Larger -->|"Larger than → Cull Pattern"| Cull
+    Item -->|"Item → Mesh"| MEdges
+    MEdges -->|"Naked Edges → Curves"| Join
+    Join -->|"Curves → Curve"| Explode

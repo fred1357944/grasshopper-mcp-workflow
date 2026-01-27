@@ -1,0 +1,51 @@
+---
+title: 4_05_Global_Constraints_Plane
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx
+    %% Components: 24, Connections: 15
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Merge["Merge<br/>Merge"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    XY["XY Plane<br/>XY"]
+    XZ["XZ Plane<br/>XZ"]
+    Pt["Construct Point<br/>Pt"]
+    Button["Button<br/>Button"]
+    Random["Random<br/>Random"]
+    Lng["List Length<br/>Lng"]
+    Gradient["Gradient<br/>Gradient"]
+    Preview["Custom Preview<br/>Preview"]
+    Neg["Negative<br/>Neg"]
+    PlaneSrf["Plane Surface<br/>PlaneSrf"]
+    Iso["Iso Curve<br/>Iso"]
+    Range["Range<br/>Range"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+    YZ["YZ Plane<br/>YZ"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Data 3"| Merge
+    Pt -->|"Point → Origin"| XZ
+    Range -->|"Range → X coordinate"| Pt
+    Range -->|"Range → Y coordinate"| Pt
+    Lng -->|"Length → Number"| Random
+    UpdateFile -->|"output → List"| Lng
+    Random -->|"Random → Parameter"| Gradient
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Gradient -->|"Colour → Material"| Preview
+    YZ -->|"Plane → Plane"| PlaneSrf
+    PlaneSrf -->|"Plane → Surface"| Iso
+    Pt -->|"Point → UV point"| Iso
+    Pt -->|"Point → Origin"| YZ

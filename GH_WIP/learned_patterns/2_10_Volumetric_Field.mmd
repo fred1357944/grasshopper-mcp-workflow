@@ -1,0 +1,54 @@
+---
+title: 2_10_Volumetric_Field
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx
+    %% Components: 27, Connections: 15
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Random["Random<br/>Random"]
+    Lng["List Length<br/>Lng"]
+    Item["List Item<br/>Item"]
+    Merge["Merge<br/>Merge"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Srf_CP["Surface Closest Point<br/>Srf CP"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Graph["Graph Mapper<br/>Graph"]
+    Gradient["Gradient<br/>Gradient"]
+    Iso["Iso Curve<br/>Iso"]
+    Range["Range<br/>Range"]
+    Pt["Construct Point<br/>Pt"]
+    PreviewLW["Custom Preview Lineweights<br/>PreviewLW"]
+    Wires["Brep Wireframe<br/>Wires"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Lng -->|"Length → Number"| Random
+    UpdateFile -->|"output → List"| Lng
+    Merge -->|"Result → List"| Item
+    Random -->|"Random → Index"| Item
+    UpdateFile -->|"output → Point"| Srf_CP
+    Srf_CP -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Srf_CP -->|"Distance → Numbers"| Bnd
+    UpdateFile -->|"output → Parameter"| Gradient
+    Pt -->|"Point → UV point"| Iso
+    Range -->|"Range → X coordinate"| Pt
+    Range -->|"Range → Y coordinate"| Pt
+    Iso -->|"U Isocurve → Geometry"| PreviewLW
+    Iso -->|"V Isocurve → Geometry"| PreviewLW

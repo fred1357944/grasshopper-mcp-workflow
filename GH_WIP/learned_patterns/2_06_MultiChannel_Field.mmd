@@ -1,0 +1,57 @@
+---
+title: 2_06_MultiChannel_Field
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx
+    %% Components: 28, Connections: 17
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Crv["Curve<br/>Crv"]
+    BBox["Bounding Box<br/>BBox"]
+    Volume["Volume<br/>Volume"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Crv_CP["Curve Closest Point<br/>Crv CP"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Graph["Graph Mapper<br/>Graph"]
+    Brep["Brep<br/>Brep"]
+    Pt["Point<br/>Pt"]
+    Button["Button<br/>Button"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    Points["Point List<br/>Points"]
+    Preview["Custom Preview<br/>Preview"]
+    Merge["Merge<br/>Merge"]
+    pDecon["Deconstruct<br/>pDecon"]
+    A×B["Multiplication<br/>A×B"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Split["Split List<br/>Split"]
+    Lng["List Length<br/>Lng"]
+    Larger["Larger Than<br/>Larger"]
+    Cull["Cull Pattern<br/>Cull"]
+
+    BBox -->|"Box → Geometry"| Volume
+    BBox -->|"Box → Geometry"| Scale_NU
+    Volume -->|"Centroid → Plane"| Scale_NU
+    UpdateFile -->|"output → Point"| Crv_CP
+    pDecon -->|"Y component → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    pDecon -->|"Y component → Numbers"| Bnd
+    Cull -->|"List → Geometry"| Preview
+    ReMap -->|"Mapped → Data 1"| Merge
+    ReMap -->|"Mapped → Data 2"| Merge
+    UpdateFile -->|"output → Point"| pDecon
+    Split -->|"List B → B"| A×B
+    Lng -->|"Length → Index"| Split
+    ReMap -->|"Mapped → List"| Lng
+    A×B -->|"Result → First Number"| Larger
+    UpdateFile -->|"output → List"| Cull
+    Larger -->|"Larger than → Cull Pattern"| Cull

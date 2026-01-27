@@ -295,21 +295,23 @@ class GHXParser:
         for chunk in container.iter("chunk"):
             chunk_name = chunk.get("name", "")
             
-            if "param_input" in chunk_name:
+            # 支援兩種格式: "param_input" 或 "InputParam"
+            if "param_input" in chunk_name or chunk_name == "InputParam":
                 param = self._parse_single_parameter(chunk, input_index)
                 if param:
                     # 記錄參數 GUID 與元件的對應
                     param_guid = self._get_item_value(chunk, "InstanceGuid")
                     if param_guid:
                         self._param_source_map[self._clean_guid(param_guid)] = (
-                            component.instance_guid, 
-                            "input", 
+                            component.instance_guid,
+                            "input",
                             input_index
                         )
                     component.inputs.append(param)
                     input_index += 1
-                    
-            elif "param_output" in chunk_name:
+
+            # 支援兩種格式: "param_output" 或 "OutputParam"
+            elif "param_output" in chunk_name or chunk_name == "OutputParam":
                 param = self._parse_single_parameter(chunk, output_index)
                 if param:
                     # 記錄輸出參數 GUID
@@ -339,14 +341,12 @@ class GHXParser:
         )
         
         # 解析來源連接 (用於建立連接關係)
-        # Source 是一個 item 標籤，其內部包含多個 item 子標籤
+        # Source 是直接帶有 GUID 文字的 item 標籤
         for item in param_chunk.iter("item"):
-            if item.get("name") == "Source":
-                # 收集所有 Source 下的 item 值
-                for source_item in item.iter("item"):
-                    if source_item.text:
-                        param.connected_sources.append(source_item.text)
-        
+            if item.get("name") == "Source" and item.text:
+                # Source item 直接包含來源參數的 GUID
+                param.connected_sources.append(item.text)
+
         return param
     
     def _parse_component_properties(self, obj_chunk: ET.Element, component: GHComponent):

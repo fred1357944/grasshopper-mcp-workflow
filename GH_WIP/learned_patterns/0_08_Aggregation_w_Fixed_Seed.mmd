@@ -1,0 +1,31 @@
+---
+title: 0_08_Aggregation_w_Fixed_Seed
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx
+    %% Components: 15, Connections: 4
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    BASE_SEED["Number Slider<br/>BASE SEED"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Series["Series<br/>Series"]
+    Move["Move<br/>Move"]
+    A×B["Multiplication<br/>A×B"]
+    X["Unit X<br/>X"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+
+    UpdateFile -->|"LOG → Geometry"| Move
+    X -->|"Unit vector → Motion"| Move
+    Series -->|"Series → A"| A×B
+    A×B -->|"Result → Factor"| X

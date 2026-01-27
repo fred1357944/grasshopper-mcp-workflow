@@ -29,6 +29,11 @@ import time
 from .integration_bridge import IntegrationBridge
 from .pre_execution_checker import PreExecutionChecker, CheckResult, Severity
 from .hitl_collaborator import HITLCollaborator, QuestionType
+from .connection_validator import ConnectionValidator, ValidationResult
+from .error_learner import ErrorLearner, ErrorContext
+
+# 延遲導入 PlacementExecutor（避免循環依賴）
+PlacementExecutor = None
 
 
 class Layer(Enum):
@@ -118,6 +123,14 @@ class UnifiedHandler:
             user_id=user_id
         )
         self.pre_checker = PreExecutionChecker(config_dir=self.config_dir)
+
+        # 初始化連接驗證器和錯誤學習器 (Knowledge System v2)
+        self.connection_validator = ConnectionValidator(
+            specs_path=self.config_dir / "component_specs.json"
+        )
+        self.error_learner = ErrorLearner(
+            errors_path=self.config_dir / "learned_errors.json"
+        )
 
         # 初始化 HITL 協作器
         self.hitl = HITLCollaborator(
@@ -738,11 +751,36 @@ class UnifiedHandler:
 
     def _execute_placement(self, placement_info: Dict) -> Dict:
         """
-        執行 placement_info
+        執行 placement_info（帶連接驗證和錯誤學習）
 
-        如果有 MCP client，使用它執行
-        否則返回模擬成功
+        流程:
+        1. 連接驗證（使用 ConnectionValidator）
+        2. 執行（使用 PlacementExecutor）
+        3. 錯誤學習（使用 ErrorLearner）
         """
+        # 1. 連接驗證 (Knowledge System v2)
+        validation_result = self.connection_validator.validate_placement_info(placement_info)
+
+        if not validation_result.is_valid:
+            # 有驗證錯誤，記錄並返回
+            error_messages = [
+                f"[{err.error_type}] {err.message} - 建議: {err.suggestion}"
+                for err in validation_result.errors
+            ]
+            warning_messages = [
+                f"[{warn.error_type}] {warn.message}"
+                for warn in validation_result.warnings
+            ]
+
+            return {
+                "success": False,
+                "validation_failed": True,
+                "errors": error_messages,
+                "warnings": warning_messages,
+                "validation_errors_count": len(validation_result.errors),
+            }
+
+        # 2. 模擬執行或實際執行
         if self.mcp_client is None:
             # 模擬執行 (用於測試)
             return {
@@ -750,15 +788,84 @@ class UnifiedHandler:
                 "simulated": True,
                 "components_created": len(placement_info.get("components", [])),
                 "connections_made": len(placement_info.get("connections", [])),
+                "validation_warnings": [w.message for w in validation_result.warnings],
             }
 
-        # 使用 MCP client 執行
+        # 3. 使用 PlacementExecutor 執行
         try:
-            # TODO: 實作 MCP 執行邏輯
-            # 這裡需要調用 mcp_client 的方法
-            return {"success": True}
+            # 延遲導入避免循環依賴
+            global PlacementExecutor
+            if PlacementExecutor is None:
+                from grasshopper_tools.placement_executor import PlacementExecutor
+
+            # 保存 placement_info 到臨時文件
+            import tempfile
+            with tempfile.NamedTemporaryFile(
+                mode='w', suffix='.json', delete=False, encoding='utf-8'
+            ) as f:
+                json.dump(placement_info, f, ensure_ascii=False, indent=2)
+                temp_path = f.name
+
+            # 執行
+            executor = PlacementExecutor(client=self.mcp_client)
+            result = executor.execute_placement_info(
+                json_path=temp_path,
+                clear_first=True,
+                use_smart_layout=True
+            )
+
+            # 清理臨時文件
+            import os
+            os.unlink(temp_path)
+
+            # 4. 從 MCP 錯誤中學習（錯誤回饋閉環）
+            connection_errors = result.get("connection_errors", [])
+            learned_error_ids = []
+
+            for err in connection_errors:
+                error_message = err.get("error", "")
+                context = ErrorContext(
+                    command="connect_components",
+                    parameters={
+                        "source_id": err.get("source_id"),
+                        "target_id": err.get("target_id"),
+                    },
+                    connection={
+                        "from": err.get("source_id"),
+                        "to": err.get("target_id"),
+                        "fromParam": err.get("source_param"),
+                        "toParam": err.get("target_param"),
+                        "fromParamIndex": err.get("source_param_index"),
+                        "toParamIndex": err.get("target_param_index"),
+                    },
+                    component=None,
+                )
+                learned = self.error_learner.learn_from_error(error_message, context)
+                if learned:
+                    learned_error_ids.append(learned.error_id)
+
+            # 添加學習信息到結果
+            result["learned_error_ids"] = learned_error_ids
+            result["errors_learned_count"] = len(learned_error_ids)
+
+            return result
+
         except Exception as e:
-            return {"success": False, "errors": [str(e)]}
+            # 從異常中學習
+            error_message = str(e)
+            context = ErrorContext(
+                command="execute_placement",
+                parameters={"components_count": len(placement_info.get("components", []))},
+                connection=None,
+                component=None,
+            )
+            learned = self.error_learner.learn_from_error(error_message, context)
+
+            return {
+                "success": False,
+                "errors": [error_message],
+                "learned_error_id": learned.error_id if learned else None,
+            }
 
     def _learn_from_success(
         self,
@@ -782,6 +889,56 @@ class UnifiedHandler:
         except Exception as e:
             # 學習失敗不影響主流程
             pass
+
+    # =========================================================================
+    # 驗證 API (Knowledge System v2)
+    # =========================================================================
+
+    def validate_placement_info(self, placement_info: Dict) -> ValidationResult:
+        """
+        驗證 placement_info 的連接語義
+
+        Args:
+            placement_info: 待驗證的 placement_info
+
+        Returns:
+            ValidationResult 包含錯誤和警告
+        """
+        return self.connection_validator.validate_placement_info(placement_info)
+
+    def validate_json_file(self, json_path: str) -> ValidationResult:
+        """
+        驗證 JSON 文件的連接語義
+
+        Args:
+            json_path: placement_info.json 的路徑
+
+        Returns:
+            ValidationResult
+        """
+        return self.connection_validator.validate_json_file(Path(json_path))
+
+    def get_learned_errors(self, tags: Optional[List[str]] = None) -> List[str]:
+        """
+        獲取已學習的錯誤預防規則
+
+        Args:
+            tags: 可選的標籤過濾（如 ["wasp", "type"]）
+
+        Returns:
+            規則列表
+        """
+        return self.error_learner.get_prevention_rules(tags)
+
+    def get_validation_stats(self) -> Dict:
+        """獲取驗證相關統計"""
+        error_stats = self.error_learner.get_statistics()
+        return {
+            "component_specs_count": len(self.connection_validator.specs),
+            "learned_errors_count": error_stats["total_errors"],
+            "total_error_occurrences": error_stats["total_occurrences"],
+            "error_tag_distribution": error_stats["tag_distribution"],
+        }
 
     # =========================================================================
     # 統計與報告

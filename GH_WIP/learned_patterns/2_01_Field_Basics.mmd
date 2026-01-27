@@ -1,0 +1,42 @@
+---
+title: 2_01_Field_Basics
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx
+    %% Components: 21, Connections: 9
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    Brep["Brep<br/>Brep"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Wires["Brep Wireframe<br/>Wires"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    BBox["Bounding Box<br/>BBox"]
+    Pop3D["Populate 3D<br/>Pop3D"]
+    Pull["Pull Point<br/>Pull"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Graph["Graph Mapper<br/>Graph"]
+    Gradient["Gradient<br/>Gradient"]
+    Button["Button<br/>Button"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    UpdateFile -->|"output → Content"| BBox
+    BBox -->|"Box → Region"| Pop3D
+    UpdateFile -->|"output → Point"| Pull
+    Pop3D -->|"Population → Geometry"| Pull
+    Pull -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Pull -->|"Distance → Numbers"| Bnd
+    UpdateFile -->|"output → Parameter"| Gradient

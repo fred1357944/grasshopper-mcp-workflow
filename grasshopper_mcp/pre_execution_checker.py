@@ -192,6 +192,8 @@ class PreExecutionChecker:
         """載入知識庫"""
         self._trusted_guids: Dict = {}
         self._mcp_commands: Dict = {}
+        self._learned_patterns: Dict = {}
+        self._param_types: Dict = {}  # 參數類型知識庫
 
         # 載入 trusted_guids.json
         trusted_path = self.config_dir / "trusted_guids.json"
@@ -204,6 +206,24 @@ class PreExecutionChecker:
         if commands_path.exists():
             with open(commands_path, 'r', encoding='utf-8') as f:
                 self._mcp_commands = json.load(f)
+
+        # 載入 learned_patterns.json（Claude Code 對話累積的知識）
+        patterns_path = self.config_dir / "learned_patterns.json"
+        if patterns_path.exists():
+            try:
+                with open(patterns_path, 'r', encoding='utf-8') as f:
+                    self._learned_patterns = json.load(f)
+            except Exception as e:
+                print(f"Warning: Failed to load learned_patterns.json: {e}")
+
+        # 載入 param_type_knowledge.json（參數類型知識庫）
+        param_types_path = self.config_dir / "param_type_knowledge.json"
+        if param_types_path.exists():
+            try:
+                with open(param_types_path, 'r', encoding='utf-8') as f:
+                    self._param_types = json.load(f)
+            except Exception as e:
+                print(f"Warning: Failed to load param_type_knowledge.json: {e}")
 
     def check_placement_info(self, placement_info: Dict) -> List[CheckResult]:
         """
@@ -238,10 +258,14 @@ class PreExecutionChecker:
         self._check_connection_params(connections, components)
         self._check_connection_completeness(connections, components)
         self._check_connection_types(connections, components)  # New in Round 3
+        self._check_param_type_compatibility(connections, components)  # 參數類型兼容性檢查
 
         # 3. 檢查 variable_params（如 Entwine）
         variable_params = placement_info.get("variable_params", [])
         self._check_variable_params(variable_params, components)
+
+        # 4. 檢查 learned patterns（Claude Code 對話累積的知識）
+        self._check_learned_patterns(components, connections)
 
         return self.results
 
@@ -503,6 +527,105 @@ class PreExecutionChecker:
                         }
                     ))
 
+    def _check_param_type_compatibility(self, connections: List[Dict], components: List[Dict]):
+        """
+        檢查參數類型兼容性
+
+        使用 param_type_knowledge.json 驗證連接的來源和目標類型是否兼容。
+        例如：Number Slider 不能連接到 Center Box 的 Base (Plane) 參數。
+        """
+        if not self._param_types:
+            return  # 沒有載入類型知識庫
+
+        # 建立組件查找表
+        comp_lookup = {c.get("id"): c for c in components}
+
+        # 合併所有組件定義
+        all_components = {}
+        all_components.update(self._param_types.get("components", {}))
+        all_components.update(self._param_types.get("wasp_components", {}))
+
+        type_compat = self._param_types.get("type_compatibility", {})
+
+        for conn in connections:
+            from_id = conn.get("from", "")
+            to_id = conn.get("to", "")
+            from_param = conn.get("fromParam", "")
+            to_param = conn.get("toParam", "")
+            to_param_idx = conn.get("toParamIndex")
+
+            from_comp = comp_lookup.get(from_id, {})
+            to_comp = comp_lookup.get(to_id, {})
+
+            from_type = from_comp.get("type", "")
+            to_type = to_comp.get("type", "")
+
+            # 獲取來源輸出類型
+            from_def = all_components.get(from_type, {})
+            from_outputs = from_def.get("outputs", {})
+            from_output = from_outputs.get(from_param, {})
+            source_data_type = from_output.get("type", "Unknown")
+
+            # 獲取目標輸入類型
+            to_def = all_components.get(to_type, {})
+            to_inputs = to_def.get("inputs", {})
+
+            # 嘗試用參數名或索引匹配
+            target_input = to_inputs.get(to_param, {})
+            if not target_input and to_param_idx is not None:
+                # 用索引查找
+                for param_name, param_info in to_inputs.items():
+                    if param_info.get("index") == to_param_idx:
+                        target_input = param_info
+                        # 檢查參數名和索引是否一致
+                        if to_param and param_name != to_param:
+                            self.results.append(CheckResult(
+                                passed=False,
+                                category="param",
+                                severity=Severity.CRITICAL,
+                                message=f"參數名/索引不一致: toParam='{to_param}' 但 toParamIndex={to_param_idx} 對應 '{param_name}'",
+                                component_id=to_id,
+                                suggestion=f"使用 toParam='{param_name}' 或 toParamIndex={param_info.get('index')}",
+                                details={"expected_param": param_name, "actual_param": to_param}
+                            ))
+                        break
+
+            if not target_input:
+                continue  # 無法獲取目標類型信息
+
+            target_data_type = target_input.get("type", "Unknown")
+            not_accepts = target_input.get("not_accepts", [])
+
+            # 檢查是否在 not_accepts 列表中
+            if source_data_type in not_accepts:
+                self.results.append(CheckResult(
+                    passed=False,
+                    category="param",
+                    severity=Severity.CRITICAL,
+                    message=f"類型不兼容: {from_type}.{from_param}({source_data_type}) -> {to_type}.{to_param}({target_data_type})",
+                    component_id=to_id,
+                    suggestion=f"{to_param} 不接受 {source_data_type}，需要 {target_data_type}",
+                    details={
+                        "source_type": source_data_type,
+                        "target_type": target_data_type,
+                        "not_accepts": not_accepts
+                    }
+                ))
+
+            # 檢查類型兼容性
+            elif source_data_type != "Unknown" and target_data_type != "Unknown":
+                compatible_types = type_compat.get(target_data_type, [target_data_type])
+                if source_data_type not in compatible_types:
+                    self.results.append(CheckResult(
+                        passed=False,
+                        category="param",
+                        severity=Severity.WARNING,
+                        message=f"類型可能不兼容: {from_type}({source_data_type}) -> {to_type}.{to_param}({target_data_type})",
+                        component_id=to_id,
+                        suggestion=f"確認 {source_data_type} 可以轉換為 {target_data_type}",
+                        details={"source_type": source_data_type, "target_type": target_data_type}
+                    ))
+
     def _check_variable_params(self, variable_params: List[Dict], components: List[Dict]):
         """檢查 variable_params 配置"""
         comp_ids = {c.get("id") for c in components}
@@ -519,6 +642,185 @@ class PreExecutionChecker:
                     component_id=comp_id,
                     suggestion="確認 componentId 與 components 中的 id 一致"
                 ))
+
+    def _check_learned_patterns(self, components: List[Dict], connections: List[Dict]):
+        """
+        檢查 learned patterns（Claude Code 對話累積的知識）
+
+        從 config/learned_patterns.json 載入學習到的規則，
+        檢查當前配置是否違反這些規則。
+        """
+        patterns = self._learned_patterns.get("patterns", {})
+        if not patterns:
+            return
+
+        # 建立組件查找表
+        comp_lookup = {c.get("id"): c for c in components}
+        comp_types = [c.get("type", "") for c in components]
+
+        for pattern_id, pattern in patterns.items():
+            rule = pattern.get("rule", "")
+            category = pattern.get("category", "general")
+            severity_str = pattern.get("severity", "warning")
+
+            # 轉換 severity
+            severity_map = {
+                "critical": Severity.CRITICAL,
+                "warning": Severity.WARNING,
+                "info": Severity.INFO
+            }
+            severity = severity_map.get(severity_str, Severity.WARNING)
+
+            # ========== 規則匹配邏輯 ==========
+
+            # 規則 1: WASP Connection GEO 必須接 Mesh
+            if "wasp" in pattern_id.lower() and "geo" in pattern_id.lower() and "mesh" in pattern_id.lower():
+                for conn in connections:
+                    to_type = comp_lookup.get(conn.get("to", ""), {}).get("type", "")
+                    if "Connection" in to_type and conn.get("toParam", "").upper() == "GEO":
+                        from_type = comp_lookup.get(conn.get("from", ""), {}).get("type", "")
+                        # 如果來源不是 Mesh 相關組件，發出警告
+                        if "Mesh" not in from_type and "mesh" not in from_type.lower():
+                            self.results.append(CheckResult(
+                                passed=False,
+                                category=category,
+                                severity=severity,
+                                message=f"[{pattern_id}] {rule}",
+                                component_id=conn.get("to"),
+                                suggestion=pattern.get("reason", ""),
+                                details={"pattern_id": pattern_id, "from_type": from_type}
+                            ))
+
+            # 規則 2: Panel 不能作為數值輸入
+            if "panel" in pattern_id.lower() and "number" in pattern_id.lower():
+                for conn in connections:
+                    from_comp = comp_lookup.get(conn.get("from", ""), {})
+                    to_comp = comp_lookup.get(conn.get("to", ""), {})
+                    if from_comp.get("type") == "Panel":
+                        # 檢查目標是否是數學組件
+                        math_types = {"Addition", "Subtraction", "Multiplication", "Division", "Series"}
+                        if to_comp.get("type") in math_types:
+                            self.results.append(CheckResult(
+                                passed=False,
+                                category=category,
+                                severity=severity,
+                                message=f"[{pattern_id}] {rule}",
+                                component_id=conn.get("from"),
+                                suggestion=pattern.get("reason", ""),
+                                details={"pattern_id": pattern_id}
+                            ))
+
+            # 規則 3: Rotate GUID 衝突
+            if "rotate" in pattern_id.lower() and "guid" in pattern_id.lower():
+                for comp in components:
+                    if comp.get("type") == "Rotate" and not comp.get("guid"):
+                        self.results.append(CheckResult(
+                            passed=False,
+                            category=category,
+                            severity=severity,
+                            message=f"[{pattern_id}] {rule}",
+                            component_id=comp.get("id"),
+                            suggestion=pattern.get("reason", ""),
+                            details={"pattern_id": pattern_id}
+                        ))
+
+            # 規則 4: clear_document vs clear_canvas（在 MCP 檢查中處理，這裡跳過）
+
+            # 規則 5: Slider 範圍設定順序（在 component values 檢查中處理，這裡增強）
+            if "slider" in pattern_id.lower() and "range" in pattern_id.lower():
+                for comp in components:
+                    if comp.get("type") == "Number Slider":
+                        value = comp.get("value")
+                        if value is None:
+                            value = comp.get("properties", {}).get("value")
+                        min_val = comp.get("min")
+                        if min_val is None:
+                            min_val = comp.get("properties", {}).get("min")
+                        max_val = comp.get("max")
+                        if max_val is None:
+                            max_val = comp.get("properties", {}).get("max")
+                        # 如果有 value 但沒有 min/max，這是危險的
+                        if value is not None and value > 1 and (min_val is None or max_val is None):
+                            self.results.append(CheckResult(
+                                passed=False,
+                                category=category,
+                                severity=severity,
+                                message=f"[{pattern_id}] {rule}",
+                                component_id=comp.get("id"),
+                                suggestion=pattern.get("reason", ""),
+                                details={"pattern_id": pattern_id, "value": value}
+                            ))
+
+            # 規則 6: WASP Stochastic Aggregation RESET 必須連接
+            if "wasp" in pattern_id.lower() and "reset" in pattern_id.lower():
+                # 檢查是否有 Stochastic Aggregation 組件
+                has_stoch_aggr = False
+                stoch_aggr_id = None
+                for comp in components:
+                    comp_type = comp.get("type", "")
+                    if "Stochastic" in comp_type and "Aggregation" in comp_type:
+                        has_stoch_aggr = True
+                        stoch_aggr_id = comp.get("id")
+                        break
+
+                if has_stoch_aggr:
+                    # 檢查是否有 Boolean Toggle 組件
+                    has_toggle = any(
+                        comp.get("type", "") == "Boolean Toggle"
+                        for comp in components
+                    )
+
+                    # 檢查是否有連接到 RESET
+                    has_reset_connection = any(
+                        (conn.get("to") == stoch_aggr_id and
+                         conn.get("toParam", "").upper() == "RESET")
+                        for conn in connections
+                    )
+
+                    if not has_toggle:
+                        self.results.append(CheckResult(
+                            passed=False,
+                            category="wasp",
+                            severity=Severity.CRITICAL,
+                            message=f"[{pattern_id}] 缺少 Boolean Toggle 組件",
+                            suggestion="添加 Boolean Toggle 組件並連接到 Stochastic Aggregation.RESET",
+                            details={"pattern_id": pattern_id, "stoch_aggr_id": stoch_aggr_id}
+                        ))
+                    elif not has_reset_connection:
+                        self.results.append(CheckResult(
+                            passed=False,
+                            category="wasp",
+                            severity=Severity.CRITICAL,
+                            message=f"[{pattern_id}] {rule}",
+                            component_id=stoch_aggr_id,
+                            suggestion="添加連接: Boolean Toggle -> Stochastic Aggregation.RESET",
+                            details={"pattern_id": pattern_id}
+                        ))
+
+            # 規則 7: Line SDL 必須有完整輸入
+            if "line_sdl" in pattern_id.lower() and "input" in pattern_id.lower():
+                for comp in components:
+                    if comp.get("type", "") == "Line SDL":
+                        line_id = comp.get("id")
+                        # 檢查是否有 S, D, L 三個輸入連接
+                        line_inputs = {"S": False, "D": False, "L": False}
+                        for conn in connections:
+                            if conn.get("to") == line_id:
+                                param = conn.get("toParam", "").upper()
+                                if param in line_inputs:
+                                    line_inputs[param] = True
+
+                        missing = [p for p, has in line_inputs.items() if not has]
+                        if missing:
+                            self.results.append(CheckResult(
+                                passed=False,
+                                category="general",
+                                severity=Severity.WARNING,
+                                message=f"[{pattern_id}] Line SDL 缺少輸入: {', '.join(missing)}",
+                                component_id=line_id,
+                                suggestion=pattern.get("reason", ""),
+                                details={"pattern_id": pattern_id, "missing_inputs": missing}
+                            ))
 
     def _match_severity(self, result_severity: Union[Severity, str], target: Severity) -> bool:
         """匹配 severity（支持 Enum 和 string）"""

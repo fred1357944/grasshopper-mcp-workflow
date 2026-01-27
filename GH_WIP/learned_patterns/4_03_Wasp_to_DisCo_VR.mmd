@@ -1,0 +1,32 @@
+---
+title: 4_03_Wasp_to_DisCo_VR
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx
+    %% Components: 18, Connections: 2
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Brep["Brep<br/>Brep"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    Merge["Merge<br/>Merge"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Preview["Custom Preview<br/>Preview"]
+    Move["Move<br/>Move"]
+    Z["Unit Z<br/>Z"]
+    Geo["Geometry<br/>Geo"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Box["Box<br/>Box"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Z -->|"Unit vector → Motion"| Move

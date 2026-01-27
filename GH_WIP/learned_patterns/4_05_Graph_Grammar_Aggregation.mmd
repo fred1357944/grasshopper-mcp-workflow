@@ -1,0 +1,28 @@
+---
+title: 4_05_Graph_Grammar_Aggregation
+intent: aggregation
+tags: curve, wasp, level:medium
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx
+    %% Components: 13, Connections: 3
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Merge["Merge<br/>Merge"]
+    Button["Button<br/>Button"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Geometry"| Preview

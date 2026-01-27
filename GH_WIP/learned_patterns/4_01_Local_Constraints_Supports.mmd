@@ -1,0 +1,47 @@
+---
+title: 4_01_Local_Constraints_Supports
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx
+    %% Components: 21, Connections: 14
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Merge["Merge<br/>Merge"]
+    CONSTRAINTS["Value List<br/>CONSTRAINTS"]
+    Item["List Item<br/>Item"]
+    Random["Random<br/>Random"]
+    Jitter["Jitter<br/>Jitter"]
+    A×B["Multiplication<br/>A×B"]
+    Vec["Vector XYZ<br/>Vec"]
+    Move["Move<br/>Move"]
+    Lng["List Length<br/>Lng"]
+    Gradient["Gradient<br/>Gradient"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Gradient -->|"Colour → Shader"| Preview
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Data 3"| Merge
+    UpdateFile -->|"LOG → Data 4"| Merge
+    Lng -->|"Length → Number"| Random
+    Random -->|"Random → List"| Jitter
+    Jitter -->|"Values → A"| A×B
+    A×B -->|"Result → X component"| Vec
+    A×B -->|"Result → Y component"| Vec
+    Vec -->|"Vector → Motion"| Move
+    UpdateFile -->|"LOG → List"| Lng
+    Random -->|"Random → Parameter"| Gradient

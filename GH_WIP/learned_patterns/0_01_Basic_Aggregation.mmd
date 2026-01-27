@@ -1,0 +1,30 @@
+---
+title: 0_01_Basic_Aggregation
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/0.Basics/0_01_Basic_Aggregation.ghx
+    %% Components: 14, Connections: 4
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Panel["Panel<br/>Panel"]
+    Merge["Merge<br/>Merge"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Data 3"| Merge
+    UpdateFile -->|"LOG → Geometry"| Preview

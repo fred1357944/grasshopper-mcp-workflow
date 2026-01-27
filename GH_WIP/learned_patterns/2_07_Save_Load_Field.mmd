@@ -1,0 +1,35 @@
+---
+title: 2_07_Save_Load_Field
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_07_Save_Load_Field.ghx
+    %% Components: 17, Connections: 6
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Pull["Pull Point<br/>Pull"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Panel["Panel<br/>Panel"]
+    Graph["Graph Mapper<br/>Graph"]
+    Gradient["Gradient<br/>Gradient"]
+    Preview["Custom Preview<br/>Preview"]
+    Button["Button<br/>Button"]
+    Path["File Path<br/>Path"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    UpdateFile -->|"output → Point"| Pull
+    Pull -->|"Distance → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Pull -->|"Distance → Numbers"| Bnd
+    UpdateFile -->|"output → Parameter"| Gradient
+    UpdateFile -->|"LOG → Geometry"| Preview

@@ -1,0 +1,40 @@
+---
+title: 4_04_Smart_Attributes
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx
+    %% Components: 19, Connections: 9
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Merge["Merge<br/>Merge"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Tag["Text Tag 3D<br/>Tag"]
+    SMesh["Simple Mesh<br/>SMesh"]
+    DeMesh["Deconstruct Mesh<br/>DeMesh"]
+    ConMesh["Construct Mesh<br/>ConMesh"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    MEdges["Mesh Edges<br/>MEdges"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Location"| Tag
+    UpdateFile -->|"output → Text"| Tag
+    UpdateFile -->|"LOG → Mesh"| DeMesh
+    DeMesh -->|"Vertices → Vertices"| ConMesh
+    DeMesh -->|"Faces → Faces"| ConMesh
+    UpdateFile -->|"LOG → Geometry"| Preview
+    UpdateFile -->|"LOG → Mesh"| MEdges

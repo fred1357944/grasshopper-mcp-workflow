@@ -1,0 +1,35 @@
+---
+title: 4_06_Global_Constraints_Mesh
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx
+    %% Components: 17, Connections: 6
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Geo["Geometry<br/>Geo"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Merge["Merge<br/>Merge"]
+    Iso["Iso Curve<br/>Iso"]
+    Range["Range<br/>Range"]
+    Pt["Construct Point<br/>Pt"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    Iso -->|"V Isocurve → Geometry"| Preview
+    Iso -->|"U Isocurve → Geometry"| Preview
+    Merge -->|"Result → Surface"| Iso
+    Pt -->|"Point → UV point"| Iso
+    Range -->|"Range → X coordinate"| Pt
+    Range -->|"Range → Y coordinate"| Pt

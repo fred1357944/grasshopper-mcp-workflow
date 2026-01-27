@@ -1,0 +1,30 @@
+---
+title: 1_02_Rules_Connection_Types
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/1.Rules/1_02_Rules_Connection_Types.ghx
+    %% Components: 15, Connections: 3
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    PARTS_NUM["Number Slider<br/>PARTS_NUM"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Preview["Custom Preview<br/>Preview"]
+    Merge["Merge<br/>Merge"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge

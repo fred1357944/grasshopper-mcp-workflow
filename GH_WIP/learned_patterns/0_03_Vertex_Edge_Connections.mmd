@@ -1,0 +1,40 @@
+---
+title: 0_03_Vertex_Edge_Connections
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx
+    %% Components: 19, Connections: 9
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    Panel["Panel<br/>Panel"]
+    PARTS_NUM["Number Slider<br/>PARTS_NUM"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+    DeBrep["Deconstruct Brep<br/>DeBrep"]
+    Item["List Item<br/>Item"]
+    XY["XY Plane<br/>XY"]
+    CurvePoint["Point On Curve<br/>CurvePoint"]
+    Pl["Construct Plane<br/>Pl"]
+    Z["Unit Z<br/>Z"]
+    Merge["Merge<br/>Merge"]
+    DePlane["Deconstruct Plane<br/>DePlane"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Preview["Custom Preview<br/>Preview"]
+    Mesh["Mesh Brep<br/>Mesh"]
+
+    DeBrep -->|"Vertices → List"| Item
+    Item -->|"Item → Origin"| XY
+    DePlane -->|"Origin → Origin"| Pl
+    DePlane -->|"Y-Axis → X-Axis"| Pl
+    DePlane -->|"X-Axis → Y-Axis"| Pl
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    XY -->|"Plane → Plane"| DePlane
+    UpdateFile -->|"LOG → Geometry"| Preview

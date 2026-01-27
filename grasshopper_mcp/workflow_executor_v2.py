@@ -24,6 +24,18 @@ from typing import Dict, List, Optional, Any, Callable, Awaitable
 from pathlib import Path
 from datetime import datetime
 
+# Learning Agent 整合
+from .knowledge_base import ConnectionKnowledgeBase
+from .learning_agent import LearningAgent
+
+# Vision 診斷整合
+from .vision_diagnostic_client import (
+    VisionDiagnosticClient,
+    ExecutionDiagnosticHelper,
+    DiagnosticLevel,
+    DiagnosticResult
+)
+
 
 # ============================================================================
 # Enums & Data Classes
@@ -88,6 +100,7 @@ class ExecutionResult:
     validation: Optional[ValidationResult] = None
     errors: List[str] = field(default_factory=list)
     learned: bool = False
+    diagnostic: Optional[Dict] = None  # Vision 診斷結果
 
 
 # ============================================================================
@@ -727,7 +740,16 @@ class WorkflowExecutor:
         )
         self.pre_checker = PreExecutionChecker()
         self.semantic_reviewer = SemanticReviewer(llm_client=llm_client)
-        
+
+        # 學習系統
+        config_dir = Path("config")
+        self.knowledge_base = ConnectionKnowledgeBase(storage_dir=config_dir)
+        self.learning_agent = LearningAgent(
+            knowledge_base=self.knowledge_base,
+            storage_dir=config_dir,
+            auto_save=True
+        )
+
         # 升降級規則
         self.promotion_rules = {
             'min_usage': 3,
@@ -737,6 +759,11 @@ class WorkflowExecutor:
             'min_failures': 2,
             'or_success_rate_below': 0.7,
         }
+
+        # Vision 診斷整合
+        self.vision_client = VisionDiagnosticClient()
+        self.diagnostic_helper = ExecutionDiagnosticHelper(self.vision_client)
+        self.enable_vision_diagnostic = True  # 可配置開關
     
     async def run(self, user_request: str, context: Optional[Dict] = None) -> ExecutionResult:
         """
@@ -873,15 +900,43 @@ class WorkflowExecutor:
         # ========== Phase 6: Execute ==========
         print(f"\n🚀 Phase 6: 執行...")
         exec_result = await self._execute_config(config)
-        
+
         if not exec_result["success"]:
+            errors = exec_result.get("errors", [])
+            diagnostic = None
+
+            # ========== 執行失敗時調用 Vision 診斷 ==========
+            if self.enable_vision_diagnostic and errors:
+                print(f"\n🔍 執行失敗，調用 Vision 診斷...")
+                diagnostic = self.diagnostic_helper.diagnose_execution_failure(
+                    config=config,
+                    errors=errors,
+                    level=DiagnosticLevel.STANDARD
+                )
+
+                if diagnostic.get("diagnosed"):
+                    print(f"  ✅ 診斷完成")
+
+                    # 顯示診斷結果
+                    for diag in diagnostic.get("diagnostics", []):
+                        if diag.get("ai_analyzed"):
+                            print(f"  💡 原因: {diag.get('cause', 'Unknown')}")
+                            print(f"  🔧 建議: {diag.get('solution', 'Unknown')}")
+
+                            # 記錄失敗到 Archive
+                            if diag.get("correct_params"):
+                                print(f"  📝 正確參數: {diag.get('correct_params')}")
+                else:
+                    print(f"  ⚠️ 診斷失敗: {diagnostic.get('error', 'Unknown')}")
+
             return ExecutionResult(
                 success=False,
                 mode=ExecutionMode.REFERENCE,
                 phase=WorkflowPhase.EXECUTE,
                 config_used=config,
                 validation=semantic_result,
-                errors=exec_result.get("errors", [])
+                errors=errors,
+                diagnostic=diagnostic
             )
         
         # ========== Phase 7: Archive/Learn ==========
@@ -1051,40 +1106,87 @@ class WorkflowExecutor:
             return {"success": False, "errors": [str(e)]}
     
     async def _archive_and_learn(
-        self, 
-        config_path: Path, 
-        config: Dict, 
-        success: bool
+        self,
+        config_path: Path,
+        config: Dict,
+        success: bool,
+        diagnostic: Optional[Dict] = None
     ) -> bool:
-        """歸檔與學習"""
-        
+        """
+        歸檔與學習
+
+        整合 Learning Agent：
+        - 成功執行：從配置中學習連接模式
+        - 失敗執行：記錄診斷結果，供後續學習
+        - 更新 connection_triplets.json
+        - 自動保存到 config/ 目錄
+        """
+
         try:
             # 更新使用統計
             stats = config.get("_stats", {"usage_count": 0, "success_count": 0})
             stats["usage_count"] = stats.get("usage_count", 0) + 1
-            
+
             if success:
                 stats["success_count"] = stats.get("success_count", 0) + 1
-            
+
             stats["last_used"] = datetime.now().isoformat()
             config["_stats"] = stats
-            
+
+            # ========== Learning Agent 學習 ==========
+            if success:
+                execution_report = {"status": "success"}
+                context = f"Reference: {config.get('_meta', {}).get('name', config_path.stem)}"
+
+                learning_result = self.learning_agent.learn_from_execution(
+                    workflow_json=config,
+                    execution_report=execution_report,
+                    context=context
+                )
+
+                if learning_result.get("learned_count", 0) > 0:
+                    print(f"  🧠 學習到 {learning_result['learned_count']} 個連接模式")
+                    if learning_result.get("new_patterns"):
+                        print(f"     新模式: {learning_result['new_patterns'][:3]}")
+
+            # ========== 失敗時記錄診斷結果 ==========
+            if not success and diagnostic and diagnostic.get("diagnosed"):
+                # 記錄失敗診斷到配置的 _failures 欄位
+                failures = config.get("_failures", [])
+                failure_record = {
+                    "timestamp": datetime.now().isoformat(),
+                    "diagnostics": diagnostic.get("diagnostics", []),
+                    "patterns_learned": diagnostic.get("patterns", []),
+                    "suggestions": diagnostic.get("suggestions", [])
+                }
+                failures.append(failure_record)
+
+                # 保留最近 10 次失敗記錄
+                config["_failures"] = failures[-10:]
+
+                print(f"  📝 記錄失敗診斷（共 {len(config['_failures'])} 條記錄）")
+
+                # 如果失敗次數過多，標記為需要審查
+                if len(failures) >= self.demotion_rules['min_failures']:
+                    print(f"  ⚠️ 失敗次數達到 {len(failures)}，建議審查配置")
+                    config["_needs_review"] = True
+
             # 檢查是否應該升級（從 variation 到 golden）
             success_rate = stats["success_count"] / stats["usage_count"]
-            
+
             if (stats["usage_count"] >= self.promotion_rules['min_usage'] and
                 success_rate >= self.promotion_rules['min_success_rate']):
-                
+
                 if "variation" in str(config_path):
                     print(f"  🎉 達到升級條件！（使用 {stats['usage_count']} 次，成功率 {success_rate:.0%}）")
                     # TODO: 實作升級邏輯
-            
+
             # 儲存更新
             with open(config_path, 'w', encoding='utf-8') as f:
                 json.dump(config, f, indent=2, ensure_ascii=False)
-            
+
             return True
-            
+
         except Exception as e:
             print(f"  ⚠️ 歸檔失敗: {e}")
             return False

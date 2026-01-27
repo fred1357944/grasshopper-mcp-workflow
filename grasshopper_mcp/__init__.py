@@ -26,7 +26,14 @@ from .intent_router import IntentRouter, ProcessingMode, IntentType, RoutingResu
 from .meta_agent import MetaAgent, SearchResult, Question, SynthesizedPattern
 from .dual_mode_workflow import DualModeWorkflow, WorkflowPhase, WorkflowState
 from .workflow_executor import WorkflowExecutor
-from .knowledge_base import ConnectionKnowledgeBase, lookup, get_guid, is_cmd_ok
+from .knowledge_base import (
+    ConnectionKnowledgeBase,
+    lookup,
+    get_guid,
+    is_cmd_ok,
+    get_wasp_param,
+    get_standard_param,
+)
 from .learning_agent import LearningAgent
 from .vision_diagnostic_client import (
     VisionDiagnosticClient,
@@ -70,6 +77,27 @@ from .design_workflow_v2 import (
     DesignWorkflowV2,
     run_design_workflow,
 )
+from .connection_validator import (
+    ConnectionValidator,
+    ValidationResult,
+    ValidationError,
+)
+from .error_learner import (
+    ErrorLearner,
+    ErrorContext,
+    LearnedError,
+)
+from .knowledge_graph import KnowledgeGraph
+from .ghx_auto_learner import (
+    GHXAutoLearner,
+    PatternExtractor,
+    LLMAnnotator,
+    KnowledgeIntegrator,
+    EmbeddingIndex,
+    ExtractedPattern,
+    LearningResult,
+    SearchResult,
+)
 
 __all__ = [
     # 原有模組
@@ -98,6 +126,8 @@ __all__ = [
     "lookup",
     "get_guid",
     "is_cmd_ok",
+    "get_wasp_param",
+    "get_standard_param",
     "LearningAgent",
     # Vision 診斷
     "VisionDiagnosticClient",
@@ -134,4 +164,21 @@ __all__ = [
     # Layer 3 設計工作流程
     "DesignWorkflowV2",
     "run_design_workflow",
+    # Knowledge System v2 (連接驗證 + 錯誤學習)
+    "ConnectionValidator",
+    "ValidationResult",
+    "ValidationError",
+    "ErrorLearner",
+    "ErrorContext",
+    "LearnedError",
+    "KnowledgeGraph",
+    # GHX Auto-Learner
+    "GHXAutoLearner",
+    "PatternExtractor",
+    "LLMAnnotator",
+    "KnowledgeIntegrator",
+    "EmbeddingIndex",
+    "ExtractedPattern",
+    "LearningResult",
+    "SearchResult",
 ]

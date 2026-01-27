@@ -1,0 +1,29 @@
+---
+title: 1_01_Rules_Generator_Basics
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx
+    %% Components: 15, Connections: 2
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Panel["Panel<br/>Panel"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Merge["Merge<br/>Merge"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Merge -->|"Result → Material"| Preview

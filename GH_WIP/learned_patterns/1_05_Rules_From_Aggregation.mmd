@@ -1,0 +1,56 @@
+---
+title: 1_05_Rules_From_Aggregation
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx
+    %% Components: 29, Connections: 15
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    DeBrep["Deconstruct Brep<br/>DeBrep"]
+    Item["List Item<br/>Item"]
+    Area["Area<br/>Area"]
+    Y["Unit Y<br/>Y"]
+    Line["Line SDL<br/>Line"]
+    Data["Data<br/>Data"]
+    Scale_NU["Scale NU<br/>Scale NU"]
+    Volume["Volume<br/>Volume"]
+    Rotate["Rotate<br/>Rotate"]
+    Repeat["Repeat Data<br/>Repeat"]
+    Lng["List Length<br/>Lng"]
+    SubSet["Sub List<br/>SubSet"]
+    Z["Unit Z<br/>Z"]
+    Merge["Merge<br/>Merge"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    X["Unit X<br/>X"]
+    Move["Move<br/>Move"]
+
+    UpdateFile -->|"LOG → Geometry"| Preview
+    DeBrep -->|"Faces → List"| Item
+    SubSet -->|"List → Geometry"| Area
+    Area -->|"Centroid → Start"| Line
+    Z -->|"Unit vector → Direction"| Line
+    Volume -->|"Centroid → Plane"| Scale_NU
+    Line -->|"Line → Geometry"| Rotate
+    Area -->|"Centroid → Plane"| Rotate
+    Area -->|"Centroid → Data"| Repeat
+    Lng -->|"Length → Length"| Repeat
+    DeBrep -->|"Faces → List"| SubSet
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Data 3"| Merge
+    X -->|"Unit vector → Motion"| Move

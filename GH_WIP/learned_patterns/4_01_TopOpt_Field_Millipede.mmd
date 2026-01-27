@@ -1,0 +1,50 @@
+---
+title: 4_01_TopOpt_Field_Millipede
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx
+    %% Components: 26, Connections: 12
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    Brep["Brep<br/>Brep"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Gradient["Gradient<br/>Gradient"]
+    Preview["Custom Preview<br/>Preview"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Topostruct_3D["Topostruct 3D model<br/>Topostruct 3D"]
+    Boundary["3D boundary Region<br/>Boundary"]
+    Load["3D Load Region<br/>Load"]
+    Support["3D Support Region<br/>Support"]
+    Topostruct_3D_solver["Topostruct 3D solver<br/>Topostruct 3D solver"]
+    3D_Cell_Results["3D Cell Results<br/>3D Cell Results"]
+    3D_Iso_Mesh["3D Iso Mesh<br/>3D Iso Mesh"]
+    DeBox["Deconstruct Box<br/>DeBox"]
+    DeDomain["Deconstruct Domain<br/>DeDomain"]
+    A/B["Division<br/>A/B"]
+    A_B["Subtraction<br/>A-B"]
+    FaceB["Face Boundaries<br/>FaceB"]
+
+    UpdateFile -->|"output → Parameter"| Gradient
+    FaceB -->|"Boundaries → Geometry"| Preview
+    Boundary -->|"Boundary Region → Model Components"| Topostruct_3D
+    Load -->|"Load Region → Model Components"| Topostruct_3D
+    Support -->|"Support Region → Model Components"| Topostruct_3D
+    Topostruct_3D -->|"FE Model → FE Model"| Topostruct_3D_solver
+    Topostruct_3D_solver -->|"FE Model → FE Model"| 3D_Cell_Results
+    Topostruct_3D_solver -->|"FE Model → FE Model"| 3D_Iso_Mesh
+    DeBox -->|"X → Domain"| DeDomain
+    A_B -->|"Result → A"| A/B
+    A_B -->|"Result → B"| A/B
+    3D_Iso_Mesh -->|"Mesh → Mesh"| FaceB

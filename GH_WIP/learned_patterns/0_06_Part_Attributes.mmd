@@ -1,0 +1,31 @@
+---
+title: 0_06_Part_Attributes
+intent: aggregation
+tags: curve, level:medium, wasp, parametric
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx
+    %% Components: 14, Connections: 5
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Merge["Merge<br/>Merge"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Preview["Custom Preview<br/>Preview"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+    Button["Button<br/>Button"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Data 3"| Merge
+    UpdateFile -->|"LOG → Geometry"| Preview
+    UpdateFile -->|"LOG → Material"| Preview

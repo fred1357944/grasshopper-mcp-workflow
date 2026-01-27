@@ -1,0 +1,46 @@
+---
+title: 2_04_Field_from_Expression
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx
+    %% Components: 24, Connections: 10
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Pt["Point<br/>Pt"]
+    Brep["Brep<br/>Brep"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Button["Button<br/>Button"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+    Points["Point List<br/>Points"]
+    PLANE["Value List<br/>PLANE"]
+    Preview["Custom Preview<br/>Preview"]
+    Gradient["Gradient<br/>Gradient"]
+    Box["Domain Box<br/>Box"]
+    pDecon["Deconstruct<br/>pDecon"]
+    Expression["Expression<br/>Expression"]
+    Graph["Graph Mapper<br/>Graph"]
+    Random["Random<br/>Random"]
+    Cull["Cull Pattern<br/>Cull"]
+    Larger["Larger Than<br/>Larger"]
+    MEdges["Mesh Edges<br/>MEdges"]
+    Swatch["Colour Swatch<br/>Swatch"]
+
+    MEdges -->|"Naked Edges → Geometry"| Preview
+    MEdges -->|"Interior Edges → Geometry"| Preview
+    Cull -->|"List → Parameter"| Gradient
+    pDecon -->|"X component → Variable x"| Expression
+    pDecon -->|"Y component → Variable y"| Expression
+    pDecon -->|"Z component → Variable z"| Expression
+    UpdateFile -->|"output → List"| Cull
+    Larger -->|"Larger than → Cull Pattern"| Cull
+    UpdateFile -->|"output → First Number"| Larger
+    UpdateFile -->|"LOG → Mesh"| MEdges

@@ -14,17 +14,19 @@ from .component_manager import ComponentManager
 
 class ConnectionManager:
     """連接管理器"""
-    
+
     def __init__(self, client: Optional[GrasshopperClient] = None, component_manager: Optional[ComponentManager] = None):
         """
         初始化連接管理器
-        
+
         Args:
             client: Grasshopper 客戶端實例
             component_manager: 組件管理器實例（用於獲取組件 ID 映射）
         """
         self.client = client or GrasshopperClient()
         self.component_manager = component_manager or ComponentManager(self.client)
+        # 錯誤收集（用於錯誤學習閉環）
+        self.connection_errors: List[Dict[str, Any]] = []
     
     def connect_components(
         self,
@@ -85,14 +87,32 @@ class ConnectionManager:
             params["targetParam"] = target_param
         
         response = self.client.send_command("connect_components", params)
-        
+
         if response.get("success"):
             return True
         else:
             error = response.get("error", "未知錯誤")
             self.client.safe_print(f"連接失敗: {error}")
+            # 收集錯誤（用於錯誤學習閉環）
+            self.connection_errors.append({
+                "error": error,
+                "source_id": source_id,
+                "target_id": target_id,
+                "source_param": source_param,
+                "target_param": target_param,
+                "source_param_index": source_param_index,
+                "target_param_index": target_param_index,
+            })
             return False
     
+    def clear_errors(self):
+        """清空收集的錯誤"""
+        self.connection_errors = []
+
+    def get_collected_errors(self) -> List[Dict[str, Any]]:
+        """獲取收集的連接錯誤（用於錯誤學習閉環）"""
+        return self.connection_errors.copy()
+
     def connect_components_parallel(self, commands: List[Dict[str, Any]], max_workers: int = 10) -> Tuple[int, int]:
         """
         並行連接多個組件

@@ -169,10 +169,13 @@ namespace GrasshopperMCP
         /// <param name="client">TCP 客戶端</param>
         private static async Task HandleClient(TcpClient client)
         {
+            // 使用不帶 BOM 的 UTF-8 編碼，避免 Python client 解析問題
+            var utf8NoBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+
             using (client)
             using (var stream = client.GetStream())
-            using (var reader = new StreamReader(stream, Encoding.UTF8))
-            using (var writer = new StreamWriter(stream, Encoding.UTF8) { AutoFlush = true })
+            using (var reader = new StreamReader(stream, utf8NoBom))
+            using (var writer = new StreamWriter(stream, utf8NoBom) { AutoFlush = true })
             {
                 try
                 {

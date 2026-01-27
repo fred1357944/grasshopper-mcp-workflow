@@ -19,15 +19,16 @@
     },
 
     "Series": {
-      "guid": "651c4fa5-dff4-4be6-ba31-6dc267d3ab47",
+      "guid": "eca00844-c837-45bc-915f-7ed9ea02d100",
       "full_name": "Sets/Sequence/Series",
       "category": "Sets",
       "subcategory": "Sequence",
-      "library": "Grasshopper",
+      "library": "MathComponents",
       "inputs": ["S", "N", "C"],
       "outputs": ["S"],
       "known_conflicts": ["Series varible (Flexibility)"],
-      "note": "Mac Rhino 8 verified GUID"
+      "obsolete_guid": "651c4fa5-dff4-4be6-ba31-6dc267d3ab47",
+      "note": "Mac Rhino 8 re-verified 2026-01-26"
     },
 
     "Range": {
@@ -210,15 +211,15 @@
     },
 
     "Rotate": {
-      "guid": "19c70daf-600f-4697-ace2-567f6702144d",
+      "guid": "5c4ede0b-aea7-4715-9659-ebede480040c",
       "full_name": "Transform/Euclidean/Rotate",
       "category": "Transform",
       "subcategory": "Euclidean",
       "library": "XformComponents",
       "inputs": ["G", "A", "P"],
       "outputs": ["G", "X"],
-      "note": "Mac Rhino 8 verified GUID (新版, 5944e8e2... 是 OBSOLETE)",
-      "obsolete_guid": "5944e8e2-9fb9-4f8b-bdd4-8b18f1955360"
+      "note": "Mac Rhino 8 re-verified 2026-01-26",
+      "obsolete_guids": ["5944e8e2-9fb9-4f8b-bdd4-8b18f1955360", "63bf3420-f371-47b2-b10e-526e1c2f227a", "19c70daf-600f-4697-ace2-567f6702144d"]
     },
 
     "Move": {
@@ -252,14 +253,15 @@
     },
 
     "Pipe": {
-      "guid": "1ee25749-2e2d-4fc6-9209-0ea0515081f9",
+      "guid": "607ee621-e54c-4690-8987-cc689a23f92f",
       "full_name": "Surface/Freeform/Pipe",
       "category": "Surface",
       "subcategory": "Freeform",
       "library": "SurfaceComponents",
       "inputs": ["C", "R", "E"],
       "outputs": ["P"],
-      "note": "Mac Rhino 8 verified GUID"
+      "obsolete_guid": "1ee25749-2e2d-4fc6-9209-0ea0515081f9",
+      "note": "Mac Rhino 8 re-verified 2026-01-26"
     },
 
     "XY Plane": {
@@ -876,27 +878,53 @@
 
     "WASP": {
       "_category": "Aggregation",
+      "_note": "2026-01-26 更新：加入精確參數名稱和連接範例",
       "Connection From Direction": {
         "inputs": ["GEO", "CEN", "UP", "T"],
-        "outputs": ["CONN"],
-        "note": "GEO 需要 Mesh 輸入！CEN 用 Face Normals.C"
+        "outputs": ["CONN", "PLN_OUT"],
+        "note": "GEO 必須是 Mesh！CEN 用 Area.C 或 Face Normals.C",
+        "typical_connections": {
+          "GEO": "Mesh Brep.M",
+          "CEN": "Area.C",
+          "UP": "Line SDL.L 或 Unit Z.V"
+        }
       },
-      "Part": {
-        "inputs": ["N", "GEO", "CONN", "COLL", "ATT", "ADD"],
+      "Basic Part": {
+        "inputs": ["NAME", "GEO", "CONN", "COLL", "ATTR"],
         "outputs": ["PART"],
-        "note": "GEO 在索引 1, CONN 在索引 2"
+        "note": "NAME=Panel.out, GEO=Mesh.M, CONN=Connection.CONN",
+        "typical_connections": {
+          "NAME": "Panel.out",
+          "GEO": "Mesh Brep.M",
+          "CONN": "Connection From Direction.CONN"
+        }
       },
-      "Rule": {
-        "inputs": ["PART", "CONN", "PART2", "CONN2", "GRTYPE"],
-        "outputs": ["R"]
+      "Rules Generator": {
+        "inputs": ["PART", "SELF_P", "SELF_C", "TYP", "GR"],
+        "outputs": ["R"],
+        "note": "最簡單用法：只接 PART",
+        "typical_connections": {
+          "PART": "Basic Part.PART"
+        }
       },
       "Stochastic Aggregation": {
-        "inputs": ["PART", "RULE", "COUNT", "SEED", "COLL", "RESET"],
-        "outputs": ["AGG", "GEO"]
+        "inputs": ["PART", "PREV", "N", "RULES", "SEED", "CAT", "MODE", "GC", "ID", "RESET"],
+        "outputs": ["AGGR", "PART_OUT"],
+        "note": "N=數量, RULES 來自 Rules Generator.R, SEED=隨機種子",
+        "typical_connections": {
+          "PART": "Basic Part.PART",
+          "N": "Number Slider.N",
+          "RULES": "Rules Generator.R",
+          "SEED": "Number Slider.N"
+        }
       },
-      "Aggregation": {
-        "inputs": ["PART", "RULE", "FIELD", "COUNT", "SEED"],
-        "outputs": ["AGG", "GEO"]
+      "Get Part Geometry": {
+        "inputs": ["PART"],
+        "outputs": ["GEO", "M"],
+        "note": "從聚集結果取得幾何",
+        "typical_connections": {
+          "PART": "Stochastic Aggregation.AGGR"
+        }
       },
       "Field": {
         "inputs": ["BB", "RES", "VAL"],

@@ -1,0 +1,48 @@
+---
+title: 4_02_Local_Constraints_Additional_Collider
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx
+    %% Components: 26, Connections: 10
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    GEOMETRY["Brep<br/>GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    SUPPORT_DIRECTION["Curve<br/>SUPPORT_DIRECTION"]
+    Panel["Panel<br/>Panel"]
+    MJoin["Mesh Join<br/>MJoin"]
+    Move["Move<br/>Move"]
+    Series["Series<br/>Series"]
+    X["Unit X<br/>X"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Y["Unit Y<br/>Y"]
+    Geo["Geometry<br/>Geo"]
+    Clean["Clean Tree<br/>Clean"]
+    Entwine["Entwine<br/>Entwine"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Random["Random<br/>Random"]
+    Lng["List Length<br/>Lng"]
+    Gradient["Gradient<br/>Gradient"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Split["Split List<br/>Split"]
+    Data["Data<br/>Data"]
+    Item["List Item<br/>Item"]
+    Scribble["Scribble<br/>Scribble"]
+    Sketch["Sketch<br/>Sketch"]
+
+    Clean -->|"Tree → Meshes"| MJoin
+    Y -->|"Unit vector → Motion"| Move
+    Series -->|"Series → Factor"| X
+    Series -->|"Series → Factor"| Y
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Lng -->|"Length → Number"| Random
+    UpdateFile -->|"LOG → List"| Lng
+    Random -->|"Random → Parameter"| Gradient
+    UpdateFile -->|"output → List"| Split
+    Lng -->|"Length → Index"| Split

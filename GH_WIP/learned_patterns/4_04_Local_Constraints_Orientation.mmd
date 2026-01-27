@@ -1,0 +1,45 @@
+---
+title: 4_04_Local_Constraints_Orientation
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx
+    %% Components: 22, Connections: 11
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Crv["Curve<br/>Crv"]
+    XY["XY Plane<br/>XY"]
+    Dom["Construct Domain<br/>Dom"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Pt["Point<br/>Pt"]
+    Panel["Panel<br/>Panel"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    DeBrep["Deconstruct Brep<br/>DeBrep"]
+    Item["List Item<br/>Item"]
+    Area["Area<br/>Area"]
+    Y["Unit Y<br/>Y"]
+    Line["Line SDL<br/>Line"]
+    Ln["Line<br/>Ln"]
+    Align["Align Plane<br/>Align"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    DeBrep -->|"Vertices → Origin"| XY
+    UpdateFile -->|"LOG → Geometry"| Preview
+    Item -->|"Item +1 → Brep"| DeBrep
+    DeBrep -->|"Faces → List"| Item
+    Item -->|"Item +1 → Geometry"| Area
+    Area -->|"Centroid → Start"| Line
+    Y -->|"Unit vector → Direction"| Line
+    DeBrep -->|"Vertices → Start Point"| Ln
+    Area -->|"Centroid → End Point"| Ln
+    XY -->|"Plane → Plane"| Align
+    Ln -->|"Line → Direction"| Align

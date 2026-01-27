@@ -1,0 +1,34 @@
+---
+title: 0_05_Transform_Part_Aggregation_Start
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx
+    %% Components: 17, Connections: 5
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    There_is_a_change_in_input_or_output._Replace_manually_with_the_inserted_component!["Group<br/>There is a change in input or output. Replace manually with the inserted component!"]
+    Geo["Geometry<br/>Geo"]
+    Mesh["Mesh Brep<br/>Mesh"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Panel["Panel<br/>Panel"]
+    Merge["Merge<br/>Merge"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Button["Button<br/>Button"]
+    Preview["Custom Preview<br/>Preview"]
+    Move["Move<br/>Move"]
+    X["Unit X<br/>X"]
+    Rot3D["Rotate 3D<br/>Rot3D"]
+    Sketch["Sketch<br/>Sketch"]
+    Scribble["Scribble<br/>Scribble"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    UpdateFile -->|"LOG → Geometry"| Preview
+    X -->|"Unit vector → Motion"| Move
+    X -->|"Unit vector → Axis"| Rot3D

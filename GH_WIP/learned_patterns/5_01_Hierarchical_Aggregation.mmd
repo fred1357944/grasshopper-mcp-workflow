@@ -1,0 +1,47 @@
+---
+title: 5_01_Hierarchical_Aggregation
+intent: aggregation
+tags: parametric, curve, level:medium, wasp, solid
+difficulty: medium
+confidence: 1.00
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx
+    %% Components: 23, Connections: 12
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Geo["Geometry<br/>Geo"]
+    Pt["Point<br/>Pt"]
+    Crv["Curve<br/>Crv"]
+    Merge["Merge<br/>Merge"]
+    Panel["Panel<br/>Panel"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    Toggle["Boolean Toggle<br/>Toggle"]
+    Button["Button<br/>Button"]
+    Rotate["Rotate<br/>Rotate"]
+    XY["XY Plane<br/>XY"]
+    XZ["XZ Plane<br/>XZ"]
+    CrossRef["Cross Reference<br/>CrossRef"]
+    Comp["Compound<br/>Comp"]
+    Split["Split List<br/>Split"]
+    Lng["List Length<br/>Lng"]
+    Preview["Custom Preview<br/>Preview"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    Edges["Brep Edges<br/>Edges"]
+    Scribble["Scribble<br/>Scribble"]
+    Dash["Dash Pattern<br/>Dash"]
+    Sketch["Sketch<br/>Sketch"]
+
+    UpdateFile -->|"LOG → Data 1"| Merge
+    UpdateFile -->|"LOG → Data 2"| Merge
+    XZ -->|"Plane → Plane"| Rotate
+    Rotate -->|"Transform → List (A)"| CrossRef
+    Rotate -->|"Transform → List (B)"| CrossRef
+    CrossRef -->|"List (A) → Transforms"| Comp
+    CrossRef -->|"List (B) → Transforms"| Comp
+    UpdateFile -->|"output → List"| Split
+    Lng -->|"Length → Index"| Split
+    UpdateFile -->|"LOG → List"| Lng
+    Dash -->|"Dashes → Geometry"| Preview
+    UpdateFile -->|"LOG → Curve"| Dash

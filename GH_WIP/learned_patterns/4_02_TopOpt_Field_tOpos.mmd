@@ -1,0 +1,89 @@
+---
+title: 4_02_TopOpt_Field_tOpos
+intent: aggregation
+tags: parametric, curve, level:medium, mesh, wasp, solid
+difficulty: advanced
+confidence: 0.90
+---
+flowchart LR
+    %% Source: gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx
+    %% Components: 45, Connections: 32
+
+    UpdateFile["Wasp_Update File<br/>UpdateFile"]
+    Group["Group<br/>Group"]
+    Sketch["Sketch<br/>Sketch"]
+    Panel["Panel<br/>Panel"]
+    Scribble["Scribble<br/>Scribble"]
+    PART_GEOMETRY["Brep<br/>PART_GEOMETRY"]
+    CONNECTIONS_CENTERS["Point<br/>CONNECTIONS_CENTERS"]
+    Points["Point List<br/>Points"]
+    Number_Slider["Number Slider<br/>Number Slider"]
+    CONNECTIONS_X_AXIS["Curve<br/>CONNECTIONS_X_AXIS"]
+    Gradient["Gradient<br/>Gradient"]
+    Preview["Custom Preview<br/>Preview"]
+    Button["Button<br/>Button"]
+    Swatch["Colour Swatch<br/>Swatch"]
+    VL["Volume Load<br/>VL"]
+    BCond["Boundary Conditions<br/>BCond"]
+    BDomain["Boundary Domain<br/>BDomain"]
+    Res["Resolution<br/>Res"]
+    Z["Unit Z<br/>Z"]
+    Optimus["Optimus<br/>Optimus"]
+    MStat["Model Statistics<br/>MStat"]
+    Run!["Boolean Toggle<br/>Run!"]
+    AParam["Analyser Parameters<br/>AParam"]
+    Iso["Iso Mesh<br/>Iso"]
+    PStress["PrincipalStress<br/>PStress"]
+    Graph["Quick Graph<br/>Graph"]
+    MEdges["Mesh Edges<br/>MEdges"]
+    Merge["Merge<br/>Merge"]
+    Entwine["Entwine<br/>Entwine"]
+    Perf["Performance<br/>Perf"]
+    OParam["Optimius Parameters<br/>OParam"]
+    CudaContext["CudaCtx<br/>CudaContext"]
+    Model["Model<br/>Model"]
+    ElePre["Element Data Preview<br/>ElePre"]
+    Mesh["Mesh Brep<br/>Mesh"]
+    Bridge_Support["Geometry<br/>Bridge Support"]
+    Dam["Data Dam<br/>Dam"]
+    Node["Node Data<br/>Node"]
+    Repeat["Repeat Data<br/>Repeat"]
+    Lng["List Length<br/>Lng"]
+    ReMap["Remap Numbers<br/>ReMap"]
+    Bnd["Bounds<br/>Bnd"]
+    Data["Data<br/>Data"]
+    Larger["Larger Than<br/>Larger"]
+    Cull["Cull Pattern<br/>Cull"]
+
+    Cull -->|"List → Parameter"| Gradient
+    Entwine -->|"Result → Geometry"| Preview
+    Entwine -->|"Result → Shader"| Preview
+    Mesh -->|"Mesh → Load Mesh"| VL
+    Z -->|"Unit vector → Load Vector"| VL
+    VL -->|"Volume Load → Load"| BCond
+    Mesh -->|"Mesh → Support"| BCond
+    Mesh -->|"Mesh → Domain Mesh"| BDomain
+    Model -->|"Model → Model"| Optimus
+    AParam -->|"Analyser Parameters → Analyser Parameters"| Optimus
+    OParam -->|"Optimus Parameter → Optimus Parameters"| Optimus
+    Model -->|"Model → Model"| MStat
+    Dam -->|"Data A → Model"| Iso
+    Dam -->|"Data A → Model"| PStress
+    Iso -->|"Mesh → Mesh"| MEdges
+    MEdges -->|"Naked Edges → Data 1"| Merge
+    MEdges -->|"Interior Edges → Data 2"| Merge
+    Optimus -->|"Performance → Performance"| Perf
+    BDomain -->|"Boundary Domain → Boundary Domain"| Model
+    BCond -->|"Boundary Condition Setup → Boundary Condition"| Model
+    Res -->|"Resolution → Model Resolution"| Model
+    Dam -->|"Data A → Model"| ElePre
+    Optimus -->|"Model → Data A"| Dam
+    Dam -->|"Data A → Model"| Node
+    Lng -->|"Length → Length"| Repeat
+    UpdateFile -->|"output → List"| Lng
+    Node -->|"Density → Value"| ReMap
+    Bnd -->|"Domain → Source"| ReMap
+    Node -->|"Density → Numbers"| Bnd
+    UpdateFile -->|"output → First Number"| Larger
+    UpdateFile -->|"output → List"| Cull
+    Larger -->|"Larger than → Cull Pattern"| Cull

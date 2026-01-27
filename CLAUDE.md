@@ -2,6 +2,61 @@
 
 ---
 
+## 🧠 GHX Skill 超長文系統 (CRITICAL - 避免知識遺忘)
+
+**整合自 `/Users/laihongyi/Downloads/GH超長文系統`**
+
+### 核心能力
+
+| 模組 | 功能 | 使用時機 |
+|------|------|----------|
+| `analyzer.py` | GHX 解析 + 知識提取 | 分析新的 .ghx 文件 |
+| `faiss_store.py` | 語義向量搜索 | 「找類似但用 X 的」 |
+| `langgraph_agent.py` | 智能路由 | 自動分類 analyze/search/adapt |
+| `gh_mcp_execute.py` | 17 種模板 | 生成 WASP/Karamba 工作流 |
+| `wasp_catalog.db` | 39 個範例 | WASP 完整知識庫 |
+
+### 快速使用
+
+```python
+from grasshopper_mcp.ghx_skill import get_skill, quick_query, analyze_ghx
+
+# 語義搜索
+skill = get_skill()
+response = skill.answer("找一個跟我這個類似但用 WASP 的", ghx_file="student.ghx")
+
+# 快速查詢
+result = quick_query("有沒有 Karamba 結構分析的範例")
+
+# 分析 GHX
+analysis = analyze_ghx("my_definition.ghx", mermaid=True)
+print(analysis['mermaid'])  # 組件連接圖
+```
+
+### 可用模板
+
+- **WASP**: `WASP Aggregation`, `WASP Stochastic`
+- **Karamba**: `Karamba Structural`, `Karamba Shell Analysis`
+- **Kangaroo**: `Kangaroo Form Finding`, `Kangaroo Tensile Structure`
+- **Ladybug**: `Ladybug Solar`, `Honeybee Energy Model`
+- **Lunchbox**: `Lunchbox Panelization`, `Lunchbox Hex Grid`
+
+---
+
+## ⚠️ Center Box 參數順序 (CRITICAL - 連續犯錯兩次的教訓)
+
+```
+Center Box 參數:
+  - Base (index 0) = Plane 平面 → 不要連 Number！
+  - X (index 1) = Number 尺寸
+  - Y (index 2) = Number 尺寸
+  - Z (index 3) = Number 尺寸
+
+Number Slider → Box 連接時用 toParamIndex=1/2/3，不是 0！
+```
+
+---
+
 ## ⚠️ Phase 5 執行必備 (CRITICAL - 每次執行前必讀)
 
 **執行部署時，務必遵守以下規則：**
@@ -35,6 +90,27 @@ result = executor.execute_placement_info(
 | 舊組件與新組件混在一起 | 未清空畫布 | `clear_first=True` |
 | 連接失敗 | 參數名衝突 | 使用 `paramIndex` 而非 `paramName` |
 
+### Pre-Execution Checklist (Phase 4.5)
+
+**執行前自動驗證**，檢查 learned patterns 規則：
+
+```bash
+# 手動驗證
+python -m grasshopper_mcp.pre_execution_checker GH_WIP/placement_info.json
+```
+
+**目前已學習的規則** (`config/learned_patterns.json`)：
+- `wasp_connection_geo_mesh`: WASP Connection.GEO 必須接 Mesh
+- `slider_range_before_value`: Slider 必須先設 min/max 再設 value
+- `panel_not_for_numbers`: Panel 不能作為數值輸入源
+- `rotate_guid_conflict`: Rotate 必須使用 trusted GUID
+- `clear_document_not_canvas`: 清空畫布用 clear_document
+
+**學習新規則**：
+```bash
+/learn-pattern WASP Connection 的 GEO 必須接 Mesh 不能接 Brep
+```
+
 ---
 
 ## 知識查詢優先原則 (CRITICAL - 執行任何 GH_MCP 操作前必讀)
@@ -48,12 +124,14 @@ result = executor.execute_placement_info(
 | `config/trusted_guids.json` | 70+ 組件 GUID | `kb.get_component_guid("Face Normals")` |
 | `config/connection_patterns.json` | 17 種連接模式 | `kb.search_patterns("wasp")` |
 | `config/mcp_commands.json` | 可用/不可用命令 | `kb.is_command_available("clear_canvas")` |
+| `config/learned_patterns.json` | 對話累積的規則 | Pre-Execution Checker 自動載入 |
+| `config/connection_triplets.json` | 458 連接統計 | `kb.get_connection_confidence(...)` |
 
 ### 快速查詢 Python API
 
 ```python
-from grasshopper_mcp.knowledge_base import GHKnowledgeBase, lookup, get_guid, is_cmd_ok
-kb = GHKnowledgeBase()
+from grasshopper_mcp.knowledge_base import ConnectionKnowledgeBase, lookup, get_guid, is_cmd_ok
+kb = ConnectionKnowledgeBase()
 
 # 查組件 GUID 和參數
 kb.get_component_guid("Face Normals")

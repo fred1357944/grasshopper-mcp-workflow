@@ -621,4 +621,153 @@ Number Sliders (Size, Count, Seed, UV)
 
 ---
 
+## MCP API 常見錯誤 (2026-01-26 新增)
+
+### 問題 1: `list_objects` 命令不存在
+
+**錯誤現象**:
+```python
+result = client.send_command('list_objects')
+# → {'success': False, 'error': "No handler registered for command type 'list_objects'"}
+```
+
+**正確做法**:
+```python
+result = client.send_command('get_document_info')
+# → {'success': True, 'data': {'components': [...], 'componentCount': 33, ...}}
+
+# 從結果中提取組件列表
+components = result['data']['components']
+for comp in components:
+    print(f"{comp['name']}: {comp['id']}")
+```
+
+### 問題 2: `send_command` 參數格式錯誤
+
+**錯誤做法**:
+```python
+# ❌ 傳入 dict 作為第二參數
+client.send_command('connect_components', {'sourceId': 'xxx', 'targetId': 'yyy'})
+```
+
+**正確做法**:
+```python
+# ✅ 使用 **kwargs 格式
+client.send_command(
+    'connect_components',
+    sourceId='xxx',
+    sourceParamIndex=0,
+    targetId='yyy',
+    targetParamIndex=0
+)
+```
+
+### 問題 3: WASP Aggregation 參數索引錯位
+
+**參數順序**:
+```
+WASP Stochastic Aggregation 輸入參數:
+  Index 0: PART (零件)
+  Index 1: PREV (前一聚集，可選)
+  Index 2: N (聚集數量)
+  Index 3: RULES (連接規則)
+  Index 4: SEED (隨機種子)
+  Index 5+: CAT, MODE, GC, ID, RESET (進階選項)
+```
+
+**常見錯誤**: 把 Count Slider 連到索引 3 (RULES) 或把 Seed 連到索引 2 (N)
+
+---
+
+## Line SDL 導致 WASP 連鎖錯誤 (2026-01-26 新增)
+
+### 問題描述
+WASP 工作流程中，如果 Line SDL 組件缺少輸入，會導致整個下游組件鏈都顯示紅色錯誤。
+
+### 錯誤現象
+```
+Line SDL (紅色) → WASP Connection (橙色) → WASP Part (橙色)
+                                        → WASP Rules (紅色)
+                                        → WASP Aggregation (紅色)
+```
+
+### 根本原因
+Line SDL 需要三個輸入:
+- **S**: 起點 (Point3d)
+- **D**: 方向 (Vector3d)
+- **L**: 長度 (Number)
+
+缺少任何一個都會導致輸出為空 (null)。
+
+### 解決方案
+確保 Line SDL 有完整輸入:
+```
+Area.C (中心點) → Line SDL.S
+Unit Z (或其他方向) → Line SDL.D
+Number Slider (值=1) → Line SDL.L
+```
+
+或者使用 **Face Normals** 組件直接取得:
+```
+Mesh → Face Normals → N (法向量，可直接作為 WASP Connection 的 UP)
+```
+
+---
+
+---
+
+## 參數名稱標準化系統 (2026-01-26 新增)
+
+### 問題描述
+連接組件時使用 `paramIndex` 容易出錯，應該使用 `paramName`。
+
+### 解決方案
+新增兩個標準化查詢函數：
+
+```python
+from grasshopper_mcp import get_wasp_param, get_standard_param
+
+# WASP 組件參數
+get_wasp_param("Connection From Direction", "geometry")  # → "GEO"
+get_wasp_param("Basic Part", "name")                     # → "NAME"
+get_wasp_param("Stochastic Aggregation", "count")        # → "N"
+get_wasp_param("Stochastic Aggregation", "rules")        # → "RULES"
+
+# 標準 GH 組件參數
+get_standard_param("Center Box", "x_size")     # → "X"
+get_standard_param("Number Slider", "output")  # → "N"
+get_standard_param("Panel", "output")          # → "out"
+get_standard_param("Mesh Brep", "mesh")        # → "M"
+```
+
+### 正確的連接方式
+
+```python
+# ✅ 正確：使用參數名稱
+client.send_command(
+    'connect_components',
+    sourceId=slider_id,
+    sourceParam='N',      # 參數名稱
+    targetId=box_id,
+    targetParam='X'       # 參數名稱
+)
+
+# ❌ 錯誤：使用參數索引
+client.send_command(
+    'connect_components',
+    sourceId=slider_id,
+    sourceParamIndex=0,   # 索引容易錯
+    targetId=box_id,
+    targetParamIndex=1    # 索引容易錯
+)
+```
+
+### 配置文件更新
+- `config/trusted_guids.json` 已更新，包含 WASP 組件的 `typical_connections`
+- `config/learned_patterns.json` 已更新，包含 `connect_use_param_name_not_index` 規則
+
+---
+
 *此文件應在每次遇到新問題時更新，作為 GH_MCP 開發的持久知識庫。*
+
+*最後更新: 2026-01-26 (新增參數標準化系統)*

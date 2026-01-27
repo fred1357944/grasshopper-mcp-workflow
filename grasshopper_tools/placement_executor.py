@@ -287,6 +287,10 @@ class PlacementExecutor:
         else:
             print("\n⚠️  部分命令執行失敗，請檢查錯誤信息。")
 
+        # 收集連接錯誤（用於錯誤學習閉環）
+        connection_errors = self.connection_manager.get_collected_errors()
+        self.connection_manager.clear_errors()  # 清空以備下次使用
+
         return {
             "success": success,
             "add_success": add_success,
@@ -299,7 +303,9 @@ class PlacementExecutor:
             "variable_params_time": vp_time,
             "connect_time": connect_time,
             "total_time": total_time,
-            "component_id_map_size": len(self.component_manager.component_id_map)
+            "component_id_map_size": len(self.component_manager.component_id_map),
+            # 錯誤詳情（用於錯誤學習閉環）
+            "connection_errors": connection_errors,
         }
 
     def _execute_variable_params(self, variable_params: list) -> tuple:

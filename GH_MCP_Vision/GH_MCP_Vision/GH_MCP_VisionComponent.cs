@@ -156,6 +156,9 @@ namespace GH_MCP_Vision
 
         private async Task HandleClientAsync(TcpClient client, CancellationToken token)
         {
+            // 使用不帶 BOM 的 UTF-8 編碼，避免 Python client 解析問題
+            var utf8NoBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+
             using (client)
             using (var stream = client.GetStream())
             {
@@ -169,7 +172,7 @@ namespace GH_MCP_Vision
                         int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
                         if (bytesRead == 0) break;
 
-                        sb.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
+                        sb.Append(utf8NoBom.GetString(buffer, 0, bytesRead));
                         string data = sb.ToString();
 
                         // 處理每一行命令
@@ -184,7 +187,7 @@ namespace GH_MCP_Vision
                             if (!string.IsNullOrEmpty(line))
                             {
                                 string response = ProcessCommand(line);
-                                byte[] responseBytes = Encoding.UTF8.GetBytes(response + "\n");
+                                byte[] responseBytes = utf8NoBom.GetBytes(response + "\n");
                                 await stream.WriteAsync(responseBytes, 0, responseBytes.Length, token);
                             }
                         }
