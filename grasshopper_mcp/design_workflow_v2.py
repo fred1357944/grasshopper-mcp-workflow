@@ -30,6 +30,11 @@ import json
 
 from .workflow.design_workflow import DesignWorkflow, WorkflowPhase
 from .hitl_collaborator import HITLCollaborator, CollectedKnowledge
+from .component_validator import (
+    ComponentValidator,
+    ValidationStatus,
+    ValidationReport as ComponentValidationReport,
+)
 
 
 @dataclass
@@ -44,6 +49,7 @@ class WorkflowResult:
     warnings: List[str] = field(default_factory=list)
     claude_calls: int = 0
     collected_knowledge: List[Dict] = field(default_factory=list)
+    component_validation: Optional[ComponentValidationReport] = None  # 組件驗證報告
 
 
 class DesignWorkflowV2:
@@ -85,6 +91,9 @@ class DesignWorkflowV2:
 
         # 初始化底層 DesignWorkflow
         self.workflow = DesignWorkflow(project_name, base_path)
+
+        # Component Validator (Validation-First Architecture)
+        self.component_validator = ComponentValidator(config_dir="config")
 
         # 統計
         self._claude_calls = 0
@@ -136,6 +145,27 @@ class DesignWorkflowV2:
 
             # Phase 4: GUID 解析 (自動，無 HITL)
             # 這個階段主要是更新 component_info.mmd 中的 GUID
+
+            # Phase 4: Component Validation (Validation-First Architecture)
+            phase4_result = await self._phase4_component_validation_with_hitl()
+            if phase4_result.get("cancelled"):
+                return self._to_dict(WorkflowResult(
+                    status="cancelled",
+                    phase="component_validation",
+                    component_validation=phase4_result.get("validation"),
+                    claude_calls=self._claude_calls,
+                    collected_knowledge=self.hitl.get_collected_knowledge_list()
+                ))
+
+            if phase4_result.get("blocked"):
+                return self._to_dict(WorkflowResult(
+                    status="blocked",
+                    phase="component_validation",
+                    component_validation=phase4_result.get("validation"),
+                    errors=phase4_result.get("errors", []),
+                    claude_calls=self._claude_calls,
+                    collected_knowledge=self.hitl.get_collected_knowledge_list()
+                ))
 
             # Phase 4.5: Pre-Check + HITL (若有警告)
             phase45_result = await self._phase4_pre_check_with_hitl()
@@ -289,6 +319,90 @@ class DesignWorkflowV2:
 
         return {"cancelled": False, "path": comp_path}
 
+    async def _phase4_component_validation_with_hitl(self) -> Dict[str, Any]:
+        """
+        Phase 4: Component Validation (Validation-First Architecture)
+
+        驗證所有組件名稱是否有效，處理多版本衝突
+        """
+        print("\n" + "=" * 60)
+        print("  Phase 4: Component Validation")
+        print("=" * 60)
+
+        # 載入 placement_info
+        placement_info = self._load_placement_info()
+        if not placement_info:
+            print("  ⚠️ 無法載入 placement_info.json")
+            return {"cancelled": False, "blocked": False, "validation": None}
+
+        components = placement_info.get("components", [])
+        if not components:
+            print("  ⚠️ 無組件需要驗證")
+            return {"cancelled": False, "blocked": False, "validation": None}
+
+        # 執行組件驗證
+        validation_report = self.component_validator.validate_components(components)
+
+        print(f"\n📊 組件驗證結果:")
+        print(f"  - 總計: {validation_report.total_components} 個組件")
+        print(f"  - ✅ 通過: {validation_report.valid_count}")
+        print(f"  - ⚠️ 需選擇: {validation_report.ambiguous_count}")
+        print(f"  - ❌ 找不到: {validation_report.not_found_count}")
+
+        if validation_report.can_proceed:
+            print(f"\n  ✅ 所有組件已驗證")
+            return {"cancelled": False, "blocked": False, "validation": validation_report}
+
+        # 有組件需要決策
+        print(f"\n⚠️ 部分組件需要確認:")
+
+        for comp_name in validation_report.requires_decision:
+            v = validation_report.get_validation(comp_name)
+            if v is None:
+                continue
+
+            if v.status == ValidationStatus.AMBIGUOUS:
+                print(f"\n  📋 {comp_name}: 有多個版本")
+                for i, c in enumerate(v.candidates):
+                    category = c.get('category', 'Unknown')
+                    desc = c.get('description', '')
+                    recommended = "⭐ " if c.get('recommended') else ""
+                    print(f"    [{i+1}] {recommended}{category} - {desc}")
+
+            elif v.status == ValidationStatus.NOT_FOUND:
+                print(f"\n  ❌ {comp_name}: 找不到")
+                if v.recommendations:
+                    print(f"    建議替代:")
+                    for i, r in enumerate(v.recommendations[:3]):
+                        name = r.get('name', '')
+                        sim = r.get('similarity', 0)
+                        print(f"    [{i+1}] {name} (相似度: {sim:.0%})")
+
+        # HITL 確認
+        confirmed = await self.hitl.confirm(
+            "是否繼續執行？（組件驗證有警告）",
+            default=False
+        )
+
+        if not confirmed:
+            return {
+                "cancelled": True,
+                "blocked": False,
+                "validation": validation_report,
+                "errors": [f"組件驗證需要決策: {validation_report.requires_decision}"]
+            }
+
+        # 用戶選擇繼續，但可能有未解決的問題
+        if validation_report.not_found_count > 0:
+            return {
+                "cancelled": False,
+                "blocked": True,
+                "validation": validation_report,
+                "errors": [f"有 {validation_report.not_found_count} 個組件找不到"]
+            }
+
+        return {"cancelled": False, "blocked": False, "validation": validation_report}
+
     async def _phase4_pre_check_with_hitl(self) -> Dict[str, Any]:
         """
         Phase 4.5: Pre-Execution Check + HITL
@@ -418,7 +532,7 @@ class DesignWorkflowV2:
 
     def _to_dict(self, result: WorkflowResult) -> Dict[str, Any]:
         """將 WorkflowResult 轉換為字典"""
-        return {
+        output = {
             "status": result.status,
             "phase": result.phase,
             "archive_path": result.archive_path,
@@ -429,6 +543,12 @@ class DesignWorkflowV2:
             "claude_calls": result.claude_calls,
             "collected_knowledge": result.collected_knowledge,
         }
+
+        # 添加組件驗證結果（如果有）
+        if result.component_validation is not None:
+            output["component_validation"] = result.component_validation.to_dict()
+
+        return output
 
 
 # =============================================================================

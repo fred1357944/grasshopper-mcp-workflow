@@ -36,6 +36,13 @@ from .vision_diagnostic_client import (
     DiagnosticResult
 )
 
+# Component Validator (Validation-First Architecture)
+from .component_validator import (
+    ComponentValidator,
+    ValidationStatus,
+    ValidationReport as ComponentValidationReport,
+)
+
 
 # ============================================================================
 # Enums & Data Classes
@@ -98,6 +105,7 @@ class ExecutionResult:
     phase: WorkflowPhase
     config_used: Optional[Dict] = None
     validation: Optional[ValidationResult] = None
+    component_validation: Optional[ComponentValidationReport] = None  # 組件驗證報告
     errors: List[str] = field(default_factory=list)
     learned: bool = False
     diagnostic: Optional[Dict] = None  # Vision 診斷結果
@@ -764,6 +772,9 @@ class WorkflowExecutor:
         self.vision_client = VisionDiagnosticClient()
         self.diagnostic_helper = ExecutionDiagnosticHelper(self.vision_client)
         self.enable_vision_diagnostic = True  # 可配置開關
+
+        # Component Validator (Validation-First Architecture)
+        self.component_validator = ComponentValidator(config_dir=str(config_dir))
     
     async def run(self, user_request: str, context: Optional[Dict] = None) -> ExecutionResult:
         """
@@ -843,6 +854,36 @@ class WorkflowExecutor:
                     errors=["用戶取消"]
                 )
         
+        # ========== Phase 3.5: Component Validation（Validation-First）==========
+        print(f"\n🔍 Phase 3.5: Component Validation...")
+        components = config.get("components", [])
+        if components:
+            comp_report = self.component_validator.validate_components(
+                components, context=user_request
+            )
+
+            if not comp_report.can_proceed:
+                print(f"  ⚠️ 部分組件需要確認:")
+                for comp_name in comp_report.requires_decision:
+                    v = comp_report.get_validation(comp_name)
+                    if v and v.status == ValidationStatus.AMBIGUOUS:
+                        print(f"    • {comp_name}: 有多個版本")
+                    elif v and v.status == ValidationStatus.NOT_FOUND:
+                        print(f"    • {comp_name}: 找不到")
+
+                # 如果不是自動確認模式，返回讓用戶處理
+                if not self.auto_confirm:
+                    return ExecutionResult(
+                        success=False,
+                        mode=ExecutionMode.REFERENCE,
+                        phase=WorkflowPhase.PRE_CHECK,
+                        config_used=config,
+                        component_validation=comp_report,
+                        errors=["部分組件需要確認，請查看 component_validation"]
+                    )
+            else:
+                print(f"  ✅ {comp_report.valid_count} 個組件已驗證")
+
         # ========== Phase 4: Pre-Check（先做語法檢查）==========
         print(f"\n🔍 Phase 4: Pre-Execution Check（語法）...")
         pre_check_result = self.pre_checker.check(config)
