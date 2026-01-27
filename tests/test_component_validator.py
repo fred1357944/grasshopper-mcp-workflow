@@ -168,5 +168,115 @@ class TestSimilarComponents:
             assert "Line" in names or any("Line" in n for n in names)
 
 
+class TestWorkflowIntegration:
+    """P1 整合測試 - workflow_executor_v2 & design_workflow_v2"""
+
+    def test_workflow_executor_has_validator(self):
+        """測試 WorkflowExecutor 有 ComponentValidator"""
+        from grasshopper_mcp.workflow_executor_v2 import WorkflowExecutor
+
+        executor = WorkflowExecutor(
+            reference_library_path="reference_library",
+            auto_confirm=True
+        )
+        assert hasattr(executor, "component_validator")
+        assert isinstance(executor.component_validator, ComponentValidator)
+
+    def test_execution_result_has_component_validation(self):
+        """測試 ExecutionResult 有 component_validation 欄位"""
+        from grasshopper_mcp.workflow_executor_v2 import ExecutionResult, ExecutionMode, WorkflowPhase
+
+        result = ExecutionResult(
+            success=True,
+            mode=ExecutionMode.REFERENCE,
+            phase=WorkflowPhase.COMPLETE
+        )
+        assert hasattr(result, "component_validation")
+        assert result.component_validation is None  # 預設 None
+
+    def test_design_workflow_has_validator(self):
+        """測試 DesignWorkflowV2 有 ComponentValidator"""
+        from grasshopper_mcp.design_workflow_v2 import DesignWorkflowV2
+        from grasshopper_mcp.hitl_collaborator import HITLCollaborator
+
+        hitl = HITLCollaborator(auto_mode=True)
+        workflow = DesignWorkflowV2("test_project", hitl)
+
+        assert hasattr(workflow, "component_validator")
+        assert isinstance(workflow.component_validator, ComponentValidator)
+
+    def test_workflow_result_has_component_validation(self):
+        """測試 WorkflowResult 有 component_validation 欄位"""
+        from grasshopper_mcp.design_workflow_v2 import WorkflowResult
+
+        result = WorkflowResult(status="test")
+        assert hasattr(result, "component_validation")
+        assert result.component_validation is None
+
+    def test_workflow_result_to_dict_includes_validation(self):
+        """測試 WorkflowResult 轉換時包含驗證結果"""
+        from grasshopper_mcp.design_workflow_v2 import DesignWorkflowV2, WorkflowResult
+        from grasshopper_mcp.hitl_collaborator import HITLCollaborator
+
+        hitl = HITLCollaborator(auto_mode=True)
+        workflow = DesignWorkflowV2("test_project", hitl)
+
+        # 創建一個有驗證結果的 WorkflowResult
+        validator = ComponentValidator(config_dir="config")
+        report = validator.validate_components([{"type": "Number Slider"}])
+
+        result = WorkflowResult(
+            status="test",
+            component_validation=report
+        )
+
+        output = workflow._to_dict(result)
+        assert "component_validation" in output
+        assert output["component_validation"]["total_components"] == 1
+
+
+class TestValidationFirstArchitecture:
+    """測試 Validation-First 架構核心概念"""
+
+    def test_validate_before_execute_principle(self, validator):
+        """測試「驗證優先」原則 - 有問題時不應繼續"""
+        components = [
+            {"type": "Number Slider"},
+            {"type": "NonExistentComponent"},  # 故意加入無效組件
+        ]
+        report = validator.validate_components(components)
+
+        # 核心原則：有 NOT_FOUND 時 can_proceed 應為 False
+        assert report.can_proceed is False
+        assert report.not_found_count == 1
+
+    def test_auto_resolve_recommended_reduces_ambiguity(self, validator):
+        """測試 auto_resolve_recommended 能減少 AMBIGUOUS 狀態"""
+        components = [{"type": "Rotate"}]
+
+        # 開啟自動推薦
+        report_auto = validator.validate_components(components, auto_resolve_recommended=True)
+        assert report_auto.can_proceed is True
+        assert report_auto.ambiguous_count == 0
+
+        # 關閉自動推薦
+        report_manual = validator.validate_components(components, auto_resolve_recommended=False)
+        assert report_manual.can_proceed is False
+        assert report_manual.ambiguous_count == 1
+
+    def test_validation_provides_actionable_info(self, validator):
+        """測試驗證結果提供可操作的資訊"""
+        # AMBIGUOUS 應該有 candidates
+        result = validator._validate_single("Rotate", auto_resolve_recommended=False)
+        assert result.status == ValidationStatus.AMBIGUOUS
+        assert len(result.candidates) >= 2
+        assert all("guid" in c for c in result.candidates)
+
+        # NOT_FOUND 應該有 recommendations
+        result = validator._validate_single("Lien")  # 拼錯
+        assert result.status == ValidationStatus.NOT_FOUND
+        assert len(result.recommendations) > 0
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
