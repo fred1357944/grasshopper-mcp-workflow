@@ -1,323 +1,420 @@
 {
-  "_meta": {
-    "id": "wasp-cube-basic-v2",
-    "name": "WASP Cube Basic Aggregation v2",
-    "version": "2.0.0",
-    "source": "Wasp basic.ghx (optimized)",
-    "verified": true,
-    "verified_date": "2026-01-24",
-    "keywords": [
-      "wasp",
-      "cube",
-      "聚集",
-      "stochastic",
-      "離散",
-      "aggregation",
-      "立方體",
-      "方塊",
-      "基本",
-      "basic"
-    ],
-    "confidence": 1.0,
-    "description": "優化版 WASP 立方體聚集，使用 Center Box + Deconstruct Brep 避免資料爆炸",
-    "lessons_learned": [
-      "Mesh Box 的 X/Y/Z 是細分數量，不是尺寸，會導致資料爆炸",
-      "使用 Center Box (Brep) 取代 Mesh Box 可避免此問題",
-      "Connection From Plane 比 Connection From Direction 更穩定"
-    ]
-  },
-  "_stats": {
-    "usage_count": 6,
-    "success_count": 6,
-    "last_used": "2026-01-24T21:13:23.413289"
-  },
-  "layout": {
-    "strategy": "horizontal_flow",
-    "column_width": 150,
-    "row_height": 80,
-    "groups": [
-      {
-        "name": "Geometry Input",
-        "cols": [
-          0,
-          1
-        ]
-      },
-      {
-        "name": "WASP Setup",
-        "cols": [
-          2,
-          3
-        ]
-      },
-      {
-        "name": "Aggregation",
-        "cols": [
-          4,
-          5
-        ]
-      }
-    ]
-  },
   "components": [
     {
       "id": "slider_size",
-      "nickname": "Size",
       "type": "Number Slider",
+      "nickname": "Size",
+      "value": 10,
+      "min": 1,
+      "max": 50,
       "col": 0,
-      "row": 0,
-      "properties": {
-        "min": 1,
-        "max": 50,
-        "default": 10,
-        "decimal_places": 0
-      }
-    },
-    {
-      "id": "center_box",
-      "nickname": "CenterBox",
-      "type": "Center Box",
-      "col": 1,
-      "row": 0,
-      "properties": {
-        "_note": "X/Y/Z 是實際尺寸，不是細分數量"
-      }
-    },
-    {
-      "id": "deconstruct_brep",
-      "nickname": "DeconstructBrep",
-      "type": "Deconstruct Brep",
-      "col": 2,
-      "row": 0,
-      "properties": {
-        "_note": "分解 Brep 得到 6 個面"
-      }
-    },
-    {
-      "id": "evaluate_surface",
-      "nickname": "EvalSrf",
-      "type": "Evaluate Surface",
-      "col": 2,
-      "row": 1,
-      "properties": {
-        "u": 0.5,
-        "v": 0.5,
-        "_note": "取得每個面的中心點和法向量"
-      }
-    },
-    {
-      "id": "panel_name",
-      "nickname": "PartName",
-      "type": "Panel",
-      "col": 0,
-      "row": 1,
-      "properties": {
-        "content": "Cube"
-      }
-    },
-    {
-      "id": "wasp_connection",
-      "nickname": "Connections",
-      "type": "WASP Connection From Plane",
-      "col": 3,
-      "row": 0,
-      "properties": {
-        "_note": "使用 Plane 而非 Direction，更穩定"
-      }
-    },
-    {
-      "id": "wasp_part",
-      "nickname": "Part",
-      "type": "WASP Part",
-      "col": 3,
-      "row": 1,
-      "properties": {}
+      "row": 0
     },
     {
       "id": "slider_count",
-      "nickname": "Count",
       "type": "Number Slider",
-      "col": 4,
-      "row": 0,
-      "properties": {
-        "min": 1,
-        "max": 500,
-        "default": 100,
-        "decimal_places": 0
-      }
+      "nickname": "Count",
+      "value": 10,
+      "min": 1,
+      "max": 100,
+      "col": 0,
+      "row": 1
     },
     {
       "id": "slider_seed",
-      "nickname": "Seed",
       "type": "Number Slider",
+      "nickname": "Seed",
+      "value": 0,
+      "min": 0,
+      "max": 999,
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "toggle_reset",
+      "type": "Boolean Toggle",
+      "nickname": "Reset",
+      "value": false,
+      "col": 0,
+      "row": 3,
+      "_comment": "CRITICAL: StochAggr.RESET 必須連接 Boolean Toggle"
+    },
+    {
+      "id": "unit_z",
+      "type": "Unit Z",
+      "nickname": "UpDir",
       "col": 4,
       "row": 1,
-      "properties": {
-        "min": 0,
-        "max": 999,
-        "default": 42,
-        "decimal_places": 0,
-        "value": 42
-      }
+      "_comment": "為 Line SDL 提供 D (方向) 輸入"
     },
     {
-      "id": "wasp_rule",
-      "nickname": "Rules",
-      "type": "WASP Rule",
+      "id": "slider_length",
+      "type": "Number Slider",
+      "nickname": "LineLen",
+      "value": 1,
+      "min": 0.1,
+      "max": 10,
+      "col": 4,
+      "row": 2,
+      "_comment": "為 Line SDL 提供 L (長度) 輸入"
+    },
+    {
+      "id": "box1",
+      "type": "Center Box",
+      "nickname": "MainBox",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "box2",
+      "type": "Center Box",
+      "nickname": "ArmBox",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "union",
+      "type": "Solid Union",
+      "nickname": "LShape",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "mesh_brep",
+      "type": "Mesh Brep",
+      "nickname": "MeshL",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "deconstruct",
+      "type": "Deconstruct Brep",
+      "nickname": "Faces",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "list_item",
+      "type": "List Item",
+      "nickname": "SelectFaces",
       "col": 5,
-      "row": 0,
-      "properties": {}
+      "row": 2
     },
     {
-      "id": "wasp_aggregation",
-      "nickname": "Aggregation",
-      "type": "WASP Stochastic Aggregation",
+      "id": "area",
+      "type": "Area",
+      "nickname": "FaceCenter",
       "col": 6,
-      "row": 0,
-      "properties": {}
+      "row": 2
+    },
+    {
+      "id": "line_sdl",
+      "type": "Line SDL",
+      "nickname": "ConnDir",
+      "col": 5,
+      "row": 1
+    },
+    {
+      "id": "wasp_conn",
+      "type": "Wasp_Connection From Direction",
+      "nickname": "Conn",
+      "col": 7,
+      "row": 1
+    },
+    {
+      "id": "part_name",
+      "type": "Panel",
+      "nickname": "Name",
+      "value": "L_Part",
+      "col": 7,
+      "row": 2
+    },
+    {
+      "id": "wasp_part",
+      "type": "Wasp_Basic Part",
+      "nickname": "Part",
+      "col": 8,
+      "row": 0
+    },
+    {
+      "id": "wasp_rules",
+      "type": "Wasp_Rules Generator",
+      "nickname": "RuleGen",
+      "col": 9,
+      "row": 0
+    },
+    {
+      "id": "wasp_agg",
+      "type": "Wasp_Stochastic Aggregation",
+      "nickname": "Aggregation",
+      "col": 10,
+      "row": 0
+    },
+    {
+      "id": "wasp_geo",
+      "type": "Wasp_Get Part Geometry",
+      "nickname": "GetGeo",
+      "col": 11,
+      "row": 0
+    },
+    {
+      "id": "preview",
+      "type": "Custom Preview",
+      "nickname": "Preview",
+      "col": 12,
+      "row": 0
     }
   ],
   "connections": [
     {
-      "from_id": "slider_size",
-      "from_param": "Number",
-      "to_id": "center_box",
-      "to_param": "X"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box1",
+      "toParam": "X",
+      "toParamIndex": 1,
+      "_comment": "CRITICAL: Center Box X 是索引 1，不是 0！Base(0) 是平面，X(1)/Y(2)/Z(3) 是尺寸"
     },
     {
-      "from_id": "slider_size",
-      "from_param": "Number",
-      "to_id": "center_box",
-      "to_param": "Y"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box1",
+      "toParam": "Y",
+      "toParamIndex": 2
     },
     {
-      "from_id": "slider_size",
-      "from_param": "Number",
-      "to_id": "center_box",
-      "to_param": "Z"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box1",
+      "toParam": "Z",
+      "toParamIndex": 3
     },
     {
-      "from_id": "center_box",
-      "from_param": "Box",
-      "to_id": "deconstruct_brep",
-      "to_param": "Brep"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box2",
+      "toParam": "X",
+      "toParamIndex": 1
     },
     {
-      "from_id": "deconstruct_brep",
-      "from_param": "Faces",
-      "to_id": "evaluate_surface",
-      "to_param": "Surface"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box2",
+      "toParam": "Y",
+      "toParamIndex": 2
     },
     {
-      "from_id": "evaluate_surface",
-      "from_param": "Point",
-      "to_id": "wasp_connection",
-      "to_param": "Origin"
+      "from": "slider_size",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "box2",
+      "toParam": "Z",
+      "toParamIndex": 3
     },
     {
-      "from_id": "evaluate_surface",
-      "from_param": "Normal",
-      "to_id": "wasp_connection",
-      "to_param": "Z"
+      "from": "box1",
+      "fromParam": "B",
+      "fromParamIndex": 0,
+      "to": "union",
+      "toParam": "A",
+      "toParamIndex": 0
     },
     {
-      "from_id": "center_box",
-      "from_param": "Box",
-      "to_id": "wasp_part",
-      "to_param": "Geometry"
+      "from": "box2",
+      "fromParam": "B",
+      "fromParamIndex": 0,
+      "to": "union",
+      "toParam": "B",
+      "toParamIndex": 1
     },
     {
-      "from_id": "wasp_connection",
-      "from_param": "Connections",
-      "to_id": "wasp_part",
-      "to_param": "Connections"
+      "from": "union",
+      "fromParam": "R",
+      "fromParamIndex": 0,
+      "to": "mesh_brep",
+      "toParam": "B",
+      "toParamIndex": 0
     },
     {
-      "from_id": "panel_name",
-      "from_param": "Text",
-      "to_id": "wasp_part",
-      "to_param": "Name"
+      "from": "union",
+      "fromParam": "R",
+      "fromParamIndex": 0,
+      "to": "deconstruct",
+      "toParam": "B",
+      "toParamIndex": 0
     },
     {
-      "from_id": "wasp_part",
-      "from_param": "Part",
-      "to_id": "wasp_rule",
-      "to_param": "Parts"
+      "from": "deconstruct",
+      "fromParam": "F",
+      "fromParamIndex": 0,
+      "to": "list_item",
+      "toParam": "L",
+      "toParamIndex": 0
     },
     {
-      "from_id": "wasp_part",
-      "from_param": "Part",
-      "to_id": "wasp_aggregation",
-      "to_param": "Parts"
+      "from": "list_item",
+      "fromParam": "i",
+      "fromParamIndex": 0,
+      "to": "area",
+      "toParam": "G",
+      "toParamIndex": 0
     },
     {
-      "from_id": "wasp_rule",
-      "from_param": "Rules",
-      "to_id": "wasp_aggregation",
-      "to_param": "Rules"
+      "from": "mesh_brep",
+      "fromParam": "M",
+      "fromParamIndex": 0,
+      "to": "wasp_conn",
+      "toParam": "GEO",
+      "toParamIndex": 0
     },
     {
-      "from_id": "slider_count",
-      "from_param": "Number",
-      "to_id": "wasp_aggregation",
-      "to_param": "Count"
+      "from": "area",
+      "fromParam": "C",
+      "fromParamIndex": 0,
+      "to": "wasp_conn",
+      "toParam": "CEN",
+      "toParamIndex": 1
     },
     {
-      "from_id": "slider_seed",
-      "from_param": "Number",
-      "to_id": "wasp_aggregation",
-      "to_param": "Seed"
+      "from": "line_sdl",
+      "fromParam": "L",
+      "fromParamIndex": 0,
+      "to": "wasp_conn",
+      "toParam": "UP",
+      "toParamIndex": 2
+    },
+    {
+      "from": "mesh_brep",
+      "fromParam": "M",
+      "fromParamIndex": 0,
+      "to": "wasp_part",
+      "toParam": "GEO",
+      "toParamIndex": 1
+    },
+    {
+      "from": "wasp_conn",
+      "fromParam": "CONN",
+      "fromParamIndex": 0,
+      "to": "wasp_part",
+      "toParam": "CONN",
+      "toParamIndex": 2
+    },
+    {
+      "from": "part_name",
+      "fromParam": "out",
+      "fromParamIndex": 0,
+      "to": "wasp_part",
+      "toParam": "NAME",
+      "toParamIndex": 0
+    },
+    {
+      "from": "wasp_part",
+      "fromParam": "PART",
+      "fromParamIndex": 0,
+      "to": "wasp_rules",
+      "toParam": "PART",
+      "toParamIndex": 0
+    },
+    {
+      "from": "wasp_part",
+      "fromParam": "PART",
+      "fromParamIndex": 0,
+      "to": "wasp_agg",
+      "toParam": "PART",
+      "toParamIndex": 0
+    },
+    {
+      "from": "wasp_rules",
+      "fromParam": "R",
+      "fromParamIndex": 0,
+      "to": "wasp_agg",
+      "toParam": "RULES",
+      "toParamIndex": 1
+    },
+    {
+      "from": "slider_count",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "wasp_agg",
+      "toParam": "N",
+      "toParamIndex": 2,
+      "_comment": "COUNT 是描述，實際參數名是 N (索引 2)"
+    },
+    {
+      "from": "slider_seed",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "wasp_agg",
+      "toParam": "SEED",
+      "toParamIndex": 3
+    },
+    {
+      "from": "wasp_agg",
+      "fromParam": "PART_OUT",
+      "fromParamIndex": 0,
+      "to": "wasp_geo",
+      "toParam": "PART",
+      "toParamIndex": 0
+    },
+    {
+      "from": "wasp_geo",
+      "fromParam": "GEO",
+      "fromParamIndex": 0,
+      "to": "preview",
+      "toParam": "G",
+      "toParamIndex": 0
+    },
+    {
+      "from": "toggle_reset",
+      "fromParam": "B",
+      "fromParamIndex": 0,
+      "to": "wasp_agg",
+      "toParam": "RESET",
+      "_comment": "CRITICAL: Boolean Toggle -> StochAggr.RESET"
+    },
+    {
+      "from": "area",
+      "fromParam": "C",
+      "fromParamIndex": 0,
+      "to": "line_sdl",
+      "toParam": "S",
+      "_comment": "面中心點作為 Line SDL 起點"
+    },
+    {
+      "from": "unit_z",
+      "fromParam": "V",
+      "fromParamIndex": 0,
+      "to": "line_sdl",
+      "toParam": "D",
+      "_comment": "Unit Z 向量作為 Line SDL 方向"
+    },
+    {
+      "from": "slider_length",
+      "fromParam": "N",
+      "fromParamIndex": 0,
+      "to": "line_sdl",
+      "toParam": "L",
+      "_comment": "Slider 提供 Line SDL 長度"
     }
   ],
-  "customization_points": [
-    {
-      "component_id": "slider_size",
-      "param": "default",
-      "description": "立方體尺寸（實際尺寸，非細分）",
-      "type": "number",
-      "range": [
-        1,
-        50
-      ]
-    },
-    {
-      "component_id": "slider_count",
-      "param": "default",
-      "description": "聚集數量",
-      "type": "number",
-      "range": [
-        1,
-        500
-      ]
-    },
-    {
-      "component_id": "slider_seed",
-      "param": "default",
-      "description": "隨機種子",
-      "type": "number",
-      "range": [
-        0,
-        999
-      ]
+  "layout": {
+    "strategy": "smart",
+    "spacing": {
+      "x": 150,
+      "y": 80
     }
-  ],
-  "data_flow_analysis": {
-    "input": "Size slider (1 value)",
-    "center_box": "1 Brep",
-    "deconstruct_brep": "6 faces (固定)",
-    "evaluate_surface": "6 points + 6 normals",
-    "wasp_connection": "6 connections",
-    "wasp_rule": "最多 36 rules (6×6)",
-    "output": "聚集結果",
-    "risk_level": "LOW",
-    "note": "資料量固定為 6，不會隨參數增長而爆炸"
   },
-  "_modifications": {
-    "Seed": {
-      "value": 42
+  "_meta": {
+    "source": "hitl_collaboration",
+    "design_spec": {
+      "geometry": "L-Shape",
+      "connection_faces": 3,
+      "aggregation_count": 10
     },
-    "PartCount": {
-      "value": 15
-    }
+    "learning_data": "39 GHX files, 458 triplets"
   }
 }

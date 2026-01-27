@@ -1,0 +1,264 @@
+{
+  "_meta": {
+    "name": "Spiral Staircase - Exhibition Scale",
+    "description": "螺旋樓梯 (展覽規格 5m 高, 1.5m 寬)",
+    "spec_file": "spiral_staircase_spec.md",
+    "created_at": "2026-01-26"
+  },
+  "components": [
+    {
+      "id": "height_slider",
+      "type": "Number Slider",
+      "nickname": "Height",
+      "col": 0, "row": 0,
+      "min": 3000, "max": 8000, "value": 5000,
+      "_comment": "總高度 (mm)"
+    },
+    {
+      "id": "radius_slider",
+      "type": "Number Slider",
+      "nickname": "Radius",
+      "col": 0, "row": 1,
+      "min": 1000, "max": 2500, "value": 1500,
+      "_comment": "螺旋半徑 (mm)"
+    },
+    {
+      "id": "steps_slider",
+      "type": "Number Slider",
+      "nickname": "Steps",
+      "col": 0, "row": 2,
+      "min": 15, "max": 40, "value": 25,
+      "decimals": 0,
+      "_comment": "踏板數量"
+    },
+    {
+      "id": "angle_slider",
+      "type": "Number Slider",
+      "nickname": "TotalAngle",
+      "col": 0, "row": 3,
+      "min": 360, "max": 1080, "value": 720,
+      "_comment": "總旋轉角度 (度)"
+    },
+    {
+      "id": "step_depth_slider",
+      "type": "Number Slider",
+      "nickname": "StepDepth",
+      "col": 0, "row": 4,
+      "min": 200, "max": 350, "value": 280,
+      "_comment": "踏板深度 (mm)"
+    },
+    {
+      "id": "step_thick_slider",
+      "type": "Number Slider",
+      "nickname": "StepThick",
+      "col": 0, "row": 5,
+      "min": 30, "max": 80, "value": 50,
+      "_comment": "踏板厚度 (mm)"
+    },
+    {
+      "id": "rail_height_slider",
+      "type": "Number Slider",
+      "nickname": "RailHeight",
+      "col": 0, "row": 6,
+      "min": 850, "max": 1100, "value": 900,
+      "_comment": "扶手高度 (mm)"
+    },
+    {
+      "id": "rail_diameter_slider",
+      "type": "Number Slider",
+      "nickname": "RailDia",
+      "col": 0, "row": 7,
+      "min": 30, "max": 50, "value": 40,
+      "_comment": "扶手直徑 (mm)"
+    },
+    {
+      "id": "series",
+      "type": "Series",
+      "nickname": "StepIndex",
+      "col": 2, "row": 1,
+      "guid": "eca00844-c837-45bc-915f-7ed9ea02d100",
+      "_comment": "生成 0 到 Steps-1 的數列"
+    },
+    {
+      "id": "division",
+      "type": "Division",
+      "nickname": "StepFraction",
+      "col": 3, "row": 1,
+      "_comment": "StepIndex / Steps = 0.0 到 1.0"
+    },
+    {
+      "id": "height_mult",
+      "type": "Multiplication",
+      "nickname": "Z_Height",
+      "col": 4, "row": 0,
+      "_comment": "Fraction * Height = 每級高度"
+    },
+    {
+      "id": "angle_mult",
+      "type": "Multiplication",
+      "nickname": "StepAngle",
+      "col": 4, "row": 2,
+      "_comment": "Fraction * TotalAngle = 每級角度"
+    },
+    {
+      "id": "radians",
+      "type": "Radians",
+      "nickname": "AngleRad",
+      "col": 5, "row": 2,
+      "_comment": "角度轉弧度"
+    },
+    {
+      "id": "sin",
+      "type": "Sine",
+      "nickname": "SinA",
+      "col": 6, "row": 1
+    },
+    {
+      "id": "cos",
+      "type": "Cosine",
+      "nickname": "CosA",
+      "col": 6, "row": 3
+    },
+    {
+      "id": "x_mult",
+      "type": "Multiplication",
+      "nickname": "X_Coord",
+      "col": 7, "row": 1,
+      "_comment": "Radius * Cos = X"
+    },
+    {
+      "id": "y_mult",
+      "type": "Multiplication",
+      "nickname": "Y_Coord",
+      "col": 7, "row": 3,
+      "_comment": "Radius * Sin = Y"
+    },
+    {
+      "id": "center_point",
+      "type": "Construct Point",
+      "nickname": "StepCenter",
+      "col": 8, "row": 2,
+      "_comment": "螺旋中心點"
+    },
+    {
+      "id": "step_plane",
+      "type": "XY Plane",
+      "nickname": "StepPlane",
+      "col": 8, "row": 3,
+      "guid": "b581a89a-cd22-41be-9d3b-7f0ee059eaee",
+      "_comment": "CRITICAL: Rectangle.P 需要 Plane，不是 Point！"
+    },
+    {
+      "id": "step_rect",
+      "type": "Rectangle",
+      "nickname": "StepRect",
+      "col": 9, "row": 2,
+      "guid": "fb5ce79e-e8c0-40f1-987c-199b5f7da105",
+      "_comment": "踏板矩形輪廓 - Curve/Primitive/Rectangle (X/Y are Numbers)"
+    },
+    {
+      "id": "rotate",
+      "type": "Rotate",
+      "nickname": "RotatedStep",
+      "col": 10, "row": 2,
+      "guid": "5c4ede0b-aea7-4715-9659-ebede480040c",
+      "_comment": "CRITICAL: 使用 trusted GUID 避免衝突"
+    },
+    {
+      "id": "extrude",
+      "type": "Extrude",
+      "nickname": "StepSolid",
+      "col": 11, "row": 2,
+      "_comment": "擠出踏板厚度"
+    },
+    {
+      "id": "unit_z",
+      "type": "Unit Z",
+      "nickname": "ZDir",
+      "col": 10, "row": 4
+    },
+    {
+      "id": "rail_offset",
+      "type": "Addition",
+      "nickname": "RailZ",
+      "col": 8, "row": 5,
+      "_comment": "StepZ + RailHeight"
+    },
+    {
+      "id": "rail_point",
+      "type": "Construct Point",
+      "nickname": "RailPoint",
+      "col": 9, "row": 5,
+      "_comment": "扶手點位置"
+    },
+    {
+      "id": "interpolate",
+      "type": "Interpolate",
+      "nickname": "RailCurve",
+      "col": 10, "row": 5,
+      "_comment": "扶手曲線"
+    },
+    {
+      "id": "pipe",
+      "type": "Pipe",
+      "nickname": "RailPipe",
+      "col": 11, "row": 5,
+      "guid": "607ee621-e54c-4690-8987-cc689a23f92f",
+      "_comment": "扶手管道"
+    }
+  ],
+  "connections": [
+    {"from": "steps_slider", "fromParam": "N", "to": "series", "toParam": "C", "toParamIndex": 2, "_comment": "Steps count"},
+    {"from": "series", "fromParam": "S", "to": "division", "toParam": "A", "toParamIndex": 0},
+    {"from": "steps_slider", "fromParam": "N", "to": "division", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "division", "fromParam": "R", "to": "height_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "height_slider", "fromParam": "N", "to": "height_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "division", "fromParam": "R", "to": "angle_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "angle_slider", "fromParam": "N", "to": "angle_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "angle_mult", "fromParam": "R", "to": "radians", "toParam": "D", "toParamIndex": 0},
+
+    {"from": "radians", "fromParam": "R", "to": "sin", "toParam": "x", "toParamIndex": 0},
+    {"from": "radians", "fromParam": "R", "to": "cos", "toParam": "x", "toParamIndex": 0},
+
+    {"from": "cos", "fromParam": "y", "to": "x_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "radius_slider", "fromParam": "N", "to": "x_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "sin", "fromParam": "y", "to": "y_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "radius_slider", "fromParam": "N", "to": "y_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "x_mult", "fromParam": "R", "to": "center_point", "toParam": "X", "toParamIndex": 0},
+    {"from": "y_mult", "fromParam": "R", "to": "center_point", "toParam": "Y", "toParamIndex": 1},
+    {"from": "height_mult", "fromParam": "R", "to": "center_point", "toParam": "Z", "toParamIndex": 2},
+
+    {"from": "center_point", "fromParam": "Pt", "to": "step_plane", "toParam": "O", "toParamIndex": 0, "_comment": "Point → XY Plane"},
+    {"from": "step_plane", "fromParam": "P", "to": "step_rect", "toParam": "P", "toParamIndex": 0, "_comment": "Plane → Rectangle.P"},
+    {"from": "step_depth_slider", "fromParam": "N", "to": "step_rect", "toParam": "X", "toParamIndex": 1},
+    {"from": "radius_slider", "fromParam": "N", "to": "step_rect", "toParam": "Y", "toParamIndex": 2},
+
+    {"from": "step_rect", "fromParam": "R", "to": "rotate", "toParam": "G", "toParamIndex": 0},
+    {"from": "radians", "fromParam": "R", "to": "rotate", "toParam": "A", "toParamIndex": 1},
+
+    {"from": "rotate", "fromParam": "G", "to": "extrude", "toParam": "B", "toParamIndex": 0},
+    {"from": "unit_z", "fromParam": "V", "to": "extrude", "toParam": "D", "toParamIndex": 1},
+    {"from": "step_thick_slider", "fromParam": "N", "to": "unit_z", "toParam": "F", "toParamIndex": 0},
+
+    {"from": "height_mult", "fromParam": "R", "to": "rail_offset", "toParam": "A", "toParamIndex": 0},
+    {"from": "rail_height_slider", "fromParam": "N", "to": "rail_offset", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "x_mult", "fromParam": "R", "to": "rail_point", "toParam": "X", "toParamIndex": 0},
+    {"from": "y_mult", "fromParam": "R", "to": "rail_point", "toParam": "Y", "toParamIndex": 1},
+    {"from": "rail_offset", "fromParam": "R", "to": "rail_point", "toParam": "Z", "toParamIndex": 2},
+
+    {"from": "rail_point", "fromParam": "Pt", "to": "interpolate", "toParam": "V", "toParamIndex": 0},
+
+    {"from": "interpolate", "fromParam": "C", "to": "pipe", "toParam": "C", "toParamIndex": 0},
+    {"from": "rail_diameter_slider", "fromParam": "N", "to": "pipe", "toParam": "R", "toParamIndex": 1}
+  ],
+  "layout": {
+    "strategy": "smart",
+    "spacing": {"x": 120, "y": 60}
+  }
+}

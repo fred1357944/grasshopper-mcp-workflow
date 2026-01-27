@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "從 GHX 文件自動學習的連接三元組",
-    "updated_at": "2026-01-27T09:40:39.105556",
+    "updated_at": "2026-01-27T09:41:48.095259",
     "total": 678
   },
   "triplets": {
@@ -1398,7 +1398,7 @@
       "sources": []
     },
     "EdgeLengths.EL→ZombieSolver.GoalObjects": {
-      "count": 14,
+      "count": 15,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
@@ -1408,13 +1408,13 @@
       "sources": []
     },
     "Anchor.A→ZombieSolver.GoalObjects": {
-      "count": 14,
+      "count": 15,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Show.G→ZombieSolver.GoalObjects": {
-      "count": 14,
+      "count": 15,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
@@ -1844,7 +1844,7 @@
       "sources": []
     },
     "Wasp_Update File.LOG→Merge.Data 1": {
-      "count": 266,
+      "count": 284,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
@@ -1867,7 +1867,7 @@
       ]
     },
     "Wasp_Update File.LOG→Merge.Data 2": {
-      "count": 266,
+      "count": 284,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
@@ -1890,7 +1890,7 @@
       ]
     },
     "Wasp_Update File.LOG→Custom Preview.Geometry": {
-      "count": 353,
+      "count": 378,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_05_Graph_Grammar_Aggregation.ghx",
         "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx",
@@ -1920,44 +1920,44 @@
       ]
     },
     "Unit Z.Unit vector→Move.Motion": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_03_Wasp_to_DisCo_VR.ghx"
       ]
     },
     "Wasp_Update File.LOG→Text Tag 3D.Location": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx"
       ]
     },
     "Wasp_Update File.output→Text Tag 3D.Text": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Wasp_Update File.LOG→Deconstruct Mesh.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx"
       ]
     },
     "Deconstruct Mesh.Vertices→Construct Mesh.Vertices": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx"
       ]
     },
     "Deconstruct Mesh.Faces→Construct Mesh.Faces": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx"
       ]
     },
     "Wasp_Update File.LOG→Mesh Edges.Mesh": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/4_04_Smart_Attributes.ghx",
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
@@ -1965,13 +1965,13 @@
       ]
     },
     "Gradient.Colour→Custom Preview.Shader": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Wasp_Update File.LOG→Merge.Data 3": {
-      "count": 90,
+      "count": 96,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -1982,13 +1982,13 @@
       ]
     },
     "Wasp_Update File.LOG→Merge.Data 4": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "List Length.Length→Random.Number": {
-      "count": 78,
+      "count": 84,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -1999,37 +1999,37 @@
       ]
     },
     "Random.Random→Jitter.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Jitter.Values→Multiplication.A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Multiplication.Result→Vector XYZ.X component": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Multiplication.Result→Vector XYZ.Y component": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Vector XYZ.Vector→Move.Motion": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx"
       ]
     },
     "Wasp_Update File.LOG→List Length.List": {
-      "count": 52,
+      "count": 56,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
@@ -2038,7 +2038,7 @@
       ]
     },
     "Random.Random→Gradient.Parameter": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_01_Local_Constraints_Supports.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -2046,39 +2046,39 @@
       ]
     },
     "Series.Series→Unit Y.Factor": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx"
       ]
     },
     "Unit Y.Unit vector→Move.Motion": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_03_Local_Constraints_Adjacencies.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx"
       ]
     },
     "Iso Curve.V Isocurve→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx"
       ]
     },
     "Iso Curve.U Isocurve→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx"
       ]
     },
     "Merge.Result→Iso Curve.Surface": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx"
       ]
     },
     "Construct Point.Point→Iso Curve.UV point": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -2086,7 +2086,7 @@
       ]
     },
     "Range.Range→Construct Point.X coordinate": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -2094,7 +2094,7 @@
       ]
     },
     "Range.Range→Construct Point.Y coordinate": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_06_Global_Constraints_Mesh.ghx",
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
@@ -2102,14 +2102,14 @@
       ]
     },
     "Construct Point.Point→XZ Plane.Origin": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
       ]
     },
     "Wasp_Update File.output→List Length.List": {
-      "count": 65,
+      "count": 70,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
@@ -2119,44 +2119,44 @@
       ]
     },
     "Gradient.Colour→Custom Preview.Material": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "YZ Plane.Plane→Plane Surface.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx"
       ]
     },
     "Plane Surface.Plane→Iso Curve.Surface": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx"
       ]
     },
     "Construct Point.Point→YZ Plane.Origin": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_05_Global_Constraints_Plane.ghx"
       ]
     },
     "Deconstruct Brep.Vertices→XY Plane.Origin": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "List Item.Item +1→Deconstruct Brep.Brep": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "Deconstruct Brep.Faces→List Item.List": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
@@ -2164,13 +2164,13 @@
       ]
     },
     "List Item.Item +1→Area.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "Area.Centroid→Line SDL.Start": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
@@ -2178,50 +2178,50 @@
       ]
     },
     "Unit Y.Unit vector→Line SDL.Direction": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx",
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Deconstruct Brep.Vertices→Line.Start Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "Area.Centroid→Line.End Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "XY Plane.Plane→Align Plane.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "Line.Line→Align Plane.Direction": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_04_Local_Constraints_Orientation.ghx"
       ]
     },
     "Clean Tree.Tree→Mesh Join.Meshes": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx"
       ]
     },
     "Series.Series→Unit X.Factor": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx"
       ]
     },
     "Wasp_Update File.output→Split List.List": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
@@ -2229,7 +2229,7 @@
       ]
     },
     "List Length.Length→Split List.Index": {
-      "count": 52,
+      "count": 56,
       "sources": [
         "gh_learning/ghx_samples/3.Constraints/4_02_Local_Constraints_Additional_Collider.ghx",
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx",
@@ -2238,13 +2238,13 @@
       ]
     },
     "Wasp_Update File.LOG→Custom Preview.Material": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_06_Part_Attributes.ghx"
       ]
     },
     "Unit X.Unit vector→Move.Motion": {
-      "count": 47,
+      "count": 50,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
         "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx",
@@ -2252,38 +2252,38 @@
       ]
     },
     "Unit X.Unit vector→Rotate 3D.Axis": {
-      "count": 30,
+      "count": 32,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_05_Transform_Part_Aggregation_Start.ghx",
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
       ]
     },
     "Weaverbird's Catmull-Clark Subdivision.Output Mesh/Curves→Transform.Geometry": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
       ]
     },
     "Cull Pattern.List→Transform.Transform": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
       ]
     },
     "Transform.Geometry→Custom Preview.Geometry": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
       ]
     },
     "Mesh Brep.Mesh→Weaverbird's Catmull-Clark Subdivision.Mesh/Curves": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx"
       ]
     },
     "Wasp_Update File.output→Cull Pattern.List": {
-      "count": 69,
+      "count": 74,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
@@ -2293,80 +2293,80 @@
       ]
     },
     "Wasp_Update File.output→Cull Pattern.Cull Pattern": {
-      "count": 30,
+      "count": 32,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_04_Part_Geometry_Replacement.ghx",
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx"
       ]
     },
     "Deconstruct Brep.Vertices→List Item.List": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "List Item.Item→XY Plane.Origin": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "Deconstruct Plane.Origin→Construct Plane.Origin": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "Deconstruct Plane.Y-Axis→Construct Plane.X-Axis": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "Deconstruct Plane.X-Axis→Construct Plane.Y-Axis": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "XY Plane.Plane→Deconstruct Plane.Plane": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_03_Vertex_Edge_Connections.ghx"
       ]
     },
     "Wasp_Update File.LOG→Move.Geometry": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx"
       ]
     },
     "Series.Series→Multiplication.A": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx"
       ]
     },
     "Multiplication.Result→Unit X.Factor": {
-      "count": 17,
+      "count": 18,
       "sources": [
         "gh_learning/ghx_samples/0.Basics/0_08_Aggregation_w_Fixed_Seed.ghx"
       ]
     },
     "Sub List.List→Area.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "Unit Z.Unit vector→Line SDL.Direction": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "Volume.Centroid→Scale NU.Plane": {
-      "count": 91,
+      "count": 98,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
@@ -2378,25 +2378,25 @@
       ]
     },
     "Line SDL.Line→Rotate.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "Area.Centroid→Rotate.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "Area.Centroid→Repeat Data.Data": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "List Length.Length→Repeat Data.Length": {
-      "count": 52,
+      "count": 56,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx",
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
@@ -2405,158 +2405,158 @@
       ]
     },
     "Deconstruct Brep.Faces→Sub List.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_05_Rules_From_Aggregation.ghx"
       ]
     },
     "Trim Tree.Tree→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Merge.Result→Custom Preview.Material": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx",
         "gh_learning/ghx_samples/1.Rules/1_01_Rules_Generator_Basics.ghx"
       ]
     },
     "Wasp_Update File.output→Text Tag 3D.Location": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Construct Point.Point→XY Plane.Origin": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Mesh Edges.Interior Edges→Trim Tree.Tree": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Rectangle.Rectangle→List Item.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "Wasp_Update File.output→Rectangle.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/1.Rules/1_04_Rules_Visualizer.ghx"
       ]
     },
     "List Item.Item→Area.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Unit X.Unit vector→Line SDL.Direction": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Line SDL.Line→End Points.Curve": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Multiplication.Result→Move.Motion": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Wasp_Update File.output→Solid Union.Breps": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Solid Union.Result→Merge Faces.Brep": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Unit X.Unit vector→Addition.A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Unit Y.Unit vector→Addition.B": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Addition.Result→Multiplication.A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "Wasp_Update File.output→Mesh Union.Meshes": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_02_Hierarchical_Aggregation_LEGO.ghx"
       ]
     },
     "XZ Plane.Plane→Rotate.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Rotate.Transform→Cross Reference.List (A)": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Rotate.Transform→Cross Reference.List (B)": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Cross Reference.List (A)→Compound.Transforms": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Cross Reference.List (B)→Compound.Transforms": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Dash Pattern.Dashes→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Wasp_Update File.LOG→Dash Pattern.Curve": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/5.Experimental/5_01_Hierarchical_Aggregation.ghx"
       ]
     },
     "Bounding Box.Box→Scale NU.Geometry": {
-      "count": 78,
+      "count": 84,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2567,7 +2567,7 @@
       ]
     },
     "Bounding Box.Box→Volume.Geometry": {
-      "count": 78,
+      "count": 84,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2578,7 +2578,7 @@
       ]
     },
     "Wasp_Update File.output→Pull Point.Point": {
-      "count": 78,
+      "count": 84,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2589,7 +2589,7 @@
       ]
     },
     "Pull Point.Distance→Remap Numbers.Value": {
-      "count": 65,
+      "count": 70,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2599,7 +2599,7 @@
       ]
     },
     "Bounds.Domain→Remap Numbers.Source": {
-      "count": 143,
+      "count": 154,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2615,7 +2615,7 @@
       ]
     },
     "Pull Point.Distance→Bounds.Numbers": {
-      "count": 65,
+      "count": 70,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
@@ -2625,7 +2625,7 @@
       ]
     },
     "Wasp_Update File.output→Gradient.Parameter": {
-      "count": 78,
+      "count": 84,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx",
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
@@ -2636,165 +2636,165 @@
       ]
     },
     "XZ Plane.Plane→Rotate Plane.Plane": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
       ]
     },
     "Rotate Plane.Plane→Rotate 3D.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_08_Orientable_Field.ghx"
       ]
     },
     "Mesh Edges.Naked Edges→Custom Preview.Geometry": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
       ]
     },
     "Mesh Edges.Interior Edges→Custom Preview.Geometry": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
       ]
     },
     "Plane Surface.Plane→Isotrim.Surface": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Divide Domain².Segments→Isotrim.Domain": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Plane Surface.Plane→Divide Domain².Domain": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Cull Pattern.List→Mesh Brep.Brep": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh Brep.Mesh→Mesh Join.Meshes": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh Join.Mesh→Mesh WeldVertices.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh WeldVertices.Mesh→EdgeLengths.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Deconstruct Mesh.Vertices→Load.Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Unit Z.Unit vector→Load.Force vector": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh WeldVertices.Mesh→Deconstruct Mesh.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Explode.Vertices→Anchor.Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Load.Unary→ZombieSolver.GoalObjects": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh WeldVertices.Mesh→Show.G": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "ZombieSolver.O→Clean Tree.Tree": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Clean Tree.Tree→List Item.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "List Item.Item→Bounding Box.Content": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "List Item.Item→Pull Point.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Isotrim.Surface→Area.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Area.Centroid→Distance.Point A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Area.Centroid→Distance.Point B": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Distance.Distance→Larger Than.First Number": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Isotrim.Surface→Cull Pattern.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Larger Than.Larger than→Cull Pattern.Cull Pattern": {
-      "count": 52,
+      "count": 56,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx",
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
@@ -2803,84 +2803,84 @@
       ]
     },
     "List Item.Item→Mesh Edges.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Mesh Edges.Naked Edges→Join Curves.Curves": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Join Curves.Curves→Explode.Curve": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_05_Field_from_Kangaroo.ghx"
       ]
     },
     "Pull Point.Distance→Dispatch.List": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Smaller Than.Smaller than→Dispatch.Dispatch pattern": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Dispatch.List B→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx"
       ]
     },
     "Construct Domain.Domain→Remap Numbers.Target": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx"
       ]
     },
     "Dispatch.List B→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx"
       ]
     },
     "Smaller Than.Smaller than→Weave.Pattern": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Repeat Data.Data→Weave.Stream 1": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Contour.Contours→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx"
       ]
     },
     "Weave.Weave→Gradient.Parameter": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Merge.Result→List Item.List": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
@@ -2888,7 +2888,7 @@
       ]
     },
     "Random.Random→List Item.Index": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx",
@@ -2896,7 +2896,7 @@
       ]
     },
     "Wasp_Update File.output→Deconstruct.Point": {
-      "count": 39,
+      "count": 42,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx",
@@ -2904,441 +2904,441 @@
       ]
     },
     "Deconstruct.Z component→Smaller Than.First Number": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Deconstruct.Z component→Smaller Than.Second Number": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_09_Field_From_Surface.ghx",
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Cull Pattern.List→Gradient.Parameter": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Deconstruct.X component→Expression.Variable x": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
       ]
     },
     "Deconstruct.Y component→Expression.Variable y": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
       ]
     },
     "Deconstruct.Z component→Expression.Variable z": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx"
       ]
     },
     "Wasp_Update File.output→Larger Than.First Number": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_04_Field_from_Expression.ghx",
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Cull Pattern.List→Custom Preview.Geometry": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Cull Pattern.List→Custom Preview.Material": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx"
       ]
     },
     "Wasp_Update File.output→Bounding Box.Content": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
         "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx"
       ]
     },
     "Bounding Box.Box→Populate 3D.Region": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
         "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx"
       ]
     },
     "Populate 3D.Population→Pull Point.Geometry": {
-      "count": 26,
+      "count": 28,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_02_Field_Boundaries.ghx",
         "gh_learning/ghx_samples/2.Fields/2_01_Field_Basics.ghx"
       ]
     },
     "Wasp_Update File.output→Curve Closest Point.Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Deconstruct.Y component→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Deconstruct.Y component→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Remap Numbers.Mapped→Merge.Data 1": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Remap Numbers.Mapped→Merge.Data 2": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Split List.List B→Multiplication.B": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Remap Numbers.Mapped→List Length.List": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Multiplication.Result→Larger Than.First Number": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_06_MultiChannel_Field.ghx"
       ]
     },
     "Curve Closest Point.Distance→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx"
       ]
     },
     "Curve Closest Point.Distance→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx"
       ]
     },
     "Range.Range→Gradient.Parameter": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_03_Field_from_Curves.ghx"
       ]
     },
     "Angle.Angle→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Angle.Angle→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Wasp_Update File.output→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Project.Curve→Pull Point.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Weave.Weave→Multiplication.A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Surface Closest Point.UV Point→Evaluate Surface.Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Unit Z.Unit vector→Angle.Vector A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Evaluate Surface.Normal→Angle.Vector B": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_11_Combining_Fields.ghx"
       ]
     },
     "Wasp_Update File.output→Surface Closest Point.Point": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
       ]
     },
     "Surface Closest Point.Distance→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
       ]
     },
     "Surface Closest Point.Distance→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
       ]
     },
     "Iso Curve.U Isocurve→Custom Preview Lineweights.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
       ]
     },
     "Iso Curve.V Isocurve→Custom Preview Lineweights.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/2.Fields/2_10_Volumetric_Field.ghx"
       ]
     },
     "Entwine.Result→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Entwine.Result→Custom Preview.Shader": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Mesh Brep.Mesh→Volume Load.Load Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Unit Z.Unit vector→Volume Load.Load Vector": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Volume Load.Volume Load→Boundary Conditions.Load": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Mesh Brep.Mesh→Boundary Conditions.Support": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Mesh Brep.Mesh→Boundary Domain.Domain Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Model.Model→Optimus.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Analyser Parameters.Analyser Parameters→Optimus.Analyser Parameters": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Optimius Parameters.Optimus Parameter→Optimus.Optimus Parameters": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Model.Model→Model Statistics.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Data Dam.Data A→Iso Mesh.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Data Dam.Data A→PrincipalStress.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Iso Mesh.Mesh→Mesh Edges.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Mesh Edges.Naked Edges→Merge.Data 1": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Mesh Edges.Interior Edges→Merge.Data 2": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Optimus.Performance→Performance.Performance": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Boundary Domain.Boundary Domain→Model.Boundary Domain": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Boundary Conditions.Boundary Condition Setup→Model.Boundary Condition": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Resolution.Resolution→Model.Model Resolution": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Data Dam.Data A→Element Data Preview.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Optimus.Model→Data Dam.Data A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Data Dam.Data A→Node Data.Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Node Data.Density→Remap Numbers.Value": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Node Data.Density→Bounds.Numbers": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_02_TopOpt_Field_tOpos.ghx"
       ]
     },
     "Face Boundaries.Boundaries→Custom Preview.Geometry": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "3D boundary Region.Boundary Region→Topostruct 3D model.Model Components": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "3D Load Region.Load Region→Topostruct 3D model.Model Components": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "3D Support Region.Support Region→Topostruct 3D model.Model Components": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Topostruct 3D model.FE Model→Topostruct 3D solver.FE Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Topostruct 3D solver.FE Model→3D Cell Results.FE Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Topostruct 3D solver.FE Model→3D Iso Mesh.FE Model": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Deconstruct Box.X→Deconstruct Domain.Domain": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Subtraction.Result→Division.A": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "Subtraction.Result→Division.B": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]
     },
     "3D Iso Mesh.Mesh→Face Boundaries.Mesh": {
-      "count": 13,
+      "count": 14,
       "sources": [
         "gh_learning/ghx_samples/4.Advanced/_deprecated/4_01_TopOpt_Field_Millipede.ghx"
       ]

@@ -1,135 +1,27 @@
 flowchart LR
-    %% WASP Modular Aggregation v2.1 - 通用可變參數版
-    %% 立方體模組 + 6面連接 + 隨機聚合 20 個
-    %% 使用 set_variable_params 命令設定 Entwine 輸入數量
+    %% DESIGN_PROJECT - GH 組件連接圖
+    %% 生成時間: 2026-01-27 09:02
+    %%
+    %% 請在 VSCode 中預覽並編輯：
+    %% 1. 確認組件類型正確
+    %% 2. 確認連接關係正確
+    %% 3. 調整後儲存
 
-    subgraph PARAMS["參數控制"]
-        SLIDER_SIZE["Number Slider<br/>nickname: Size<br/>value: 10<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
-        SLIDER_COUNT["Number Slider<br/>nickname: Count<br/>value: 20<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
-        SLIDER_SEED["Number Slider<br/>nickname: Seed<br/>value: 1<br/>GUID: 57da07bd-ecab-415d-9d86-af36d7073abc"]
-        TOGGLE_RESET["Boolean Toggle<br/>nickname: Reset<br/>value: false<br/>GUID: 2e78987b-9dfb-42a2-8b76-3923ac8bd91a"]
-        PANEL_NAME["Panel<br/>nickname: PartName<br/>value: Cube<br/>GUID: 59e0b89a-e487-49f8-bab8-b5bab16be14c"]
+    subgraph PARAMS["參數"]
+        SLIDER1["Number Slider<br/>nickname: Param1"]
+        SLIDER2["Number Slider<br/>nickname: Param2"]
     end
 
-    subgraph MODULE["模組幾何"]
-        XY_PLANE["XY Plane<br/>nickname: BasePlane<br/>GUID: 5df6a8c1-de5e-4841-8089-41a95c741c5a"]
-        CENTER_BOX["Center Box<br/>nickname: CubeGeo<br/>GUID: d1296e28-f64c-4c2a-9a9e-49e7839460de"]
-    end
-
-    subgraph CONNECTIONS["連接點定義 (6面)"]
-        %% 半邊長計算
-        HALF_SIZE["Division<br/>nickname: HalfSize<br/>GUID: b16a2ec0-f873-4ef7-8e0c-a068e7571cb4"]
-        SLIDER_TWO["Number Slider<br/>nickname: Two<br/>value: 2<br/>min: 2<br/>max: 2<br/>GUID: 4b69de50-1ff2-4872-a2a7-f09e1ce48178"]
-
-        %% 構建連接點位置 (Construct Point)
-        PT_PX["Construct Point<br/>nickname: Pt+X<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-        PT_NX["Construct Point<br/>nickname: Pt-X<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-        PT_PY["Construct Point<br/>nickname: Pt+Y<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-        PT_NY["Construct Point<br/>nickname: Pt-Y<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-        PT_PZ["Construct Point<br/>nickname: Pt+Z<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-        PT_NZ["Construct Point<br/>nickname: Pt-Z<br/>GUID: 3581f42a-9592-4549-bd6b-1c0fc39d067b"]
-
-        %% 在連接點位置創建平面 (Plane Origin)
-        PLANE_PX["Plane Origin<br/>nickname: Plane+X<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-        PLANE_NX["Plane Origin<br/>nickname: Plane-X<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-        PLANE_PY["Plane Origin<br/>nickname: Plane+Y<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-        PLANE_NY["Plane Origin<br/>nickname: Plane-Y<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-        PLANE_PZ["Plane Origin<br/>nickname: Plane+Z<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-        PLANE_NZ["Plane Origin<br/>nickname: Plane-Z<br/>GUID: d649e2e3-2fb9-4b36-aef6-542c132b5ac3"]
-
-        %% 合併所有平面 (Entwine with 6 inputs via set_variable_params)
-        %% 重要: 建立組件後使用 set_variable_params 命令設定為 6 個輸入
-        ENTWINE["Entwine<br/>nickname: AllPlanes<br/>GUID: ae577ebd-229b-4ab7-a2ac-e3e4e5faeaf4<br/>⚙️ variable_params: input=6"]
-    end
-
-    subgraph WASP["WASP 核心"]
-        %% 從平面建立連接
-        WASP_CONN["Wasp_Connection From Plane<br/>nickname: WaspConn<br/>GUID: 55236596-6043-4d38-8b78-75aa71b53ea3<br/>輸入: PLN, T<br/>輸出: CONN, PLN_OUT"]
-
-        %% 建立 Part
-        WASP_PART["Wasp_Basic Part<br/>nickname: WaspPart<br/>GUID: 16337c2f-e757-41b5-9fa9-2818bd3d3cb4<br/>輸入: NAME, GEO, CONN<br/>輸出: PART"]
-
-        %% 建立規則 (自我連接)
-        WASP_RULES["Wasp_Rules Generator<br/>nickname: WaspRules<br/>GUID: 59fceb35-a398-4d60-9447-cc874f078a92<br/>輸入: PART<br/>輸出: R"]
-
-        %% 隨機聚合
-        WASP_AGG["Wasp_Stochastic Aggregation<br/>nickname: WaspAgg<br/>GUID: f2db2236-90e6-4128-a574-004b14fdf26f<br/>輸入: PART, N, RULES, SEED, RESET<br/>輸出: AGGR, PART_OUT"]
+    subgraph PROCESS["處理"]
+        COMP1["Component1<br/>nickname: Process1"]
     end
 
     subgraph OUTPUT["輸出"]
-        %% 取得幾何
-        WASP_GEO["Wasp_Get Part Geometry<br/>nickname: GetGeo<br/>GUID: b7c93c50-0776-4b3a-829d-01b8cae0f6fc<br/>輸入: PART<br/>輸出: GEO"]
+        OUT["Output<br/>nickname: Result"]
     end
 
-    %% === 連接 ===
+    SLIDER1 --> COMP1
+    SLIDER2 --> COMP1
+    COMP1 --> OUT
 
-    %% 模組幾何
-    XY_PLANE -->|"P → B"| CENTER_BOX
-    SLIDER_SIZE -->|"N → X"| CENTER_BOX
-    SLIDER_SIZE -->|"N → Y"| CENTER_BOX
-    SLIDER_SIZE -->|"N → Z"| CENTER_BOX
-
-    %% 半邊長
-    SLIDER_SIZE -->|"N → A"| HALF_SIZE
-    SLIDER_TWO -->|"N → B"| HALF_SIZE
-
-    %% +X 連接點 (x=+half, y=0, z=0)
-    HALF_SIZE -->|"R → X"| PT_PX
-    XY_PLANE -->|"P → B"| PLANE_PX
-    PT_PX -->|"Pt → O"| PLANE_PX
-
-    %% -X 連接點 (x=-half, y=0, z=0) - 需要負值
-    NEG_HALF["Negative<br/>nickname: NegHalf<br/>GUID: 89b0c734-5552-4343-9b85-6d1276cca164"]
-    HALF_SIZE -->|"R → x"| NEG_HALF
-    NEG_HALF -->|"R → X"| PT_NX
-    XY_PLANE -->|"P → B"| PLANE_NX
-    PT_NX -->|"Pt → O"| PLANE_NX
-
-    %% +Y 連接點 (x=0, y=+half, z=0)
-    HALF_SIZE -->|"R → Y"| PT_PY
-    XY_PLANE -->|"P → B"| PLANE_PY
-    PT_PY -->|"Pt → O"| PLANE_PY
-
-    %% -Y 連接點 (x=0, y=-half, z=0)
-    NEG_HALF -->|"R → Y"| PT_NY
-    XY_PLANE -->|"P → B"| PLANE_NY
-    PT_NY -->|"Pt → O"| PLANE_NY
-
-    %% +Z 連接點 (x=0, y=0, z=+half)
-    HALF_SIZE -->|"R → Z"| PT_PZ
-    XY_PLANE -->|"P → B"| PLANE_PZ
-    PT_PZ -->|"Pt → O"| PLANE_PZ
-
-    %% -Z 連接點 (x=0, y=0, z=-half)
-    NEG_HALF -->|"R → Z"| PT_NZ
-    XY_PLANE -->|"P → B"| PLANE_NZ
-    PT_NZ -->|"Pt → O"| PLANE_NZ
-
-    %% 合併 6 個平面到 Entwine
-    PLANE_PX -->|"Pl → {0}"| ENTWINE
-    PLANE_NX -->|"Pl → {1}"| ENTWINE
-    PLANE_PY -->|"Pl → {2}"| ENTWINE
-    PLANE_NY -->|"Pl → {3}"| ENTWINE
-    PLANE_PZ -->|"Pl → {4}"| ENTWINE
-    PLANE_NZ -->|"Pl → {5}"| ENTWINE
-
-    %% WASP 連接
-    ENTWINE -->|"R → PLN"| WASP_CONN
-
-    %% WASP Part
-    PANEL_NAME -->|"out → NAME"| WASP_PART
-    CENTER_BOX -->|"B → GEO"| WASP_PART
-    WASP_CONN -->|"CONN → CONN"| WASP_PART
-
-    %% WASP Rules
-    WASP_PART -->|"PART → PART"| WASP_RULES
-
-    %% WASP Aggregation
-    WASP_PART -->|"PART → PART"| WASP_AGG
-    SLIDER_COUNT -->|"N → N"| WASP_AGG
-    WASP_RULES -->|"R → RULES"| WASP_AGG
-    SLIDER_SEED -->|"N → SEED"| WASP_AGG
-    TOGGLE_RESET -->|"B → RESET"| WASP_AGG
-
-    %% 輸出
-    WASP_AGG -->|"PART_OUT → PART"| WASP_GEO
+    %% 請根據實際需求編輯此檔案

@@ -1,49 +1,11 @@
 erDiagram
-    %% WASP Modular Aggregation - 幾何分解圖
-    %% 立方體模組 + 6面連接點 + 隨機聚合
+    %% DESIGN PROJECT - 幾何分解圖
+    %% 生成時間: 2026-01-27 09:02
 
-    WASP_SYSTEM ||--|| BASE_MODULE : contains
-    WASP_SYSTEM ||--o{ CONNECTION_POINT : has
-    WASP_SYSTEM ||--|| AGGREGATION : produces
-
-    WASP_SYSTEM {
-        string name "WASP 模組化聚合系統"
-        int module_count "20"
-        string aggregation_type "Random"
+    OBJECT {
+        string name "design_project"
+        string description "待定義"
     }
 
-    BASE_MODULE {
-        string geometry_type "Box"
-        string forming_method "Center Box"
-        float size_x "10.0"
-        float size_y "10.0"
-        float size_z "10.0"
-        plane base_plane "XY Plane at Origin"
-        string wasp_role "Part geometry"
-    }
-
-    CONNECTION_POINT {
-        string type "Plane"
-        int count "6"
-        string positions "+X, -X, +Y, -Y, +Z, -Z faces"
-        string wasp_role "Connection planes"
-        string connection_type "bidirectional"
-    }
-
-    AGGREGATION {
-        string method "WASP Stochastic Aggregation"
-        int target_count "20"
-        string seed_type "Random"
-        string collision_check "enabled"
-        string output "Aggregated Geometry"
-    }
-
-    VISUALIZATION {
-        string method "Random Color per Module"
-        string material_type "Custom Preview"
-        float transparency "0.0"
-    }
-
-    BASE_MODULE ||--|{ CONNECTION_POINT : defines
-    AGGREGATION ||--o{ BASE_MODULE : instantiates
-    AGGREGATION ||--|| VISUALIZATION : applies
+    %% 請根據實際需求編輯此檔案
+    %% 添加更多零件和關係

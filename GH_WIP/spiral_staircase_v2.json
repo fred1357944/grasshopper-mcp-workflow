@@ -1,0 +1,297 @@
+{
+  "_meta": {
+    "name": "Spiral Staircase v2 - Simplified Logic",
+    "description": "螺旋樓梯 v2 (簡化版：在原點建立踏板，然後移動+旋轉+上移)",
+    "fixes": [
+      "1. Range 替代 Series/Division",
+      "2. 踏板在原點建立，Rotate 預設 Pivot 就是原點",
+      "3. Move → Rotate → Move 順序"
+    ],
+    "created_at": "2026-01-26"
+  },
+  "components": [
+    {
+      "id": "height_slider",
+      "type": "Number Slider",
+      "nickname": "Height",
+      "col": 0, "row": 0,
+      "min": 3000, "max": 8000, "value": 5000,
+      "_comment": "總高度 (mm)"
+    },
+    {
+      "id": "radius_slider",
+      "type": "Number Slider",
+      "nickname": "Radius",
+      "col": 0, "row": 1,
+      "min": 1000, "max": 2500, "value": 1500,
+      "_comment": "螺旋半徑 (mm)"
+    },
+    {
+      "id": "steps_slider",
+      "type": "Number Slider",
+      "nickname": "Steps",
+      "col": 0, "row": 2,
+      "min": 15, "max": 40, "value": 25,
+      "decimals": 0,
+      "_comment": "踏板數量"
+    },
+    {
+      "id": "angle_slider",
+      "type": "Number Slider",
+      "nickname": "TotalAngle",
+      "col": 0, "row": 3,
+      "min": 360, "max": 1080, "value": 720,
+      "_comment": "總旋轉角度 (度)"
+    },
+    {
+      "id": "step_width_slider",
+      "type": "Number Slider",
+      "nickname": "StepWidth",
+      "col": 0, "row": 4,
+      "min": 600, "max": 1200, "value": 800,
+      "_comment": "踏板寬度 (mm)"
+    },
+    {
+      "id": "step_depth_slider",
+      "type": "Number Slider",
+      "nickname": "StepDepth",
+      "col": 0, "row": 5,
+      "min": 200, "max": 400, "value": 300,
+      "_comment": "踏板深度 (mm)"
+    },
+    {
+      "id": "step_thick_slider",
+      "type": "Number Slider",
+      "nickname": "StepThick",
+      "col": 0, "row": 6,
+      "min": 30, "max": 80, "value": 50,
+      "_comment": "踏板厚度 (mm)"
+    },
+    {
+      "id": "rail_height_slider",
+      "type": "Number Slider",
+      "nickname": "RailHeight",
+      "col": 0, "row": 7,
+      "min": 850, "max": 1100, "value": 900,
+      "_comment": "扶手高度 (mm)"
+    },
+    {
+      "id": "rail_diameter_slider",
+      "type": "Number Slider",
+      "nickname": "RailDia",
+      "col": 0, "row": 8,
+      "min": 30, "max": 50, "value": 40,
+      "_comment": "扶手直徑 (mm)"
+    },
+
+    {
+      "id": "range",
+      "type": "Range",
+      "nickname": "T_Param",
+      "col": 2, "row": 1,
+      "_comment": "生成 0.0 到 1.0 的參數值"
+    },
+
+    {
+      "id": "height_mult",
+      "type": "Multiplication",
+      "nickname": "Z_Height",
+      "col": 3, "row": 0,
+      "_comment": "t * Height"
+    },
+    {
+      "id": "angle_mult",
+      "type": "Multiplication",
+      "nickname": "AngleDeg",
+      "col": 3, "row": 2,
+      "_comment": "t * TotalAngle"
+    },
+
+    {
+      "id": "radians",
+      "type": "Radians",
+      "nickname": "AngleRad",
+      "col": 4, "row": 2,
+      "_comment": "度 → 弧度"
+    },
+
+    {
+      "id": "base_rect",
+      "type": "Rectangle",
+      "nickname": "BaseRect",
+      "col": 5, "row": 1,
+      "guid": "fb5ce79e-e8c0-40f1-987c-199b5f7da105",
+      "_comment": "在原點建立踏板矩形"
+    },
+
+    {
+      "id": "radius_vector",
+      "type": "Unit X",
+      "nickname": "RadiusV",
+      "col": 5, "row": 3,
+      "_comment": "X 方向向量"
+    },
+
+    {
+      "id": "move_out",
+      "type": "Move",
+      "nickname": "MoveOut",
+      "col": 6, "row": 1,
+      "_comment": "向外移動到半徑位置"
+    },
+
+    {
+      "id": "rotate_step",
+      "type": "Rotate",
+      "nickname": "RotateStep",
+      "col": 7, "row": 1,
+      "guid": "5c4ede0b-aea7-4715-9659-ebede480040c",
+      "_comment": "繞原點 Z 軸旋轉"
+    },
+
+    {
+      "id": "z_vector",
+      "type": "Unit Z",
+      "nickname": "ZVector",
+      "col": 7, "row": 3,
+      "_comment": "Z 方向向量"
+    },
+
+    {
+      "id": "move_up",
+      "type": "Move",
+      "nickname": "MoveUp",
+      "col": 8, "row": 1,
+      "_comment": "向上移動到正確高度"
+    },
+
+    {
+      "id": "extrude_vector",
+      "type": "Unit Z",
+      "nickname": "ExtrudeV",
+      "col": 8, "row": 3
+    },
+
+    {
+      "id": "extrude",
+      "type": "Extrude",
+      "nickname": "StepSolid",
+      "col": 9, "row": 1,
+      "_comment": "擠出踏板厚度"
+    },
+
+    {
+      "id": "sin",
+      "type": "Sine",
+      "nickname": "SinA",
+      "col": 4, "row": 4
+    },
+    {
+      "id": "cos",
+      "type": "Cosine",
+      "nickname": "CosA",
+      "col": 4, "row": 5
+    },
+    {
+      "id": "x_mult",
+      "type": "Multiplication",
+      "nickname": "X_Coord",
+      "col": 5, "row": 4,
+      "_comment": "Radius * Cos"
+    },
+    {
+      "id": "y_mult",
+      "type": "Multiplication",
+      "nickname": "Y_Coord",
+      "col": 5, "row": 5,
+      "_comment": "Radius * Sin"
+    },
+
+    {
+      "id": "rail_z",
+      "type": "Addition",
+      "nickname": "RailZ",
+      "col": 6, "row": 4,
+      "_comment": "StepZ + RailHeight"
+    },
+    {
+      "id": "rail_point",
+      "type": "Construct Point",
+      "nickname": "RailPt",
+      "col": 7, "row": 4,
+      "_comment": "扶手點"
+    },
+    {
+      "id": "interpolate",
+      "type": "Interpolate",
+      "nickname": "RailCurve",
+      "col": 8, "row": 4,
+      "_comment": "扶手曲線"
+    },
+    {
+      "id": "pipe",
+      "type": "Pipe",
+      "nickname": "RailPipe",
+      "col": 9, "row": 4,
+      "guid": "607ee621-e54c-4690-8987-cc689a23f92f",
+      "_comment": "扶手管道"
+    }
+  ],
+  "connections": [
+    {"from": "steps_slider", "fromParam": "N", "to": "range", "toParam": "N", "toParamIndex": 1, "_comment": "Steps 數量"},
+
+    {"from": "range", "fromParam": "R", "to": "height_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "height_slider", "fromParam": "N", "to": "height_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "range", "fromParam": "R", "to": "angle_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "angle_slider", "fromParam": "N", "to": "angle_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "angle_mult", "fromParam": "R", "to": "radians", "toParam": "D", "toParamIndex": 0},
+
+    {"from": "step_depth_slider", "fromParam": "N", "to": "base_rect", "toParam": "X", "toParamIndex": 1},
+    {"from": "step_width_slider", "fromParam": "N", "to": "base_rect", "toParam": "Y", "toParamIndex": 2},
+
+    {"from": "radius_slider", "fromParam": "N", "to": "radius_vector", "toParam": "F", "toParamIndex": 0},
+
+    {"from": "base_rect", "fromParam": "R", "to": "move_out", "toParam": "G", "toParamIndex": 0},
+    {"from": "radius_vector", "fromParam": "V", "to": "move_out", "toParam": "T", "toParamIndex": 1},
+
+    {"from": "move_out", "fromParam": "G", "to": "rotate_step", "toParam": "G", "toParamIndex": 0},
+    {"from": "radians", "fromParam": "R", "to": "rotate_step", "toParam": "A", "toParamIndex": 1},
+
+    {"from": "height_mult", "fromParam": "R", "to": "z_vector", "toParam": "F", "toParamIndex": 0},
+
+    {"from": "rotate_step", "fromParam": "G", "to": "move_up", "toParam": "G", "toParamIndex": 0},
+    {"from": "z_vector", "fromParam": "V", "to": "move_up", "toParam": "T", "toParamIndex": 1},
+
+    {"from": "step_thick_slider", "fromParam": "N", "to": "extrude_vector", "toParam": "F", "toParamIndex": 0},
+
+    {"from": "move_up", "fromParam": "G", "to": "extrude", "toParam": "B", "toParamIndex": 0},
+    {"from": "extrude_vector", "fromParam": "V", "to": "extrude", "toParam": "D", "toParamIndex": 1},
+
+    {"from": "radians", "fromParam": "R", "to": "sin", "toParam": "x", "toParamIndex": 0},
+    {"from": "radians", "fromParam": "R", "to": "cos", "toParam": "x", "toParamIndex": 0},
+
+    {"from": "cos", "fromParam": "y", "to": "x_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "radius_slider", "fromParam": "N", "to": "x_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "sin", "fromParam": "y", "to": "y_mult", "toParam": "A", "toParamIndex": 0},
+    {"from": "radius_slider", "fromParam": "N", "to": "y_mult", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "height_mult", "fromParam": "R", "to": "rail_z", "toParam": "A", "toParamIndex": 0},
+    {"from": "rail_height_slider", "fromParam": "N", "to": "rail_z", "toParam": "B", "toParamIndex": 1},
+
+    {"from": "x_mult", "fromParam": "R", "to": "rail_point", "toParam": "X", "toParamIndex": 0},
+    {"from": "y_mult", "fromParam": "R", "to": "rail_point", "toParam": "Y", "toParamIndex": 1},
+    {"from": "rail_z", "fromParam": "R", "to": "rail_point", "toParam": "Z", "toParamIndex": 2},
+
+    {"from": "rail_point", "fromParam": "Pt", "to": "interpolate", "toParam": "V", "toParamIndex": 0},
+
+    {"from": "interpolate", "fromParam": "C", "to": "pipe", "toParam": "C", "toParamIndex": 0},
+    {"from": "rail_diameter_slider", "fromParam": "N", "to": "pipe", "toParam": "R", "toParamIndex": 1}
+  ],
+  "layout": {
+    "strategy": "smart",
+    "spacing": {"x": 120, "y": 60}
+  }
+}
